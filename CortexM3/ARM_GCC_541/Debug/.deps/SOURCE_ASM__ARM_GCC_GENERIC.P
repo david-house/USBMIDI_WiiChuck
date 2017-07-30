@@ -1,0 +1,14 @@
+C:/Users/dhous/Documents/Workspace09/USBMIDI\ and\ WiiChuck.cydsn/CortexM3/ARM_GCC_541/Debug/CyBootAsmGnu.o : C:/Users/dhous/Documents/Workspace09/USBMIDI\ and\ WiiChuck.cydsn/Generated_Source/PSoC5/CyBootAsmGnu.s C:/Users/dhous/Documents/Workspace09/USBMIDI\ and\ WiiChuck.cydsn/Generated_Source/PSoC5/cydevicegnu.inc C:/Users/dhous/Documents/Workspace09/USBMIDI\ and\ WiiChuck.cydsn/Generated_Source/PSoC5/cydevicegnu_trm.inc C:/Users/dhous/Documents/Workspace09/USBMIDI\ and\ WiiChuck.cydsn/Generated_Source/PSoC5/cyfittergnu.inc 
+
+C:/Users/dhous/Documents/Workspace09/USBMIDI\ and\ WiiChuck.cydsn/Generated_Source/PSoC5/CyBootAsmGnu.s : 
+
+C:/Users/dhous/Documents/Workspace09/USBMIDI\ and\ WiiChuck.cydsn/Generated_Source/PSoC5/cydevicegnu.inc : 
+
+C:/Users/dhous/Documents/Workspace09/USBMIDI\ and\ WiiChuck.cydsn/Generated_Source/PSoC5/cydevicegnu_trm.inc : 
+
+C:/Users/dhous/Documents/Workspace09/USBMIDI\ and\ WiiChuck.cydsn/Generated_Source/PSoC5/cyfittergnu.inc : 
+
+C:/Users/dhous/Documents/Workspace09/USBMIDI\ and\ WiiChuck.cydsn/CortexM3/ARM_GCC_541/Debug/UART_AsmGnu.o : C:/Users/dhous/Documents/Workspace09/USBMIDI\ and\ WiiChuck.cydsn/Generated_Source/PSoC5/UART_AsmGnu.s 
+
+C:/Users/dhous/Documents/Workspace09/USBMIDI\ and\ WiiChuck.cydsn/Generated_Source/PSoC5/UART_AsmGnu.s : 
+

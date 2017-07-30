@@ -1,0 +1,7 @@
+C:\Program Files\Cypress\PSoC Creator\4.1\PSoC Creator\psoc\content\default\CyAnnotationLibrary\CyAnnotationLibrary.cylib\CyAnnotationLibrary.cyprj|ec334322-4aa1-40df-995c-96979edde18f
+C:\Users\dhous\Documents\PSoC Creator\4.1\Downloads ( 4.1).cylib\Downloads ( 4.1).cyprj|bfd44007-0344-4cc3-8337-64ef745d4e32
+C:\Program Files\Cypress\PSoC Creator\4.1\PSoC Creator\psoc\content\cycomponentlibraryupdates\CyComponentLibraryUpdates.cylib\CyComponentLibraryUpdates.cyprj|22972211-9832-4b60-9cb2-2787431bb56e
+C:\Program Files\Cypress\PSoC Creator\4.1\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\CyComponentLibrary.cyprj|3080f559-4dde-4c6d-b39b-d27d7ba3bd75
+C:\Program Files\Cypress\PSoC Creator\4.1\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\CyPrimitives.cyprj|98e5a52d-a421-4996-9b94-a5e98fe86854
+C:\Program Files\Cypress\PSoC Creator\4.1\PSoC Creator\psoc\content\default\CyReferenceLibrary\CyReferenceLibrary.cylib\CyReferenceLibrary.cyprj|5cf050fe-7150-4679-bc25-c109a21aaf79
+C:\Users\dhous\Documents\Workspace09\USBMIDI and WiiChuck.cydsn\USBMIDI and WiiChuck.cyprj|38c08244-afd5-42b8-842f-3aef19a1daf3

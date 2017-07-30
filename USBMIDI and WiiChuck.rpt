@@ -1,0 +1,3093 @@
+Loading plugins phase: Elapsed time ==> 0s.133ms
+<CYPRESSTAG name="CyDsfit arguments...">
+cydsfit arguments: -.fdsnotice -.fdswarpdepfile=warp_dependencies.txt -.fdselabdepfile=elab_dependencies.txt -.fdsbldfile=generated_files.txt -.fdsreffile=referenced_files.txt -p C:\Users\dhous\Documents\Workspace09\USBMIDI and WiiChuck.cydsn\USBMIDI and WiiChuck.cyprj -d CY8C5888LTI-LP097 -s C:\Users\dhous\Documents\Workspace09\USBMIDI and WiiChuck.cydsn\Generated_Source\PSoC5 -- -yv2 -q10 -ygs -o2 -v3 -.fftcfgtype=LE
+</CYPRESSTAG>
+<CYPRESSTAG name="Design elaboration results...">
+</CYPRESSTAG>
+Elaboration phase: Elapsed time ==> 1s.832ms
+<CYPRESSTAG name="HDL generation results...">
+</CYPRESSTAG>
+HDL generation phase: Elapsed time ==> 0s.067ms
+<CYPRESSTAG name="Synthesis results...">
+
+     | | | | | | |
+   _________________
+  -|               |-
+  -|               |-
+  -|               |-
+  -|    CYPRESS    |-
+  -|               |-
+  -|               |-   Warp Verilog Synthesis Compiler: Version 6.3 IR 41
+  -|               |-   Copyright (C) 1991-2001 Cypress Semiconductor
+   |_______________|
+     | | | | | | |
+
+======================================================================
+Compiling:  USBMIDI and WiiChuck.v
+Program  :   C:\Program Files\Cypress\PSoC Creator\4.1\PSoC Creator\warp\bin\warp.exe
+Options  :    -yv2 -q10 -ygs -o2 -v3 -.fftcfgtype=LE -ya -.fftprj=C:\Users\dhous\Documents\Workspace09\USBMIDI and WiiChuck.cydsn\USBMIDI and WiiChuck.cyprj -dcpsoc3 USBMIDI and WiiChuck.v -verilog
+======================================================================
+
+======================================================================
+Compiling:  USBMIDI and WiiChuck.v
+Program  :   C:\Program Files\Cypress\PSoC Creator\4.1\PSoC Creator\warp\bin\warp.exe
+Options  :    -yv2 -q10 -ygs -o2 -v3 -.fftcfgtype=LE -ya -.fftprj=C:\Users\dhous\Documents\Workspace09\USBMIDI and WiiChuck.cydsn\USBMIDI and WiiChuck.cyprj -dcpsoc3 USBMIDI and WiiChuck.v -verilog
+======================================================================
+
+======================================================================
+Compiling:  USBMIDI and WiiChuck.v
+Program  :   vlogfe
+Options  :    -yv2 -q10 -ygs -o2 -v3 -.fftcfgtype=LE -ya -.fftprj=C:\Users\dhous\Documents\Workspace09\USBMIDI and WiiChuck.cydsn\USBMIDI and WiiChuck.cyprj -dcpsoc3 -verilog USBMIDI and WiiChuck.v
+======================================================================
+
+vlogfe V6.3 IR 41:  Verilog parser
+Sun Jul 30 14:34:42 2017
+
+
+======================================================================
+Compiling:  USBMIDI and WiiChuck.v
+Program  :   vpp
+Options  :    -yv2 -q10 USBMIDI and WiiChuck.v
+======================================================================
+
+vpp V6.3 IR 41:  Verilog Pre-Processor
+Sun Jul 30 14:34:42 2017
+
+Flattening file 'C:\Program Files\Cypress\PSoC Creator\4.1\PSoC Creator\psoc\content\CyPrimitives\cyprimitives.cylib\cy_virtualmux_v1_0\cy_virtualmux_v1_0.v'
+Flattening file 'C:\Program Files\Cypress\PSoC Creator\4.1\PSoC Creator\psoc\content\CyComponentLibrary\CyComponentLibrary.cylib\B_UART_v2_50\B_UART_v2_50.v'
+Flattening file 'C:\Program Files\Cypress\PSoC Creator\4.1\PSoC Creator\warp\lib\common\cypress.v'
+Flattening file 'C:\Program Files\Cypress\PSoC Creator\4.1\PSoC Creator\warp\lib\common\cy_psoc3_inc.v'
+Flattening file 'C:\Program Files\Cypress\PSoC Creator\4.1\PSoC Creator\psoc\content\CyPrimitives\cyprimitives.cylib\not_v1_0\not_v1_0.v'
+Flattening file 'C:\Program Files\Cypress\PSoC Creator\4.1\PSoC Creator\psoc\content\CyPrimitives\cyprimitives.cylib\ZeroTerminal\ZeroTerminal.v'
+Flattening file 'C:\Program Files\Cypress\PSoC Creator\4.1\PSoC Creator\psoc\content\CyPrimitives\cyprimitives.cylib\OneTerminal\OneTerminal.v'
+Flattening file 'C:\Program Files\Cypress\PSoC Creator\4.1\PSoC Creator\psoc\content\CyPrimitives\cyprimitives.cylib\or_v1_0\or_v1_0.v'
+
+vpp:  No errors.
+
+Library 'work' => directory 'lcpsoc3'
+General_symbol_table
+General_symbol_table
+Linking 'C:\Program Files\Cypress\PSoC Creator\4.1\PSoC Creator\warp\lib\common\std.vhd'.
+Linking 'C:\Program Files\Cypress\PSoC Creator\4.1\PSoC Creator\warp\lib\common\cypress.vhd'.
+Linking 'C:\Program Files\Cypress\PSoC Creator\4.1\PSoC Creator\warp\lib\common\work\cypress.vif'.
+Linking 'C:\Program Files\Cypress\PSoC Creator\4.1\PSoC Creator\warp\lib\ieee\work\stdlogic.vif'.
+Linking 'C:\Program Files\Cypress\PSoC Creator\4.1\PSoC Creator\warp\lib\common\stdlogic\lpmpkg.vif'.
+Linking 'C:\Program Files\Cypress\PSoC Creator\4.1\PSoC Creator\warp\lib\common\stdlogic\rtlpkg.vif'.
+Linking 'C:\Program Files\Cypress\PSoC Creator\4.1\PSoC Creator\warp\lib\common\stdlogic\mod_cnst.vif'.
+Linking 'C:\Program Files\Cypress\PSoC Creator\4.1\PSoC Creator\warp\lib\common\stdlogic\mod_mthv.vif'.
+Linking 'C:\Program Files\Cypress\PSoC Creator\4.1\PSoC Creator\warp\lib\common\stdlogic\mod_genv.vif'.
+Using control file 'USBMIDI and WiiChuck.ctl'.
+C:\Program Files\Cypress\PSoC Creator\4.1\PSoC Creator\psoc\content\CyComponentLibrary\CyComponentLibrary.cylib\B_UART_v2_50\B_UART_v2_50.v (line 1113, col 55):  Note: Substituting module 'add_vv_vv' for '+'.
+C:\Program Files\Cypress\PSoC Creator\4.1\PSoC Creator\psoc\content\CyComponentLibrary\CyComponentLibrary.cylib\B_UART_v2_50\B_UART_v2_50.v (line 1122, col 48):  Note: Substituting module 'cmp_vv_vv' for '<'.
+C:\Program Files\Cypress\PSoC Creator\4.1\PSoC Creator\psoc\content\CyComponentLibrary\CyComponentLibrary.cylib\B_UART_v2_50\B_UART_v2_50.v (line 1122, col 77):  Note: Substituting module 'cmp_vv_vv' for '<'.
+C:\Program Files\Cypress\PSoC Creator\4.1\PSoC Creator\psoc\content\CyComponentLibrary\CyComponentLibrary.cylib\B_UART_v2_50\B_UART_v2_50.v (line 1389, col 59):  Note: Substituting module 'cmp_vv_vv' for '<'.
+C:\Program Files\Cypress\PSoC Creator\4.1\PSoC Creator\psoc\content\CyComponentLibrary\CyComponentLibrary.cylib\B_UART_v2_50\B_UART_v2_50.v (line 1424, col 61):  Note: Substituting module 'cmp_vv_vv' for '/='.
+C:\Program Files\Cypress\PSoC Creator\4.1\PSoC Creator\psoc\content\CyComponentLibrary\CyComponentLibrary.cylib\B_UART_v2_50\B_UART_v2_50.v (line 1547, col 106):  Note: Substituting module 'cmp_vv_vv' for '<'.
+C:\Program Files\Cypress\PSoC Creator\4.1\PSoC Creator\psoc\content\CyComponentLibrary\CyComponentLibrary.cylib\B_UART_v2_50\B_UART_v2_50.v (line 1603, col 68):  Note: Substituting module 'cmp_vv_vv' for '<'.
+C:\Program Files\Cypress\PSoC Creator\4.1\PSoC Creator\psoc\content\CyComponentLibrary\CyComponentLibrary.cylib\B_UART_v2_50\B_UART_v2_50.v (line 1604, col 68):  Note: Substituting module 'cmp_vv_vv' for '<'.
+Linking 'C:\Program Files\Cypress\PSoC Creator\4.1\PSoC Creator\warp\lib\common\stdlogic\cy_psoc3pkg.vif'.
+Linking 'C:\Program Files\Cypress\PSoC Creator\4.1\PSoC Creator\warp\lib\common\stdlogic\cy_psoc3.vif'.
+
+vlogfe:  No errors.
+
+
+======================================================================
+Compiling:  USBMIDI and WiiChuck.v
+Program  :   tovif
+Options  :    -yv2 -q10 -ygs -o2 -v3 -.fftcfgtype=LE -ya -.fftprj=C:\Users\dhous\Documents\Workspace09\USBMIDI and WiiChuck.cydsn\USBMIDI and WiiChuck.cyprj -dcpsoc3 -verilog USBMIDI and WiiChuck.v
+======================================================================
+
+tovif V6.3 IR 41:  High-level synthesis
+Sun Jul 30 14:34:43 2017
+
+Linking 'C:\Program Files\Cypress\PSoC Creator\4.1\PSoC Creator\warp\lib\common\std.vhd'.
+Linking 'C:\Program Files\Cypress\PSoC Creator\4.1\PSoC Creator\warp\lib\common\cypress.vhd'.
+Linking 'C:\Program Files\Cypress\PSoC Creator\4.1\PSoC Creator\warp\lib\common\work\cypress.vif'.
+Linking 'C:\Program Files\Cypress\PSoC Creator\4.1\PSoC Creator\warp\lib\ieee\work\stdlogic.vif'.
+Linking 'C:\Program Files\Cypress\PSoC Creator\4.1\PSoC Creator\warp\lib\common\stdlogic\lpmpkg.vif'.
+Linking 'C:\Program Files\Cypress\PSoC Creator\4.1\PSoC Creator\warp\lib\common\stdlogic\rtlpkg.vif'.
+Linking 'C:\Program Files\Cypress\PSoC Creator\4.1\PSoC Creator\warp\lib\common\stdlogic\mod_cnst.vif'.
+Linking 'C:\Program Files\Cypress\PSoC Creator\4.1\PSoC Creator\warp\lib\common\stdlogic\mod_mthv.vif'.
+Linking 'C:\Program Files\Cypress\PSoC Creator\4.1\PSoC Creator\warp\lib\common\stdlogic\mod_genv.vif'.
+Linking 'C:\Users\dhous\Documents\Workspace09\USBMIDI and WiiChuck.cydsn\codegentemp\USBMIDI and WiiChuck.ctl'.
+Linking 'C:\Program Files\Cypress\PSoC Creator\4.1\PSoC Creator\psoc\content\CyPrimitives\cyprimitives.cylib\cy_virtualmux_v1_0\cy_virtualmux_v1_0.v'.
+Linking 'C:\Users\dhous\Documents\Workspace09\USBMIDI and WiiChuck.cydsn\codegentemp\USBMIDI and WiiChuck.v'.
+Linking 'C:\Program Files\Cypress\PSoC Creator\4.1\PSoC Creator\psoc\content\CyComponentLibrary\CyComponentLibrary.cylib\B_UART_v2_50\B_UART_v2_50.v'.
+Linking 'C:\Program Files\Cypress\PSoC Creator\4.1\PSoC Creator\warp\lib\common\cypress.v'.
+Linking 'C:\Program Files\Cypress\PSoC Creator\4.1\PSoC Creator\warp\lib\common\cy_psoc3_inc.v'.
+Linking 'C:\Program Files\Cypress\PSoC Creator\4.1\PSoC Creator\psoc\content\CyPrimitives\cyprimitives.cylib\not_v1_0\not_v1_0.v'.
+Linking 'C:\Program Files\Cypress\PSoC Creator\4.1\PSoC Creator\psoc\content\CyPrimitives\cyprimitives.cylib\ZeroTerminal\ZeroTerminal.v'.
+Linking 'C:\Program Files\Cypress\PSoC Creator\4.1\PSoC Creator\psoc\content\CyPrimitives\cyprimitives.cylib\OneTerminal\OneTerminal.v'.
+Linking 'C:\Program Files\Cypress\PSoC Creator\4.1\PSoC Creator\psoc\content\CyPrimitives\cyprimitives.cylib\or_v1_0\or_v1_0.v'.
+Linking 'C:\Program Files\Cypress\PSoC Creator\4.1\PSoC Creator\warp\lib\common\stdlogic\cy_psoc3pkg.vif'.
+Linking 'C:\Program Files\Cypress\PSoC Creator\4.1\PSoC Creator\warp\lib\common\stdlogic\cy_psoc3.vif'.
+Linking 'C:\Program Files\Cypress\PSoC Creator\4.1\PSoC Creator\warp\lib\lcpsoc3\stdlogic\mod_cnst.vif'.
+Linking 'C:\Program Files\Cypress\PSoC Creator\4.1\PSoC Creator\warp\lib\common\stdlogic\mcompare.vif'.
+
+tovif:  No errors.
+
+
+======================================================================
+Compiling:  USBMIDI and WiiChuck.v
+Program  :   topld
+Options  :    -yv2 -q10 -ygs -o2 -v3 -.fftcfgtype=LE -ya -.fftprj=C:\Users\dhous\Documents\Workspace09\USBMIDI and WiiChuck.cydsn\USBMIDI and WiiChuck.cyprj -dcpsoc3 -verilog USBMIDI and WiiChuck.v
+======================================================================
+
+topld V6.3 IR 41:  Synthesis and optimization
+Sun Jul 30 14:34:43 2017
+
+Linking 'C:\Program Files\Cypress\PSoC Creator\4.1\PSoC Creator\warp\lib\common\std.vhd'.
+Linking 'C:\Program Files\Cypress\PSoC Creator\4.1\PSoC Creator\warp\lib\common\cypress.vhd'.
+Linking 'C:\Program Files\Cypress\PSoC Creator\4.1\PSoC Creator\warp\lib\common\work\cypress.vif'.
+Linking 'C:\Program Files\Cypress\PSoC Creator\4.1\PSoC Creator\warp\lib\ieee\work\stdlogic.vif'.
+Linking 'C:\Program Files\Cypress\PSoC Creator\4.1\PSoC Creator\warp\lib\common\stdlogic\lpmpkg.vif'.
+Linking 'C:\Program Files\Cypress\PSoC Creator\4.1\PSoC Creator\warp\lib\common\stdlogic\rtlpkg.vif'.
+Linking 'C:\Program Files\Cypress\PSoC Creator\4.1\PSoC Creator\warp\lib\common\stdlogic\mod_cnst.vif'.
+Linking 'C:\Program Files\Cypress\PSoC Creator\4.1\PSoC Creator\warp\lib\common\stdlogic\mod_mthv.vif'.
+Linking 'C:\Program Files\Cypress\PSoC Creator\4.1\PSoC Creator\warp\lib\common\stdlogic\mod_genv.vif'.
+Linking 'C:\Users\dhous\Documents\Workspace09\USBMIDI and WiiChuck.cydsn\codegentemp\USBMIDI and WiiChuck.ctl'.
+Linking 'C:\Program Files\Cypress\PSoC Creator\4.1\PSoC Creator\psoc\content\CyPrimitives\cyprimitives.cylib\cy_virtualmux_v1_0\cy_virtualmux_v1_0.v'.
+Linking 'C:\Users\dhous\Documents\Workspace09\USBMIDI and WiiChuck.cydsn\codegentemp\USBMIDI and WiiChuck.v'.
+Linking 'C:\Program Files\Cypress\PSoC Creator\4.1\PSoC Creator\psoc\content\CyComponentLibrary\CyComponentLibrary.cylib\B_UART_v2_50\B_UART_v2_50.v'.
+Linking 'C:\Program Files\Cypress\PSoC Creator\4.1\PSoC Creator\warp\lib\common\cypress.v'.
+Linking 'C:\Program Files\Cypress\PSoC Creator\4.1\PSoC Creator\warp\lib\common\cy_psoc3_inc.v'.
+Linking 'C:\Program Files\Cypress\PSoC Creator\4.1\PSoC Creator\psoc\content\CyPrimitives\cyprimitives.cylib\not_v1_0\not_v1_0.v'.
+Linking 'C:\Program Files\Cypress\PSoC Creator\4.1\PSoC Creator\psoc\content\CyPrimitives\cyprimitives.cylib\ZeroTerminal\ZeroTerminal.v'.
+Linking 'C:\Program Files\Cypress\PSoC Creator\4.1\PSoC Creator\psoc\content\CyPrimitives\cyprimitives.cylib\OneTerminal\OneTerminal.v'.
+Linking 'C:\Program Files\Cypress\PSoC Creator\4.1\PSoC Creator\psoc\content\CyPrimitives\cyprimitives.cylib\or_v1_0\or_v1_0.v'.
+Linking 'C:\Program Files\Cypress\PSoC Creator\4.1\PSoC Creator\warp\lib\common\stdlogic\cy_psoc3pkg.vif'.
+Linking 'C:\Program Files\Cypress\PSoC Creator\4.1\PSoC Creator\warp\lib\common\stdlogic\cy_psoc3.vif'.
+Linking 'C:\Program Files\Cypress\PSoC Creator\4.1\PSoC Creator\warp\lib\lcpsoc3\stdlogic\mod_cnst.vif'.
+Linking 'C:\Program Files\Cypress\PSoC Creator\4.1\PSoC Creator\warp\lib\common\stdlogic\mcompare.vif'.
+Linking 'C:\Program Files\Cypress\PSoC Creator\4.1\PSoC Creator\warp\lib\lcpsoc3\stdlogic\cpsoc3.vif'.
+
+----------------------------------------------------------
+Detecting unused logic.
+----------------------------------------------------------
+    User names
+	\MIDI_UART:BUART:reset_sr\
+	\MIDI_UART:BUART:sRX:s23Poll:MODULE_1:g2:a0:b_1\
+	\MIDI_UART:BUART:sRX:s23Poll:MODULE_1:g2:a0:b_0\
+	\MIDI_UART:BUART:sRX:s23Poll:MODULE_2:g2:a0:gta_0\
+	\MIDI_UART:BUART:sRX:s23Poll:MODULE_3:g2:a0:gta_0\
+	Net_3
+	\MIDI_UART:BUART:sRX:MODULE_4:g2:a0:gta_0\
+	\MIDI_UART:BUART:sRX:MODULE_5:g1:a0:gx:u0:albi_1\
+	\MIDI_UART:BUART:sRX:MODULE_5:g1:a0:gx:u0:agbi_1\
+	\MIDI_UART:BUART:sRX:MODULE_5:g1:a0:gx:u0:lt_0\
+	\MIDI_UART:BUART:sRX:MODULE_5:g1:a0:gx:u0:gt_0\
+	\MIDI_UART:BUART:sRX:MODULE_5:g1:a0:gx:u0:lti_0\
+	\MIDI_UART:BUART:sRX:MODULE_5:g1:a0:gx:u0:gti_0\
+	\MIDI_UART:BUART:sRX:MODULE_5:g1:a0:gx:u0:albi_0\
+	\MIDI_UART:BUART:sRX:MODULE_5:g1:a0:gx:u0:agbi_0\
+	\MIDI_UART:BUART:sRX:MODULE_5:g1:a0:xeq\
+	\MIDI_UART:BUART:sRX:MODULE_5:g1:a0:xlt\
+	\MIDI_UART:BUART:sRX:MODULE_5:g1:a0:xlte\
+	\MIDI_UART:BUART:sRX:MODULE_5:g1:a0:xgt\
+	\MIDI_UART:BUART:sRX:MODULE_5:g1:a0:xgte\
+	\MIDI_UART:BUART:sRX:MODULE_5:lt\
+	\MIDI_UART:BUART:sRX:MODULE_5:eq\
+	\MIDI_UART:BUART:sRX:MODULE_5:gt\
+	\MIDI_UART:BUART:sRX:MODULE_5:gte\
+	\MIDI_UART:BUART:sRX:MODULE_5:lte\
+	\USBMIDI:dma_complete_0\
+	\USBMIDI:Net_1922\
+	\USBMIDI:dma_complete_1\
+	\USBMIDI:Net_1921\
+	\USBMIDI:dma_complete_2\
+	\USBMIDI:Net_1920\
+	\USBMIDI:dma_complete_3\
+	\USBMIDI:Net_1919\
+	\USBMIDI:dma_complete_4\
+	\USBMIDI:Net_1918\
+	\USBMIDI:dma_complete_5\
+	\USBMIDI:Net_1917\
+	\USBMIDI:dma_complete_6\
+	\USBMIDI:Net_1916\
+	\USBMIDI:dma_complete_7\
+	\USBMIDI:Net_1915\
+	\I2C:udb_clk\
+	Net_139
+	\I2C:Net_973\
+	Net_140
+	\I2C:Net_974\
+	\I2C:timeout_clk\
+	Net_145
+	\I2C:Net_975\
+	Net_143
+	Net_144
+
+
+Deleted 51 User equations/components.
+Deleted 0 Synthesized equations/components.
+
+------------------------------------------------------
+Alias Detection
+------------------------------------------------------
+Aliasing \MIDI_UART:BUART:HalfDuplexSend\ to \MIDI_UART:BUART:tx_hd_send_break\
+Aliasing \MIDI_UART:BUART:FinalParityType_1\ to \MIDI_UART:BUART:tx_hd_send_break\
+Aliasing \MIDI_UART:BUART:FinalParityType_0\ to \MIDI_UART:BUART:tx_hd_send_break\
+Aliasing \MIDI_UART:BUART:FinalAddrMode_2\ to \MIDI_UART:BUART:tx_hd_send_break\
+Aliasing \MIDI_UART:BUART:FinalAddrMode_1\ to \MIDI_UART:BUART:tx_hd_send_break\
+Aliasing \MIDI_UART:BUART:FinalAddrMode_0\ to \MIDI_UART:BUART:tx_hd_send_break\
+Aliasing \MIDI_UART:BUART:tx_ctrl_mark\ to \MIDI_UART:BUART:tx_hd_send_break\
+Aliasing zero to \MIDI_UART:BUART:tx_hd_send_break\
+Aliasing \MIDI_UART:BUART:tx_status_6\ to \MIDI_UART:BUART:tx_hd_send_break\
+Aliasing \MIDI_UART:BUART:tx_status_5\ to \MIDI_UART:BUART:tx_hd_send_break\
+Aliasing \MIDI_UART:BUART:tx_status_4\ to \MIDI_UART:BUART:tx_hd_send_break\
+Aliasing \MIDI_UART:BUART:rx_count7_bit8_wire\ to \MIDI_UART:BUART:tx_hd_send_break\
+Aliasing \MIDI_UART:BUART:sRX:s23Poll:MODULE_1:g2:a0:g1:z1:s0:g1:u0:b_0\ to one
+Aliasing \MIDI_UART:BUART:sRX:s23Poll:MODIN2_1\ to \MIDI_UART:BUART:sRX:s23Poll:MODIN1_1\
+Aliasing \MIDI_UART:BUART:sRX:s23Poll:MODIN2_0\ to \MIDI_UART:BUART:sRX:s23Poll:MODIN1_0\
+Aliasing \MIDI_UART:BUART:sRX:s23Poll:MODULE_2:g2:a0:newb_1\ to \MIDI_UART:BUART:tx_hd_send_break\
+Aliasing \MIDI_UART:BUART:sRX:s23Poll:MODULE_2:g2:a0:newb_0\ to one
+Aliasing \MIDI_UART:BUART:sRX:s23Poll:MODIN3_1\ to \MIDI_UART:BUART:sRX:s23Poll:MODIN1_1\
+Aliasing \MIDI_UART:BUART:sRX:s23Poll:MODIN3_0\ to \MIDI_UART:BUART:sRX:s23Poll:MODIN1_0\
+Aliasing \MIDI_UART:BUART:sRX:s23Poll:MODULE_3:g2:a0:newb_1\ to one
+Aliasing \MIDI_UART:BUART:sRX:s23Poll:MODULE_3:g2:a0:newb_0\ to \MIDI_UART:BUART:tx_hd_send_break\
+Aliasing \MIDI_UART:BUART:rx_status_1\ to \MIDI_UART:BUART:tx_hd_send_break\
+Aliasing \MIDI_UART:BUART:sRX:MODULE_4:g2:a0:newa_6\ to \MIDI_UART:BUART:tx_hd_send_break\
+Aliasing \MIDI_UART:BUART:sRX:MODULE_4:g2:a0:newa_5\ to \MIDI_UART:BUART:tx_hd_send_break\
+Aliasing \MIDI_UART:BUART:sRX:MODULE_4:g2:a0:newa_4\ to \MIDI_UART:BUART:tx_hd_send_break\
+Aliasing \MIDI_UART:BUART:sRX:MODULE_4:g2:a0:newb_6\ to \MIDI_UART:BUART:tx_hd_send_break\
+Aliasing \MIDI_UART:BUART:sRX:MODULE_4:g2:a0:newb_5\ to \MIDI_UART:BUART:tx_hd_send_break\
+Aliasing \MIDI_UART:BUART:sRX:MODULE_4:g2:a0:newb_4\ to \MIDI_UART:BUART:tx_hd_send_break\
+Aliasing \MIDI_UART:BUART:sRX:MODULE_4:g2:a0:newb_3\ to \MIDI_UART:BUART:tx_hd_send_break\
+Aliasing \MIDI_UART:BUART:sRX:MODULE_4:g2:a0:newb_2\ to one
+Aliasing \MIDI_UART:BUART:sRX:MODULE_4:g2:a0:newb_1\ to one
+Aliasing \MIDI_UART:BUART:sRX:MODULE_4:g2:a0:newb_0\ to \MIDI_UART:BUART:tx_hd_send_break\
+Aliasing \MIDI_UART:BUART:sRX:MODULE_5:g1:a0:gx:u0:aeqb_0\ to one
+Aliasing tmpOE__MIDI_IN1_net_0 to one
+Aliasing tmpOE__MIDI_OUT1_net_0 to one
+Aliasing \USBMIDI:tmpOE__Dm_net_0\ to one
+Aliasing \USBMIDI:tmpOE__Dp_net_0\ to one
+Aliasing \UART:tmpOE__tx_net_0\ to one
+Aliasing \I2C:Net_969\ to one
+Aliasing \I2C:Net_968\ to one
+Aliasing tmpOE__SCL_net_0 to one
+Aliasing tmpOE__SDA_net_0 to one
+Aliasing \MIDI_UART:BUART:reset_reg\\D\ to \MIDI_UART:BUART:tx_hd_send_break\
+Aliasing Net_4D to \MIDI_UART:BUART:tx_hd_send_break\
+Aliasing \MIDI_UART:BUART:rx_break_status\\D\ to \MIDI_UART:BUART:tx_hd_send_break\
+Removing Rhs of wire Net_8[1] = \MIDI_UART:BUART:tx_interrupt_out\[23]
+Removing Rhs of wire Net_9[5] = \MIDI_UART:BUART:rx_interrupt_out\[24]
+Removing Lhs of wire \MIDI_UART:Net_61\[6] = \MIDI_UART:Net_9\[3]
+Removing Lhs of wire \MIDI_UART:BUART:HalfDuplexSend\[12] = \MIDI_UART:BUART:tx_hd_send_break\[11]
+Removing Lhs of wire \MIDI_UART:BUART:FinalParityType_1\[13] = \MIDI_UART:BUART:tx_hd_send_break\[11]
+Removing Lhs of wire \MIDI_UART:BUART:FinalParityType_0\[14] = \MIDI_UART:BUART:tx_hd_send_break\[11]
+Removing Lhs of wire \MIDI_UART:BUART:FinalAddrMode_2\[15] = \MIDI_UART:BUART:tx_hd_send_break\[11]
+Removing Lhs of wire \MIDI_UART:BUART:FinalAddrMode_1\[16] = \MIDI_UART:BUART:tx_hd_send_break\[11]
+Removing Lhs of wire \MIDI_UART:BUART:FinalAddrMode_0\[17] = \MIDI_UART:BUART:tx_hd_send_break\[11]
+Removing Lhs of wire \MIDI_UART:BUART:tx_ctrl_mark\[18] = \MIDI_UART:BUART:tx_hd_send_break\[11]
+Removing Rhs of wire \MIDI_UART:BUART:tx_bitclk_enable_pre\[28] = \MIDI_UART:BUART:tx_bitclk_dp\[65]
+Removing Rhs of wire zero[29] = \MIDI_UART:BUART:tx_hd_send_break\[11]
+Removing Lhs of wire \MIDI_UART:BUART:tx_counter_tc\[75] = \MIDI_UART:BUART:tx_counter_dp\[66]
+Removing Lhs of wire \MIDI_UART:BUART:tx_status_6\[76] = zero[29]
+Removing Lhs of wire \MIDI_UART:BUART:tx_status_5\[77] = zero[29]
+Removing Lhs of wire \MIDI_UART:BUART:tx_status_4\[78] = zero[29]
+Removing Lhs of wire \MIDI_UART:BUART:tx_status_1\[80] = \MIDI_UART:BUART:tx_fifo_empty\[43]
+Removing Lhs of wire \MIDI_UART:BUART:tx_status_3\[82] = \MIDI_UART:BUART:tx_fifo_notfull\[42]
+Removing Lhs of wire \MIDI_UART:BUART:rx_count7_bit8_wire\[142] = zero[29]
+Removing Lhs of wire \MIDI_UART:BUART:sRX:s23Poll:add_vv_vv_MODGEN_1_1\[150] = \MIDI_UART:BUART:sRX:s23Poll:MODULE_1:g2:a0:s_1\[161]
+Removing Lhs of wire \MIDI_UART:BUART:sRX:s23Poll:add_vv_vv_MODGEN_1_0\[152] = \MIDI_UART:BUART:sRX:s23Poll:MODULE_1:g2:a0:s_0\[162]
+Removing Lhs of wire \MIDI_UART:BUART:sRX:s23Poll:cmp_vv_vv_MODGEN_2\[153] = \MIDI_UART:BUART:sRX:s23Poll:MODULE_2:g2:a0:lta_0\[178]
+Removing Lhs of wire \MIDI_UART:BUART:sRX:s23Poll:cmp_vv_vv_MODGEN_3\[154] = \MIDI_UART:BUART:sRX:s23Poll:MODULE_3:g2:a0:lta_0\[192]
+Removing Lhs of wire \MIDI_UART:BUART:sRX:s23Poll:MODULE_1:g2:a0:a_1\[155] = \MIDI_UART:BUART:sRX:s23Poll:MODIN1_1\[156]
+Removing Lhs of wire \MIDI_UART:BUART:sRX:s23Poll:MODIN1_1\[156] = \MIDI_UART:BUART:pollcount_1\[148]
+Removing Lhs of wire \MIDI_UART:BUART:sRX:s23Poll:MODULE_1:g2:a0:a_0\[157] = \MIDI_UART:BUART:sRX:s23Poll:MODIN1_0\[158]
+Removing Lhs of wire \MIDI_UART:BUART:sRX:s23Poll:MODIN1_0\[158] = \MIDI_UART:BUART:pollcount_0\[151]
+Removing Lhs of wire \MIDI_UART:BUART:sRX:s23Poll:MODULE_1:g2:a0:g1:z1:s0:g1:u0:c_0\[164] = one[8]
+Removing Lhs of wire \MIDI_UART:BUART:sRX:s23Poll:MODULE_1:g2:a0:g1:z1:s0:g1:u0:b_0\[165] = one[8]
+Removing Lhs of wire \MIDI_UART:BUART:sRX:s23Poll:MODULE_2:g2:a0:newa_1\[166] = \MIDI_UART:BUART:pollcount_1\[148]
+Removing Lhs of wire \MIDI_UART:BUART:sRX:s23Poll:MODIN2_1\[167] = \MIDI_UART:BUART:pollcount_1\[148]
+Removing Lhs of wire \MIDI_UART:BUART:sRX:s23Poll:MODULE_2:g2:a0:newa_0\[168] = \MIDI_UART:BUART:pollcount_0\[151]
+Removing Lhs of wire \MIDI_UART:BUART:sRX:s23Poll:MODIN2_0\[169] = \MIDI_UART:BUART:pollcount_0\[151]
+Removing Lhs of wire \MIDI_UART:BUART:sRX:s23Poll:MODULE_2:g2:a0:newb_1\[170] = zero[29]
+Removing Lhs of wire \MIDI_UART:BUART:sRX:s23Poll:MODULE_2:g2:a0:newb_0\[171] = one[8]
+Removing Lhs of wire \MIDI_UART:BUART:sRX:s23Poll:MODULE_2:g2:a0:dataa_1\[172] = \MIDI_UART:BUART:pollcount_1\[148]
+Removing Lhs of wire \MIDI_UART:BUART:sRX:s23Poll:MODULE_2:g2:a0:dataa_0\[173] = \MIDI_UART:BUART:pollcount_0\[151]
+Removing Lhs of wire \MIDI_UART:BUART:sRX:s23Poll:MODULE_2:g2:a0:datab_1\[174] = zero[29]
+Removing Lhs of wire \MIDI_UART:BUART:sRX:s23Poll:MODULE_2:g2:a0:datab_0\[175] = one[8]
+Removing Lhs of wire \MIDI_UART:BUART:sRX:s23Poll:MODULE_3:g2:a0:newa_1\[180] = \MIDI_UART:BUART:pollcount_1\[148]
+Removing Lhs of wire \MIDI_UART:BUART:sRX:s23Poll:MODIN3_1\[181] = \MIDI_UART:BUART:pollcount_1\[148]
+Removing Lhs of wire \MIDI_UART:BUART:sRX:s23Poll:MODULE_3:g2:a0:newa_0\[182] = \MIDI_UART:BUART:pollcount_0\[151]
+Removing Lhs of wire \MIDI_UART:BUART:sRX:s23Poll:MODIN3_0\[183] = \MIDI_UART:BUART:pollcount_0\[151]
+Removing Lhs of wire \MIDI_UART:BUART:sRX:s23Poll:MODULE_3:g2:a0:newb_1\[184] = one[8]
+Removing Lhs of wire \MIDI_UART:BUART:sRX:s23Poll:MODULE_3:g2:a0:newb_0\[185] = zero[29]
+Removing Lhs of wire \MIDI_UART:BUART:sRX:s23Poll:MODULE_3:g2:a0:dataa_1\[186] = \MIDI_UART:BUART:pollcount_1\[148]
+Removing Lhs of wire \MIDI_UART:BUART:sRX:s23Poll:MODULE_3:g2:a0:dataa_0\[187] = \MIDI_UART:BUART:pollcount_0\[151]
+Removing Lhs of wire \MIDI_UART:BUART:sRX:s23Poll:MODULE_3:g2:a0:datab_1\[188] = one[8]
+Removing Lhs of wire \MIDI_UART:BUART:sRX:s23Poll:MODULE_3:g2:a0:datab_0\[189] = zero[29]
+Removing Lhs of wire \MIDI_UART:BUART:rx_status_1\[196] = zero[29]
+Removing Rhs of wire \MIDI_UART:BUART:rx_status_2\[197] = \MIDI_UART:BUART:rx_parity_error_status\[198]
+Removing Rhs of wire \MIDI_UART:BUART:rx_status_3\[199] = \MIDI_UART:BUART:rx_stop_bit_error\[200]
+Removing Lhs of wire \MIDI_UART:BUART:sRX:cmp_vv_vv_MODGEN_4\[210] = \MIDI_UART:BUART:sRX:MODULE_4:g2:a0:lta_0\[259]
+Removing Lhs of wire \MIDI_UART:BUART:sRX:cmp_vv_vv_MODGEN_5\[214] = \MIDI_UART:BUART:sRX:MODULE_5:g1:a0:xneq\[281]
+Removing Lhs of wire \MIDI_UART:BUART:sRX:MODULE_4:g2:a0:newa_6\[215] = zero[29]
+Removing Lhs of wire \MIDI_UART:BUART:sRX:MODULE_4:g2:a0:newa_5\[216] = zero[29]
+Removing Lhs of wire \MIDI_UART:BUART:sRX:MODULE_4:g2:a0:newa_4\[217] = zero[29]
+Removing Lhs of wire \MIDI_UART:BUART:sRX:MODULE_4:g2:a0:newa_3\[218] = \MIDI_UART:BUART:sRX:MODIN4_6\[219]
+Removing Lhs of wire \MIDI_UART:BUART:sRX:MODIN4_6\[219] = \MIDI_UART:BUART:rx_count_6\[137]
+Removing Lhs of wire \MIDI_UART:BUART:sRX:MODULE_4:g2:a0:newa_2\[220] = \MIDI_UART:BUART:sRX:MODIN4_5\[221]
+Removing Lhs of wire \MIDI_UART:BUART:sRX:MODIN4_5\[221] = \MIDI_UART:BUART:rx_count_5\[138]
+Removing Lhs of wire \MIDI_UART:BUART:sRX:MODULE_4:g2:a0:newa_1\[222] = \MIDI_UART:BUART:sRX:MODIN4_4\[223]
+Removing Lhs of wire \MIDI_UART:BUART:sRX:MODIN4_4\[223] = \MIDI_UART:BUART:rx_count_4\[139]
+Removing Lhs of wire \MIDI_UART:BUART:sRX:MODULE_4:g2:a0:newa_0\[224] = \MIDI_UART:BUART:sRX:MODIN4_3\[225]
+Removing Lhs of wire \MIDI_UART:BUART:sRX:MODIN4_3\[225] = \MIDI_UART:BUART:rx_count_3\[140]
+Removing Lhs of wire \MIDI_UART:BUART:sRX:MODULE_4:g2:a0:newb_6\[226] = zero[29]
+Removing Lhs of wire \MIDI_UART:BUART:sRX:MODULE_4:g2:a0:newb_5\[227] = zero[29]
+Removing Lhs of wire \MIDI_UART:BUART:sRX:MODULE_4:g2:a0:newb_4\[228] = zero[29]
+Removing Lhs of wire \MIDI_UART:BUART:sRX:MODULE_4:g2:a0:newb_3\[229] = zero[29]
+Removing Lhs of wire \MIDI_UART:BUART:sRX:MODULE_4:g2:a0:newb_2\[230] = one[8]
+Removing Lhs of wire \MIDI_UART:BUART:sRX:MODULE_4:g2:a0:newb_1\[231] = one[8]
+Removing Lhs of wire \MIDI_UART:BUART:sRX:MODULE_4:g2:a0:newb_0\[232] = zero[29]
+Removing Lhs of wire \MIDI_UART:BUART:sRX:MODULE_4:g2:a0:dataa_6\[233] = zero[29]
+Removing Lhs of wire \MIDI_UART:BUART:sRX:MODULE_4:g2:a0:dataa_5\[234] = zero[29]
+Removing Lhs of wire \MIDI_UART:BUART:sRX:MODULE_4:g2:a0:dataa_4\[235] = zero[29]
+Removing Lhs of wire \MIDI_UART:BUART:sRX:MODULE_4:g2:a0:dataa_3\[236] = \MIDI_UART:BUART:rx_count_6\[137]
+Removing Lhs of wire \MIDI_UART:BUART:sRX:MODULE_4:g2:a0:dataa_2\[237] = \MIDI_UART:BUART:rx_count_5\[138]
+Removing Lhs of wire \MIDI_UART:BUART:sRX:MODULE_4:g2:a0:dataa_1\[238] = \MIDI_UART:BUART:rx_count_4\[139]
+Removing Lhs of wire \MIDI_UART:BUART:sRX:MODULE_4:g2:a0:dataa_0\[239] = \MIDI_UART:BUART:rx_count_3\[140]
+Removing Lhs of wire \MIDI_UART:BUART:sRX:MODULE_4:g2:a0:datab_6\[240] = zero[29]
+Removing Lhs of wire \MIDI_UART:BUART:sRX:MODULE_4:g2:a0:datab_5\[241] = zero[29]
+Removing Lhs of wire \MIDI_UART:BUART:sRX:MODULE_4:g2:a0:datab_4\[242] = zero[29]
+Removing Lhs of wire \MIDI_UART:BUART:sRX:MODULE_4:g2:a0:datab_3\[243] = zero[29]
+Removing Lhs of wire \MIDI_UART:BUART:sRX:MODULE_4:g2:a0:datab_2\[244] = one[8]
+Removing Lhs of wire \MIDI_UART:BUART:sRX:MODULE_4:g2:a0:datab_1\[245] = one[8]
+Removing Lhs of wire \MIDI_UART:BUART:sRX:MODULE_4:g2:a0:datab_0\[246] = zero[29]
+Removing Lhs of wire \MIDI_UART:BUART:sRX:MODULE_5:g1:a0:newa_0\[261] = \MIDI_UART:BUART:rx_postpoll\[96]
+Removing Lhs of wire \MIDI_UART:BUART:sRX:MODULE_5:g1:a0:newb_0\[262] = \MIDI_UART:BUART:rx_parity_bit\[213]
+Removing Lhs of wire \MIDI_UART:BUART:sRX:MODULE_5:g1:a0:dataa_0\[263] = \MIDI_UART:BUART:rx_postpoll\[96]
+Removing Lhs of wire \MIDI_UART:BUART:sRX:MODULE_5:g1:a0:datab_0\[264] = \MIDI_UART:BUART:rx_parity_bit\[213]
+Removing Lhs of wire \MIDI_UART:BUART:sRX:MODULE_5:g1:a0:gx:u0:a_0\[265] = \MIDI_UART:BUART:rx_postpoll\[96]
+Removing Lhs of wire \MIDI_UART:BUART:sRX:MODULE_5:g1:a0:gx:u0:b_0\[266] = \MIDI_UART:BUART:rx_parity_bit\[213]
+Removing Lhs of wire \MIDI_UART:BUART:sRX:MODULE_5:g1:a0:gx:u0:aeqb_0\[268] = one[8]
+Removing Lhs of wire \MIDI_UART:BUART:sRX:MODULE_5:g1:a0:gx:u0:eq_0\[269] = \MIDI_UART:BUART:sRX:MODULE_5:g1:a0:gx:u0:xnor_array_0\[267]
+Removing Lhs of wire \MIDI_UART:BUART:sRX:MODULE_5:g1:a0:gx:u0:eqi_0\[270] = \MIDI_UART:BUART:sRX:MODULE_5:g1:a0:gx:u0:xnor_array_0\[267]
+Removing Lhs of wire tmpOE__MIDI_IN1_net_0[292] = one[8]
+Removing Lhs of wire tmpOE__MIDI_OUT1_net_0[297] = one[8]
+Removing Lhs of wire \USBMIDI:tmpOE__Dm_net_0\[306] = one[8]
+Removing Lhs of wire \USBMIDI:tmpOE__Dp_net_0\[313] = one[8]
+Removing Lhs of wire \UART:tmpOE__tx_net_0\[364] = one[8]
+Removing Rhs of wire \I2C:sda_x_wire\[369] = \I2C:Net_643_1\[370]
+Removing Rhs of wire \I2C:Net_697\[372] = \I2C:Net_643_2\[378]
+Removing Rhs of wire \I2C:Net_1109_0\[375] = \I2C:scl_yfb\[388]
+Removing Rhs of wire \I2C:Net_1109_1\[376] = \I2C:sda_yfb\[389]
+Removing Lhs of wire \I2C:scl_x_wire\[379] = \I2C:Net_643_0\[377]
+Removing Lhs of wire \I2C:Net_969\[380] = one[8]
+Removing Lhs of wire \I2C:Net_968\[381] = one[8]
+Removing Lhs of wire \I2C:tmpOE__Bufoe_scl_net_0\[391] = one[8]
+Removing Lhs of wire \I2C:tmpOE__Bufoe_sda_net_0\[394] = one[8]
+Removing Lhs of wire tmpOE__SCL_net_0[402] = one[8]
+Removing Lhs of wire tmpOE__SDA_net_0[407] = one[8]
+Removing Lhs of wire \MIDI_UART:BUART:reset_reg\\D\[411] = zero[29]
+Removing Lhs of wire Net_4D[416] = zero[29]
+Removing Lhs of wire \MIDI_UART:BUART:rx_bitclk\\D\[426] = \MIDI_UART:BUART:rx_bitclk_pre\[131]
+Removing Lhs of wire \MIDI_UART:BUART:rx_parity_error_pre\\D\[435] = \MIDI_UART:BUART:rx_parity_error_pre\[208]
+Removing Lhs of wire \MIDI_UART:BUART:rx_break_status\\D\[436] = zero[29]
+
+------------------------------------------------------
+Aliased 0 equations, 116 wires.
+------------------------------------------------------
+
+----------------------------------------------------------
+Circuit simplification
+----------------------------------------------------------
+
+Substituting virtuals - pass 1:
+
+Note:  Expanding virtual equation for 'one' (cost = 0):
+one <=  ('1') ;
+
+Note:  Expanding virtual equation for 'zero' (cost = 0):
+zero <=  ('0') ;
+
+Note:  Expanding virtual equation for 'Net_2' (cost = 0):
+Net_2 <= (not \MIDI_UART:BUART:txn\);
+
+Note:  Expanding virtual equation for '\MIDI_UART:BUART:rx_addressmatch\' (cost = 0):
+\MIDI_UART:BUART:rx_addressmatch\ <= (\MIDI_UART:BUART:rx_addressmatch2\
+	OR \MIDI_UART:BUART:rx_addressmatch1\);
+
+Note:  Expanding virtual equation for '\MIDI_UART:BUART:rx_bitclk_pre\' (cost = 1):
+\MIDI_UART:BUART:rx_bitclk_pre\ <= ((not \MIDI_UART:BUART:rx_count_2\ and not \MIDI_UART:BUART:rx_count_1\ and not \MIDI_UART:BUART:rx_count_0\));
+
+Note:  Expanding virtual equation for '\MIDI_UART:BUART:rx_bitclk_pre16x\' (cost = 0):
+\MIDI_UART:BUART:rx_bitclk_pre16x\ <= ((not \MIDI_UART:BUART:rx_count_2\ and \MIDI_UART:BUART:rx_count_1\ and \MIDI_UART:BUART:rx_count_0\));
+
+Note:  Expanding virtual equation for '\MIDI_UART:BUART:rx_poll_bit1\' (cost = 1):
+\MIDI_UART:BUART:rx_poll_bit1\ <= ((not \MIDI_UART:BUART:rx_count_2\ and not \MIDI_UART:BUART:rx_count_1\ and \MIDI_UART:BUART:rx_count_0\));
+
+Note:  Expanding virtual equation for '\MIDI_UART:BUART:rx_poll_bit2\' (cost = 1):
+\MIDI_UART:BUART:rx_poll_bit2\ <= ((not \MIDI_UART:BUART:rx_count_2\ and not \MIDI_UART:BUART:rx_count_1\ and not \MIDI_UART:BUART:rx_count_0\));
+
+Note:  Expanding virtual equation for '\MIDI_UART:BUART:pollingrange\' (cost = 4):
+\MIDI_UART:BUART:pollingrange\ <= ((not \MIDI_UART:BUART:rx_count_2\ and not \MIDI_UART:BUART:rx_count_1\));
+
+Note:  Expanding virtual equation for '\MIDI_UART:BUART:sRX:s23Poll:MODULE_1:g2:a0:g1:z1:s0:g1:u0:c_1\' (cost = 0):
+\MIDI_UART:BUART:sRX:s23Poll:MODULE_1:g2:a0:g1:z1:s0:g1:u0:c_1\ <= (\MIDI_UART:BUART:pollcount_0\);
+
+Note:  Expanding virtual equation for '\MIDI_UART:BUART:sRX:s23Poll:MODULE_1:g2:a0:s_0\' (cost = 0):
+\MIDI_UART:BUART:sRX:s23Poll:MODULE_1:g2:a0:s_0\ <= (not \MIDI_UART:BUART:pollcount_0\);
+
+Note:  Expanding virtual equation for '\MIDI_UART:BUART:sRX:s23Poll:MODULE_2:g2:a0:lta_1\' (cost = 0):
+\MIDI_UART:BUART:sRX:s23Poll:MODULE_2:g2:a0:lta_1\ <=  ('0') ;
+
+Note:  Expanding virtual equation for '\MIDI_UART:BUART:sRX:s23Poll:MODULE_2:g2:a0:gta_1\' (cost = 0):
+\MIDI_UART:BUART:sRX:s23Poll:MODULE_2:g2:a0:gta_1\ <= (\MIDI_UART:BUART:pollcount_1\);
+
+Note:  Expanding virtual equation for '\MIDI_UART:BUART:sRX:s23Poll:MODULE_3:g2:a0:lta_1\' (cost = 0):
+\MIDI_UART:BUART:sRX:s23Poll:MODULE_3:g2:a0:lta_1\ <= (not \MIDI_UART:BUART:pollcount_1\);
+
+Note:  Expanding virtual equation for '\MIDI_UART:BUART:sRX:s23Poll:MODULE_3:g2:a0:gta_1\' (cost = 0):
+\MIDI_UART:BUART:sRX:s23Poll:MODULE_3:g2:a0:gta_1\ <=  ('0') ;
+
+Note:  Expanding virtual equation for '\MIDI_UART:BUART:sRX:MODULE_4:g2:a0:lta_6\' (cost = 0):
+\MIDI_UART:BUART:sRX:MODULE_4:g2:a0:lta_6\ <=  ('0') ;
+
+Note:  Expanding virtual equation for '\MIDI_UART:BUART:sRX:MODULE_4:g2:a0:gta_6\' (cost = 0):
+\MIDI_UART:BUART:sRX:MODULE_4:g2:a0:gta_6\ <=  ('0') ;
+
+Note:  Expanding virtual equation for '\MIDI_UART:BUART:sRX:MODULE_4:g2:a0:lta_5\' (cost = 0):
+\MIDI_UART:BUART:sRX:MODULE_4:g2:a0:lta_5\ <=  ('0') ;
+
+Note:  Expanding virtual equation for '\MIDI_UART:BUART:sRX:MODULE_4:g2:a0:gta_5\' (cost = 0):
+\MIDI_UART:BUART:sRX:MODULE_4:g2:a0:gta_5\ <=  ('0') ;
+
+Note:  Expanding virtual equation for '\MIDI_UART:BUART:sRX:MODULE_4:g2:a0:lta_4\' (cost = 0):
+\MIDI_UART:BUART:sRX:MODULE_4:g2:a0:lta_4\ <=  ('0') ;
+
+Note:  Expanding virtual equation for '\MIDI_UART:BUART:sRX:MODULE_4:g2:a0:gta_4\' (cost = 0):
+\MIDI_UART:BUART:sRX:MODULE_4:g2:a0:gta_4\ <=  ('0') ;
+
+Note:  Expanding virtual equation for '\MIDI_UART:BUART:sRX:MODULE_4:g2:a0:lta_3\' (cost = 0):
+\MIDI_UART:BUART:sRX:MODULE_4:g2:a0:lta_3\ <=  ('0') ;
+
+Note:  Expanding virtual equation for '\MIDI_UART:BUART:sRX:MODULE_4:g2:a0:gta_3\' (cost = 0):
+\MIDI_UART:BUART:sRX:MODULE_4:g2:a0:gta_3\ <= (\MIDI_UART:BUART:rx_count_6\);
+
+Note:  Expanding virtual equation for '\MIDI_UART:BUART:sRX:MODULE_4:g2:a0:lta_2\' (cost = 1):
+\MIDI_UART:BUART:sRX:MODULE_4:g2:a0:lta_2\ <= ((not \MIDI_UART:BUART:rx_count_6\ and not \MIDI_UART:BUART:rx_count_5\));
+
+Note:  Expanding virtual equation for '\MIDI_UART:BUART:sRX:MODULE_4:g2:a0:gta_2\' (cost = 0):
+\MIDI_UART:BUART:sRX:MODULE_4:g2:a0:gta_2\ <= (\MIDI_UART:BUART:rx_count_6\);
+
+Note:  Expanding virtual equation for '\MIDI_UART:BUART:sRX:MODULE_4:g2:a0:lta_1\' (cost = 2):
+\MIDI_UART:BUART:sRX:MODULE_4:g2:a0:lta_1\ <= ((not \MIDI_UART:BUART:rx_count_6\ and not \MIDI_UART:BUART:rx_count_4\)
+	OR (not \MIDI_UART:BUART:rx_count_6\ and not \MIDI_UART:BUART:rx_count_5\));
+
+Note:  Expanding virtual equation for '\MIDI_UART:BUART:sRX:MODULE_4:g2:a0:gta_1\' (cost = 0):
+\MIDI_UART:BUART:sRX:MODULE_4:g2:a0:gta_1\ <= (\MIDI_UART:BUART:rx_count_6\);
+
+Note:  Expanding virtual equation for '\MIDI_UART:BUART:sRX:MODULE_4:g2:a0:lta_0\' (cost = 8):
+\MIDI_UART:BUART:sRX:MODULE_4:g2:a0:lta_0\ <= ((not \MIDI_UART:BUART:rx_count_6\ and not \MIDI_UART:BUART:rx_count_4\)
+	OR (not \MIDI_UART:BUART:rx_count_6\ and not \MIDI_UART:BUART:rx_count_5\));
+
+
+Substituting virtuals - pass 2:
+
+Note:  Expanding virtual equation for '\MIDI_UART:BUART:sRX:s23Poll:MODULE_2:g2:a0:lta_0\' (cost = 4):
+\MIDI_UART:BUART:sRX:s23Poll:MODULE_2:g2:a0:lta_0\ <= ((not \MIDI_UART:BUART:pollcount_1\ and not \MIDI_UART:BUART:pollcount_0\));
+
+Note:  Expanding virtual equation for '\MIDI_UART:BUART:sRX:s23Poll:MODULE_3:g2:a0:lta_0\' (cost = 0):
+\MIDI_UART:BUART:sRX:s23Poll:MODULE_3:g2:a0:lta_0\ <= (not \MIDI_UART:BUART:pollcount_1\);
+
+Note:  Expanding virtual equation for '\MIDI_UART:BUART:sRX:s23Poll:MODULE_1:g2:a0:s_1\' (cost = 2):
+\MIDI_UART:BUART:sRX:s23Poll:MODULE_1:g2:a0:s_1\ <= ((not \MIDI_UART:BUART:pollcount_0\ and \MIDI_UART:BUART:pollcount_1\)
+	OR (not \MIDI_UART:BUART:pollcount_1\ and \MIDI_UART:BUART:pollcount_0\));
+
+
+Substituting virtuals - pass 3:
+
+Note:  Expanding virtual equation for '\MIDI_UART:BUART:rx_postpoll\' (cost = 72):
+\MIDI_UART:BUART:rx_postpoll\ <= (\MIDI_UART:BUART:pollcount_1\
+	OR (Net_7 and \MIDI_UART:BUART:pollcount_0\));
+
+Note:  Expanding virtual equation for '\MIDI_UART:BUART:sRX:MODULE_5:g1:a0:gx:u0:xnor_array_0\' (cost = 4):
+\MIDI_UART:BUART:sRX:MODULE_5:g1:a0:gx:u0:xnor_array_0\ <= ((not \MIDI_UART:BUART:pollcount_1\ and not Net_7 and not \MIDI_UART:BUART:rx_parity_bit\)
+	OR (not \MIDI_UART:BUART:pollcount_1\ and not \MIDI_UART:BUART:pollcount_0\ and not \MIDI_UART:BUART:rx_parity_bit\)
+	OR (\MIDI_UART:BUART:pollcount_1\ and \MIDI_UART:BUART:rx_parity_bit\)
+	OR (Net_7 and \MIDI_UART:BUART:pollcount_0\ and \MIDI_UART:BUART:rx_parity_bit\));
+
+Note:  Expanding virtual equation for '\MIDI_UART:BUART:sRX:MODULE_5:g1:a0:gx:u0:aeqb_1\' (cost = 4):
+\MIDI_UART:BUART:sRX:MODULE_5:g1:a0:gx:u0:aeqb_1\ <= ((not \MIDI_UART:BUART:pollcount_1\ and not Net_7 and not \MIDI_UART:BUART:rx_parity_bit\)
+	OR (not \MIDI_UART:BUART:pollcount_1\ and not \MIDI_UART:BUART:pollcount_0\ and not \MIDI_UART:BUART:rx_parity_bit\)
+	OR (\MIDI_UART:BUART:pollcount_1\ and \MIDI_UART:BUART:rx_parity_bit\)
+	OR (Net_7 and \MIDI_UART:BUART:pollcount_0\ and \MIDI_UART:BUART:rx_parity_bit\));
+
+
+Substituting virtuals - pass 4:
+
+
+----------------------------------------------------------
+Circuit simplification results:
+
+	Expanded 34 signals.
+	Turned 0 signals into soft nodes.
+	Maximum default expansion cost was set at 3.
+----------------------------------------------------------
+
+------------------------------------------------------
+Alias Detection
+------------------------------------------------------
+Aliasing \MIDI_UART:BUART:rx_status_0\ to zero
+Aliasing \MIDI_UART:BUART:rx_status_6\ to zero
+Aliasing \MIDI_UART:BUART:rx_markspace_status\\D\ to zero
+Aliasing \MIDI_UART:BUART:rx_parity_error_status\\D\ to zero
+Aliasing \MIDI_UART:BUART:rx_addr_match_status\\D\ to zero
+Removing Rhs of wire \MIDI_UART:BUART:rx_bitclk_enable\[95] = \MIDI_UART:BUART:rx_bitclk\[143]
+Removing Lhs of wire \MIDI_UART:BUART:rx_status_0\[194] = zero[29]
+Removing Lhs of wire \MIDI_UART:BUART:rx_status_6\[203] = zero[29]
+Removing Rhs of wire Net_14[298] = \MIDI_UART:BUART:txn\[22]
+Removing Lhs of wire \MIDI_UART:BUART:tx_ctrl_mark_last\\D\[418] = \MIDI_UART:BUART:tx_ctrl_mark_last\[86]
+Removing Lhs of wire \MIDI_UART:BUART:rx_markspace_status\\D\[430] = zero[29]
+Removing Lhs of wire \MIDI_UART:BUART:rx_parity_error_status\\D\[431] = zero[29]
+Removing Lhs of wire \MIDI_UART:BUART:rx_addr_match_status\\D\[433] = zero[29]
+Removing Lhs of wire \MIDI_UART:BUART:rx_markspace_pre\\D\[434] = \MIDI_UART:BUART:rx_markspace_pre\[207]
+Removing Lhs of wire \MIDI_UART:BUART:rx_parity_bit\\D\[439] = \MIDI_UART:BUART:rx_parity_bit\[213]
+
+------------------------------------------------------
+Aliased 0 equations, 10 wires.
+------------------------------------------------------
+
+----------------------------------------------------------
+Circuit simplification
+----------------------------------------------------------
+
+Eliminating unused logic - pass 1:
+
+Note:  Deleted unused equation:
+\MIDI_UART:BUART:sRX:MODULE_5:g1:a0:xneq\ <= ((not \MIDI_UART:BUART:rx_parity_bit\ and Net_7 and \MIDI_UART:BUART:pollcount_0\)
+	OR (not \MIDI_UART:BUART:pollcount_1\ and not \MIDI_UART:BUART:pollcount_0\ and \MIDI_UART:BUART:rx_parity_bit\)
+	OR (not \MIDI_UART:BUART:pollcount_1\ and not Net_7 and \MIDI_UART:BUART:rx_parity_bit\)
+	OR (not \MIDI_UART:BUART:rx_parity_bit\ and \MIDI_UART:BUART:pollcount_1\));
+
+
+Eliminating unused logic - pass 2:
+
+
+Substituting virtuals - pass 1:
+
+
+----------------------------------------------------------
+Circuit simplification results:
+
+	Expanded 0 signals.
+	Turned 0 signals into soft nodes.
+	Maximum default expansion cost was set at 3.
+----------------------------------------------------------
+
+topld:  No errors.
+
+CYPRESS_DIR    : C:\Program Files\Cypress\PSoC Creator\4.1\PSoC Creator\warp
+Warp Program   : C:\Program Files\Cypress\PSoC Creator\4.1\PSoC Creator\warp\bin\warp.exe
+Warp Arguments : -yv2 -q10 -ygs -o2 -v3 -.fftcfgtype=LE -ya "-.fftprj=C:\Users\dhous\Documents\Workspace09\USBMIDI and WiiChuck.cydsn\USBMIDI and WiiChuck.cyprj" -dcpsoc3 "USBMIDI and WiiChuck.v" -verilog
+</CYPRESSTAG>
+Warp synthesis phase: Elapsed time ==> 0s.745ms
+<CYPRESSTAG name="Fitter results...">
+<CYPRESSTAG name="Fitter startup details...">
+cyp3fit: V4.1.0.2686, Family: PSoC3, Started at: Sunday, 30 July 2017 14:34:43
+Options: -yv2 -q10 -ygs -o2 -v3 -.fftcfgtype=LE -ya -.fftprj=C:\Users\dhous\Documents\Workspace09\USBMIDI and WiiChuck.cydsn\USBMIDI and WiiChuck.cyprj -d CY8C5888LTI-LP097 USBMIDI and WiiChuck.v -verilog
+</CYPRESSTAG>
+<CYPRESSTAG name="Design parsing">
+Design parsing phase: Elapsed time ==> 0s.014ms
+</CYPRESSTAG>
+<CYPRESSTAG name="Tech Mapping">
+<CYPRESSTAG name="Initial Mapping" icon="FILE_RPT_TECHM">
+    Converted constant MacroCell: \MIDI_UART:BUART:reset_reg\ from registered to combinatorial
+    Converted constant MacroCell: Net_4 from registered to combinatorial
+    Converted constant MacroCell: \MIDI_UART:BUART:rx_markspace_status\ from registered to combinatorial
+    Converted constant MacroCell: \MIDI_UART:BUART:rx_status_2\ from registered to combinatorial
+    Converted constant MacroCell: \MIDI_UART:BUART:rx_addr_match_status\ from registered to combinatorial
+    Converted constant MacroCell: \MIDI_UART:BUART:rx_break_status\ from registered to combinatorial
+Assigning clock I2C_BusClock to clock BUS_CLK because it is a pass-through
+<CYPRESSTAG name="Global Clock Selection" icon="FILE_RPT_TECHM">
+    Digital Clock 0: Automatic-assigning  clock 'MIDI_UART_IntClock'. Fanout=1, Signal=\MIDI_UART:Net_9\
+</CYPRESSTAG>
+
+Removing unused cells resulting from optimization
+Done removing unused cells.
+<CYPRESSTAG name="UDB Clock/Enable Remapping Results">
+    UDB Clk/Enable \MIDI_UART:BUART:ClkSync\: with output requested to be synchronous
+        ClockIn: MIDI_UART_IntClock was determined to be a global clock that is synchronous to BUS_CLK
+        EnableIn: Constant 1 was determined to be synchronous to ClockIn
+        ClockOut: MIDI_UART_IntClock, EnableOut: Constant 1
+</CYPRESSTAG>
+ADD: pft.M0040: information: The following 4 pin(s) will be assigned a location by the fitter: \USBMIDI:Dm(0)\, \USBMIDI:Dp(0)\, MIDI_IN1(0), MIDI_OUT1(0)
+
+
+Removing unused cells resulting from optimization
+Done removing unused cells.
+<CYPRESSTAG name="Duplicate Macrocell detection">
+</CYPRESSTAG>
+</CYPRESSTAG>
+<CYPRESSTAG name="Duplicate Macrocell detection">
+
+Removing duplicate macrocells
+    Removing \MIDI_UART:BUART:rx_parity_bit\, Duplicate of \MIDI_UART:BUART:tx_ctrl_mark_last\ 
+    MacroCell: Name=\MIDI_UART:BUART:rx_parity_bit\, Mode=(T-Register)
+        Total # of inputs        : 0
+        Total # of product terms : 0
+        List of special equations: 
+            Clock  = (\MIDI_UART:Net_9\) => Global
+            Clock Enable: True
+        Main Equation            : 0 pterms
+        (
+            0
+        );
+        Output = \MIDI_UART:BUART:rx_parity_bit\ (fanout=0)
+
+    Removing \MIDI_UART:BUART:rx_address_detected\, Duplicate of \MIDI_UART:BUART:tx_ctrl_mark_last\ 
+    MacroCell: Name=\MIDI_UART:BUART:rx_address_detected\, Mode=(T-Register)
+        Total # of inputs        : 0
+        Total # of product terms : 0
+        List of special equations: 
+            Clock  = (\MIDI_UART:Net_9\) => Global
+            Clock Enable: True
+        Main Equation            : 0 pterms
+        (
+            0
+        );
+        Output = \MIDI_UART:BUART:rx_address_detected\ (fanout=0)
+
+    Removing \MIDI_UART:BUART:rx_parity_error_pre\, Duplicate of \MIDI_UART:BUART:tx_ctrl_mark_last\ 
+    MacroCell: Name=\MIDI_UART:BUART:rx_parity_error_pre\, Mode=(T-Register)
+        Total # of inputs        : 0
+        Total # of product terms : 0
+        List of special equations: 
+            Clock  = (\MIDI_UART:Net_9\) => Global
+            Clock Enable: True
+        Main Equation            : 0 pterms
+        (
+            0
+        );
+        Output = \MIDI_UART:BUART:rx_parity_error_pre\ (fanout=0)
+
+    Removing \MIDI_UART:BUART:rx_markspace_pre\, Duplicate of \MIDI_UART:BUART:tx_ctrl_mark_last\ 
+    MacroCell: Name=\MIDI_UART:BUART:rx_markspace_pre\, Mode=(T-Register)
+        Total # of inputs        : 0
+        Total # of product terms : 0
+        List of special equations: 
+            Clock  = (\MIDI_UART:Net_9\) => Global
+            Clock Enable: True
+        Main Equation            : 0 pterms
+        (
+            0
+        );
+        Output = \MIDI_UART:BUART:rx_markspace_pre\ (fanout=0)
+
+    Removing \MIDI_UART:BUART:rx_state_1\, Duplicate of \MIDI_UART:BUART:tx_ctrl_mark_last\ 
+    MacroCell: Name=\MIDI_UART:BUART:rx_state_1\, Mode=(T-Register)
+        Total # of inputs        : 0
+        Total # of product terms : 0
+        List of special equations: 
+            Clock  = (\MIDI_UART:Net_9\) => Global
+            Clock Enable: True
+        Main Equation            : 0 pterms
+        (
+            0
+        );
+        Output = \MIDI_UART:BUART:rx_state_1\ (fanout=8)
+
+    Removing \MIDI_UART:BUART:tx_parity_bit\, Duplicate of \MIDI_UART:BUART:tx_ctrl_mark_last\ 
+    MacroCell: Name=\MIDI_UART:BUART:tx_parity_bit\, Mode=(T-Register)
+        Total # of inputs        : 0
+        Total # of product terms : 0
+        List of special equations: 
+            Clock  = (\MIDI_UART:Net_9\) => Global
+            Clock Enable: True
+        Main Equation            : 0 pterms
+        (
+            0
+        );
+        Output = \MIDI_UART:BUART:tx_parity_bit\ (fanout=0)
+
+    Removing \MIDI_UART:BUART:tx_mark\, Duplicate of \MIDI_UART:BUART:tx_ctrl_mark_last\ 
+    MacroCell: Name=\MIDI_UART:BUART:tx_mark\, Mode=(T-Register)
+        Total # of inputs        : 0
+        Total # of product terms : 0
+        List of special equations: 
+            Clock  = (\MIDI_UART:Net_9\) => Global
+            Clock Enable: True
+        Main Equation            : 0 pterms
+        (
+            0
+        );
+        Output = \MIDI_UART:BUART:tx_mark\ (fanout=0)
+
+End removing duplicate macrocells: used 1 pass
+</CYPRESSTAG>
+<CYPRESSTAG name="Design Equations" icon="FILE_RPT_EQUATION">
+
+------------------------------------------------------------
+Design Equations
+------------------------------------------------------------
+    <CYPRESSTAG name="Pin listing">
+
+    ------------------------------------------------------------
+    Pin listing
+    ------------------------------------------------------------
+
+    Pin : Name = MIDI_IN1(0)
+        Attributes:
+            In Group/Port: True
+            In Sync Option: SYNC
+            Out Sync Option: AUTO
+            Interrupt generated: False
+            Interrupt mode: NONE
+            Drive mode: HI_Z_DIGITAL
+            VTrip: CMOS
+            Slew: FAST
+            Input Sync needed: True
+            Output Sync needed: False
+            SC shield enabled: False
+            POR State: ANY
+            LCD Mode: COMMON
+            Register Mode: RegComb
+            CaSense Mode: NEITHER
+            Treat as pin: True
+            Is OE Registered: False
+            Uses Analog: False
+            Can contain Digital: True
+            Is SIO: False
+            SIO Output Buf: NONREGULATED
+            SIO Input Buf: SINGLE_ENDED
+            SIO HiFreq: LOW
+            SIO Hyst: DISABLED
+            SIO Vtrip: MULTIPLIER_0_5
+            SIO Multiplier Index: 0
+            SIO RefSel: VCC_IO
+            Required Capabilities: DIGITAL, ROUTABLE
+            Initial Value: 0
+            IO Voltage: 0
+        PORT MAP (
+            pa_out => MIDI_IN1(0)__PA ,
+            fb => Net_7 ,
+            pad => MIDI_IN1(0)_PAD );
+
+    Pin : Name = MIDI_OUT1(0)
+        Attributes:
+            In Group/Port: True
+            In Sync Option: AUTO
+            Out Sync Option: NOSYNC
+            Interrupt generated: False
+            Interrupt mode: NONE
+            Drive mode: CMOS_OUT
+            VTrip: EITHER
+            Slew: FAST
+            Input Sync needed: False
+            Output Sync needed: False
+            SC shield enabled: False
+            POR State: ANY
+            LCD Mode: COMMON
+            Register Mode: RegComb
+            CaSense Mode: NEITHER
+            Treat as pin: True
+            Is OE Registered: False
+            Uses Analog: False
+            Can contain Digital: True
+            Is SIO: False
+            SIO Output Buf: NONREGULATED
+            SIO Input Buf: SINGLE_ENDED
+            SIO HiFreq: LOW
+            SIO Hyst: DISABLED
+            SIO Vtrip: MULTIPLIER_0_5
+            SIO Multiplier Index: 0
+            SIO RefSel: VCC_IO
+            Required Capabilities: DIGITAL, ROUTABLE
+            Initial Value: 0
+            IO Voltage: 0
+        PORT MAP (
+            pa_out => MIDI_OUT1(0)__PA ,
+            pin_input => Net_14 ,
+            pad => MIDI_OUT1(0)_PAD );
+
+    Pin : Name = \USBMIDI:Dm(0)\
+        Attributes:
+            In Group/Port: True
+            In Sync Option: AUTO
+            Out Sync Option: AUTO
+            Interrupt generated: False
+            Interrupt mode: NONE
+            Drive mode: HI_Z_ANALOG
+            VTrip: EITHER
+            Slew: FAST
+            Input Sync needed: False
+            Output Sync needed: False
+            SC shield enabled: False
+            POR State: ANY
+            LCD Mode: COMMON
+            Register Mode: RegComb
+            CaSense Mode: NEITHER
+            Treat as pin: True
+            Is OE Registered: False
+            Uses Analog: True
+            Can contain Digital: False
+            Is SIO: False
+            SIO Output Buf: NONREGULATED
+            SIO Input Buf: SINGLE_ENDED
+            SIO HiFreq: LOW
+            SIO Hyst: DISABLED
+            SIO Vtrip: MULTIPLIER_0_5
+            SIO Multiplier Index: 0
+            SIO RefSel: VCC_IO
+            Required Capabilities: USB_D_MINUS
+            Initial Value: 0
+            IO Voltage: 0
+        PORT MAP (
+            pa_out => \USBMIDI:Dm(0)\__PA ,
+            analog_term => \USBMIDI:Net_597\ ,
+            pad => \USBMIDI:Dm(0)_PAD\ );
+
+    Pin : Name = \USBMIDI:Dp(0)\
+        Attributes:
+            In Group/Port: True
+            In Sync Option: SYNC
+            Out Sync Option: AUTO
+            Interrupt generated: True
+            Interrupt mode: FALLING
+            Drive mode: HI_Z_ANALOG
+            VTrip: CMOS
+            Slew: FAST
+            Input Sync needed: True
+            Output Sync needed: False
+            SC shield enabled: False
+            POR State: ANY
+            LCD Mode: COMMON
+            Register Mode: RegComb
+            CaSense Mode: NEITHER
+            Treat as pin: False
+            Is OE Registered: False
+            Uses Analog: True
+            Can contain Digital: True
+            Is SIO: False
+            SIO Output Buf: NONREGULATED
+            SIO Input Buf: SINGLE_ENDED
+            SIO HiFreq: LOW
+            SIO Hyst: DISABLED
+            SIO Vtrip: MULTIPLIER_0_5
+            SIO Multiplier Index: 0
+            SIO RefSel: VCC_IO
+            Required Capabilities: USB_D_PLUS
+            Initial Value: 1
+            IO Voltage: 0
+        PORT MAP (
+            pa_out => \USBMIDI:Dp(0)\__PA ,
+            analog_term => \USBMIDI:Net_1000\ ,
+            pad => \USBMIDI:Dp(0)_PAD\ );
+
+    Pin : Name = \UART:tx(0)\
+        Attributes:
+            In Group/Port: True
+            In Sync Option: AUTO
+            Out Sync Option: NOSYNC
+            Interrupt generated: False
+            Interrupt mode: NONE
+            Drive mode: CMOS_OUT
+            VTrip: EITHER
+            Slew: FAST
+            Input Sync needed: False
+            Output Sync needed: False
+            SC shield enabled: False
+            POR State: ANY
+            LCD Mode: COMMON
+            Register Mode: RegComb
+            CaSense Mode: NEITHER
+            Treat as pin: True
+            Is OE Registered: False
+            Uses Analog: False
+            Can contain Digital: True
+            Is SIO: False
+            SIO Output Buf: NONREGULATED
+            SIO Input Buf: SINGLE_ENDED
+            SIO HiFreq: LOW
+            SIO Hyst: DISABLED
+            SIO Vtrip: MULTIPLIER_0_5
+            SIO Multiplier Index: 0
+            SIO RefSel: VCC_IO
+            Required Capabilities: DIGITAL
+            Initial Value: 1
+            IO Voltage: 0
+        PORT MAP (
+            pa_out => \UART:tx(0)\__PA ,
+            pad => \UART:tx(0)_PAD\ );
+        Properties:
+        {
+        }
+
+    Pin : Name = SCL(0)
+        Attributes:
+            In Group/Port: True
+            In Sync Option: SYNC
+            Out Sync Option: NOSYNC
+            Interrupt generated: False
+            Interrupt mode: NONE
+            Drive mode: OPEN_DRAIN_LO
+            VTrip: CMOS
+            Slew: FAST
+            Input Sync needed: True
+            Output Sync needed: False
+            SC shield enabled: False
+            POR State: ANY
+            LCD Mode: COMMON
+            Register Mode: RegComb
+            CaSense Mode: NEITHER
+            Treat as pin: True
+            Is OE Registered: False
+            Uses Analog: False
+            Can contain Digital: True
+            Is SIO: False
+            SIO Output Buf: NONREGULATED
+            SIO Input Buf: SINGLE_ENDED
+            SIO HiFreq: LOW
+            SIO Hyst: DISABLED
+            SIO Vtrip: MULTIPLIER_0_5
+            SIO Multiplier Index: 0
+            SIO RefSel: VCC_IO
+            Required Capabilities: DIGITAL, ROUTABLE
+            Initial Value: 1
+            IO Voltage: 0
+        PORT MAP (
+            pa_out => SCL(0)__PA ,
+            fb => \I2C:Net_1109_0\ ,
+            pin_input => \I2C:Net_643_0\ ,
+            pad => SCL(0)_PAD );
+        Properties:
+        {
+        }
+
+    Pin : Name = SDA(0)
+        Attributes:
+            In Group/Port: True
+            In Sync Option: SYNC
+            Out Sync Option: NOSYNC
+            Interrupt generated: False
+            Interrupt mode: NONE
+            Drive mode: OPEN_DRAIN_LO
+            VTrip: CMOS
+            Slew: FAST
+            Input Sync needed: True
+            Output Sync needed: False
+            SC shield enabled: False
+            POR State: ANY
+            LCD Mode: COMMON
+            Register Mode: RegComb
+            CaSense Mode: NEITHER
+            Treat as pin: True
+            Is OE Registered: False
+            Uses Analog: False
+            Can contain Digital: True
+            Is SIO: False
+            SIO Output Buf: NONREGULATED
+            SIO Input Buf: SINGLE_ENDED
+            SIO HiFreq: LOW
+            SIO Hyst: DISABLED
+            SIO Vtrip: MULTIPLIER_0_5
+            SIO Multiplier Index: 0
+            SIO RefSel: VCC_IO
+            Required Capabilities: DIGITAL, ROUTABLE
+            Initial Value: 1
+            IO Voltage: 0
+        PORT MAP (
+            pa_out => SDA(0)__PA ,
+            fb => \I2C:Net_1109_1\ ,
+            pin_input => \I2C:sda_x_wire\ ,
+            pad => SDA(0)_PAD );
+        Properties:
+        {
+        }
+    </CYPRESSTAG>
+    <CYPRESSTAG name="Macrocell listing" icon="FILE_RPT_EQUATION">
+
+    ------------------------------------------------------------
+    Macrocell listing
+    ------------------------------------------------------------
+
+    MacroCell: Name=\MIDI_UART:BUART:counter_load_not\, Mode=(Combinatorial)
+        Total # of inputs        : 4
+        Total # of product terms : 2
+            Clock Enable: True
+        Main Equation            : 2 pterms
+        !(
+              !\MIDI_UART:BUART:tx_state_1\ * !\MIDI_UART:BUART:tx_state_0\ * 
+              \MIDI_UART:BUART:tx_bitclk_enable_pre\
+            + !\MIDI_UART:BUART:tx_state_1\ * !\MIDI_UART:BUART:tx_state_0\ * 
+              !\MIDI_UART:BUART:tx_state_2\
+        );
+        Output = \MIDI_UART:BUART:counter_load_not\ (fanout=1)
+
+    MacroCell: Name=\MIDI_UART:BUART:tx_status_0\, Mode=(Combinatorial)
+        Total # of inputs        : 5
+        Total # of product terms : 1
+            Clock Enable: True
+        Main Equation            : 1 pterm
+        (
+              !\MIDI_UART:BUART:tx_state_1\ * !\MIDI_UART:BUART:tx_state_0\ * 
+              \MIDI_UART:BUART:tx_bitclk_enable_pre\ * 
+              \MIDI_UART:BUART:tx_fifo_empty\ * \MIDI_UART:BUART:tx_state_2\
+        );
+        Output = \MIDI_UART:BUART:tx_status_0\ (fanout=1)
+
+    MacroCell: Name=\MIDI_UART:BUART:tx_status_2\, Mode=(Combinatorial)
+        Total # of inputs        : 1
+        Total # of product terms : 1
+            Clock Enable: True
+        Main Equation            : 1 pterm
+        (
+              !\MIDI_UART:BUART:tx_fifo_notfull\
+        );
+        Output = \MIDI_UART:BUART:tx_status_2\ (fanout=1)
+
+    MacroCell: Name=\MIDI_UART:BUART:rx_counter_load\, Mode=(Combinatorial)
+        Total # of inputs        : 4
+        Total # of product terms : 1
+            Clock Enable: True
+        Main Equation            : 1 pterm
+        (
+              !\MIDI_UART:BUART:tx_ctrl_mark_last\ * 
+              !\MIDI_UART:BUART:rx_state_0\ * !\MIDI_UART:BUART:rx_state_3\ * 
+              !\MIDI_UART:BUART:rx_state_2\
+        );
+        Output = \MIDI_UART:BUART:rx_counter_load\ (fanout=1)
+
+    MacroCell: Name=\MIDI_UART:BUART:rx_postpoll\, Mode=(Combinatorial)
+        Total # of inputs        : 3
+        Total # of product terms : 2
+            Clock Enable: True
+        Main Equation            : 2 pterms
+        (
+              \MIDI_UART:BUART:pollcount_1\
+            + Net_7 * \MIDI_UART:BUART:pollcount_0\
+        );
+        Output = \MIDI_UART:BUART:rx_postpoll\ (fanout=1)
+
+    MacroCell: Name=\MIDI_UART:BUART:rx_status_4\, Mode=(Combinatorial)
+        Total # of inputs        : 2
+        Total # of product terms : 1
+            Clock Enable: True
+        Main Equation            : 1 pterm
+        (
+              \MIDI_UART:BUART:rx_load_fifo\ * \MIDI_UART:BUART:rx_fifofull\
+        );
+        Output = \MIDI_UART:BUART:rx_status_4\ (fanout=1)
+
+    MacroCell: Name=\MIDI_UART:BUART:rx_status_5\, Mode=(Combinatorial)
+        Total # of inputs        : 2
+        Total # of product terms : 1
+            Clock Enable: True
+        Main Equation            : 1 pterm
+        (
+              \MIDI_UART:BUART:rx_fifonotempty\ * 
+              \MIDI_UART:BUART:rx_state_stop1_reg\
+        );
+        Output = \MIDI_UART:BUART:rx_status_5\ (fanout=1)
+
+    MacroCell: Name=Net_14, Mode=(D-Register)
+        Total # of inputs        : 7
+        Total # of product terms : 5
+        List of special equations: 
+            Clock  = (\MIDI_UART:Net_9\) => Global
+            Clock Enable: True
+        Main Equation            : 5 pterms
+        (
+              !\MIDI_UART:BUART:tx_state_1\ * \MIDI_UART:BUART:tx_state_0\ * 
+              !\MIDI_UART:BUART:tx_shift_out\ * !\MIDI_UART:BUART:tx_state_2\
+            + !\MIDI_UART:BUART:tx_state_1\ * \MIDI_UART:BUART:tx_state_0\ * 
+              !\MIDI_UART:BUART:tx_state_2\ * !\MIDI_UART:BUART:tx_bitclk\
+            + \MIDI_UART:BUART:tx_state_1\ * !\MIDI_UART:BUART:tx_state_0\ * 
+              !\MIDI_UART:BUART:tx_shift_out\ * !\MIDI_UART:BUART:tx_state_2\ * 
+              !\MIDI_UART:BUART:tx_counter_dp\ * \MIDI_UART:BUART:tx_bitclk\
+            + \MIDI_UART:BUART:tx_state_1\ * !\MIDI_UART:BUART:tx_bitclk\ * 
+              Net_14
+            + \MIDI_UART:BUART:tx_state_2\ * Net_14
+        );
+        Output = Net_14 (fanout=2)
+
+    MacroCell: Name=\MIDI_UART:BUART:tx_state_1\, Mode=(T-Register)
+        Total # of inputs        : 6
+        Total # of product terms : 3
+        List of special equations: 
+            Clock  = (\MIDI_UART:Net_9\) => Global
+            Clock Enable: True
+        Main Equation            : 3 pterms
+        (
+              \MIDI_UART:BUART:tx_state_1\ * \MIDI_UART:BUART:tx_state_0\ * 
+              \MIDI_UART:BUART:tx_bitclk_enable_pre\ * 
+              \MIDI_UART:BUART:tx_state_2\
+            + \MIDI_UART:BUART:tx_state_1\ * !\MIDI_UART:BUART:tx_state_2\ * 
+              \MIDI_UART:BUART:tx_counter_dp\ * \MIDI_UART:BUART:tx_bitclk\
+            + \MIDI_UART:BUART:tx_state_0\ * !\MIDI_UART:BUART:tx_state_2\ * 
+              \MIDI_UART:BUART:tx_bitclk\
+        );
+        Output = \MIDI_UART:BUART:tx_state_1\ (fanout=8)
+
+    MacroCell: Name=\MIDI_UART:BUART:tx_state_0\, Mode=(T-Register)
+        Total # of inputs        : 6
+        Total # of product terms : 4
+        List of special equations: 
+            Clock  = (\MIDI_UART:Net_9\) => Global
+            Clock Enable: True
+        Main Equation            : 4 pterms
+        (
+              !\MIDI_UART:BUART:tx_state_1\ * !\MIDI_UART:BUART:tx_state_0\ * 
+              \MIDI_UART:BUART:tx_bitclk_enable_pre\ * 
+              !\MIDI_UART:BUART:tx_fifo_empty\
+            + !\MIDI_UART:BUART:tx_state_1\ * !\MIDI_UART:BUART:tx_state_0\ * 
+              !\MIDI_UART:BUART:tx_fifo_empty\ * 
+              !\MIDI_UART:BUART:tx_state_2\
+            + \MIDI_UART:BUART:tx_state_1\ * \MIDI_UART:BUART:tx_state_0\ * 
+              \MIDI_UART:BUART:tx_bitclk_enable_pre\ * 
+              \MIDI_UART:BUART:tx_fifo_empty\ * \MIDI_UART:BUART:tx_state_2\
+            + \MIDI_UART:BUART:tx_state_0\ * !\MIDI_UART:BUART:tx_state_2\ * 
+              \MIDI_UART:BUART:tx_bitclk\
+        );
+        Output = \MIDI_UART:BUART:tx_state_0\ (fanout=8)
+
+    MacroCell: Name=\MIDI_UART:BUART:tx_state_2\, Mode=(T-Register)
+        Total # of inputs        : 6
+        Total # of product terms : 4
+        List of special equations: 
+            Clock  = (\MIDI_UART:Net_9\) => Global
+            Clock Enable: True
+        Main Equation            : 4 pterms
+        (
+              !\MIDI_UART:BUART:tx_state_1\ * !\MIDI_UART:BUART:tx_state_0\ * 
+              \MIDI_UART:BUART:tx_bitclk_enable_pre\ * 
+              \MIDI_UART:BUART:tx_state_2\
+            + \MIDI_UART:BUART:tx_state_1\ * \MIDI_UART:BUART:tx_state_0\ * 
+              \MIDI_UART:BUART:tx_bitclk_enable_pre\ * 
+              \MIDI_UART:BUART:tx_state_2\
+            + \MIDI_UART:BUART:tx_state_1\ * \MIDI_UART:BUART:tx_state_0\ * 
+              !\MIDI_UART:BUART:tx_state_2\ * \MIDI_UART:BUART:tx_bitclk\
+            + \MIDI_UART:BUART:tx_state_1\ * !\MIDI_UART:BUART:tx_state_2\ * 
+              \MIDI_UART:BUART:tx_counter_dp\ * \MIDI_UART:BUART:tx_bitclk\
+        );
+        Output = \MIDI_UART:BUART:tx_state_2\ (fanout=7)
+
+    MacroCell: Name=\MIDI_UART:BUART:tx_bitclk\, Mode=(D-Register)
+        Total # of inputs        : 4
+        Total # of product terms : 2
+        List of special equations: 
+            Clock  = (\MIDI_UART:Net_9\) => Global
+            Clock Enable: True
+        Main Equation            : 2 pterms
+        !(
+              !\MIDI_UART:BUART:tx_state_1\ * !\MIDI_UART:BUART:tx_state_0\ * 
+              \MIDI_UART:BUART:tx_state_2\
+            + !\MIDI_UART:BUART:tx_bitclk_enable_pre\
+        );
+        Output = \MIDI_UART:BUART:tx_bitclk\ (fanout=4)
+
+    MacroCell: Name=\MIDI_UART:BUART:tx_ctrl_mark_last\, Mode=(T-Register)
+        Total # of inputs        : 0
+        Total # of product terms : 0
+        List of special equations: 
+            Clock  = (\MIDI_UART:Net_9\) => Global
+            Clock Enable: True
+        Main Equation            : 0 pterms
+        (
+            0
+        );
+        Output = \MIDI_UART:BUART:tx_ctrl_mark_last\ (fanout=8)
+
+    MacroCell: Name=\MIDI_UART:BUART:rx_state_0\, Mode=(T-Register)
+        Total # of inputs        : 11
+        Total # of product terms : 4
+        List of special equations: 
+            Clock  = (\MIDI_UART:Net_9\) => Global
+            Clock Enable: True
+        Main Equation            : 4 pterms
+        (
+              !\MIDI_UART:BUART:tx_ctrl_mark_last\ * 
+              !\MIDI_UART:BUART:rx_state_0\ * 
+              \MIDI_UART:BUART:rx_bitclk_enable\ * 
+              !\MIDI_UART:BUART:rx_state_3\ * \MIDI_UART:BUART:rx_state_2\ * 
+              !\MIDI_UART:BUART:pollcount_1\ * !Net_7
+            + !\MIDI_UART:BUART:tx_ctrl_mark_last\ * 
+              !\MIDI_UART:BUART:rx_state_0\ * 
+              \MIDI_UART:BUART:rx_bitclk_enable\ * 
+              !\MIDI_UART:BUART:rx_state_3\ * \MIDI_UART:BUART:rx_state_2\ * 
+              !\MIDI_UART:BUART:pollcount_1\ * !\MIDI_UART:BUART:pollcount_0\
+            + !\MIDI_UART:BUART:tx_ctrl_mark_last\ * 
+              \MIDI_UART:BUART:rx_state_0\ * !\MIDI_UART:BUART:rx_state_3\ * 
+              !\MIDI_UART:BUART:rx_state_2\ * !\MIDI_UART:BUART:rx_count_6\ * 
+              !\MIDI_UART:BUART:rx_count_5\
+            + !\MIDI_UART:BUART:tx_ctrl_mark_last\ * 
+              \MIDI_UART:BUART:rx_state_0\ * !\MIDI_UART:BUART:rx_state_3\ * 
+              !\MIDI_UART:BUART:rx_state_2\ * !\MIDI_UART:BUART:rx_count_6\ * 
+              !\MIDI_UART:BUART:rx_count_4\
+        );
+        Output = \MIDI_UART:BUART:rx_state_0\ (fanout=8)
+
+    MacroCell: Name=\MIDI_UART:BUART:rx_load_fifo\, Mode=(D-Register)
+        Total # of inputs        : 8
+        Total # of product terms : 3
+        List of special equations: 
+            Clock  = (\MIDI_UART:Net_9\) => Global
+            Clock Enable: True
+        Main Equation            : 3 pterms
+        (
+              !\MIDI_UART:BUART:tx_ctrl_mark_last\ * 
+              !\MIDI_UART:BUART:rx_state_0\ * 
+              \MIDI_UART:BUART:rx_bitclk_enable\ * 
+              \MIDI_UART:BUART:rx_state_3\ * !\MIDI_UART:BUART:rx_state_2\
+            + !\MIDI_UART:BUART:tx_ctrl_mark_last\ * 
+              \MIDI_UART:BUART:rx_state_0\ * !\MIDI_UART:BUART:rx_state_3\ * 
+              !\MIDI_UART:BUART:rx_state_2\ * !\MIDI_UART:BUART:rx_count_6\ * 
+              !\MIDI_UART:BUART:rx_count_5\
+            + !\MIDI_UART:BUART:tx_ctrl_mark_last\ * 
+              \MIDI_UART:BUART:rx_state_0\ * !\MIDI_UART:BUART:rx_state_3\ * 
+              !\MIDI_UART:BUART:rx_state_2\ * !\MIDI_UART:BUART:rx_count_6\ * 
+              !\MIDI_UART:BUART:rx_count_4\
+        );
+        Output = \MIDI_UART:BUART:rx_load_fifo\ (fanout=2)
+
+    MacroCell: Name=\MIDI_UART:BUART:rx_state_3\, Mode=(T-Register)
+        Total # of inputs        : 8
+        Total # of product terms : 3
+        List of special equations: 
+            Clock  = (\MIDI_UART:Net_9\) => Global
+            Clock Enable: True
+        Main Equation            : 3 pterms
+        (
+              !\MIDI_UART:BUART:tx_ctrl_mark_last\ * 
+              !\MIDI_UART:BUART:rx_state_0\ * 
+              \MIDI_UART:BUART:rx_bitclk_enable\ * 
+              \MIDI_UART:BUART:rx_state_3\ * \MIDI_UART:BUART:rx_state_2\
+            + !\MIDI_UART:BUART:tx_ctrl_mark_last\ * 
+              \MIDI_UART:BUART:rx_state_0\ * !\MIDI_UART:BUART:rx_state_3\ * 
+              !\MIDI_UART:BUART:rx_state_2\ * !\MIDI_UART:BUART:rx_count_6\ * 
+              !\MIDI_UART:BUART:rx_count_5\
+            + !\MIDI_UART:BUART:tx_ctrl_mark_last\ * 
+              \MIDI_UART:BUART:rx_state_0\ * !\MIDI_UART:BUART:rx_state_3\ * 
+              !\MIDI_UART:BUART:rx_state_2\ * !\MIDI_UART:BUART:rx_count_6\ * 
+              !\MIDI_UART:BUART:rx_count_4\
+        );
+        Output = \MIDI_UART:BUART:rx_state_3\ (fanout=7)
+
+    MacroCell: Name=\MIDI_UART:BUART:rx_state_2\, Mode=(T-Register)
+        Total # of inputs        : 10
+        Total # of product terms : 5
+        List of special equations: 
+            Clock  = (\MIDI_UART:Net_9\) => Global
+            Clock Enable: True
+        Main Equation            : 5 pterms
+        (
+              !\MIDI_UART:BUART:tx_ctrl_mark_last\ * 
+              !\MIDI_UART:BUART:rx_state_0\ * 
+              \MIDI_UART:BUART:rx_bitclk_enable\ * 
+              \MIDI_UART:BUART:rx_state_3\
+            + !\MIDI_UART:BUART:tx_ctrl_mark_last\ * 
+              !\MIDI_UART:BUART:rx_state_0\ * 
+              \MIDI_UART:BUART:rx_bitclk_enable\ * 
+              \MIDI_UART:BUART:rx_state_2\
+            + !\MIDI_UART:BUART:tx_ctrl_mark_last\ * 
+              !\MIDI_UART:BUART:rx_state_0\ * !\MIDI_UART:BUART:rx_state_3\ * 
+              !\MIDI_UART:BUART:rx_state_2\ * !Net_7 * 
+              \MIDI_UART:BUART:rx_last\
+            + !\MIDI_UART:BUART:tx_ctrl_mark_last\ * 
+              \MIDI_UART:BUART:rx_state_0\ * !\MIDI_UART:BUART:rx_state_3\ * 
+              !\MIDI_UART:BUART:rx_state_2\ * !\MIDI_UART:BUART:rx_count_6\ * 
+              !\MIDI_UART:BUART:rx_count_5\
+            + !\MIDI_UART:BUART:tx_ctrl_mark_last\ * 
+              \MIDI_UART:BUART:rx_state_0\ * !\MIDI_UART:BUART:rx_state_3\ * 
+              !\MIDI_UART:BUART:rx_state_2\ * !\MIDI_UART:BUART:rx_count_6\ * 
+              !\MIDI_UART:BUART:rx_count_4\
+        );
+        Output = \MIDI_UART:BUART:rx_state_2\ (fanout=7)
+
+    MacroCell: Name=\MIDI_UART:BUART:rx_bitclk_enable\, Mode=(D-Register)
+        Total # of inputs        : 3
+        Total # of product terms : 1
+        List of special equations: 
+            Clock  = (\MIDI_UART:Net_9\) => Global
+            Clock Enable: True
+        Main Equation            : 1 pterm
+        (
+              !\MIDI_UART:BUART:rx_count_2\ * !\MIDI_UART:BUART:rx_count_1\ * 
+              !\MIDI_UART:BUART:rx_count_0\
+        );
+        Output = \MIDI_UART:BUART:rx_bitclk_enable\ (fanout=6)
+
+    MacroCell: Name=\MIDI_UART:BUART:rx_state_stop1_reg\, Mode=(D-Register)
+        Total # of inputs        : 4
+        Total # of product terms : 1
+        List of special equations: 
+            Clock  = (\MIDI_UART:Net_9\) => Global
+            Clock Enable: True
+        Main Equation            : 1 pterm
+        !(
+              !\MIDI_UART:BUART:tx_ctrl_mark_last\ * 
+              !\MIDI_UART:BUART:rx_state_0\ * \MIDI_UART:BUART:rx_state_3\ * 
+              \MIDI_UART:BUART:rx_state_2\
+        );
+        Output = \MIDI_UART:BUART:rx_state_stop1_reg\ (fanout=1)
+
+    MacroCell: Name=\MIDI_UART:BUART:pollcount_1\, Mode=(D-Register)
+        Total # of inputs        : 5
+        Total # of product terms : 3
+        List of special equations: 
+            Clock  = (\MIDI_UART:Net_9\) => Global
+            Clock Enable: True
+        Main Equation            : 3 pterms
+        (
+              !\MIDI_UART:BUART:rx_count_2\ * !\MIDI_UART:BUART:rx_count_1\ * 
+              !\MIDI_UART:BUART:pollcount_1\ * Net_7 * 
+              \MIDI_UART:BUART:pollcount_0\
+            + !\MIDI_UART:BUART:rx_count_2\ * !\MIDI_UART:BUART:rx_count_1\ * 
+              \MIDI_UART:BUART:pollcount_1\ * !Net_7
+            + !\MIDI_UART:BUART:rx_count_2\ * !\MIDI_UART:BUART:rx_count_1\ * 
+              \MIDI_UART:BUART:pollcount_1\ * !\MIDI_UART:BUART:pollcount_0\
+        );
+        Output = \MIDI_UART:BUART:pollcount_1\ (fanout=4)
+
+    MacroCell: Name=\MIDI_UART:BUART:pollcount_0\, Mode=(D-Register)
+        Total # of inputs        : 4
+        Total # of product terms : 2
+        List of special equations: 
+            Clock  = (\MIDI_UART:Net_9\) => Global
+            Clock Enable: True
+        Main Equation            : 2 pterms
+        (
+              !\MIDI_UART:BUART:rx_count_2\ * !\MIDI_UART:BUART:rx_count_1\ * 
+              !Net_7 * \MIDI_UART:BUART:pollcount_0\
+            + !\MIDI_UART:BUART:rx_count_2\ * !\MIDI_UART:BUART:rx_count_1\ * 
+              Net_7 * !\MIDI_UART:BUART:pollcount_0\
+        );
+        Output = \MIDI_UART:BUART:pollcount_0\ (fanout=5)
+
+    MacroCell: Name=\MIDI_UART:BUART:rx_status_3\, Mode=(D-Register)
+        Total # of inputs        : 8
+        Total # of product terms : 2
+        List of special equations: 
+            Clock  = (\MIDI_UART:Net_9\) => Global
+            Clock Enable: True
+        Main Equation            : 2 pterms
+        (
+              !\MIDI_UART:BUART:tx_ctrl_mark_last\ * 
+              !\MIDI_UART:BUART:rx_state_0\ * 
+              \MIDI_UART:BUART:rx_bitclk_enable\ * 
+              \MIDI_UART:BUART:rx_state_3\ * \MIDI_UART:BUART:rx_state_2\ * 
+              !\MIDI_UART:BUART:pollcount_1\ * !Net_7
+            + !\MIDI_UART:BUART:tx_ctrl_mark_last\ * 
+              !\MIDI_UART:BUART:rx_state_0\ * 
+              \MIDI_UART:BUART:rx_bitclk_enable\ * 
+              \MIDI_UART:BUART:rx_state_3\ * \MIDI_UART:BUART:rx_state_2\ * 
+              !\MIDI_UART:BUART:pollcount_1\ * !\MIDI_UART:BUART:pollcount_0\
+        );
+        Output = \MIDI_UART:BUART:rx_status_3\ (fanout=1)
+
+    MacroCell: Name=\MIDI_UART:BUART:rx_last\, Mode=(D-Register)
+        Total # of inputs        : 1
+        Total # of product terms : 1
+        List of special equations: 
+            Clock  = (\MIDI_UART:Net_9\) => Global
+            Clock Enable: True
+        Main Equation            : 1 pterm
+        (
+              Net_7
+        );
+        Output = \MIDI_UART:BUART:rx_last\ (fanout=1)
+    </CYPRESSTAG>
+    <CYPRESSTAG name="Datapath listing">
+
+    ------------------------------------------------------------
+    Datapath listing
+    ------------------------------------------------------------
+
+    datapathcell: Name =\MIDI_UART:BUART:sTX:TxShifter:u0\
+        PORT MAP (
+            clock => \MIDI_UART:Net_9\ ,
+            cs_addr_2 => \MIDI_UART:BUART:tx_state_1\ ,
+            cs_addr_1 => \MIDI_UART:BUART:tx_state_0\ ,
+            cs_addr_0 => \MIDI_UART:BUART:tx_bitclk_enable_pre\ ,
+            so_comb => \MIDI_UART:BUART:tx_shift_out\ ,
+            f0_bus_stat_comb => \MIDI_UART:BUART:tx_fifo_notfull\ ,
+            f0_blk_stat_comb => \MIDI_UART:BUART:tx_fifo_empty\ );
+        Properties:
+        {
+            a0_init = "00000000"
+            a1_init = "00000000"
+            ce0_sync = 1
+            ce1_sync = 1
+            cl0_sync = 1
+            cl1_sync = 1
+            cmsb_sync = 1
+            co_msb_sync = 1
+            cy_dpconfig = "0000000000000000000000000000000000000000000000000000000011000000000000000000000000000010010000000000000000000000000000000000000011111111000000001111111111111111000000000000000001000100111100000000000000001100"
+            d0_init = "00000000"
+            d1_init = "00000000"
+            f0_blk_sync = 1
+            f0_bus_sync = 1
+            f1_blk_sync = 1
+            f1_bus_sync = 1
+            ff0_sync = 1
+            ff1_sync = 1
+            ov_msb_sync = 1
+            so_sync = 1
+            z0_sync = 1
+            z1_sync = 1
+        }
+        Clock Polarity: Active High
+        Clock Enable: True
+
+    datapathcell: Name =\MIDI_UART:BUART:sTX:sCLOCK:TxBitClkGen\
+        PORT MAP (
+            clock => \MIDI_UART:Net_9\ ,
+            cs_addr_0 => \MIDI_UART:BUART:counter_load_not\ ,
+            ce0_reg => \MIDI_UART:BUART:tx_bitclk_enable_pre\ ,
+            ce1_reg => \MIDI_UART:BUART:tx_counter_dp\ );
+        Properties:
+        {
+            a0_init = "00000000"
+            a1_init = "00000000"
+            ce0_sync = 1
+            ce1_sync = 1
+            cl0_sync = 1
+            cl1_sync = 1
+            cmsb_sync = 1
+            co_msb_sync = 1
+            cy_dpconfig = "1010100001000000001000000100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000011111111000000001111111100000111001000000100000000000101111100000000000000001000"
+            d0_init = "00000000"
+            d1_init = "00000000"
+            f0_blk_sync = 1
+            f0_bus_sync = 1
+            f1_blk_sync = 1
+            f1_bus_sync = 1
+            ff0_sync = 1
+            ff1_sync = 1
+            ov_msb_sync = 1
+            so_sync = 1
+            z0_sync = 1
+            z1_sync = 1
+        }
+        Clock Polarity: Active High
+        Clock Enable: True
+
+    datapathcell: Name =\MIDI_UART:BUART:sRX:RxShifter:u0\
+        PORT MAP (
+            clock => \MIDI_UART:Net_9\ ,
+            cs_addr_2 => \MIDI_UART:BUART:tx_ctrl_mark_last\ ,
+            cs_addr_1 => \MIDI_UART:BUART:rx_state_0\ ,
+            cs_addr_0 => \MIDI_UART:BUART:rx_bitclk_enable\ ,
+            route_si => \MIDI_UART:BUART:rx_postpoll\ ,
+            f0_load => \MIDI_UART:BUART:rx_load_fifo\ ,
+            f0_bus_stat_comb => \MIDI_UART:BUART:rx_fifonotempty\ ,
+            f0_blk_stat_comb => \MIDI_UART:BUART:rx_fifofull\ );
+        Properties:
+        {
+            a0_init = "00000000"
+            a1_init = "00000000"
+            ce0_sync = 1
+            ce1_sync = 1
+            cl0_sync = 1
+            cl1_sync = 1
+            cmsb_sync = 1
+            co_msb_sync = 1
+            cy_dpconfig = "0000000000000000000000000000000000000000000000000000001001000000000100000000000000010000001100000001000000000000000100100001000011111111000000001111111111111111101000000110001001000001111100000000000000001100"
+            d0_init = "00000000"
+            d1_init = "00000000"
+            f0_blk_sync = 1
+            f0_bus_sync = 1
+            f1_blk_sync = 1
+            f1_bus_sync = 1
+            ff0_sync = 1
+            ff1_sync = 1
+            ov_msb_sync = 1
+            so_sync = 1
+            z0_sync = 1
+            z1_sync = 1
+        }
+        Clock Polarity: Active High
+        Clock Enable: True
+    </CYPRESSTAG>
+    <CYPRESSTAG name="Status register listing">
+    </CYPRESSTAG>
+    <CYPRESSTAG name="StatusI register listing">
+
+    ------------------------------------------------------------
+    StatusI register listing
+    ------------------------------------------------------------
+
+    statusicell: Name =\MIDI_UART:BUART:sTX:TxSts\
+        PORT MAP (
+            clock => \MIDI_UART:Net_9\ ,
+            status_3 => \MIDI_UART:BUART:tx_fifo_notfull\ ,
+            status_2 => \MIDI_UART:BUART:tx_status_2\ ,
+            status_1 => \MIDI_UART:BUART:tx_fifo_empty\ ,
+            status_0 => \MIDI_UART:BUART:tx_status_0\ ,
+            interrupt => Net_8 );
+        Properties:
+        {
+            cy_force_order = 1
+            cy_int_mask = "1111111"
+            cy_md_select = "0000001"
+        }
+        Clock Polarity: Active High
+        Clock Enable: True
+
+    statusicell: Name =\MIDI_UART:BUART:sRX:RxSts\
+        PORT MAP (
+            clock => \MIDI_UART:Net_9\ ,
+            status_5 => \MIDI_UART:BUART:rx_status_5\ ,
+            status_4 => \MIDI_UART:BUART:rx_status_4\ ,
+            status_3 => \MIDI_UART:BUART:rx_status_3\ ,
+            interrupt => Net_9 );
+        Properties:
+        {
+            cy_force_order = 1
+            cy_int_mask = "1111111"
+            cy_md_select = "1011111"
+        }
+        Clock Polarity: Active High
+        Clock Enable: True
+    </CYPRESSTAG>
+    <CYPRESSTAG name="Sync listing">
+    </CYPRESSTAG>
+    <CYPRESSTAG name="Control register listing">
+    </CYPRESSTAG>
+    <CYPRESSTAG name="Count7 listing">
+
+    ------------------------------------------------------------
+    Count7 listing
+    ------------------------------------------------------------
+
+    count7cell: Name =\MIDI_UART:BUART:sRX:RxBitCounter\
+        PORT MAP (
+            clock => \MIDI_UART:Net_9\ ,
+            load => \MIDI_UART:BUART:rx_counter_load\ ,
+            count_6 => \MIDI_UART:BUART:rx_count_6\ ,
+            count_5 => \MIDI_UART:BUART:rx_count_5\ ,
+            count_4 => \MIDI_UART:BUART:rx_count_4\ ,
+            count_3 => \MIDI_UART:BUART:rx_count_3\ ,
+            count_2 => \MIDI_UART:BUART:rx_count_2\ ,
+            count_1 => \MIDI_UART:BUART:rx_count_1\ ,
+            count_0 => \MIDI_UART:BUART:rx_count_0\ ,
+            tc => \MIDI_UART:BUART:rx_count7_tc\ );
+        Properties:
+        {
+            cy_alt_mode = 0
+            cy_init_value = "0000000"
+            cy_period = "1110010"
+            cy_route_en = 1
+            cy_route_ld = 1
+        }
+        Clock Polarity: Active High
+        Clock Enable: True
+    </CYPRESSTAG>
+    <CYPRESSTAG name="DRQ listing">
+    </CYPRESSTAG>
+    <CYPRESSTAG name="Interrupt listing">
+
+    ------------------------------------------------------------
+    Interrupt listing
+    ------------------------------------------------------------
+
+    interrupt: Name =\MIDI_UART:TXInternalInterrupt\
+        PORT MAP (
+            interrupt => Net_8 );
+        Properties:
+        {
+            int_type = "10"
+            is_nmi = 0
+        }
+
+    interrupt: Name =\MIDI_UART:RXInternalInterrupt\
+        PORT MAP (
+            interrupt => Net_9 );
+        Properties:
+        {
+            int_type = "10"
+            is_nmi = 0
+        }
+
+    interrupt: Name =\USBMIDI:dp_int\
+        PORT MAP (
+            interrupt => \USBMIDI:Net_1010\ );
+        Properties:
+        {
+            int_type = "10"
+            is_nmi = 0
+        }
+
+    interrupt: Name =\USBMIDI:ep_2\
+        PORT MAP (
+            interrupt => \USBMIDI:ep_int_2\ );
+        Properties:
+        {
+            int_type = "10"
+            is_nmi = 0
+        }
+
+    interrupt: Name =\USBMIDI:ep_1\
+        PORT MAP (
+            interrupt => \USBMIDI:ep_int_1\ );
+        Properties:
+        {
+            int_type = "10"
+            is_nmi = 0
+        }
+
+    interrupt: Name =\USBMIDI:ep_0\
+        PORT MAP (
+            interrupt => \USBMIDI:ep_int_0\ );
+        Properties:
+        {
+            int_type = "10"
+            is_nmi = 0
+        }
+
+    interrupt: Name =\USBMIDI:bus_reset\
+        PORT MAP (
+            interrupt => \USBMIDI:Net_1876\ );
+        Properties:
+        {
+            int_type = "10"
+            is_nmi = 0
+        }
+
+    interrupt: Name =\USBMIDI:arb_int\
+        PORT MAP (
+            interrupt => \USBMIDI:Net_1889\ );
+        Properties:
+        {
+            int_type = "10"
+            is_nmi = 0
+        }
+
+    interrupt: Name =\USBMIDI:sof_int\
+        PORT MAP (
+            interrupt => Net_15 );
+        Properties:
+        {
+            int_type = "10"
+            is_nmi = 0
+        }
+
+    interrupt: Name =\I2C:I2C_IRQ\
+        PORT MAP (
+            interrupt => \I2C:Net_697\ );
+        Properties:
+        {
+            int_type = "00"
+            is_nmi = 0
+        }
+    </CYPRESSTAG>
+</CYPRESSTAG>
+<CYPRESSTAG name="Technology mapping summary" expanded>
+
+------------------------------------------------------------
+Technology mapping summary
+------------------------------------------------------------
+
+Resource Type                 : Used : Free :  Max :  % Used
+============================================================
+Digital Clocks                :    1 :    7 :    8 : 12.50 %
+Analog Clocks                 :    0 :    4 :    4 :  0.00 %
+CapSense Buffers              :    0 :    2 :    2 :  0.00 %
+Digital Filter Block          :    0 :    1 :    1 :  0.00 %
+Interrupts                    :   10 :   22 :   32 : 31.25 %
+IO                            :   10 :   38 :   48 : 20.83 %
+Segment LCD                   :    0 :    1 :    1 :  0.00 %
+CAN 2.0b                      :    0 :    1 :    1 :  0.00 %
+I2C                           :    1 :    0 :    1 : 100.00 %
+USB                           :    1 :    0 :    1 : 100.00 %
+DMA Channels                  :    0 :   24 :   24 :  0.00 %
+Timer                         :    0 :    4 :    4 :  0.00 %
+UDB                           :      :      :      :        
+  Macrocells                  :   23 :  169 :  192 : 11.98 %
+  Unique P-terms              :   43 :  341 :  384 : 11.20 %
+  Total P-terms               :   52 :      :      :        
+  Datapath Cells              :    3 :   21 :   24 : 12.50 %
+  Status Cells                :    3 :   21 :   24 : 12.50 %
+    StatusI Registers         :    2 :      :      :        
+    Routed Count7 Load/Enable :    1 :      :      :        
+  Control Cells               :    1 :   23 :   24 :  4.17 %
+    Count7 Cells              :    1 :      :      :        
+Opamp                         :    0 :    4 :    4 :  0.00 %
+Comparator                    :    0 :    4 :    4 :  0.00 %
+Delta-Sigma ADC               :    0 :    1 :    1 :  0.00 %
+LPF                           :    0 :    2 :    2 :  0.00 %
+SAR ADC                       :    0 :    2 :    2 :  0.00 %
+Analog (SC/CT) Blocks         :    0 :    4 :    4 :  0.00 %
+DAC                           :      :      :      :        
+  VIDAC                       :    0 :    4 :    4 :  0.00 %
+</CYPRESSTAG>
+Technology Mapping: Elapsed time ==> 0s.075ms
+Tech Mapping phase: Elapsed time ==> 0s.161ms
+</CYPRESSTAG>
+<CYPRESSTAG name="Analog Placement">
+Initial Analog Placement Results:
+IO_4@[IOP=(12)][IoId=(4)] : SCL(0) (fixed)
+IO_5@[IOP=(12)][IoId=(5)] : SDA(0) (fixed)
+IO_7@[IOP=(12)][IoId=(7)] : \UART:tx(0)\ (fixed)
+IO_7@[IOP=(15)][IoId=(7)] : \USBMIDI:Dm(0)\ (fixed)
+IO_6@[IOP=(15)][IoId=(6)] : \USBMIDI:Dp(0)\ (fixed)
+USB[0]@[FFB(USB,0)] : \USBMIDI:USB\
+Analog Placement phase: Elapsed time ==> 0s.032ms
+</CYPRESSTAG>
+<CYPRESSTAG name="Analog Routing">
+Analog Routing phase: Elapsed time ==> 0s.000ms
+</CYPRESSTAG>
+<CYPRESSTAG name="Analog Code Generation">
+============ Analog Final Answer Routes ============
+Dump of CyAnalogRoutingResultsDB
+Map of net to items {
+}
+Map of item to net {
+}
+Mux Info {
+}
+Dump of CyP35AnalogRoutingResultsDB
+IsVddaHalfUsedForComp = False
+IsVddaHalfUsedForSar0 = False
+IsVddaHalfUsedForSar1 = False
+Analog Code Generation phase: Elapsed time ==> 0s.294ms
+</CYPRESSTAG>
+<CYPRESSTAG name="Digital Placement">
+<CYPRESSTAG name="Detailed placement messages">
+I2076: Total run-time: 0.8 sec.
+
+</CYPRESSTAG>
+<CYPRESSTAG name="PLD Packing">
+<CYPRESSTAG name="PLD Packing Summary" expanded>
+
+------------------------------------------------------------
+PLD Packing Summary
+------------------------------------------------------------
+            Resource Type : Used : Free :  Max :  % Used
+    ====================================================
+                     PLDs :   11 :   37 :   48 :  22.92%
+
+<CYPRESSTAG name="PLD Statistics">
+
+        PLD Resource Type :     Average/LAB
+    =======================================
+                   Inputs :            7.91
+                   Pterms :            4.55
+               Macrocells :            2.09
+</CYPRESSTAG>
+<CYPRESSTAG name="Packed PLD Contents">
+Packed PLD Contents not displayed at this verbose level.</CYPRESSTAG>
+</CYPRESSTAG>
+PLD Packing: Elapsed time ==> 0s.001ms
+</CYPRESSTAG>
+<CYPRESSTAG name="Partitioning">
+<CYPRESSTAG name="Initial Partitioning Summary">
+Initial Partitioning Summary not displayed at this verbose level.</CYPRESSTAG>
+<CYPRESSTAG name="Final Partitioning Summary">
+Final Partitioning Summary not displayed at this verbose level.</CYPRESSTAG>
+Partitioning: Elapsed time ==> 0s.031ms
+</CYPRESSTAG>
+<CYPRESSTAG name="Final Placement Summary">
+
+------------------------------------------------------------
+Final Placement Summary
+------------------------------------------------------------
+
+       Resource Type :      Count : Avg Inputs : Avg Outputs
+    ========================================================
+                 UDB :          6 :      12.33 :       3.83
+<CYPRESSTAG name="Final Placement Details">
+<CYPRESSTAG name="Component Details">
+
+------------------------------------------------------------
+Component Placement Details
+------------------------------------------------------------
+UDB [UDB=(0,0)] is empty.
+UDB [UDB=(0,1)] is empty.
+UDB [UDB=(0,2)] is empty.
+UDB [UDB=(0,3)] is empty.
+UDB [UDB=(0,4)] is empty.
+UDB [UDB=(0,5)] is empty.
+UDB [UDB=(1,0)] is empty.
+UDB [UDB=(1,1)] is empty.
+UDB [UDB=(1,2)] is empty.
+UDB [UDB=(1,3)] is empty.
+UDB [UDB=(1,4)] is empty.
+UDB [UDB=(1,5)] is empty.
+UDB [UDB=(2,0)] is empty.
+UDB [UDB=(2,1)] is empty.
+UDB [UDB=(2,2)] is empty.
+UDB [UDB=(2,3)] contents:
+LAB@[UDB=(2,3)][LB=0] #macrocells=2, #inputs=7, #pterms=4
+{
+    [McSlotId=0]:     MacroCell: Name=\MIDI_UART:BUART:tx_status_2\, Mode=(Combinatorial) @ [UDB=(2,3)][LB=0][MC=0]
+        Total # of inputs        : 1
+        Total # of product terms : 1
+            Clock Enable: True
+        Main Equation            : 1 pterm
+        (
+              !\MIDI_UART:BUART:tx_fifo_notfull\
+        );
+        Output = \MIDI_UART:BUART:tx_status_2\ (fanout=1)
+        Properties               : 
+        {
+        }
+
+    [McSlotId=1]:     MacroCell: Name=\MIDI_UART:BUART:tx_state_1\, Mode=(T-Register) @ [UDB=(2,3)][LB=0][MC=1]
+        Total # of inputs        : 6
+        Total # of product terms : 3
+        List of special equations: 
+            Clock  = (\MIDI_UART:Net_9\) => Global
+            Clock Enable: True
+        Main Equation            : 3 pterms
+        (
+              \MIDI_UART:BUART:tx_state_1\ * \MIDI_UART:BUART:tx_state_0\ * 
+              \MIDI_UART:BUART:tx_bitclk_enable_pre\ * 
+              \MIDI_UART:BUART:tx_state_2\
+            + \MIDI_UART:BUART:tx_state_1\ * !\MIDI_UART:BUART:tx_state_2\ * 
+              \MIDI_UART:BUART:tx_counter_dp\ * \MIDI_UART:BUART:tx_bitclk\
+            + \MIDI_UART:BUART:tx_state_0\ * !\MIDI_UART:BUART:tx_state_2\ * 
+              \MIDI_UART:BUART:tx_bitclk\
+        );
+        Output = \MIDI_UART:BUART:tx_state_1\ (fanout=8)
+        Properties               : 
+        {
+        }
+
+    [McSlotId=2]: (empty)
+    [McSlotId=3]: (empty)
+}
+
+LAB@[UDB=(2,3)][LB=1] #macrocells=3, #inputs=6, #pterms=7
+{
+    [McSlotId=0]:     MacroCell: Name=\MIDI_UART:BUART:tx_state_0\, Mode=(T-Register) @ [UDB=(2,3)][LB=1][MC=0]
+        Total # of inputs        : 6
+        Total # of product terms : 4
+        List of special equations: 
+            Clock  = (\MIDI_UART:Net_9\) => Global
+            Clock Enable: True
+        Main Equation            : 4 pterms
+        (
+              !\MIDI_UART:BUART:tx_state_1\ * !\MIDI_UART:BUART:tx_state_0\ * 
+              \MIDI_UART:BUART:tx_bitclk_enable_pre\ * 
+              !\MIDI_UART:BUART:tx_fifo_empty\
+            + !\MIDI_UART:BUART:tx_state_1\ * !\MIDI_UART:BUART:tx_state_0\ * 
+              !\MIDI_UART:BUART:tx_fifo_empty\ * 
+              !\MIDI_UART:BUART:tx_state_2\
+            + \MIDI_UART:BUART:tx_state_1\ * \MIDI_UART:BUART:tx_state_0\ * 
+              \MIDI_UART:BUART:tx_bitclk_enable_pre\ * 
+              \MIDI_UART:BUART:tx_fifo_empty\ * \MIDI_UART:BUART:tx_state_2\
+            + \MIDI_UART:BUART:tx_state_0\ * !\MIDI_UART:BUART:tx_state_2\ * 
+              \MIDI_UART:BUART:tx_bitclk\
+        );
+        Output = \MIDI_UART:BUART:tx_state_0\ (fanout=8)
+        Properties               : 
+        {
+        }
+
+    [McSlotId=1]: (empty)
+    [McSlotId=2]:     MacroCell: Name=\MIDI_UART:BUART:tx_status_0\, Mode=(Combinatorial) @ [UDB=(2,3)][LB=1][MC=2]
+        Total # of inputs        : 5
+        Total # of product terms : 1
+            Clock Enable: True
+        Main Equation            : 1 pterm
+        (
+              !\MIDI_UART:BUART:tx_state_1\ * !\MIDI_UART:BUART:tx_state_0\ * 
+              \MIDI_UART:BUART:tx_bitclk_enable_pre\ * 
+              \MIDI_UART:BUART:tx_fifo_empty\ * \MIDI_UART:BUART:tx_state_2\
+        );
+        Output = \MIDI_UART:BUART:tx_status_0\ (fanout=1)
+        Properties               : 
+        {
+        }
+
+    [McSlotId=3]:     MacroCell: Name=\MIDI_UART:BUART:tx_bitclk\, Mode=(D-Register) @ [UDB=(2,3)][LB=1][MC=3]
+        Total # of inputs        : 4
+        Total # of product terms : 2
+        List of special equations: 
+            Clock  = (\MIDI_UART:Net_9\) => Global
+            Clock Enable: True
+        Main Equation            : 2 pterms
+        !(
+              !\MIDI_UART:BUART:tx_state_1\ * !\MIDI_UART:BUART:tx_state_0\ * 
+              \MIDI_UART:BUART:tx_state_2\
+            + !\MIDI_UART:BUART:tx_bitclk_enable_pre\
+        );
+        Output = \MIDI_UART:BUART:tx_bitclk\ (fanout=4)
+        Properties               : 
+        {
+        }
+}
+
+datapathcell: Name =\MIDI_UART:BUART:sTX:TxShifter:u0\
+    PORT MAP (
+        clock => \MIDI_UART:Net_9\ ,
+        cs_addr_2 => \MIDI_UART:BUART:tx_state_1\ ,
+        cs_addr_1 => \MIDI_UART:BUART:tx_state_0\ ,
+        cs_addr_0 => \MIDI_UART:BUART:tx_bitclk_enable_pre\ ,
+        so_comb => \MIDI_UART:BUART:tx_shift_out\ ,
+        f0_bus_stat_comb => \MIDI_UART:BUART:tx_fifo_notfull\ ,
+        f0_blk_stat_comb => \MIDI_UART:BUART:tx_fifo_empty\ );
+    Properties:
+    {
+        a0_init = "00000000"
+        a1_init = "00000000"
+        ce0_sync = 1
+        ce1_sync = 1
+        cl0_sync = 1
+        cl1_sync = 1
+        cmsb_sync = 1
+        co_msb_sync = 1
+        cy_dpconfig = "0000000000000000000000000000000000000000000000000000000011000000000000000000000000000010010000000000000000000000000000000000000011111111000000001111111111111111000000000000000001000100111100000000000000001100"
+        d0_init = "00000000"
+        d1_init = "00000000"
+        f0_blk_sync = 1
+        f0_bus_sync = 1
+        f1_blk_sync = 1
+        f1_bus_sync = 1
+        ff0_sync = 1
+        ff1_sync = 1
+        ov_msb_sync = 1
+        so_sync = 1
+        z0_sync = 1
+        z1_sync = 1
+    }
+    Clock Polarity: Active High
+    Clock Enable: True
+
+statusicell: Name =\MIDI_UART:BUART:sTX:TxSts\
+    PORT MAP (
+        clock => \MIDI_UART:Net_9\ ,
+        status_3 => \MIDI_UART:BUART:tx_fifo_notfull\ ,
+        status_2 => \MIDI_UART:BUART:tx_status_2\ ,
+        status_1 => \MIDI_UART:BUART:tx_fifo_empty\ ,
+        status_0 => \MIDI_UART:BUART:tx_status_0\ ,
+        interrupt => Net_8 );
+    Properties:
+    {
+        cy_force_order = 1
+        cy_int_mask = "1111111"
+        cy_md_select = "0000001"
+    }
+    Clock Polarity: Active High
+    Clock Enable: True
+
+UDB [UDB=(2,4)] contents:
+LAB@[UDB=(2,4)][LB=0] #macrocells=1, #inputs=2, #pterms=1
+{
+    [McSlotId=0]: (empty)
+    [McSlotId=1]: (empty)
+    [McSlotId=2]: (empty)
+    [McSlotId=3]:     MacroCell: Name=\MIDI_UART:BUART:rx_status_4\, Mode=(Combinatorial) @ [UDB=(2,4)][LB=0][MC=3]
+        Total # of inputs        : 2
+        Total # of product terms : 1
+            Clock Enable: True
+        Main Equation            : 1 pterm
+        (
+              \MIDI_UART:BUART:rx_load_fifo\ * \MIDI_UART:BUART:rx_fifofull\
+        );
+        Output = \MIDI_UART:BUART:rx_status_4\ (fanout=1)
+        Properties               : 
+        {
+        }
+}
+
+LAB@[UDB=(2,4)][LB=1] #macrocells=3, #inputs=12, #pterms=6
+{
+    [McSlotId=0]:     MacroCell: Name=\MIDI_UART:BUART:tx_state_2\, Mode=(T-Register) @ [UDB=(2,4)][LB=1][MC=0]
+        Total # of inputs        : 6
+        Total # of product terms : 4
+        List of special equations: 
+            Clock  = (\MIDI_UART:Net_9\) => Global
+            Clock Enable: True
+        Main Equation            : 4 pterms
+        (
+              !\MIDI_UART:BUART:tx_state_1\ * !\MIDI_UART:BUART:tx_state_0\ * 
+              \MIDI_UART:BUART:tx_bitclk_enable_pre\ * 
+              \MIDI_UART:BUART:tx_state_2\
+            + \MIDI_UART:BUART:tx_state_1\ * \MIDI_UART:BUART:tx_state_0\ * 
+              \MIDI_UART:BUART:tx_bitclk_enable_pre\ * 
+              \MIDI_UART:BUART:tx_state_2\
+            + \MIDI_UART:BUART:tx_state_1\ * \MIDI_UART:BUART:tx_state_0\ * 
+              !\MIDI_UART:BUART:tx_state_2\ * \MIDI_UART:BUART:tx_bitclk\
+            + \MIDI_UART:BUART:tx_state_1\ * !\MIDI_UART:BUART:tx_state_2\ * 
+              \MIDI_UART:BUART:tx_counter_dp\ * \MIDI_UART:BUART:tx_bitclk\
+        );
+        Output = \MIDI_UART:BUART:tx_state_2\ (fanout=7)
+        Properties               : 
+        {
+        }
+
+    [McSlotId=1]: (empty)
+    [McSlotId=2]:     MacroCell: Name=\MIDI_UART:BUART:rx_state_stop1_reg\, Mode=(D-Register) @ [UDB=(2,4)][LB=1][MC=2]
+        Total # of inputs        : 4
+        Total # of product terms : 1
+        List of special equations: 
+            Clock  = (\MIDI_UART:Net_9\) => Global
+            Clock Enable: True
+        Main Equation            : 1 pterm
+        !(
+              !\MIDI_UART:BUART:tx_ctrl_mark_last\ * 
+              !\MIDI_UART:BUART:rx_state_0\ * \MIDI_UART:BUART:rx_state_3\ * 
+              \MIDI_UART:BUART:rx_state_2\
+        );
+        Output = \MIDI_UART:BUART:rx_state_stop1_reg\ (fanout=1)
+        Properties               : 
+        {
+        }
+
+    [McSlotId=3]:     MacroCell: Name=\MIDI_UART:BUART:rx_status_5\, Mode=(Combinatorial) @ [UDB=(2,4)][LB=1][MC=3]
+        Total # of inputs        : 2
+        Total # of product terms : 1
+            Clock Enable: True
+        Main Equation            : 1 pterm
+        (
+              \MIDI_UART:BUART:rx_fifonotempty\ * 
+              \MIDI_UART:BUART:rx_state_stop1_reg\
+        );
+        Output = \MIDI_UART:BUART:rx_status_5\ (fanout=1)
+        Properties               : 
+        {
+        }
+}
+
+datapathcell: Name =\MIDI_UART:BUART:sRX:RxShifter:u0\
+    PORT MAP (
+        clock => \MIDI_UART:Net_9\ ,
+        cs_addr_2 => \MIDI_UART:BUART:tx_ctrl_mark_last\ ,
+        cs_addr_1 => \MIDI_UART:BUART:rx_state_0\ ,
+        cs_addr_0 => \MIDI_UART:BUART:rx_bitclk_enable\ ,
+        route_si => \MIDI_UART:BUART:rx_postpoll\ ,
+        f0_load => \MIDI_UART:BUART:rx_load_fifo\ ,
+        f0_bus_stat_comb => \MIDI_UART:BUART:rx_fifonotempty\ ,
+        f0_blk_stat_comb => \MIDI_UART:BUART:rx_fifofull\ );
+    Properties:
+    {
+        a0_init = "00000000"
+        a1_init = "00000000"
+        ce0_sync = 1
+        ce1_sync = 1
+        cl0_sync = 1
+        cl1_sync = 1
+        cmsb_sync = 1
+        co_msb_sync = 1
+        cy_dpconfig = "0000000000000000000000000000000000000000000000000000001001000000000100000000000000010000001100000001000000000000000100100001000011111111000000001111111111111111101000000110001001000001111100000000000000001100"
+        d0_init = "00000000"
+        d1_init = "00000000"
+        f0_blk_sync = 1
+        f0_bus_sync = 1
+        f1_blk_sync = 1
+        f1_bus_sync = 1
+        ff0_sync = 1
+        ff1_sync = 1
+        ov_msb_sync = 1
+        so_sync = 1
+        z0_sync = 1
+        z1_sync = 1
+    }
+    Clock Polarity: Active High
+    Clock Enable: True
+
+statusicell: Name =\MIDI_UART:BUART:sRX:RxSts\
+    PORT MAP (
+        clock => \MIDI_UART:Net_9\ ,
+        status_5 => \MIDI_UART:BUART:rx_status_5\ ,
+        status_4 => \MIDI_UART:BUART:rx_status_4\ ,
+        status_3 => \MIDI_UART:BUART:rx_status_3\ ,
+        interrupt => Net_9 );
+    Properties:
+    {
+        cy_force_order = 1
+        cy_int_mask = "1111111"
+        cy_md_select = "1011111"
+    }
+    Clock Polarity: Active High
+    Clock Enable: True
+
+UDB [UDB=(2,5)] contents:
+LAB@[UDB=(2,5)][LB=0] #macrocells=3, #inputs=8, #pterms=3
+{
+    [McSlotId=0]:     MacroCell: Name=\MIDI_UART:BUART:tx_ctrl_mark_last\, Mode=(T-Register) @ [UDB=(2,5)][LB=0][MC=0]
+        Total # of inputs        : 0
+        Total # of product terms : 0
+        List of special equations: 
+            Clock  = (\MIDI_UART:Net_9\) => Global
+            Clock Enable: True
+        Main Equation            : 0 pterms
+        (
+            0
+        );
+        Output = \MIDI_UART:BUART:tx_ctrl_mark_last\ (fanout=8)
+        Properties               : 
+        {
+        }
+
+    [McSlotId=1]: (empty)
+    [McSlotId=2]:     MacroCell: Name=\MIDI_UART:BUART:counter_load_not\, Mode=(Combinatorial) @ [UDB=(2,5)][LB=0][MC=2]
+        Total # of inputs        : 4
+        Total # of product terms : 2
+            Clock Enable: True
+        Main Equation            : 2 pterms
+        !(
+              !\MIDI_UART:BUART:tx_state_1\ * !\MIDI_UART:BUART:tx_state_0\ * 
+              \MIDI_UART:BUART:tx_bitclk_enable_pre\
+            + !\MIDI_UART:BUART:tx_state_1\ * !\MIDI_UART:BUART:tx_state_0\ * 
+              !\MIDI_UART:BUART:tx_state_2\
+        );
+        Output = \MIDI_UART:BUART:counter_load_not\ (fanout=1)
+        Properties               : 
+        {
+        }
+
+    [McSlotId=3]:     MacroCell: Name=\MIDI_UART:BUART:rx_counter_load\, Mode=(Combinatorial) @ [UDB=(2,5)][LB=0][MC=3]
+        Total # of inputs        : 4
+        Total # of product terms : 1
+            Clock Enable: True
+        Main Equation            : 1 pterm
+        (
+              !\MIDI_UART:BUART:tx_ctrl_mark_last\ * 
+              !\MIDI_UART:BUART:rx_state_0\ * !\MIDI_UART:BUART:rx_state_3\ * 
+              !\MIDI_UART:BUART:rx_state_2\
+        );
+        Output = \MIDI_UART:BUART:rx_counter_load\ (fanout=2)
+        Properties               : 
+        {
+        }
+}
+
+datapathcell: Name =\MIDI_UART:BUART:sTX:sCLOCK:TxBitClkGen\
+    PORT MAP (
+        clock => \MIDI_UART:Net_9\ ,
+        cs_addr_0 => \MIDI_UART:BUART:counter_load_not\ ,
+        ce0_reg => \MIDI_UART:BUART:tx_bitclk_enable_pre\ ,
+        ce1_reg => \MIDI_UART:BUART:tx_counter_dp\ );
+    Properties:
+    {
+        a0_init = "00000000"
+        a1_init = "00000000"
+        ce0_sync = 1
+        ce1_sync = 1
+        cl0_sync = 1
+        cl1_sync = 1
+        cmsb_sync = 1
+        co_msb_sync = 1
+        cy_dpconfig = "1010100001000000001000000100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000011111111000000001111111100000111001000000100000000000101111100000000000000001000"
+        d0_init = "00000000"
+        d1_init = "00000000"
+        f0_blk_sync = 1
+        f0_bus_sync = 1
+        f1_blk_sync = 1
+        f1_bus_sync = 1
+        ff0_sync = 1
+        ff1_sync = 1
+        ov_msb_sync = 1
+        so_sync = 1
+        z0_sync = 1
+        z1_sync = 1
+    }
+    Clock Polarity: Active High
+    Clock Enable: True
+
+UDB [UDB=(3,0)] is empty.
+UDB [UDB=(3,1)] is empty.
+UDB [UDB=(3,2)] is empty.
+UDB [UDB=(3,3)] contents:
+LAB@[UDB=(3,3)][LB=0] #macrocells=1, #inputs=10, #pterms=5
+{
+    [McSlotId=0]: (empty)
+    [McSlotId=1]:     MacroCell: Name=\MIDI_UART:BUART:rx_state_2\, Mode=(T-Register) @ [UDB=(3,3)][LB=0][MC=1]
+        Total # of inputs        : 10
+        Total # of product terms : 5
+        List of special equations: 
+            Clock  = (\MIDI_UART:Net_9\) => Global
+            Clock Enable: True
+        Main Equation            : 5 pterms
+        (
+              !\MIDI_UART:BUART:tx_ctrl_mark_last\ * 
+              !\MIDI_UART:BUART:rx_state_0\ * 
+              \MIDI_UART:BUART:rx_bitclk_enable\ * 
+              \MIDI_UART:BUART:rx_state_3\
+            + !\MIDI_UART:BUART:tx_ctrl_mark_last\ * 
+              !\MIDI_UART:BUART:rx_state_0\ * 
+              \MIDI_UART:BUART:rx_bitclk_enable\ * 
+              \MIDI_UART:BUART:rx_state_2\
+            + !\MIDI_UART:BUART:tx_ctrl_mark_last\ * 
+              !\MIDI_UART:BUART:rx_state_0\ * !\MIDI_UART:BUART:rx_state_3\ * 
+              !\MIDI_UART:BUART:rx_state_2\ * !Net_7 * 
+              \MIDI_UART:BUART:rx_last\
+            + !\MIDI_UART:BUART:tx_ctrl_mark_last\ * 
+              \MIDI_UART:BUART:rx_state_0\ * !\MIDI_UART:BUART:rx_state_3\ * 
+              !\MIDI_UART:BUART:rx_state_2\ * !\MIDI_UART:BUART:rx_count_6\ * 
+              !\MIDI_UART:BUART:rx_count_5\
+            + !\MIDI_UART:BUART:tx_ctrl_mark_last\ * 
+              \MIDI_UART:BUART:rx_state_0\ * !\MIDI_UART:BUART:rx_state_3\ * 
+              !\MIDI_UART:BUART:rx_state_2\ * !\MIDI_UART:BUART:rx_count_6\ * 
+              !\MIDI_UART:BUART:rx_count_4\
+        );
+        Output = \MIDI_UART:BUART:rx_state_2\ (fanout=7)
+        Properties               : 
+        {
+        }
+
+    [McSlotId=2]: (empty)
+    [McSlotId=3]: (empty)
+}
+
+LAB@[UDB=(3,3)][LB=1] #macrocells=1, #inputs=7, #pterms=5
+{
+    [McSlotId=0]: (empty)
+    [McSlotId=1]:     MacroCell: Name=Net_14, Mode=(D-Register) @ [UDB=(3,3)][LB=1][MC=1]
+        Total # of inputs        : 7
+        Total # of product terms : 5
+        List of special equations: 
+            Clock  = (\MIDI_UART:Net_9\) => Global
+            Clock Enable: True
+        Main Equation            : 5 pterms
+        (
+              !\MIDI_UART:BUART:tx_state_1\ * \MIDI_UART:BUART:tx_state_0\ * 
+              !\MIDI_UART:BUART:tx_shift_out\ * !\MIDI_UART:BUART:tx_state_2\
+            + !\MIDI_UART:BUART:tx_state_1\ * \MIDI_UART:BUART:tx_state_0\ * 
+              !\MIDI_UART:BUART:tx_state_2\ * !\MIDI_UART:BUART:tx_bitclk\
+            + \MIDI_UART:BUART:tx_state_1\ * !\MIDI_UART:BUART:tx_state_0\ * 
+              !\MIDI_UART:BUART:tx_shift_out\ * !\MIDI_UART:BUART:tx_state_2\ * 
+              !\MIDI_UART:BUART:tx_counter_dp\ * \MIDI_UART:BUART:tx_bitclk\
+            + \MIDI_UART:BUART:tx_state_1\ * !\MIDI_UART:BUART:tx_bitclk\ * 
+              Net_14
+            + \MIDI_UART:BUART:tx_state_2\ * Net_14
+        );
+        Output = Net_14 (fanout=2)
+        Properties               : 
+        {
+        }
+
+    [McSlotId=2]: (empty)
+    [McSlotId=3]: (empty)
+}
+
+UDB [UDB=(3,4)] contents:
+LAB@[UDB=(3,4)][LB=0] #macrocells=1, #inputs=8, #pterms=3
+{
+    [McSlotId=0]:     MacroCell: Name=\MIDI_UART:BUART:rx_load_fifo\, Mode=(D-Register) @ [UDB=(3,4)][LB=0][MC=0]
+        Total # of inputs        : 8
+        Total # of product terms : 3
+        List of special equations: 
+            Clock  = (\MIDI_UART:Net_9\) => Global
+            Clock Enable: True
+        Main Equation            : 3 pterms
+        (
+              !\MIDI_UART:BUART:tx_ctrl_mark_last\ * 
+              !\MIDI_UART:BUART:rx_state_0\ * 
+              \MIDI_UART:BUART:rx_bitclk_enable\ * 
+              \MIDI_UART:BUART:rx_state_3\ * !\MIDI_UART:BUART:rx_state_2\
+            + !\MIDI_UART:BUART:tx_ctrl_mark_last\ * 
+              \MIDI_UART:BUART:rx_state_0\ * !\MIDI_UART:BUART:rx_state_3\ * 
+              !\MIDI_UART:BUART:rx_state_2\ * !\MIDI_UART:BUART:rx_count_6\ * 
+              !\MIDI_UART:BUART:rx_count_5\
+            + !\MIDI_UART:BUART:tx_ctrl_mark_last\ * 
+              \MIDI_UART:BUART:rx_state_0\ * !\MIDI_UART:BUART:rx_state_3\ * 
+              !\MIDI_UART:BUART:rx_state_2\ * !\MIDI_UART:BUART:rx_count_6\ * 
+              !\MIDI_UART:BUART:rx_count_4\
+        );
+        Output = \MIDI_UART:BUART:rx_load_fifo\ (fanout=2)
+        Properties               : 
+        {
+        }
+
+    [McSlotId=1]: (empty)
+    [McSlotId=2]: (empty)
+    [McSlotId=3]: (empty)
+}
+
+LAB@[UDB=(3,4)][LB=1] #macrocells=4, #inputs=5, #pterms=8
+{
+    [McSlotId=0]:     MacroCell: Name=\MIDI_UART:BUART:pollcount_1\, Mode=(D-Register) @ [UDB=(3,4)][LB=1][MC=0]
+        Total # of inputs        : 5
+        Total # of product terms : 3
+        List of special equations: 
+            Clock  = (\MIDI_UART:Net_9\) => Global
+            Clock Enable: True
+        Main Equation            : 3 pterms
+        (
+              !\MIDI_UART:BUART:rx_count_2\ * !\MIDI_UART:BUART:rx_count_1\ * 
+              !\MIDI_UART:BUART:pollcount_1\ * Net_7 * 
+              \MIDI_UART:BUART:pollcount_0\
+            + !\MIDI_UART:BUART:rx_count_2\ * !\MIDI_UART:BUART:rx_count_1\ * 
+              \MIDI_UART:BUART:pollcount_1\ * !Net_7
+            + !\MIDI_UART:BUART:rx_count_2\ * !\MIDI_UART:BUART:rx_count_1\ * 
+              \MIDI_UART:BUART:pollcount_1\ * !\MIDI_UART:BUART:pollcount_0\
+        );
+        Output = \MIDI_UART:BUART:pollcount_1\ (fanout=4)
+        Properties               : 
+        {
+        }
+
+    [McSlotId=1]:     MacroCell: Name=\MIDI_UART:BUART:rx_postpoll\, Mode=(Combinatorial) @ [UDB=(3,4)][LB=1][MC=1]
+        Total # of inputs        : 3
+        Total # of product terms : 2
+            Clock Enable: True
+        Main Equation            : 2 pterms
+        (
+              \MIDI_UART:BUART:pollcount_1\
+            + Net_7 * \MIDI_UART:BUART:pollcount_0\
+        );
+        Output = \MIDI_UART:BUART:rx_postpoll\ (fanout=1)
+        Properties               : 
+        {
+        }
+
+    [McSlotId=2]:     MacroCell: Name=\MIDI_UART:BUART:pollcount_0\, Mode=(D-Register) @ [UDB=(3,4)][LB=1][MC=2]
+        Total # of inputs        : 4
+        Total # of product terms : 2
+        List of special equations: 
+            Clock  = (\MIDI_UART:Net_9\) => Global
+            Clock Enable: True
+        Main Equation            : 2 pterms
+        (
+              !\MIDI_UART:BUART:rx_count_2\ * !\MIDI_UART:BUART:rx_count_1\ * 
+              !Net_7 * \MIDI_UART:BUART:pollcount_0\
+            + !\MIDI_UART:BUART:rx_count_2\ * !\MIDI_UART:BUART:rx_count_1\ * 
+              Net_7 * !\MIDI_UART:BUART:pollcount_0\
+        );
+        Output = \MIDI_UART:BUART:pollcount_0\ (fanout=5)
+        Properties               : 
+        {
+        }
+
+    [McSlotId=3]:     MacroCell: Name=\MIDI_UART:BUART:rx_last\, Mode=(D-Register) @ [UDB=(3,4)][LB=1][MC=3]
+        Total # of inputs        : 1
+        Total # of product terms : 1
+        List of special equations: 
+            Clock  = (\MIDI_UART:Net_9\) => Global
+            Clock Enable: True
+        Main Equation            : 1 pterm
+        (
+              Net_7
+        );
+        Output = \MIDI_UART:BUART:rx_last\ (fanout=1)
+        Properties               : 
+        {
+        }
+}
+
+UDB [UDB=(3,5)] contents:
+LAB@[UDB=(3,5)][LB=0] #macrocells=2, #inputs=11, #pterms=5
+{
+    [McSlotId=0]:     MacroCell: Name=\MIDI_UART:BUART:rx_state_0\, Mode=(T-Register) @ [UDB=(3,5)][LB=0][MC=0]
+        Total # of inputs        : 11
+        Total # of product terms : 4
+        List of special equations: 
+            Clock  = (\MIDI_UART:Net_9\) => Global
+            Clock Enable: True
+        Main Equation            : 4 pterms
+        (
+              !\MIDI_UART:BUART:tx_ctrl_mark_last\ * 
+              !\MIDI_UART:BUART:rx_state_0\ * 
+              \MIDI_UART:BUART:rx_bitclk_enable\ * 
+              !\MIDI_UART:BUART:rx_state_3\ * \MIDI_UART:BUART:rx_state_2\ * 
+              !\MIDI_UART:BUART:pollcount_1\ * !Net_7
+            + !\MIDI_UART:BUART:tx_ctrl_mark_last\ * 
+              !\MIDI_UART:BUART:rx_state_0\ * 
+              \MIDI_UART:BUART:rx_bitclk_enable\ * 
+              !\MIDI_UART:BUART:rx_state_3\ * \MIDI_UART:BUART:rx_state_2\ * 
+              !\MIDI_UART:BUART:pollcount_1\ * !\MIDI_UART:BUART:pollcount_0\
+            + !\MIDI_UART:BUART:tx_ctrl_mark_last\ * 
+              \MIDI_UART:BUART:rx_state_0\ * !\MIDI_UART:BUART:rx_state_3\ * 
+              !\MIDI_UART:BUART:rx_state_2\ * !\MIDI_UART:BUART:rx_count_6\ * 
+              !\MIDI_UART:BUART:rx_count_5\
+            + !\MIDI_UART:BUART:tx_ctrl_mark_last\ * 
+              \MIDI_UART:BUART:rx_state_0\ * !\MIDI_UART:BUART:rx_state_3\ * 
+              !\MIDI_UART:BUART:rx_state_2\ * !\MIDI_UART:BUART:rx_count_6\ * 
+              !\MIDI_UART:BUART:rx_count_4\
+        );
+        Output = \MIDI_UART:BUART:rx_state_0\ (fanout=8)
+        Properties               : 
+        {
+        }
+
+    [McSlotId=1]: (empty)
+    [McSlotId=2]:     MacroCell: Name=\MIDI_UART:BUART:rx_state_3\, Mode=(T-Register) @ [UDB=(3,5)][LB=0][MC=2]
+        Total # of inputs        : 8
+        Total # of product terms : 3
+        List of special equations: 
+            Clock  = (\MIDI_UART:Net_9\) => Global
+            Clock Enable: True
+        Main Equation            : 3 pterms
+        (
+              !\MIDI_UART:BUART:tx_ctrl_mark_last\ * 
+              !\MIDI_UART:BUART:rx_state_0\ * 
+              \MIDI_UART:BUART:rx_bitclk_enable\ * 
+              \MIDI_UART:BUART:rx_state_3\ * \MIDI_UART:BUART:rx_state_2\
+            + !\MIDI_UART:BUART:tx_ctrl_mark_last\ * 
+              \MIDI_UART:BUART:rx_state_0\ * !\MIDI_UART:BUART:rx_state_3\ * 
+              !\MIDI_UART:BUART:rx_state_2\ * !\MIDI_UART:BUART:rx_count_6\ * 
+              !\MIDI_UART:BUART:rx_count_5\
+            + !\MIDI_UART:BUART:tx_ctrl_mark_last\ * 
+              \MIDI_UART:BUART:rx_state_0\ * !\MIDI_UART:BUART:rx_state_3\ * 
+              !\MIDI_UART:BUART:rx_state_2\ * !\MIDI_UART:BUART:rx_count_6\ * 
+              !\MIDI_UART:BUART:rx_count_4\
+        );
+        Output = \MIDI_UART:BUART:rx_state_3\ (fanout=7)
+        Properties               : 
+        {
+        }
+
+    [McSlotId=3]: (empty)
+}
+
+LAB@[UDB=(3,5)][LB=1] #macrocells=2, #inputs=11, #pterms=3
+{
+    [McSlotId=0]:     MacroCell: Name=\MIDI_UART:BUART:rx_bitclk_enable\, Mode=(D-Register) @ [UDB=(3,5)][LB=1][MC=0]
+        Total # of inputs        : 3
+        Total # of product terms : 1
+        List of special equations: 
+            Clock  = (\MIDI_UART:Net_9\) => Global
+            Clock Enable: True
+        Main Equation            : 1 pterm
+        (
+              !\MIDI_UART:BUART:rx_count_2\ * !\MIDI_UART:BUART:rx_count_1\ * 
+              !\MIDI_UART:BUART:rx_count_0\
+        );
+        Output = \MIDI_UART:BUART:rx_bitclk_enable\ (fanout=6)
+        Properties               : 
+        {
+        }
+
+    [McSlotId=1]: (empty)
+    [McSlotId=2]:     MacroCell: Name=\MIDI_UART:BUART:rx_status_3\, Mode=(D-Register) @ [UDB=(3,5)][LB=1][MC=2]
+        Total # of inputs        : 8
+        Total # of product terms : 2
+        List of special equations: 
+            Clock  = (\MIDI_UART:Net_9\) => Global
+            Clock Enable: True
+        Main Equation            : 2 pterms
+        (
+              !\MIDI_UART:BUART:tx_ctrl_mark_last\ * 
+              !\MIDI_UART:BUART:rx_state_0\ * 
+              \MIDI_UART:BUART:rx_bitclk_enable\ * 
+              \MIDI_UART:BUART:rx_state_3\ * \MIDI_UART:BUART:rx_state_2\ * 
+              !\MIDI_UART:BUART:pollcount_1\ * !Net_7
+            + !\MIDI_UART:BUART:tx_ctrl_mark_last\ * 
+              !\MIDI_UART:BUART:rx_state_0\ * 
+              \MIDI_UART:BUART:rx_bitclk_enable\ * 
+              \MIDI_UART:BUART:rx_state_3\ * \MIDI_UART:BUART:rx_state_2\ * 
+              !\MIDI_UART:BUART:pollcount_1\ * !\MIDI_UART:BUART:pollcount_0\
+        );
+        Output = \MIDI_UART:BUART:rx_status_3\ (fanout=1)
+        Properties               : 
+        {
+        }
+
+    [McSlotId=3]: (empty)
+}
+
+count7cell: Name =\MIDI_UART:BUART:sRX:RxBitCounter\
+    PORT MAP (
+        clock => \MIDI_UART:Net_9\ ,
+        load => \MIDI_UART:BUART:rx_counter_load\ ,
+        count_6 => \MIDI_UART:BUART:rx_count_6\ ,
+        count_5 => \MIDI_UART:BUART:rx_count_5\ ,
+        count_4 => \MIDI_UART:BUART:rx_count_4\ ,
+        count_3 => \MIDI_UART:BUART:rx_count_3\ ,
+        count_2 => \MIDI_UART:BUART:rx_count_2\ ,
+        count_1 => \MIDI_UART:BUART:rx_count_1\ ,
+        count_0 => \MIDI_UART:BUART:rx_count_0\ ,
+        tc => \MIDI_UART:BUART:rx_count7_tc\ );
+    Properties:
+    {
+        cy_alt_mode = 0
+        cy_init_value = "0000000"
+        cy_period = "1110010"
+        cy_route_en = 1
+        cy_route_ld = 1
+    }
+    Clock Polarity: Active High
+    Clock Enable: True
+
+Intr container @ [IntrContainer=(0)]: 
+  Intr@ [IntrContainer=(0)][IntrId=(0)] 
+    interrupt: Name =\MIDI_UART:RXInternalInterrupt\
+        PORT MAP (
+            interrupt => Net_9 );
+        Properties:
+        {
+            int_type = "10"
+            is_nmi = 0
+        }
+  Intr@ [IntrContainer=(0)][IntrId=(1)] 
+    interrupt: Name =\MIDI_UART:TXInternalInterrupt\
+        PORT MAP (
+            interrupt => Net_8 );
+        Properties:
+        {
+            int_type = "10"
+            is_nmi = 0
+        }
+  Intr@ [IntrContainer=(0)][IntrId=(2)] 
+    interrupt: Name =\USBMIDI:ep_1\
+        PORT MAP (
+            interrupt => \USBMIDI:ep_int_1\ );
+        Properties:
+        {
+            int_type = "10"
+            is_nmi = 0
+        }
+  Intr@ [IntrContainer=(0)][IntrId=(3)] 
+    interrupt: Name =\USBMIDI:ep_2\
+        PORT MAP (
+            interrupt => \USBMIDI:ep_int_2\ );
+        Properties:
+        {
+            int_type = "10"
+            is_nmi = 0
+        }
+  Intr@ [IntrContainer=(0)][IntrId=(12)] 
+    interrupt: Name =\USBMIDI:dp_int\
+        PORT MAP (
+            interrupt => \USBMIDI:Net_1010\ );
+        Properties:
+        {
+            int_type = "10"
+            is_nmi = 0
+        }
+  Intr@ [IntrContainer=(0)][IntrId=(15)] 
+    interrupt: Name =\I2C:I2C_IRQ\
+        PORT MAP (
+            interrupt => \I2C:Net_697\ );
+        Properties:
+        {
+            int_type = "00"
+            is_nmi = 0
+        }
+  Intr@ [IntrContainer=(0)][IntrId=(21)] 
+    interrupt: Name =\USBMIDI:sof_int\
+        PORT MAP (
+            interrupt => Net_15 );
+        Properties:
+        {
+            int_type = "10"
+            is_nmi = 0
+        }
+  Intr@ [IntrContainer=(0)][IntrId=(22)] 
+    interrupt: Name =\USBMIDI:arb_int\
+        PORT MAP (
+            interrupt => \USBMIDI:Net_1889\ );
+        Properties:
+        {
+            int_type = "10"
+            is_nmi = 0
+        }
+  Intr@ [IntrContainer=(0)][IntrId=(23)] 
+    interrupt: Name =\USBMIDI:bus_reset\
+        PORT MAP (
+            interrupt => \USBMIDI:Net_1876\ );
+        Properties:
+        {
+            int_type = "10"
+            is_nmi = 0
+        }
+  Intr@ [IntrContainer=(0)][IntrId=(24)] 
+    interrupt: Name =\USBMIDI:ep_0\
+        PORT MAP (
+            interrupt => \USBMIDI:ep_int_0\ );
+        Properties:
+        {
+            int_type = "10"
+            is_nmi = 0
+        }
+Drq container @ [DrqContainer=(0)]: empty
+Port 0 contains the following IO cells:
+[IoId=0]: 
+Pin : Name = MIDI_IN1(0)
+    Attributes:
+        In Group/Port: True
+        In Sync Option: SYNC
+        Out Sync Option: AUTO
+        Interrupt generated: False
+        Interrupt mode: NONE
+        Drive mode: HI_Z_DIGITAL
+        VTrip: CMOS
+        Slew: FAST
+        Input Sync needed: True
+        Output Sync needed: False
+        SC shield enabled: False
+        POR State: ANY
+        LCD Mode: COMMON
+        Register Mode: RegComb
+        CaSense Mode: NEITHER
+        Treat as pin: True
+        Is OE Registered: False
+        Uses Analog: False
+        Can contain Digital: True
+        Is SIO: False
+        SIO Output Buf: NONREGULATED
+        SIO Input Buf: SINGLE_ENDED
+        SIO HiFreq: LOW
+        SIO Hyst: DISABLED
+        SIO Vtrip: MULTIPLIER_0_5
+        SIO Multiplier Index: 0
+        SIO RefSel: VCC_IO
+        Required Capabilities: DIGITAL, ROUTABLE
+        Initial Value: 0
+        IO Voltage: 0
+    PORT MAP (
+        pa_out => MIDI_IN1(0)__PA ,
+        fb => Net_7 ,
+        pad => MIDI_IN1(0)_PAD );
+    Properties:
+    {
+    }
+
+Port 1 contains the following IO cells:
+Port 2 contains the following IO cells:
+Port 3 contains the following IO cells:
+Port 12 contains the following IO cells:
+[IoId=3]: 
+Pin : Name = MIDI_OUT1(0)
+    Attributes:
+        In Group/Port: True
+        In Sync Option: AUTO
+        Out Sync Option: NOSYNC
+        Interrupt generated: False
+        Interrupt mode: NONE
+        Drive mode: CMOS_OUT
+        VTrip: EITHER
+        Slew: FAST
+        Input Sync needed: False
+        Output Sync needed: False
+        SC shield enabled: False
+        POR State: ANY
+        LCD Mode: COMMON
+        Register Mode: RegComb
+        CaSense Mode: NEITHER
+        Treat as pin: True
+        Is OE Registered: False
+        Uses Analog: False
+        Can contain Digital: True
+        Is SIO: False
+        SIO Output Buf: NONREGULATED
+        SIO Input Buf: SINGLE_ENDED
+        SIO HiFreq: LOW
+        SIO Hyst: DISABLED
+        SIO Vtrip: MULTIPLIER_0_5
+        SIO Multiplier Index: 0
+        SIO RefSel: VCC_IO
+        Required Capabilities: DIGITAL, ROUTABLE
+        Initial Value: 0
+        IO Voltage: 0
+    PORT MAP (
+        pa_out => MIDI_OUT1(0)__PA ,
+        pin_input => Net_14 ,
+        pad => MIDI_OUT1(0)_PAD );
+    Properties:
+    {
+    }
+
+[IoId=4]: 
+Pin : Name = SCL(0)
+    Attributes:
+        In Group/Port: True
+        In Sync Option: SYNC
+        Out Sync Option: NOSYNC
+        Interrupt generated: False
+        Interrupt mode: NONE
+        Drive mode: OPEN_DRAIN_LO
+        VTrip: CMOS
+        Slew: FAST
+        Input Sync needed: True
+        Output Sync needed: False
+        SC shield enabled: False
+        POR State: ANY
+        LCD Mode: COMMON
+        Register Mode: RegComb
+        CaSense Mode: NEITHER
+        Treat as pin: True
+        Is OE Registered: False
+        Uses Analog: False
+        Can contain Digital: True
+        Is SIO: False
+        SIO Output Buf: NONREGULATED
+        SIO Input Buf: SINGLE_ENDED
+        SIO HiFreq: LOW
+        SIO Hyst: DISABLED
+        SIO Vtrip: MULTIPLIER_0_5
+        SIO Multiplier Index: 0
+        SIO RefSel: VCC_IO
+        Required Capabilities: DIGITAL, ROUTABLE
+        Initial Value: 1
+        IO Voltage: 0
+    PORT MAP (
+        pa_out => SCL(0)__PA ,
+        fb => \I2C:Net_1109_0\ ,
+        pin_input => \I2C:Net_643_0\ ,
+        pad => SCL(0)_PAD );
+    Properties:
+    {
+    }
+
+[IoId=5]: 
+Pin : Name = SDA(0)
+    Attributes:
+        In Group/Port: True
+        In Sync Option: SYNC
+        Out Sync Option: NOSYNC
+        Interrupt generated: False
+        Interrupt mode: NONE
+        Drive mode: OPEN_DRAIN_LO
+        VTrip: CMOS
+        Slew: FAST
+        Input Sync needed: True
+        Output Sync needed: False
+        SC shield enabled: False
+        POR State: ANY
+        LCD Mode: COMMON
+        Register Mode: RegComb
+        CaSense Mode: NEITHER
+        Treat as pin: True
+        Is OE Registered: False
+        Uses Analog: False
+        Can contain Digital: True
+        Is SIO: False
+        SIO Output Buf: NONREGULATED
+        SIO Input Buf: SINGLE_ENDED
+        SIO HiFreq: LOW
+        SIO Hyst: DISABLED
+        SIO Vtrip: MULTIPLIER_0_5
+        SIO Multiplier Index: 0
+        SIO RefSel: VCC_IO
+        Required Capabilities: DIGITAL, ROUTABLE
+        Initial Value: 1
+        IO Voltage: 0
+    PORT MAP (
+        pa_out => SDA(0)__PA ,
+        fb => \I2C:Net_1109_1\ ,
+        pin_input => \I2C:sda_x_wire\ ,
+        pad => SDA(0)_PAD );
+    Properties:
+    {
+    }
+
+[IoId=7]: 
+Pin : Name = \UART:tx(0)\
+    Attributes:
+        In Group/Port: True
+        In Sync Option: AUTO
+        Out Sync Option: NOSYNC
+        Interrupt generated: False
+        Interrupt mode: NONE
+        Drive mode: CMOS_OUT
+        VTrip: EITHER
+        Slew: FAST
+        Input Sync needed: False
+        Output Sync needed: False
+        SC shield enabled: False
+        POR State: ANY
+        LCD Mode: COMMON
+        Register Mode: RegComb
+        CaSense Mode: NEITHER
+        Treat as pin: True
+        Is OE Registered: False
+        Uses Analog: False
+        Can contain Digital: True
+        Is SIO: False
+        SIO Output Buf: NONREGULATED
+        SIO Input Buf: SINGLE_ENDED
+        SIO HiFreq: LOW
+        SIO Hyst: DISABLED
+        SIO Vtrip: MULTIPLIER_0_5
+        SIO Multiplier Index: 0
+        SIO RefSel: VCC_IO
+        Required Capabilities: DIGITAL
+        Initial Value: 1
+        IO Voltage: 0
+    PORT MAP (
+        pa_out => \UART:tx(0)\__PA ,
+        pad => \UART:tx(0)_PAD\ );
+    Properties:
+    {
+    }
+
+Port 15 generates interrupt for logical port:
+    logicalport: Name =\USBMIDI:Dp\
+        PORT MAP (
+            in_clock_en => one ,
+            in_reset => zero ,
+            out_clock_en => one ,
+            out_reset => zero ,
+            interrupt => \USBMIDI:Net_1010\ ,
+            in_clock => ClockBlock_BUS_CLK );
+        Properties:
+        {
+            drive_mode = "000"
+            ibuf_enabled = "0"
+            id = "0d776c25-0fda-4bff-af2b-9962432af301/618a72fc-5ddd-4df5-958f-a3d55102db42"
+            init_dr_st = "1"
+            input_buffer_sel = "00"
+            input_clk_en = 0
+            input_sync = "1"
+            input_sync_mode = "0"
+            intr_mode = "10"
+            invert_in_clock = 0
+            invert_in_clock_en = 0
+            invert_in_reset = 0
+            invert_out_clock = 0
+            invert_out_clock_en = 0
+            invert_out_reset = 0
+            io_voltage = ""
+            layout_mode = "CONTIGUOUS"
+            oe_conn = "0"
+            oe_reset = 0
+            oe_sync = "0"
+            output_clk_en = 0
+            output_clock_mode = "0"
+            output_conn = "0"
+            output_mode = "0"
+            output_reset = 0
+            output_sync = "0"
+            ovt_hyst_trim = "0"
+            ovt_needed = "0"
+            ovt_slew_control = "00"
+            pa_in_clock = -1
+            pa_in_clock_en = -1
+            pa_in_reset = -1
+            pa_out_clock = -1
+            pa_out_clock_en = -1
+            pa_out_reset = -1
+            pin_aliases = ""
+            pin_mode = "I"
+            por_state = 4
+            port_alias_group = ""
+            port_alias_required = 0
+            sio_group_cnt = 0
+            sio_hifreq = "00000000"
+            sio_hyst = "1"
+            sio_ibuf = "00000000"
+            sio_info = "00"
+            sio_obuf = "00000000"
+            sio_refsel = "00000000"
+            sio_vohsel = "00000000"
+            sio_vtrip = "00000000"
+            slew_rate = "0"
+            spanning = 0
+            sw_only = 0
+            use_annotation = "0"
+            vtrip = "00"
+            width = 1
+        }
+    and contains the following IO cells:
+[IoId=6]: 
+Pin : Name = \USBMIDI:Dp(0)\
+    Attributes:
+        In Group/Port: True
+        In Sync Option: SYNC
+        Out Sync Option: AUTO
+        Interrupt generated: True
+        Interrupt mode: FALLING
+        Drive mode: HI_Z_ANALOG
+        VTrip: CMOS
+        Slew: FAST
+        Input Sync needed: True
+        Output Sync needed: False
+        SC shield enabled: False
+        POR State: ANY
+        LCD Mode: COMMON
+        Register Mode: RegComb
+        CaSense Mode: NEITHER
+        Treat as pin: False
+        Is OE Registered: False
+        Uses Analog: True
+        Can contain Digital: True
+        Is SIO: False
+        SIO Output Buf: NONREGULATED
+        SIO Input Buf: SINGLE_ENDED
+        SIO HiFreq: LOW
+        SIO Hyst: DISABLED
+        SIO Vtrip: MULTIPLIER_0_5
+        SIO Multiplier Index: 0
+        SIO RefSel: VCC_IO
+        Required Capabilities: USB_D_PLUS
+        Initial Value: 1
+        IO Voltage: 0
+    PORT MAP (
+        pa_out => \USBMIDI:Dp(0)\__PA ,
+        analog_term => \USBMIDI:Net_1000\ ,
+        pad => \USBMIDI:Dp(0)_PAD\ );
+    Properties:
+    {
+    }
+
+[IoId=7]: 
+Pin : Name = \USBMIDI:Dm(0)\
+    Attributes:
+        In Group/Port: True
+        In Sync Option: AUTO
+        Out Sync Option: AUTO
+        Interrupt generated: False
+        Interrupt mode: NONE
+        Drive mode: HI_Z_ANALOG
+        VTrip: EITHER
+        Slew: FAST
+        Input Sync needed: False
+        Output Sync needed: False
+        SC shield enabled: False
+        POR State: ANY
+        LCD Mode: COMMON
+        Register Mode: RegComb
+        CaSense Mode: NEITHER
+        Treat as pin: True
+        Is OE Registered: False
+        Uses Analog: True
+        Can contain Digital: False
+        Is SIO: False
+        SIO Output Buf: NONREGULATED
+        SIO Input Buf: SINGLE_ENDED
+        SIO HiFreq: LOW
+        SIO Hyst: DISABLED
+        SIO Vtrip: MULTIPLIER_0_5
+        SIO Multiplier Index: 0
+        SIO RefSel: VCC_IO
+        Required Capabilities: USB_D_MINUS
+        Initial Value: 0
+        IO Voltage: 0
+    PORT MAP (
+        pa_out => \USBMIDI:Dm(0)\__PA ,
+        analog_term => \USBMIDI:Net_597\ ,
+        pad => \USBMIDI:Dm(0)_PAD\ );
+    Properties:
+    {
+    }
+
+ARM group 0: empty
+CAN group 0: empty
+Cache group 0: empty
+CapSense group 0: empty
+Clock group 0: 
+    Clock Block @ F(Clock,0): 
+    clockblockcell: Name =ClockBlock
+        PORT MAP (
+            imo => ClockBlock_IMO ,
+            pllout => ClockBlock_PLL_OUT ,
+            ilo => ClockBlock_ILO ,
+            clk_100k => ClockBlock_100k ,
+            clk_1k => ClockBlock_1k ,
+            clk_32k => ClockBlock_32k ,
+            xtal => ClockBlock_XTAL ,
+            clk_32k_xtal => ClockBlock_XTAL_32KHZ ,
+            clk_sync => ClockBlock_MASTER_CLK ,
+            clk_bus_glb => ClockBlock_BUS_CLK ,
+            clk_bus => ClockBlock_BUS_CLK_local ,
+            dclk_glb_0 => \MIDI_UART:Net_9\ ,
+            dclk_0 => \MIDI_UART:Net_9_local\ );
+        Properties:
+        {
+        }
+Comparator group 0: empty
+DFB group 0: empty
+DSM group 0: empty
+Decimator group 0: empty
+EMIF group 0: empty
+I2C group 0: 
+    I2C Block @ F(I2C,0): 
+    i2ccell: Name =\I2C:I2C_FF\
+        PORT MAP (
+            clock => ClockBlock_BUS_CLK ,
+            scl_in => \I2C:Net_1109_0\ ,
+            sda_in => \I2C:Net_1109_1\ ,
+            scl_out => \I2C:Net_643_0\ ,
+            sda_out => \I2C:sda_x_wire\ ,
+            interrupt => \I2C:Net_697\ );
+        Properties:
+        {
+            cy_registers = ""
+            use_wakeup = 0
+        }
+LCD group 0: empty
+LVD group 0: empty
+PICU group 0: empty
+PM group 0: empty
+SC group 0: empty
+SPC group 0: empty
+Timer group 0: empty
+USB group 0: 
+    USB Block @ F(USB,0): 
+    usbcell: Name =\USBMIDI:USB\
+        PORT MAP (
+            dp => \USBMIDI:Net_1000\ ,
+            dm => \USBMIDI:Net_597\ ,
+            sof_int => Net_15 ,
+            arb_int => \USBMIDI:Net_1889\ ,
+            usb_int => \USBMIDI:Net_1876\ ,
+            ept_int_8 => \USBMIDI:ep_int_8\ ,
+            ept_int_7 => \USBMIDI:ep_int_7\ ,
+            ept_int_6 => \USBMIDI:ep_int_6\ ,
+            ept_int_5 => \USBMIDI:ep_int_5\ ,
+            ept_int_4 => \USBMIDI:ep_int_4\ ,
+            ept_int_3 => \USBMIDI:ep_int_3\ ,
+            ept_int_2 => \USBMIDI:ep_int_2\ ,
+            ept_int_1 => \USBMIDI:ep_int_1\ ,
+            ept_int_0 => \USBMIDI:ep_int_0\ ,
+            ord_int => \USBMIDI:Net_95\ ,
+            dma_req_7 => \USBMIDI:dma_request_7\ ,
+            dma_req_6 => \USBMIDI:dma_request_6\ ,
+            dma_req_5 => \USBMIDI:dma_request_5\ ,
+            dma_req_4 => \USBMIDI:dma_request_4\ ,
+            dma_req_3 => \USBMIDI:dma_request_3\ ,
+            dma_req_2 => \USBMIDI:dma_request_2\ ,
+            dma_req_1 => \USBMIDI:dma_request_1\ ,
+            dma_req_0 => \USBMIDI:dma_request_0\ ,
+            dma_termin => \USBMIDI:dma_terminate\ );
+        Properties:
+        {
+            cy_registers = ""
+        }
+VIDAC group 0: empty
+OpAmp group 0: empty
+CsAbuf group 0: empty
+Vref group 0: empty
+LPF group 0: empty
+SAR group 0: empty
+ANAIF group 0: empty
+PHUB group 0: empty
+</CYPRESSTAG>
+<CYPRESSTAG name="Port Configuration Details">
+
+------------------------------------------------------------
+Port Configuration report
+------------------------------------------------------------
+     |     |       | Interrupt |                  |                 | 
+Port | Pin | Fixed |      Type |       Drive Mode |            Name | Connections
+-----+-----+-------+-----------+------------------+-----------------+-------------------------------------------
+   0 |   0 |       |      NONE |     HI_Z_DIGITAL |     MIDI_IN1(0) | FB(Net_7)
+-----+-----+-------+-----------+------------------+-----------------+-------------------------------------------
+  12 |   3 |       |      NONE |         CMOS_OUT |    MIDI_OUT1(0) | In(Net_14)
+     |   4 |     * |      NONE |    OPEN_DRAIN_LO |          SCL(0) | FB(\I2C:Net_1109_0\), In(\I2C:Net_643_0\)
+     |   5 |     * |      NONE |    OPEN_DRAIN_LO |          SDA(0) | FB(\I2C:Net_1109_1\), In(\I2C:sda_x_wire\)
+     |   7 |     * |      NONE |         CMOS_OUT |    \UART:tx(0)\ | 
+-----+-----+-------+-----------+------------------+-----------------+-------------------------------------------
+  15 |   6 |       |   FALLING |      HI_Z_ANALOG | \USBMIDI:Dp(0)\ | Analog(\USBMIDI:Net_1000\)
+     |   7 |       |      NONE |      HI_Z_ANALOG | \USBMIDI:Dm(0)\ | Analog(\USBMIDI:Net_597\)
+----------------------------------------------------------------------------------------------------------------
+</CYPRESSTAG>
+</CYPRESSTAG>
+</CYPRESSTAG>
+Digital component placer commit/Report: Elapsed time ==> 0s.031ms
+Digital Placement phase: Elapsed time ==> 1s.086ms
+</CYPRESSTAG>
+<CYPRESSTAG name="Digital Routing">
+"C:\Program Files\Cypress\PSoC Creator\4.1\PSoC Creator\bin/sjrouter.exe" --xml-path "C:\Program Files\Cypress\PSoC Creator\4.1\PSoC Creator\dev\psoc5/psoc5lp/route_arch-rrg.cydata" --vh2-path "USBMIDI and WiiChuck_r.vh2" --pcf-path "USBMIDI and WiiChuck.pco" --des-name "USBMIDI and WiiChuck" --dsf-path "USBMIDI and WiiChuck.dsf" --sdc-path "USBMIDI and WiiChuck.sdc" --lib-path "USBMIDI and WiiChuck_r.lib"
+Routing successful.
+Digital Routing phase: Elapsed time ==> 1s.619ms
+</CYPRESSTAG>
+<CYPRESSTAG name="Bitstream Generation">
+Bitstream Generation phase: Elapsed time ==> 0s.255ms
+</CYPRESSTAG>
+<CYPRESSTAG name="Bitstream Verification">
+Bitstream Verification phase: Elapsed time ==> 0s.047ms
+</CYPRESSTAG>
+<CYPRESSTAG name="Static timing analysis">
+Timing report is in USBMIDI and WiiChuck_timing.html.
+Static timing analysis phase: Elapsed time ==> 0s.292ms
+</CYPRESSTAG>
+<CYPRESSTAG name="Data reporting">
+Data reporting phase: Elapsed time ==> 0s.000ms
+</CYPRESSTAG>
+<CYPRESSTAG name="Database update...">
+Design database save phase: Elapsed time ==> 0s.236ms
+</CYPRESSTAG>
+cydsfit: Elapsed time ==> 4s.082ms
+</CYPRESSTAG>
+Fitter phase: Elapsed time ==> 4s.083ms
+API generation phase: Elapsed time ==> 1s.932ms
+Dependency generation phase: Elapsed time ==> 0s.020ms
+Cleanup phase: Elapsed time ==> 0s.000ms

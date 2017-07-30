@@ -1,0 +1,3418 @@
+ARM GAS  C:\Users\dhous\AppData\Local\Temp\ccKTMeyp.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.syntax unified
+  15              		.file	"i2c_helper.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.section	.text.I2C_clear_xfer_status,"ax",%progbits
+  20              		.align	2
+  21              		.global	I2C_clear_xfer_status
+  22              		.thumb
+  23              		.thumb_func
+  24              		.type	I2C_clear_xfer_status, %function
+  25              	I2C_clear_xfer_status:
+  26              	.LFB64:
+  27              		.file 1 "i2c_helper.c"
+   1:i2c_helper.c  **** #include "project.h"
+   2:i2c_helper.c  **** #include "i2c_helper.h"
+   3:i2c_helper.c  **** 
+   4:i2c_helper.c  **** // clears out the transfer status log
+   5:i2c_helper.c  **** void I2C_clear_xfer_status(I2C_Transfer_Status *xfer_status)
+   6:i2c_helper.c  **** {
+  28              		.loc 1 6 0
+  29              		.cfi_startproc
+  30              		@ args = 0, pretend = 0, frame = 0
+  31              		@ frame_needed = 0, uses_anonymous_args = 0
+  32              		@ link register save eliminated.
+  33              	.LVL0:
+   7:i2c_helper.c  ****     xfer_status->bytes_read = 0;
+  34              		.loc 1 7 0
+  35 0000 0023     		movs	r3, #0
+  36 0002 4373     		strb	r3, [r0, #13]
+   8:i2c_helper.c  ****     xfer_status->bytes_to_read = 0;
+  37              		.loc 1 8 0
+  38 0004 0373     		strb	r3, [r0, #12]
+   9:i2c_helper.c  ****     xfer_status->bytes_to_write = 0;
+  39              		.loc 1 9 0
+  40 0006 8372     		strb	r3, [r0, #10]
+  10:i2c_helper.c  ****     xfer_status->bytes_written = 0;
+  41              		.loc 1 10 0
+  42 0008 C372     		strb	r3, [r0, #11]
+  11:i2c_helper.c  ****     xfer_status->counter_value = 0;
+  43              		.loc 1 11 0
+  44 000a 0380     		strh	r3, [r0]	@ movhi
+  12:i2c_helper.c  ****     xfer_status->i2c_read_xfer_result = 0;
+  45              		.loc 1 12 0
+ARM GAS  C:\Users\dhous\AppData\Local\Temp\ccKTMeyp.s 			page 2
+
+
+  46 000c 8380     		strh	r3, [r0, #4]	@ movhi
+  13:i2c_helper.c  ****     xfer_status->i2c_write_xfer_result = 0;
+  47              		.loc 1 13 0
+  48 000e 4380     		strh	r3, [r0, #2]	@ movhi
+  14:i2c_helper.c  ****     xfer_status->ok = 0;
+  49              		.loc 1 14 0
+  50 0010 C373     		strb	r3, [r0, #15]
+  15:i2c_helper.c  ****     xfer_status->read_cmd_result = 0;
+  51              		.loc 1 15 0
+  52 0012 0381     		strh	r3, [r0, #8]	@ movhi
+  16:i2c_helper.c  ****     xfer_status->timeout_error = 0;
+  53              		.loc 1 16 0
+  54 0014 8373     		strb	r3, [r0, #14]
+  17:i2c_helper.c  ****     xfer_status->write_cmd_result = 0;
+  55              		.loc 1 17 0
+  56 0016 C380     		strh	r3, [r0, #6]	@ movhi
+  18:i2c_helper.c  ****     xfer_status->xfer_type = I2C_TRANSFER_TYPE_UNKNOWN;
+  57              		.loc 1 18 0
+  58 0018 0374     		strb	r3, [r0, #16]
+  59 001a 7047     		bx	lr
+  60              		.cfi_endproc
+  61              	.LFE64:
+  62              		.size	I2C_clear_xfer_status, .-I2C_clear_xfer_status
+  63              		.section	.text.I2C_check_transfer_status,"ax",%progbits
+  64              		.align	2
+  65              		.global	I2C_check_transfer_status
+  66              		.thumb
+  67              		.thumb_func
+  68              		.type	I2C_check_transfer_status, %function
+  69              	I2C_check_transfer_status:
+  70              	.LFB65:
+  19:i2c_helper.c  **** }
+  20:i2c_helper.c  **** 
+  21:i2c_helper.c  **** // this will check several statuses of the I2C transfer and set the ok byte = 1 if OK
+  22:i2c_helper.c  **** void I2C_check_transfer_status(I2C_Transfer_Status *xfer_status)
+  23:i2c_helper.c  **** {
+  71              		.loc 1 23 0
+  72              		.cfi_startproc
+  73              		@ args = 0, pretend = 0, frame = 0
+  74              		@ frame_needed = 0, uses_anonymous_args = 0
+  75              		@ link register save eliminated.
+  76              	.LVL1:
+  24:i2c_helper.c  ****     xfer_status->ok = 1; // assume OK
+  77              		.loc 1 24 0
+  78 0000 0123     		movs	r3, #1
+  79 0002 C373     		strb	r3, [r0, #15]
+  25:i2c_helper.c  ****     
+  26:i2c_helper.c  ****     if ( (xfer_status->xfer_type == I2C_TRANSFER_TYPE_WRITE) | (xfer_status->xfer_type == I2C_TRANS
+  80              		.loc 1 26 0
+  81 0004 037C     		ldrb	r3, [r0, #16]	@ zero_extendqisi2
+  82 0006 5A1E     		subs	r2, r3, #1
+  83 0008 D2B2     		uxtb	r2, r2
+  84 000a 012A     		cmp	r2, #1
+  85 000c 14D8     		bhi	.L3
+  27:i2c_helper.c  ****     {
+  28:i2c_helper.c  ****         // bytes to write didn't equal bytes written throw an error
+  29:i2c_helper.c  ****         if (xfer_status->bytes_to_write != xfer_status->bytes_written)
+ARM GAS  C:\Users\dhous\AppData\Local\Temp\ccKTMeyp.s 			page 3
+
+
+  86              		.loc 1 29 0
+  87 000e 817A     		ldrb	r1, [r0, #10]	@ zero_extendqisi2
+  88 0010 C27A     		ldrb	r2, [r0, #11]	@ zero_extendqisi2
+  89 0012 9142     		cmp	r1, r2
+  90 0014 01D0     		beq	.L4
+  30:i2c_helper.c  ****             xfer_status->ok = 0;
+  91              		.loc 1 30 0
+  92 0016 0022     		movs	r2, #0
+  93 0018 C273     		strb	r2, [r0, #15]
+  94              	.L4:
+  31:i2c_helper.c  **** 
+  32:i2c_helper.c  ****         // bytes to read didn't equal bytes read throw an error
+  33:i2c_helper.c  ****         if (xfer_status->bytes_to_read != xfer_status->bytes_read)
+  95              		.loc 1 33 0
+  96 001a 017B     		ldrb	r1, [r0, #12]	@ zero_extendqisi2
+  97 001c 427B     		ldrb	r2, [r0, #13]	@ zero_extendqisi2
+  98 001e 9142     		cmp	r1, r2
+  99 0020 01D0     		beq	.L5
+  34:i2c_helper.c  ****             xfer_status->ok = 0;       
+ 100              		.loc 1 34 0
+ 101 0022 0022     		movs	r2, #0
+ 102 0024 C273     		strb	r2, [r0, #15]
+ 103              	.L5:
+  35:i2c_helper.c  ****         
+  36:i2c_helper.c  ****         // if timeout happened mark as error
+  37:i2c_helper.c  ****         if (xfer_status->timeout_error == 1)
+ 104              		.loc 1 37 0
+ 105 0026 827B     		ldrb	r2, [r0, #14]	@ zero_extendqisi2
+ 106 0028 012A     		cmp	r2, #1
+ 107 002a 01D1     		bne	.L6
+  38:i2c_helper.c  ****             xfer_status->ok = 0;
+ 108              		.loc 1 38 0
+ 109 002c 0022     		movs	r2, #0
+ 110 002e C273     		strb	r2, [r0, #15]
+ 111              	.L6:
+  39:i2c_helper.c  ****         
+  40:i2c_helper.c  ****         // if the write command result was anything but no error set to error
+  41:i2c_helper.c  ****         if (xfer_status->write_cmd_result != I2C_MSTR_NO_ERROR)
+ 112              		.loc 1 41 0
+ 113 0030 C288     		ldrh	r2, [r0, #6]
+ 114 0032 0AB1     		cbz	r2, .L3
+  42:i2c_helper.c  ****             xfer_status->ok = 0;
+ 115              		.loc 1 42 0
+ 116 0034 0022     		movs	r2, #0
+ 117 0036 C273     		strb	r2, [r0, #15]
+ 118              	.L3:
+  43:i2c_helper.c  ****     }
+  44:i2c_helper.c  ****     
+  45:i2c_helper.c  ****     if ( xfer_status->xfer_type == I2C_TRANSFER_TYPE_WRITE )
+ 119              		.loc 1 45 0
+ 120 0038 012B     		cmp	r3, #1
+ 121 003a 05D1     		bne	.L7
+  46:i2c_helper.c  ****     {
+  47:i2c_helper.c  ****         // if the xfer result was anything but write completed set to error
+  48:i2c_helper.c  ****         // this is only for a write-only transaction
+  49:i2c_helper.c  ****         if ((xfer_status->i2c_write_xfer_result & (~I2C_MSTAT_WR_CMPLT)) > 0)
+ 122              		.loc 1 49 0
+ARM GAS  C:\Users\dhous\AppData\Local\Temp\ccKTMeyp.s 			page 4
+
+
+ 123 003c 4288     		ldrh	r2, [r0, #2]
+ 124 003e 32F00202 		bics	r2, r2, #2
+ 125 0042 01D0     		beq	.L7
+  50:i2c_helper.c  ****             xfer_status->ok = 0;
+ 126              		.loc 1 50 0
+ 127 0044 0022     		movs	r2, #0
+ 128 0046 C273     		strb	r2, [r0, #15]
+ 129              	.L7:
+  51:i2c_helper.c  ****     }
+  52:i2c_helper.c  ****     
+  53:i2c_helper.c  ****     if ( xfer_status->xfer_type == I2C_TRANSFER_TYPE_WRITE_READ )
+ 130              		.loc 1 53 0
+ 131 0048 022B     		cmp	r3, #2
+ 132 004a 09D1     		bne	.L2
+ 133              	.LVL2:
+ 134              	.LBB2:
+  54:i2c_helper.c  ****     {
+  55:i2c_helper.c  ****         // if the xfer result was anything but write completed set to error
+  56:i2c_helper.c  ****         // this is only for a write-read transaction
+  57:i2c_helper.c  ****         
+  58:i2c_helper.c  ****         uint16_t expected_flags = I2C_MSTAT_WR_CMPLT | I2C_MSTAT_XFER_INP | I2C_MSTAT_XFER_HALT;
+  59:i2c_helper.c  ****         if ((xfer_status->i2c_write_xfer_result & (~expected_flags)) > 0)
+ 135              		.loc 1 59 0
+ 136 004c 4388     		ldrh	r3, [r0, #2]
+ 137 004e 33F00E03 		bics	r3, r3, #14
+ 138 0052 01D0     		beq	.L9
+  60:i2c_helper.c  ****             xfer_status->ok = 0;
+ 139              		.loc 1 60 0
+ 140 0054 0023     		movs	r3, #0
+ 141 0056 C373     		strb	r3, [r0, #15]
+ 142              	.L9:
+  61:i2c_helper.c  ****         
+  62:i2c_helper.c  ****         // if the read command result was anything but no error set to error
+  63:i2c_helper.c  ****         if (xfer_status->read_cmd_result != I2C_MSTR_NO_ERROR)
+ 143              		.loc 1 63 0
+ 144 0058 0389     		ldrh	r3, [r0, #8]
+ 145 005a 0BB1     		cbz	r3, .L2
+  64:i2c_helper.c  ****             xfer_status->ok = 0;
+ 146              		.loc 1 64 0
+ 147 005c 0023     		movs	r3, #0
+ 148 005e C373     		strb	r3, [r0, #15]
+ 149              	.LVL3:
+ 150              	.L2:
+ 151 0060 7047     		bx	lr
+ 152              	.LBE2:
+ 153              		.cfi_endproc
+ 154              	.LFE65:
+ 155              		.size	I2C_check_transfer_status, .-I2C_check_transfer_status
+ 156 0062 00BF     		.section	.text.I2C_write,"ax",%progbits
+ 157              		.align	2
+ 158              		.global	I2C_write
+ 159              		.thumb
+ 160              		.thumb_func
+ 161              		.type	I2C_write, %function
+ 162              	I2C_write:
+ 163              	.LFB66:
+  65:i2c_helper.c  ****         
+ARM GAS  C:\Users\dhous\AppData\Local\Temp\ccKTMeyp.s 			page 5
+
+
+  66:i2c_helper.c  ****     }
+  67:i2c_helper.c  **** }
+  68:i2c_helper.c  **** 
+  69:i2c_helper.c  **** void I2C_write(uint8_t slave_address, uint8_t *bytes, uint8_t byte_count, I2C_Transfer_Status *xfer
+  70:i2c_helper.c  **** {
+ 164              		.loc 1 70 0
+ 165              		.cfi_startproc
+ 166              		@ args = 0, pretend = 0, frame = 0
+ 167              		@ frame_needed = 0, uses_anonymous_args = 0
+ 168              	.LVL4:
+ 169 0000 F8B5     		push	{r3, r4, r5, r6, r7, lr}
+ 170              		.cfi_def_cfa_offset 24
+ 171              		.cfi_offset 3, -24
+ 172              		.cfi_offset 4, -20
+ 173              		.cfi_offset 5, -16
+ 174              		.cfi_offset 6, -12
+ 175              		.cfi_offset 7, -8
+ 176              		.cfi_offset 14, -4
+ 177 0002 0646     		mov	r6, r0
+ 178 0004 0F46     		mov	r7, r1
+ 179 0006 1546     		mov	r5, r2
+ 180 0008 1C46     		mov	r4, r3
+ 181              	.LVL5:
+  71:i2c_helper.c  ****     
+  72:i2c_helper.c  ****     uint32_t final_i2c_ms_counter;
+  73:i2c_helper.c  ****     uint8_t i2c_timeout = 0;
+  74:i2c_helper.c  ****     
+  75:i2c_helper.c  ****     // clear the I2C bus status
+  76:i2c_helper.c  ****     I2C_MasterClearStatus();
+ 182              		.loc 1 76 0
+ 183 000a FFF7FEFF 		bl	I2C_MasterClearStatus
+ 184              	.LVL6:
+  77:i2c_helper.c  ****     I2C_MasterClearReadBuf();
+ 185              		.loc 1 77 0
+ 186 000e FFF7FEFF 		bl	I2C_MasterClearReadBuf
+ 187              	.LVL7:
+  78:i2c_helper.c  ****     I2C_MasterClearWriteBuf();
+ 188              		.loc 1 78 0
+ 189 0012 FFF7FEFF 		bl	I2C_MasterClearWriteBuf
+ 190              	.LVL8:
+  79:i2c_helper.c  ****     
+  80:i2c_helper.c  ****     // clear out the I2C status record
+  81:i2c_helper.c  ****     I2C_clear_xfer_status(xfer_status);
+ 191              		.loc 1 81 0
+ 192 0016 2046     		mov	r0, r4
+ 193 0018 FFF7FEFF 		bl	I2C_clear_xfer_status
+ 194              	.LVL9:
+  82:i2c_helper.c  **** 
+  83:i2c_helper.c  ****     // set the transfer type
+  84:i2c_helper.c  ****     xfer_status->xfer_type = I2C_TRANSFER_TYPE_WRITE;
+ 195              		.loc 1 84 0
+ 196 001c 0123     		movs	r3, #1
+ 197 001e 2374     		strb	r3, [r4, #16]
+  85:i2c_helper.c  ****     
+  86:i2c_helper.c  ****     // log the number of bytes to write
+  87:i2c_helper.c  ****     xfer_status->bytes_to_write = byte_count;
+ 198              		.loc 1 87 0
+ARM GAS  C:\Users\dhous\AppData\Local\Temp\ccKTMeyp.s 			page 6
+
+
+ 199 0020 A572     		strb	r5, [r4, #10]
+  88:i2c_helper.c  ****     
+  89:i2c_helper.c  ****     // reset the systick timer to the timeout value
+  90:i2c_helper.c  ****     i2c_ms_counter = 0;
+ 200              		.loc 1 90 0
+ 201 0022 0023     		movs	r3, #0
+ 202 0024 144A     		ldr	r2, .L16
+ 203 0026 1360     		str	r3, [r2]
+  91:i2c_helper.c  ****     
+  92:i2c_helper.c  ****     // send the write command and read teh result
+  93:i2c_helper.c  ****     xfer_status->write_cmd_result = I2C_MasterWriteBuf(slave_address, bytes, byte_count, I2C_MODE_C
+ 204              		.loc 1 93 0
+ 205 0028 2A46     		mov	r2, r5
+ 206 002a 3946     		mov	r1, r7
+ 207 002c 3046     		mov	r0, r6
+ 208 002e FFF7FEFF 		bl	I2C_MasterWriteBuf
+ 209              	.LVL10:
+ 210 0032 E080     		strh	r0, [r4, #6]	@ movhi
+ 211              	.L12:
+  94:i2c_helper.c  ****     
+  95:i2c_helper.c  ****     // while the read is not complete and the timeout is not set, wait
+  96:i2c_helper.c  ****     while ((!(I2C_MasterStatus() & I2C_MSTAT_WR_CMPLT)) && (i2c_ms_counter < I2C_TIMEOUT_MS)) {cont
+ 212              		.loc 1 96 0 discriminator 1
+ 213 0034 FFF7FEFF 		bl	I2C_MasterStatus
+ 214              	.LVL11:
+ 215 0038 10F0020F 		tst	r0, #2
+ 216 003c 04D1     		bne	.L11
+ 217              		.loc 1 96 0 is_stmt 0 discriminator 2
+ 218 003e 0E4B     		ldr	r3, .L16
+ 219 0040 1B68     		ldr	r3, [r3]
+ 220 0042 B3F5FA7F 		cmp	r3, #500
+ 221 0046 F5D3     		bcc	.L12
+ 222              	.L11:
+  97:i2c_helper.c  **** 
+  98:i2c_helper.c  ****     // get the terminal value of the i2c_ms_counter
+  99:i2c_helper.c  ****     final_i2c_ms_counter = i2c_ms_counter;
+ 223              		.loc 1 99 0 is_stmt 1
+ 224 0048 0B4B     		ldr	r3, .L16
+ 225 004a 1B68     		ldr	r3, [r3]
+ 226              	.LVL12:
+ 100:i2c_helper.c  **** 
+ 101:i2c_helper.c  ****     // if the counter has passed zero it is a timeout so set the flag
+ 102:i2c_helper.c  ****     if (final_i2c_ms_counter >= I2C_TIMEOUT_MS)
+ 227              		.loc 1 102 0
+ 228 004c B3F5FA7F 		cmp	r3, #500
+ 229 0050 01D2     		bcs	.L14
+  73:i2c_helper.c  ****     
+ 230              		.loc 1 73 0
+ 231 0052 0025     		movs	r5, #0
+ 232 0054 00E0     		b	.L13
+ 233              	.L14:
+ 103:i2c_helper.c  ****     {
+ 104:i2c_helper.c  ****         i2c_timeout = 1;
+ 234              		.loc 1 104 0
+ 235 0056 0125     		movs	r5, #1
+ 236              	.L13:
+ 237              	.LVL13:
+ARM GAS  C:\Users\dhous\AppData\Local\Temp\ccKTMeyp.s 			page 7
+
+
+ 105:i2c_helper.c  ****     }
+ 106:i2c_helper.c  ****         
+ 107:i2c_helper.c  ****     // get the I2C timeout counter value
+ 108:i2c_helper.c  ****     xfer_status->counter_value = (uint16_t)i2c_ms_counter;
+ 238              		.loc 1 108 0
+ 239 0058 074B     		ldr	r3, .L16
+ 240              	.LVL14:
+ 241 005a 1B68     		ldr	r3, [r3]
+ 242 005c 2380     		strh	r3, [r4]	@ movhi
+ 109:i2c_helper.c  **** 
+ 110:i2c_helper.c  ****     // get the transfer status result
+ 111:i2c_helper.c  ****     xfer_status->i2c_write_xfer_result = I2C_MasterStatus();
+ 243              		.loc 1 111 0
+ 244 005e FFF7FEFF 		bl	I2C_MasterStatus
+ 245              	.LVL15:
+ 246 0062 6080     		strh	r0, [r4, #2]	@ movhi
+ 112:i2c_helper.c  **** 
+ 113:i2c_helper.c  ****     // get the timeout flag
+ 114:i2c_helper.c  ****     xfer_status->timeout_error = i2c_timeout;
+ 247              		.loc 1 114 0
+ 248 0064 A573     		strb	r5, [r4, #14]
+ 115:i2c_helper.c  **** 
+ 116:i2c_helper.c  ****     // get the # of bytes actually sent
+ 117:i2c_helper.c  ****     xfer_status->bytes_written = I2C_MasterGetWriteBufSize();
+ 249              		.loc 1 117 0
+ 250 0066 FFF7FEFF 		bl	I2C_MasterGetWriteBufSize
+ 251              	.LVL16:
+ 252 006a E072     		strb	r0, [r4, #11]
+ 118:i2c_helper.c  ****     
+ 119:i2c_helper.c  ****     // clear the transfer status  
+ 120:i2c_helper.c  ****     I2C_MasterClearStatus();
+ 253              		.loc 1 120 0
+ 254 006c FFF7FEFF 		bl	I2C_MasterClearStatus
+ 255              	.LVL17:
+ 121:i2c_helper.c  ****     
+ 122:i2c_helper.c  ****     // parse the transfer status
+ 123:i2c_helper.c  ****     I2C_check_transfer_status(xfer_status);
+ 256              		.loc 1 123 0
+ 257 0070 2046     		mov	r0, r4
+ 258 0072 FFF7FEFF 		bl	I2C_check_transfer_status
+ 259              	.LVL18:
+ 260 0076 F8BD     		pop	{r3, r4, r5, r6, r7, pc}
+ 261              	.LVL19:
+ 262              	.L17:
+ 263              		.align	2
+ 264              	.L16:
+ 265 0078 00000000 		.word	i2c_ms_counter
+ 266              		.cfi_endproc
+ 267              	.LFE66:
+ 268              		.size	I2C_write, .-I2C_write
+ 269              		.section	.text.I2C_xfer,"ax",%progbits
+ 270              		.align	2
+ 271              		.global	I2C_xfer
+ 272              		.thumb
+ 273              		.thumb_func
+ 274              		.type	I2C_xfer, %function
+ 275              	I2C_xfer:
+ARM GAS  C:\Users\dhous\AppData\Local\Temp\ccKTMeyp.s 			page 8
+
+
+ 276              	.LFB67:
+ 124:i2c_helper.c  **** 
+ 125:i2c_helper.c  **** }
+ 126:i2c_helper.c  **** 
+ 127:i2c_helper.c  **** 
+ 128:i2c_helper.c  **** void I2C_xfer(uint8_t slave_address, uint8_t *tx_bytes, uint8_t tx_count, uint8_t *rx_bytes, uint8_
+ 129:i2c_helper.c  **** {
+ 277              		.loc 1 129 0
+ 278              		.cfi_startproc
+ 279              		@ args = 16, pretend = 0, frame = 0
+ 280              		@ frame_needed = 0, uses_anonymous_args = 0
+ 281              	.LVL20:
+ 282 0000 2DE9F843 		push	{r3, r4, r5, r6, r7, r8, r9, lr}
+ 283              		.cfi_def_cfa_offset 32
+ 284              		.cfi_offset 3, -32
+ 285              		.cfi_offset 4, -28
+ 286              		.cfi_offset 5, -24
+ 287              		.cfi_offset 6, -20
+ 288              		.cfi_offset 7, -16
+ 289              		.cfi_offset 8, -12
+ 290              		.cfi_offset 9, -8
+ 291              		.cfi_offset 14, -4
+ 292 0004 0546     		mov	r5, r0
+ 293 0006 8946     		mov	r9, r1
+ 294 0008 1746     		mov	r7, r2
+ 295 000a 9846     		mov	r8, r3
+ 296 000c 9DF82060 		ldrb	r6, [sp, #32]	@ zero_extendqisi2
+ 297 0010 099C     		ldr	r4, [sp, #36]
+ 298              	.LVL21:
+ 130:i2c_helper.c  ****     uint8_t i2c_timeout = 0;
+ 131:i2c_helper.c  ****     uint32_t final_i2c_ms_counter;
+ 132:i2c_helper.c  ****     
+ 133:i2c_helper.c  ****     // clear the I2C bus status
+ 134:i2c_helper.c  ****     I2C_MasterClearStatus();
+ 299              		.loc 1 134 0
+ 300 0012 FFF7FEFF 		bl	I2C_MasterClearStatus
+ 301              	.LVL22:
+ 135:i2c_helper.c  ****     I2C_MasterClearReadBuf();
+ 302              		.loc 1 135 0
+ 303 0016 FFF7FEFF 		bl	I2C_MasterClearReadBuf
+ 304              	.LVL23:
+ 136:i2c_helper.c  ****     I2C_MasterClearWriteBuf();
+ 305              		.loc 1 136 0
+ 306 001a FFF7FEFF 		bl	I2C_MasterClearWriteBuf
+ 307              	.LVL24:
+ 137:i2c_helper.c  ****     
+ 138:i2c_helper.c  ****     // clear out the status record
+ 139:i2c_helper.c  ****     I2C_clear_xfer_status(xfer_status);
+ 308              		.loc 1 139 0
+ 309 001e 2046     		mov	r0, r4
+ 310 0020 FFF7FEFF 		bl	I2C_clear_xfer_status
+ 311              	.LVL25:
+ 140:i2c_helper.c  ****     
+ 141:i2c_helper.c  ****     // set the transfer type
+ 142:i2c_helper.c  ****     xfer_status->xfer_type = I2C_TRANSFER_TYPE_WRITE_READ;
+ 312              		.loc 1 142 0
+ 313 0024 0223     		movs	r3, #2
+ARM GAS  C:\Users\dhous\AppData\Local\Temp\ccKTMeyp.s 			page 9
+
+
+ 314 0026 2374     		strb	r3, [r4, #16]
+ 143:i2c_helper.c  **** 
+ 144:i2c_helper.c  ****     // log the number of bytes to write
+ 145:i2c_helper.c  ****     xfer_status->bytes_to_write = tx_count;
+ 315              		.loc 1 145 0
+ 316 0028 A772     		strb	r7, [r4, #10]
+ 146:i2c_helper.c  ****     
+ 147:i2c_helper.c  ****     // log the number of bytes to read
+ 148:i2c_helper.c  ****     xfer_status->bytes_to_read = rx_count;
+ 317              		.loc 1 148 0
+ 318 002a 2673     		strb	r6, [r4, #12]
+ 149:i2c_helper.c  ****     
+ 150:i2c_helper.c  ****     // reset the systick timer to the timeout value
+ 151:i2c_helper.c  ****     i2c_ms_counter = 0;
+ 319              		.loc 1 151 0
+ 320 002c 0022     		movs	r2, #0
+ 321 002e 224B     		ldr	r3, .L26
+ 322 0030 1A60     		str	r2, [r3]
+ 152:i2c_helper.c  ****     
+ 153:i2c_helper.c  ****     
+ 154:i2c_helper.c  ****     // send the write command and read the result
+ 155:i2c_helper.c  ****     xfer_status->write_cmd_result = I2C_MasterWriteBuf(slave_address, tx_bytes, tx_count, i2c_write
+ 323              		.loc 1 155 0
+ 324 0032 9DF82830 		ldrb	r3, [sp, #40]	@ zero_extendqisi2
+ 325 0036 3A46     		mov	r2, r7
+ 326 0038 4946     		mov	r1, r9
+ 327 003a 2846     		mov	r0, r5
+ 328 003c FFF7FEFF 		bl	I2C_MasterWriteBuf
+ 329              	.LVL26:
+ 330 0040 E080     		strh	r0, [r4, #6]	@ movhi
+ 331              	.L20:
+ 156:i2c_helper.c  ****     
+ 157:i2c_helper.c  ****     // while the write is not complete and the timeout is not set, wait
+ 158:i2c_helper.c  ****     while ((!(I2C_MasterStatus() & I2C_MSTAT_WR_CMPLT)) && (i2c_ms_counter < I2C_TIMEOUT_MS)) {cont
+ 332              		.loc 1 158 0 discriminator 1
+ 333 0042 FFF7FEFF 		bl	I2C_MasterStatus
+ 334              	.LVL27:
+ 335 0046 10F0020F 		tst	r0, #2
+ 336 004a 04D1     		bne	.L19
+ 337              		.loc 1 158 0 is_stmt 0 discriminator 2
+ 338 004c 1A4B     		ldr	r3, .L26
+ 339 004e 1B68     		ldr	r3, [r3]
+ 340 0050 B3F5FA7F 		cmp	r3, #500
+ 341 0054 F5D3     		bcc	.L20
+ 342              	.L19:
+ 159:i2c_helper.c  **** 
+ 160:i2c_helper.c  ****     // record the number of bytes written
+ 161:i2c_helper.c  ****     xfer_status->bytes_written = I2C_MasterGetWriteBufSize();
+ 343              		.loc 1 161 0 is_stmt 1
+ 344 0056 FFF7FEFF 		bl	I2C_MasterGetWriteBufSize
+ 345              	.LVL28:
+ 346 005a E072     		strb	r0, [r4, #11]
+ 162:i2c_helper.c  ****     
+ 163:i2c_helper.c  ****     // get the transfer status result
+ 164:i2c_helper.c  ****     xfer_status->i2c_write_xfer_result = I2C_MasterStatus();
+ 347              		.loc 1 164 0
+ 348 005c FFF7FEFF 		bl	I2C_MasterStatus
+ARM GAS  C:\Users\dhous\AppData\Local\Temp\ccKTMeyp.s 			page 10
+
+
+ 349              	.LVL29:
+ 350 0060 6080     		strh	r0, [r4, #2]	@ movhi
+ 165:i2c_helper.c  ****     
+ 166:i2c_helper.c  ****     // clear the master status
+ 167:i2c_helper.c  ****     I2C_MasterClearStatus();
+ 351              		.loc 1 167 0
+ 352 0062 FFF7FEFF 		bl	I2C_MasterClearStatus
+ 353              	.LVL30:
+ 168:i2c_helper.c  ****     
+ 169:i2c_helper.c  ****     // read the results
+ 170:i2c_helper.c  ****     xfer_status->read_cmd_result = I2C_MasterReadBuf(slave_address, rx_bytes, rx_count, i2c_read_mo
+ 354              		.loc 1 170 0
+ 355 0066 9DF82C30 		ldrb	r3, [sp, #44]	@ zero_extendqisi2
+ 356 006a 3246     		mov	r2, r6
+ 357 006c 4146     		mov	r1, r8
+ 358 006e 2846     		mov	r0, r5
+ 359 0070 FFF7FEFF 		bl	I2C_MasterReadBuf
+ 360              	.LVL31:
+ 361 0074 2081     		strh	r0, [r4, #8]	@ movhi
+ 362              	.L22:
+ 171:i2c_helper.c  ****     while ((!(I2C_MasterStatus() & I2C_MSTAT_RD_CMPLT)) && (i2c_ms_counter < I2C_TIMEOUT_MS)) {cont
+ 363              		.loc 1 171 0 discriminator 1
+ 364 0076 FFF7FEFF 		bl	I2C_MasterStatus
+ 365              	.LVL32:
+ 366 007a 10F0010F 		tst	r0, #1
+ 367 007e 04D1     		bne	.L21
+ 368              		.loc 1 171 0 is_stmt 0 discriminator 2
+ 369 0080 0D4B     		ldr	r3, .L26
+ 370 0082 1B68     		ldr	r3, [r3]
+ 371 0084 B3F5FA7F 		cmp	r3, #500
+ 372 0088 F5D3     		bcc	.L22
+ 373              	.L21:
+ 172:i2c_helper.c  ****     
+ 173:i2c_helper.c  ****     // get the terminal value of the i2c_ms_counter
+ 174:i2c_helper.c  ****     final_i2c_ms_counter = i2c_ms_counter;
+ 374              		.loc 1 174 0 is_stmt 1
+ 375 008a 0B4B     		ldr	r3, .L26
+ 376 008c 1B68     		ldr	r3, [r3]
+ 377              	.LVL33:
+ 175:i2c_helper.c  **** 
+ 176:i2c_helper.c  ****     // if the counter has passed zero it is a timeout so set the flag
+ 177:i2c_helper.c  ****     if (final_i2c_ms_counter >= I2C_TIMEOUT_MS)
+ 378              		.loc 1 177 0
+ 379 008e B3F5FA7F 		cmp	r3, #500
+ 380 0092 01D2     		bcs	.L24
+ 130:i2c_helper.c  ****     uint32_t final_i2c_ms_counter;
+ 381              		.loc 1 130 0
+ 382 0094 0022     		movs	r2, #0
+ 383 0096 00E0     		b	.L23
+ 384              	.L24:
+ 178:i2c_helper.c  ****     {
+ 179:i2c_helper.c  ****         i2c_timeout = 1;
+ 385              		.loc 1 179 0
+ 386 0098 0122     		movs	r2, #1
+ 387              	.L23:
+ 388              	.LVL34:
+ 180:i2c_helper.c  ****     }
+ARM GAS  C:\Users\dhous\AppData\Local\Temp\ccKTMeyp.s 			page 11
+
+
+ 181:i2c_helper.c  ****     
+ 182:i2c_helper.c  ****     // record if the timeout occurred
+ 183:i2c_helper.c  ****     xfer_status->timeout_error = i2c_timeout;
+ 389              		.loc 1 183 0
+ 390 009a A273     		strb	r2, [r4, #14]
+ 184:i2c_helper.c  **** 
+ 185:i2c_helper.c  ****     // get the I2C timeout counter value
+ 186:i2c_helper.c  ****     xfer_status->counter_value = final_i2c_ms_counter;
+ 391              		.loc 1 186 0
+ 392 009c 2380     		strh	r3, [r4]	@ movhi
+ 187:i2c_helper.c  ****     
+ 188:i2c_helper.c  ****     // record the number of bytes read
+ 189:i2c_helper.c  ****     xfer_status->bytes_read = I2C_MasterGetReadBufSize();
+ 393              		.loc 1 189 0
+ 394 009e FFF7FEFF 		bl	I2C_MasterGetReadBufSize
+ 395              	.LVL35:
+ 396 00a2 6073     		strb	r0, [r4, #13]
+ 190:i2c_helper.c  ****     
+ 191:i2c_helper.c  ****     // record the master transfer status
+ 192:i2c_helper.c  ****     xfer_status->i2c_read_xfer_result = I2C_MasterStatus();
+ 397              		.loc 1 192 0
+ 398 00a4 FFF7FEFF 		bl	I2C_MasterStatus
+ 399              	.LVL36:
+ 400 00a8 A080     		strh	r0, [r4, #4]	@ movhi
+ 193:i2c_helper.c  ****     
+ 194:i2c_helper.c  ****     
+ 195:i2c_helper.c  ****     // clear the master status
+ 196:i2c_helper.c  ****     I2C_MasterClearStatus();
+ 401              		.loc 1 196 0
+ 402 00aa FFF7FEFF 		bl	I2C_MasterClearStatus
+ 403              	.LVL37:
+ 197:i2c_helper.c  ****     
+ 198:i2c_helper.c  ****     // parse the transfer status
+ 199:i2c_helper.c  ****     I2C_check_transfer_status(xfer_status);
+ 404              		.loc 1 199 0
+ 405 00ae 2046     		mov	r0, r4
+ 406 00b0 FFF7FEFF 		bl	I2C_check_transfer_status
+ 407              	.LVL38:
+ 408 00b4 BDE8F883 		pop	{r3, r4, r5, r6, r7, r8, r9, pc}
+ 409              	.LVL39:
+ 410              	.L27:
+ 411              		.align	2
+ 412              	.L26:
+ 413 00b8 00000000 		.word	i2c_ms_counter
+ 414              		.cfi_endproc
+ 415              	.LFE67:
+ 416              		.size	I2C_xfer, .-I2C_xfer
+ 417              		.section	.text.I2C_read,"ax",%progbits
+ 418              		.align	2
+ 419              		.global	I2C_read
+ 420              		.thumb
+ 421              		.thumb_func
+ 422              		.type	I2C_read, %function
+ 423              	I2C_read:
+ 424              	.LFB68:
+ 200:i2c_helper.c  **** 
+ 201:i2c_helper.c  ****     
+ARM GAS  C:\Users\dhous\AppData\Local\Temp\ccKTMeyp.s 			page 12
+
+
+ 202:i2c_helper.c  **** }
+ 203:i2c_helper.c  **** 
+ 204:i2c_helper.c  **** 
+ 205:i2c_helper.c  **** void I2C_read(uint8_t slave_address, uint8_t *bytes, uint8_t byte_count, I2C_Transfer_Status *xfer_
+ 206:i2c_helper.c  **** {
+ 425              		.loc 1 206 0
+ 426              		.cfi_startproc
+ 427              		@ args = 0, pretend = 0, frame = 0
+ 428              		@ frame_needed = 0, uses_anonymous_args = 0
+ 429              	.LVL40:
+ 430 0000 F8B5     		push	{r3, r4, r5, r6, r7, lr}
+ 431              		.cfi_def_cfa_offset 24
+ 432              		.cfi_offset 3, -24
+ 433              		.cfi_offset 4, -20
+ 434              		.cfi_offset 5, -16
+ 435              		.cfi_offset 6, -12
+ 436              		.cfi_offset 7, -8
+ 437              		.cfi_offset 14, -4
+ 438 0002 0646     		mov	r6, r0
+ 439 0004 0F46     		mov	r7, r1
+ 440 0006 1546     		mov	r5, r2
+ 441 0008 1C46     		mov	r4, r3
+ 442              	.LVL41:
+ 207:i2c_helper.c  ****     
+ 208:i2c_helper.c  ****     uint32_t final_i2c_ms_counter;
+ 209:i2c_helper.c  ****     uint8_t i2c_timeout = 0;
+ 210:i2c_helper.c  ****     
+ 211:i2c_helper.c  ****     // clear the I2C bus status
+ 212:i2c_helper.c  ****     I2C_MasterClearStatus();
+ 443              		.loc 1 212 0
+ 444 000a FFF7FEFF 		bl	I2C_MasterClearStatus
+ 445              	.LVL42:
+ 213:i2c_helper.c  ****     I2C_MasterClearReadBuf();
+ 446              		.loc 1 213 0
+ 447 000e FFF7FEFF 		bl	I2C_MasterClearReadBuf
+ 448              	.LVL43:
+ 214:i2c_helper.c  ****     I2C_MasterClearWriteBuf();
+ 449              		.loc 1 214 0
+ 450 0012 FFF7FEFF 		bl	I2C_MasterClearWriteBuf
+ 451              	.LVL44:
+ 215:i2c_helper.c  ****     
+ 216:i2c_helper.c  ****     // clear out the I2C status record
+ 217:i2c_helper.c  ****     I2C_clear_xfer_status(xfer_status);
+ 452              		.loc 1 217 0
+ 453 0016 2046     		mov	r0, r4
+ 454 0018 FFF7FEFF 		bl	I2C_clear_xfer_status
+ 455              	.LVL45:
+ 218:i2c_helper.c  **** 
+ 219:i2c_helper.c  ****     // set the transfer type
+ 220:i2c_helper.c  ****     xfer_status->xfer_type = I2C_TRANSFER_TYPE_READ;
+ 456              		.loc 1 220 0
+ 457 001c 0323     		movs	r3, #3
+ 458 001e 2374     		strb	r3, [r4, #16]
+ 221:i2c_helper.c  ****     
+ 222:i2c_helper.c  ****     // log the number of bytes to write
+ 223:i2c_helper.c  ****     xfer_status->bytes_to_read = byte_count;
+ 459              		.loc 1 223 0
+ARM GAS  C:\Users\dhous\AppData\Local\Temp\ccKTMeyp.s 			page 13
+
+
+ 460 0020 2573     		strb	r5, [r4, #12]
+ 224:i2c_helper.c  ****     
+ 225:i2c_helper.c  ****     // reset the systick timer to the timeout value
+ 226:i2c_helper.c  ****     i2c_ms_counter = 0;
+ 461              		.loc 1 226 0
+ 462 0022 0023     		movs	r3, #0
+ 463 0024 144A     		ldr	r2, .L34
+ 464 0026 1360     		str	r3, [r2]
+ 227:i2c_helper.c  ****     
+ 228:i2c_helper.c  ****     // send the write command and read teh result
+ 229:i2c_helper.c  ****     xfer_status->read_cmd_result = I2C_MasterReadBuf(slave_address, bytes, byte_count, I2C_MODE_COM
+ 465              		.loc 1 229 0
+ 466 0028 2A46     		mov	r2, r5
+ 467 002a 3946     		mov	r1, r7
+ 468 002c 3046     		mov	r0, r6
+ 469 002e FFF7FEFF 		bl	I2C_MasterReadBuf
+ 470              	.LVL46:
+ 471 0032 2081     		strh	r0, [r4, #8]	@ movhi
+ 472              	.L30:
+ 230:i2c_helper.c  ****     
+ 231:i2c_helper.c  ****     // while the read is not complete and the timeout is not set, wait
+ 232:i2c_helper.c  ****     while ((!(I2C_MasterStatus() & I2C_MSTAT_RD_CMPLT)) && (i2c_ms_counter < I2C_TIMEOUT_MS)) {cont
+ 473              		.loc 1 232 0 discriminator 1
+ 474 0034 FFF7FEFF 		bl	I2C_MasterStatus
+ 475              	.LVL47:
+ 476 0038 10F0010F 		tst	r0, #1
+ 477 003c 04D1     		bne	.L29
+ 478              		.loc 1 232 0 is_stmt 0 discriminator 2
+ 479 003e 0E4B     		ldr	r3, .L34
+ 480 0040 1B68     		ldr	r3, [r3]
+ 481 0042 B3F5FA7F 		cmp	r3, #500
+ 482 0046 F5D3     		bcc	.L30
+ 483              	.L29:
+ 233:i2c_helper.c  **** 
+ 234:i2c_helper.c  ****     // get the terminal value of the i2c_ms_counter
+ 235:i2c_helper.c  ****     final_i2c_ms_counter = i2c_ms_counter;
+ 484              		.loc 1 235 0 is_stmt 1
+ 485 0048 0B4B     		ldr	r3, .L34
+ 486 004a 1B68     		ldr	r3, [r3]
+ 487              	.LVL48:
+ 236:i2c_helper.c  **** 
+ 237:i2c_helper.c  ****     // if the counter has passed zero it is a timeout so set the flag
+ 238:i2c_helper.c  ****     if (final_i2c_ms_counter >= I2C_TIMEOUT_MS)
+ 488              		.loc 1 238 0
+ 489 004c B3F5FA7F 		cmp	r3, #500
+ 490 0050 01D2     		bcs	.L32
+ 209:i2c_helper.c  ****     
+ 491              		.loc 1 209 0
+ 492 0052 0025     		movs	r5, #0
+ 493 0054 00E0     		b	.L31
+ 494              	.L32:
+ 239:i2c_helper.c  ****     {
+ 240:i2c_helper.c  ****         i2c_timeout = 1;
+ 495              		.loc 1 240 0
+ 496 0056 0125     		movs	r5, #1
+ 497              	.L31:
+ 498              	.LVL49:
+ARM GAS  C:\Users\dhous\AppData\Local\Temp\ccKTMeyp.s 			page 14
+
+
+ 241:i2c_helper.c  ****     }
+ 242:i2c_helper.c  ****         
+ 243:i2c_helper.c  ****     // get the I2C timeout counter value
+ 244:i2c_helper.c  ****     xfer_status->counter_value = (uint16_t)i2c_ms_counter;
+ 499              		.loc 1 244 0
+ 500 0058 074B     		ldr	r3, .L34
+ 501              	.LVL50:
+ 502 005a 1B68     		ldr	r3, [r3]
+ 503 005c 2380     		strh	r3, [r4]	@ movhi
+ 245:i2c_helper.c  **** 
+ 246:i2c_helper.c  ****     // get the transfer status result
+ 247:i2c_helper.c  ****     xfer_status->i2c_read_xfer_result = I2C_MasterStatus();
+ 504              		.loc 1 247 0
+ 505 005e FFF7FEFF 		bl	I2C_MasterStatus
+ 506              	.LVL51:
+ 507 0062 A080     		strh	r0, [r4, #4]	@ movhi
+ 248:i2c_helper.c  **** 
+ 249:i2c_helper.c  ****     // get the timeout flag
+ 250:i2c_helper.c  ****     xfer_status->timeout_error = i2c_timeout;
+ 508              		.loc 1 250 0
+ 509 0064 A573     		strb	r5, [r4, #14]
+ 251:i2c_helper.c  **** 
+ 252:i2c_helper.c  ****     // get the # of bytes actually read
+ 253:i2c_helper.c  ****     xfer_status->bytes_read = I2C_MasterGetReadBufSize();
+ 510              		.loc 1 253 0
+ 511 0066 FFF7FEFF 		bl	I2C_MasterGetReadBufSize
+ 512              	.LVL52:
+ 513 006a 6073     		strb	r0, [r4, #13]
+ 254:i2c_helper.c  ****     
+ 255:i2c_helper.c  ****     // clear the transfer status  
+ 256:i2c_helper.c  ****     I2C_MasterClearStatus();
+ 514              		.loc 1 256 0
+ 515 006c FFF7FEFF 		bl	I2C_MasterClearStatus
+ 516              	.LVL53:
+ 257:i2c_helper.c  ****     
+ 258:i2c_helper.c  ****     // parse the transfer status
+ 259:i2c_helper.c  ****     I2C_check_transfer_status(xfer_status);
+ 517              		.loc 1 259 0
+ 518 0070 2046     		mov	r0, r4
+ 519 0072 FFF7FEFF 		bl	I2C_check_transfer_status
+ 520              	.LVL54:
+ 521 0076 F8BD     		pop	{r3, r4, r5, r6, r7, pc}
+ 522              	.LVL55:
+ 523              	.L35:
+ 524              		.align	2
+ 525              	.L34:
+ 526 0078 00000000 		.word	i2c_ms_counter
+ 527              		.cfi_endproc
+ 528              	.LFE68:
+ 529              		.size	I2C_read, .-I2C_read
+ 530              		.section	.text.I2C_print_transfer_status,"ax",%progbits
+ 531              		.align	2
+ 532              		.global	I2C_print_transfer_status
+ 533              		.thumb
+ 534              		.thumb_func
+ 535              		.type	I2C_print_transfer_status, %function
+ 536              	I2C_print_transfer_status:
+ARM GAS  C:\Users\dhous\AppData\Local\Temp\ccKTMeyp.s 			page 15
+
+
+ 537              	.LFB69:
+ 260:i2c_helper.c  **** 
+ 261:i2c_helper.c  **** }
+ 262:i2c_helper.c  **** 
+ 263:i2c_helper.c  **** void I2C_print_transfer_status(I2C_Transfer_Status *xfer_status)
+ 264:i2c_helper.c  **** {
+ 538              		.loc 1 264 0
+ 539              		.cfi_startproc
+ 540              		@ args = 0, pretend = 0, frame = 64
+ 541              		@ frame_needed = 0, uses_anonymous_args = 0
+ 542              	.LVL56:
+ 543 0000 10B5     		push	{r4, lr}
+ 544              		.cfi_def_cfa_offset 8
+ 545              		.cfi_offset 4, -8
+ 546              		.cfi_offset 14, -4
+ 547 0002 90B0     		sub	sp, sp, #64
+ 548              		.cfi_def_cfa_offset 72
+ 549 0004 0446     		mov	r4, r0
+ 265:i2c_helper.c  ****     char outstr[64];
+ 266:i2c_helper.c  ****     
+ 267:i2c_helper.c  ****     if (xfer_status->ok)
+ 550              		.loc 1 267 0
+ 551 0006 C37B     		ldrb	r3, [r0, #15]	@ zero_extendqisi2
+ 552 0008 1BB1     		cbz	r3, .L37
+ 268:i2c_helper.c  ****     {
+ 269:i2c_helper.c  ****         UART_PutString("Overall command result: OK\r\n");
+ 553              		.loc 1 269 0
+ 554 000a 2548     		ldr	r0, .L40
+ 555              	.LVL57:
+ 556 000c FFF7FEFF 		bl	UART_PutString
+ 557              	.LVL58:
+ 558 0010 02E0     		b	.L38
+ 559              	.LVL59:
+ 560              	.L37:
+ 270:i2c_helper.c  ****     }
+ 271:i2c_helper.c  ****     else
+ 272:i2c_helper.c  ****     {
+ 273:i2c_helper.c  ****         UART_PutString("Overall command result: ***ERROR****\r\n");
+ 561              		.loc 1 273 0
+ 562 0012 2448     		ldr	r0, .L40+4
+ 563              	.LVL60:
+ 564 0014 FFF7FEFF 		bl	UART_PutString
+ 565              	.LVL61:
+ 566              	.L38:
+ 274:i2c_helper.c  ****     }
+ 275:i2c_helper.c  ****     
+ 276:i2c_helper.c  ****     sprintf(outstr, "Timeout counter: 0x%04X\r\n", xfer_status->counter_value);
+ 567              		.loc 1 276 0
+ 568 0018 2288     		ldrh	r2, [r4]
+ 569 001a 2349     		ldr	r1, .L40+8
+ 570 001c 6846     		mov	r0, sp
+ 571 001e FFF7FEFF 		bl	sprintf
+ 572              	.LVL62:
+ 277:i2c_helper.c  ****     UART_PutString(outstr);
+ 573              		.loc 1 277 0
+ 574 0022 6846     		mov	r0, sp
+ 575 0024 FFF7FEFF 		bl	UART_PutString
+ARM GAS  C:\Users\dhous\AppData\Local\Temp\ccKTMeyp.s 			page 16
+
+
+ 576              	.LVL63:
+ 278:i2c_helper.c  ****     
+ 279:i2c_helper.c  ****     sprintf(outstr, "I2C write cmd result: 0x%04X\r\n", xfer_status->write_cmd_result);
+ 577              		.loc 1 279 0
+ 578 0028 E288     		ldrh	r2, [r4, #6]
+ 579 002a 2049     		ldr	r1, .L40+12
+ 580 002c 6846     		mov	r0, sp
+ 581 002e FFF7FEFF 		bl	sprintf
+ 582              	.LVL64:
+ 280:i2c_helper.c  ****     UART_PutString(outstr);
+ 583              		.loc 1 280 0
+ 584 0032 6846     		mov	r0, sp
+ 585 0034 FFF7FEFF 		bl	UART_PutString
+ 586              	.LVL65:
+ 281:i2c_helper.c  **** 
+ 282:i2c_helper.c  ****     sprintf(outstr, "I2C write xfer result: 0x%04X\r\n", xfer_status->i2c_write_xfer_result);
+ 587              		.loc 1 282 0
+ 588 0038 6288     		ldrh	r2, [r4, #2]
+ 589 003a 1D49     		ldr	r1, .L40+16
+ 590 003c 6846     		mov	r0, sp
+ 591 003e FFF7FEFF 		bl	sprintf
+ 592              	.LVL66:
+ 283:i2c_helper.c  ****     UART_PutString(outstr);
+ 593              		.loc 1 283 0
+ 594 0042 6846     		mov	r0, sp
+ 595 0044 FFF7FEFF 		bl	UART_PutString
+ 596              	.LVL67:
+ 284:i2c_helper.c  ****     
+ 285:i2c_helper.c  ****     sprintf(outstr, "Byte count 0x%02X to write, 0x%02X written\r\n", xfer_status->bytes_to_write, 
+ 597              		.loc 1 285 0
+ 598 0048 E37A     		ldrb	r3, [r4, #11]	@ zero_extendqisi2
+ 599 004a A27A     		ldrb	r2, [r4, #10]	@ zero_extendqisi2
+ 600 004c 1949     		ldr	r1, .L40+20
+ 601 004e 6846     		mov	r0, sp
+ 602 0050 FFF7FEFF 		bl	sprintf
+ 603              	.LVL68:
+ 286:i2c_helper.c  ****     UART_PutString(outstr);
+ 604              		.loc 1 286 0
+ 605 0054 6846     		mov	r0, sp
+ 606 0056 FFF7FEFF 		bl	UART_PutString
+ 607              	.LVL69:
+ 287:i2c_helper.c  ****      
+ 288:i2c_helper.c  ****     sprintf(outstr, "I2C read cmd result: 0x%04X\r\n", xfer_status->read_cmd_result);
+ 608              		.loc 1 288 0
+ 609 005a 2289     		ldrh	r2, [r4, #8]
+ 610 005c 1649     		ldr	r1, .L40+24
+ 611 005e 6846     		mov	r0, sp
+ 612 0060 FFF7FEFF 		bl	sprintf
+ 613              	.LVL70:
+ 289:i2c_helper.c  ****     UART_PutString(outstr);
+ 614              		.loc 1 289 0
+ 615 0064 6846     		mov	r0, sp
+ 616 0066 FFF7FEFF 		bl	UART_PutString
+ 617              	.LVL71:
+ 290:i2c_helper.c  ****     
+ 291:i2c_helper.c  ****     sprintf(outstr, "I2C read xfer result: 0x%04X\r\n", xfer_status->i2c_read_xfer_result);
+ 618              		.loc 1 291 0
+ARM GAS  C:\Users\dhous\AppData\Local\Temp\ccKTMeyp.s 			page 17
+
+
+ 619 006a A288     		ldrh	r2, [r4, #4]
+ 620 006c 1349     		ldr	r1, .L40+28
+ 621 006e 6846     		mov	r0, sp
+ 622 0070 FFF7FEFF 		bl	sprintf
+ 623              	.LVL72:
+ 292:i2c_helper.c  ****     UART_PutString(outstr);
+ 624              		.loc 1 292 0
+ 625 0074 6846     		mov	r0, sp
+ 626 0076 FFF7FEFF 		bl	UART_PutString
+ 627              	.LVL73:
+ 293:i2c_helper.c  ****     
+ 294:i2c_helper.c  ****     sprintf(outstr, "Byte count 0x%02X to read, 0x%02X read\r\n", xfer_status->bytes_to_read, xfer_
+ 628              		.loc 1 294 0
+ 629 007a 637B     		ldrb	r3, [r4, #13]	@ zero_extendqisi2
+ 630 007c 227B     		ldrb	r2, [r4, #12]	@ zero_extendqisi2
+ 631 007e 1049     		ldr	r1, .L40+32
+ 632 0080 6846     		mov	r0, sp
+ 633 0082 FFF7FEFF 		bl	sprintf
+ 634              	.LVL74:
+ 295:i2c_helper.c  ****     UART_PutString(outstr);
+ 635              		.loc 1 295 0
+ 636 0086 6846     		mov	r0, sp
+ 637 0088 FFF7FEFF 		bl	UART_PutString
+ 638              	.LVL75:
+ 296:i2c_helper.c  **** 
+ 297:i2c_helper.c  ****     sprintf(outstr, "Timeout flag: 0x%02X\r\n", xfer_status->timeout_error);
+ 639              		.loc 1 297 0
+ 640 008c A27B     		ldrb	r2, [r4, #14]	@ zero_extendqisi2
+ 641 008e 0D49     		ldr	r1, .L40+36
+ 642 0090 6846     		mov	r0, sp
+ 643 0092 FFF7FEFF 		bl	sprintf
+ 644              	.LVL76:
+ 298:i2c_helper.c  ****     UART_PutString(outstr);
+ 645              		.loc 1 298 0
+ 646 0096 6846     		mov	r0, sp
+ 647 0098 FFF7FEFF 		bl	UART_PutString
+ 648              	.LVL77:
+ 299:i2c_helper.c  **** 
+ 300:i2c_helper.c  ****     
+ 301:i2c_helper.c  **** }
+ 649              		.loc 1 301 0
+ 650 009c 10B0     		add	sp, sp, #64
+ 651              		.cfi_def_cfa_offset 8
+ 652              		@ sp needed
+ 653 009e 10BD     		pop	{r4, pc}
+ 654              	.LVL78:
+ 655              	.L41:
+ 656              		.align	2
+ 657              	.L40:
+ 658 00a0 00000000 		.word	.LC0
+ 659 00a4 20000000 		.word	.LC1
+ 660 00a8 48000000 		.word	.LC2
+ 661 00ac 64000000 		.word	.LC3
+ 662 00b0 84000000 		.word	.LC4
+ 663 00b4 A4000000 		.word	.LC5
+ 664 00b8 D4000000 		.word	.LC6
+ 665 00bc F4000000 		.word	.LC7
+ARM GAS  C:\Users\dhous\AppData\Local\Temp\ccKTMeyp.s 			page 18
+
+
+ 666 00c0 14010000 		.word	.LC8
+ 667 00c4 40010000 		.word	.LC9
+ 668              		.cfi_endproc
+ 669              	.LFE69:
+ 670              		.size	I2C_print_transfer_status, .-I2C_print_transfer_status
+ 671              		.comm	I2C_status,18,4
+ 672              		.section	.rodata.str1.4,"aMS",%progbits,1
+ 673              		.align	2
+ 674              	.LC0:
+ 675 0000 4F766572 		.ascii	"Overall command result: OK\015\012\000"
+ 675      616C6C20 
+ 675      636F6D6D 
+ 675      616E6420 
+ 675      72657375 
+ 676 001d 000000   		.space	3
+ 677              	.LC1:
+ 678 0020 4F766572 		.ascii	"Overall command result: ***ERROR****\015\012\000"
+ 678      616C6C20 
+ 678      636F6D6D 
+ 678      616E6420 
+ 678      72657375 
+ 679 0047 00       		.space	1
+ 680              	.LC2:
+ 681 0048 54696D65 		.ascii	"Timeout counter: 0x%04X\015\012\000"
+ 681      6F757420 
+ 681      636F756E 
+ 681      7465723A 
+ 681      20307825 
+ 682 0062 0000     		.space	2
+ 683              	.LC3:
+ 684 0064 49324320 		.ascii	"I2C write cmd result: 0x%04X\015\012\000"
+ 684      77726974 
+ 684      6520636D 
+ 684      64207265 
+ 684      73756C74 
+ 685 0083 00       		.space	1
+ 686              	.LC4:
+ 687 0084 49324320 		.ascii	"I2C write xfer result: 0x%04X\015\012\000"
+ 687      77726974 
+ 687      65207866 
+ 687      65722072 
+ 687      6573756C 
+ 688              	.LC5:
+ 689 00a4 42797465 		.ascii	"Byte count 0x%02X to write, 0x%02X written\015\012\000"
+ 689      20636F75 
+ 689      6E742030 
+ 689      78253032 
+ 689      5820746F 
+ 690 00d1 000000   		.space	3
+ 691              	.LC6:
+ 692 00d4 49324320 		.ascii	"I2C read cmd result: 0x%04X\015\012\000"
+ 692      72656164 
+ 692      20636D64 
+ 692      20726573 
+ 692      756C743A 
+ 693 00f2 0000     		.space	2
+ 694              	.LC7:
+ARM GAS  C:\Users\dhous\AppData\Local\Temp\ccKTMeyp.s 			page 19
+
+
+ 695 00f4 49324320 		.ascii	"I2C read xfer result: 0x%04X\015\012\000"
+ 695      72656164 
+ 695      20786665 
+ 695      72207265 
+ 695      73756C74 
+ 696 0113 00       		.space	1
+ 697              	.LC8:
+ 698 0114 42797465 		.ascii	"Byte count 0x%02X to read, 0x%02X read\015\012\000"
+ 698      20636F75 
+ 698      6E742030 
+ 698      78253032 
+ 698      5820746F 
+ 699 013d 000000   		.space	3
+ 700              	.LC9:
+ 701 0140 54696D65 		.ascii	"Timeout flag: 0x%02X\015\012\000"
+ 701      6F757420 
+ 701      666C6167 
+ 701      3A203078 
+ 701      25303258 
+ 702              		.text
+ 703              	.Letext0:
+ 704              		.file 2 "c:\\program files\\cypress\\psoc creator\\4.1\\psoc creator\\import\\gnu\\arm\\5.4.1\\arm
+ 705              		.file 3 "c:\\program files\\cypress\\psoc creator\\4.1\\psoc creator\\import\\gnu\\arm\\5.4.1\\arm
+ 706              		.file 4 "i2c_helper.h"
+ 707              		.file 5 "Generated_Source\\PSoC5/core_cm3.h"
+ 708              		.file 6 "Generated_Source\\PSoC5/I2C.h"
+ 709              		.file 7 "Generated_Source\\PSoC5/UART.h"
+ 710              		.file 8 "c:\\program files\\cypress\\psoc creator\\4.1\\psoc creator\\import\\gnu\\arm\\5.4.1\\arm
+ 711              		.section	.debug_info,"",%progbits
+ 712              	.Ldebug_info0:
+ 713 0000 26080000 		.4byte	0x826
+ 714 0004 0400     		.2byte	0x4
+ 715 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 716 000a 04       		.byte	0x4
+ 717 000b 01       		.uleb128 0x1
+ 718 000c 3E040000 		.4byte	.LASF71
+ 719 0010 0C       		.byte	0xc
+ 720 0011 B4010000 		.4byte	.LASF72
+ 721 0015 0B010000 		.4byte	.LASF73
+ 722 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 723 001d 00000000 		.4byte	0
+ 724 0021 00000000 		.4byte	.Ldebug_line0
+ 725 0025 02       		.uleb128 0x2
+ 726 0026 01       		.byte	0x1
+ 727 0027 06       		.byte	0x6
+ 728 0028 24020000 		.4byte	.LASF0
+ 729 002c 03       		.uleb128 0x3
+ 730 002d AA010000 		.4byte	.LASF3
+ 731 0031 02       		.byte	0x2
+ 732 0032 1D       		.byte	0x1d
+ 733 0033 37000000 		.4byte	0x37
+ 734 0037 02       		.uleb128 0x2
+ 735 0038 01       		.byte	0x1
+ 736 0039 08       		.byte	0x8
+ 737 003a F5010000 		.4byte	.LASF1
+ 738 003e 02       		.uleb128 0x2
+ 739 003f 02       		.byte	0x2
+ARM GAS  C:\Users\dhous\AppData\Local\Temp\ccKTMeyp.s 			page 20
+
+
+ 740 0040 05       		.byte	0x5
+ 741 0041 4C000000 		.4byte	.LASF2
+ 742 0045 03       		.uleb128 0x3
+ 743 0046 74000000 		.4byte	.LASF4
+ 744 004a 02       		.byte	0x2
+ 745 004b 2B       		.byte	0x2b
+ 746 004c 50000000 		.4byte	0x50
+ 747 0050 02       		.uleb128 0x2
+ 748 0051 02       		.byte	0x2
+ 749 0052 07       		.byte	0x7
+ 750 0053 AB020000 		.4byte	.LASF5
+ 751 0057 03       		.uleb128 0x3
+ 752 0058 CB030000 		.4byte	.LASF6
+ 753 005c 02       		.byte	0x2
+ 754 005d 3F       		.byte	0x3f
+ 755 005e 62000000 		.4byte	0x62
+ 756 0062 02       		.uleb128 0x2
+ 757 0063 04       		.byte	0x4
+ 758 0064 05       		.byte	0x5
+ 759 0065 83010000 		.4byte	.LASF7
+ 760 0069 03       		.uleb128 0x3
+ 761 006a 69000000 		.4byte	.LASF8
+ 762 006e 02       		.byte	0x2
+ 763 006f 41       		.byte	0x41
+ 764 0070 74000000 		.4byte	0x74
+ 765 0074 02       		.uleb128 0x2
+ 766 0075 04       		.byte	0x4
+ 767 0076 07       		.byte	0x7
+ 768 0077 6B030000 		.4byte	.LASF9
+ 769 007b 02       		.uleb128 0x2
+ 770 007c 08       		.byte	0x8
+ 771 007d 05       		.byte	0x5
+ 772 007e 4B010000 		.4byte	.LASF10
+ 773 0082 02       		.uleb128 0x2
+ 774 0083 08       		.byte	0x8
+ 775 0084 07       		.byte	0x7
+ 776 0085 59010000 		.4byte	.LASF11
+ 777 0089 04       		.uleb128 0x4
+ 778 008a 04       		.byte	0x4
+ 779 008b 05       		.byte	0x5
+ 780 008c 696E7400 		.ascii	"int\000"
+ 781 0090 02       		.uleb128 0x2
+ 782 0091 04       		.byte	0x4
+ 783 0092 07       		.byte	0x7
+ 784 0093 6B020000 		.4byte	.LASF12
+ 785 0097 03       		.uleb128 0x3
+ 786 0098 DC000000 		.4byte	.LASF13
+ 787 009c 03       		.byte	0x3
+ 788 009d 18       		.byte	0x18
+ 789 009e 2C000000 		.4byte	0x2c
+ 790 00a2 03       		.uleb128 0x3
+ 791 00a3 88020000 		.4byte	.LASF14
+ 792 00a7 03       		.byte	0x3
+ 793 00a8 24       		.byte	0x24
+ 794 00a9 45000000 		.4byte	0x45
+ 795 00ad 03       		.uleb128 0x3
+ 796 00ae D5020000 		.4byte	.LASF15
+ARM GAS  C:\Users\dhous\AppData\Local\Temp\ccKTMeyp.s 			page 21
+
+
+ 797 00b2 03       		.byte	0x3
+ 798 00b3 2C       		.byte	0x2c
+ 799 00b4 57000000 		.4byte	0x57
+ 800 00b8 03       		.uleb128 0x3
+ 801 00b9 4C020000 		.4byte	.LASF16
+ 802 00bd 03       		.byte	0x3
+ 803 00be 30       		.byte	0x30
+ 804 00bf 69000000 		.4byte	0x69
+ 805 00c3 02       		.uleb128 0x2
+ 806 00c4 04       		.byte	0x4
+ 807 00c5 04       		.byte	0x4
+ 808 00c6 00000000 		.4byte	.LASF17
+ 809 00ca 02       		.uleb128 0x2
+ 810 00cb 08       		.byte	0x8
+ 811 00cc 04       		.byte	0x4
+ 812 00cd 83030000 		.4byte	.LASF18
+ 813 00d1 02       		.uleb128 0x2
+ 814 00d2 01       		.byte	0x1
+ 815 00d3 08       		.byte	0x8
+ 816 00d4 70010000 		.4byte	.LASF19
+ 817 00d8 02       		.uleb128 0x2
+ 818 00d9 08       		.byte	0x8
+ 819 00da 04       		.byte	0x4
+ 820 00db D7010000 		.4byte	.LASF20
+ 821 00df 02       		.uleb128 0x2
+ 822 00e0 04       		.byte	0x4
+ 823 00e1 07       		.byte	0x7
+ 824 00e2 56000000 		.4byte	.LASF21
+ 825 00e6 05       		.uleb128 0x5
+ 826 00e7 B8000000 		.4byte	0xb8
+ 827 00eb 06       		.uleb128 0x6
+ 828 00ec B9030000 		.4byte	.LASF74
+ 829 00f0 01       		.byte	0x1
+ 830 00f1 37000000 		.4byte	0x37
+ 831 00f5 04       		.byte	0x4
+ 832 00f6 0B       		.byte	0xb
+ 833 00f7 14010000 		.4byte	0x114
+ 834 00fb 07       		.uleb128 0x7
+ 835 00fc 9F030000 		.4byte	.LASF22
+ 836 0100 00       		.byte	0
+ 837 0101 07       		.uleb128 0x7
+ 838 0102 E3040000 		.4byte	.LASF23
+ 839 0106 01       		.byte	0x1
+ 840 0107 07       		.uleb128 0x7
+ 841 0108 DD020000 		.4byte	.LASF24
+ 842 010c 02       		.byte	0x2
+ 843 010d 07       		.uleb128 0x7
+ 844 010e D5030000 		.4byte	.LASF25
+ 845 0112 03       		.byte	0x3
+ 846 0113 00       		.byte	0
+ 847 0114 08       		.uleb128 0x8
+ 848 0115 12       		.byte	0x12
+ 849 0116 04       		.byte	0x4
+ 850 0117 14       		.byte	0x14
+ 851 0118 AC010000 		.4byte	0x1ac
+ 852 011c 09       		.uleb128 0x9
+ 853 011d D5040000 		.4byte	.LASF26
+ARM GAS  C:\Users\dhous\AppData\Local\Temp\ccKTMeyp.s 			page 22
+
+
+ 854 0121 04       		.byte	0x4
+ 855 0122 15       		.byte	0x15
+ 856 0123 A2000000 		.4byte	0xa2
+ 857 0127 00       		.byte	0
+ 858 0128 09       		.uleb128 0x9
+ 859 0129 36000000 		.4byte	.LASF27
+ 860 012d 04       		.byte	0x4
+ 861 012e 16       		.byte	0x16
+ 862 012f A2000000 		.4byte	0xa2
+ 863 0133 02       		.byte	0x2
+ 864 0134 09       		.uleb128 0x9
+ 865 0135 95010000 		.4byte	.LASF28
+ 866 0139 04       		.byte	0x4
+ 867 013a 17       		.byte	0x17
+ 868 013b A2000000 		.4byte	0xa2
+ 869 013f 04       		.byte	0x4
+ 870 0140 09       		.uleb128 0x9
+ 871 0141 9A020000 		.4byte	.LASF29
+ 872 0145 04       		.byte	0x4
+ 873 0146 18       		.byte	0x18
+ 874 0147 A2000000 		.4byte	0xa2
+ 875 014b 06       		.byte	0x6
+ 876 014c 09       		.uleb128 0x9
+ 877 014d 78020000 		.4byte	.LASF30
+ 878 0151 04       		.byte	0x4
+ 879 0152 19       		.byte	0x19
+ 880 0153 A2000000 		.4byte	0xa2
+ 881 0157 08       		.byte	0x8
+ 882 0158 09       		.uleb128 0x9
+ 883 0159 EC030000 		.4byte	.LASF31
+ 884 015d 04       		.byte	0x4
+ 885 015e 1A       		.byte	0x1a
+ 886 015f 97000000 		.4byte	0x97
+ 887 0163 0A       		.byte	0xa
+ 888 0164 09       		.uleb128 0x9
+ 889 0165 1E030000 		.4byte	.LASF32
+ 890 0169 04       		.byte	0x4
+ 891 016a 1B       		.byte	0x1b
+ 892 016b 97000000 		.4byte	0x97
+ 893 016f 0B       		.byte	0xb
+ 894 0170 09       		.uleb128 0x9
+ 895 0171 10030000 		.4byte	.LASF33
+ 896 0175 04       		.byte	0x4
+ 897 0176 1C       		.byte	0x1c
+ 898 0177 97000000 		.4byte	0x97
+ 899 017b 0C       		.byte	0xc
+ 900 017c 09       		.uleb128 0x9
+ 901 017d 00010000 		.4byte	.LASF34
+ 902 0181 04       		.byte	0x4
+ 903 0182 1D       		.byte	0x1d
+ 904 0183 97000000 		.4byte	0x97
+ 905 0187 0D       		.byte	0xd
+ 906 0188 09       		.uleb128 0x9
+ 907 0189 14000000 		.4byte	.LASF35
+ 908 018d 04       		.byte	0x4
+ 909 018e 1E       		.byte	0x1e
+ 910 018f 97000000 		.4byte	0x97
+ARM GAS  C:\Users\dhous\AppData\Local\Temp\ccKTMeyp.s 			page 23
+
+
+ 911 0193 0E       		.byte	0xe
+ 912 0194 0A       		.uleb128 0xa
+ 913 0195 6F6B00   		.ascii	"ok\000"
+ 914 0198 04       		.byte	0x4
+ 915 0199 1F       		.byte	0x1f
+ 916 019a 97000000 		.4byte	0x97
+ 917 019e 0F       		.byte	0xf
+ 918 019f 09       		.uleb128 0x9
+ 919 01a0 06030000 		.4byte	.LASF36
+ 920 01a4 04       		.byte	0x4
+ 921 01a5 20       		.byte	0x20
+ 922 01a6 EB000000 		.4byte	0xeb
+ 923 01aa 10       		.byte	0x10
+ 924 01ab 00       		.byte	0
+ 925 01ac 03       		.uleb128 0x3
+ 926 01ad 22000000 		.4byte	.LASF37
+ 927 01b1 04       		.byte	0x4
+ 928 01b2 21       		.byte	0x21
+ 929 01b3 14010000 		.4byte	0x114
+ 930 01b7 0B       		.uleb128 0xb
+ 931 01b8 C1010000 		.4byte	.LASF38
+ 932 01bc 01       		.byte	0x1
+ 933 01bd 05       		.byte	0x5
+ 934 01be 00000000 		.4byte	.LFB64
+ 935 01c2 1C000000 		.4byte	.LFE64-.LFB64
+ 936 01c6 01       		.uleb128 0x1
+ 937 01c7 9C       		.byte	0x9c
+ 938 01c8 DA010000 		.4byte	0x1da
+ 939 01cc 0C       		.uleb128 0xc
+ 940 01cd FA020000 		.4byte	.LASF40
+ 941 01d1 01       		.byte	0x1
+ 942 01d2 05       		.byte	0x5
+ 943 01d3 DA010000 		.4byte	0x1da
+ 944 01d7 01       		.uleb128 0x1
+ 945 01d8 50       		.byte	0x50
+ 946 01d9 00       		.byte	0
+ 947 01da 0D       		.uleb128 0xd
+ 948 01db 04       		.byte	0x4
+ 949 01dc AC010000 		.4byte	0x1ac
+ 950 01e0 0B       		.uleb128 0xb
+ 951 01e1 8E000000 		.4byte	.LASF39
+ 952 01e5 01       		.byte	0x1
+ 953 01e6 16       		.byte	0x16
+ 954 01e7 00000000 		.4byte	.LFB65
+ 955 01eb 62000000 		.4byte	.LFE65-.LFB65
+ 956 01ef 01       		.uleb128 0x1
+ 957 01f0 9C       		.byte	0x9c
+ 958 01f1 1C020000 		.4byte	0x21c
+ 959 01f5 0C       		.uleb128 0xc
+ 960 01f6 FA020000 		.4byte	.LASF40
+ 961 01fa 01       		.byte	0x1
+ 962 01fb 16       		.byte	0x16
+ 963 01fc DA010000 		.4byte	0x1da
+ 964 0200 01       		.uleb128 0x1
+ 965 0201 50       		.byte	0x50
+ 966 0202 0E       		.uleb128 0xe
+ 967 0203 4C000000 		.4byte	.LBB2
+ARM GAS  C:\Users\dhous\AppData\Local\Temp\ccKTMeyp.s 			page 24
+
+
+ 968 0207 16000000 		.4byte	.LBE2-.LBB2
+ 969 020b 0F       		.uleb128 0xf
+ 970 020c 7F000000 		.4byte	.LASF45
+ 971 0210 01       		.byte	0x1
+ 972 0211 3A       		.byte	0x3a
+ 973 0212 A2000000 		.4byte	0xa2
+ 974 0216 00000000 		.4byte	.LLST0
+ 975 021a 00       		.byte	0
+ 976 021b 00       		.byte	0
+ 977 021c 0B       		.uleb128 0xb
+ 978 021d 5F000000 		.4byte	.LASF41
+ 979 0221 01       		.byte	0x1
+ 980 0222 45       		.byte	0x45
+ 981 0223 00000000 		.4byte	.LFB66
+ 982 0227 7C000000 		.4byte	.LFE66-.LFB66
+ 983 022b 01       		.uleb128 0x1
+ 984 022c 9C       		.byte	0x9c
+ 985 022d 14030000 		.4byte	0x314
+ 986 0231 10       		.uleb128 0x10
+ 987 0232 75010000 		.4byte	.LASF42
+ 988 0236 01       		.byte	0x1
+ 989 0237 45       		.byte	0x45
+ 990 0238 97000000 		.4byte	0x97
+ 991 023c 14000000 		.4byte	.LLST1
+ 992 0240 10       		.uleb128 0x10
+ 993 0241 7D030000 		.4byte	.LASF43
+ 994 0245 01       		.byte	0x1
+ 995 0246 45       		.byte	0x45
+ 996 0247 14030000 		.4byte	0x314
+ 997 024b 35000000 		.4byte	.LLST2
+ 998 024f 10       		.uleb128 0x10
+ 999 0250 60030000 		.4byte	.LASF44
+ 1000 0254 01       		.byte	0x1
+ 1001 0255 45       		.byte	0x45
+ 1002 0256 97000000 		.4byte	0x97
+ 1003 025a 61000000 		.4byte	.LLST3
+ 1004 025e 10       		.uleb128 0x10
+ 1005 025f FA020000 		.4byte	.LASF40
+ 1006 0263 01       		.byte	0x1
+ 1007 0264 45       		.byte	0x45
+ 1008 0265 DA010000 		.4byte	0x1da
+ 1009 0269 82000000 		.4byte	.LLST4
+ 1010 026d 0F       		.uleb128 0xf
+ 1011 026e E4000000 		.4byte	.LASF46
+ 1012 0272 01       		.byte	0x1
+ 1013 0273 48       		.byte	0x48
+ 1014 0274 B8000000 		.4byte	0xb8
+ 1015 0278 AE000000 		.4byte	.LLST5
+ 1016 027c 0F       		.uleb128 0xf
+ 1017 027d 93030000 		.4byte	.LASF47
+ 1018 0281 01       		.byte	0x1
+ 1019 0282 49       		.byte	0x49
+ 1020 0283 97000000 		.4byte	0x97
+ 1021 0287 C1000000 		.4byte	.LLST6
+ 1022 028b 11       		.uleb128 0x11
+ 1023 028c 0E000000 		.4byte	.LVL6
+ 1024 0290 BB070000 		.4byte	0x7bb
+ARM GAS  C:\Users\dhous\AppData\Local\Temp\ccKTMeyp.s 			page 25
+
+
+ 1025 0294 11       		.uleb128 0x11
+ 1026 0295 12000000 		.4byte	.LVL7
+ 1027 0299 C6070000 		.4byte	0x7c6
+ 1028 029d 11       		.uleb128 0x11
+ 1029 029e 16000000 		.4byte	.LVL8
+ 1030 02a2 D1070000 		.4byte	0x7d1
+ 1031 02a6 12       		.uleb128 0x12
+ 1032 02a7 1C000000 		.4byte	.LVL9
+ 1033 02ab B7010000 		.4byte	0x1b7
+ 1034 02af BA020000 		.4byte	0x2ba
+ 1035 02b3 13       		.uleb128 0x13
+ 1036 02b4 01       		.uleb128 0x1
+ 1037 02b5 50       		.byte	0x50
+ 1038 02b6 02       		.uleb128 0x2
+ 1039 02b7 74       		.byte	0x74
+ 1040 02b8 00       		.sleb128 0
+ 1041 02b9 00       		.byte	0
+ 1042 02ba 12       		.uleb128 0x12
+ 1043 02bb 32000000 		.4byte	.LVL10
+ 1044 02bf DC070000 		.4byte	0x7dc
+ 1045 02c3 DF020000 		.4byte	0x2df
+ 1046 02c7 13       		.uleb128 0x13
+ 1047 02c8 01       		.uleb128 0x1
+ 1048 02c9 50       		.byte	0x50
+ 1049 02ca 02       		.uleb128 0x2
+ 1050 02cb 76       		.byte	0x76
+ 1051 02cc 00       		.sleb128 0
+ 1052 02cd 13       		.uleb128 0x13
+ 1053 02ce 01       		.uleb128 0x1
+ 1054 02cf 51       		.byte	0x51
+ 1055 02d0 02       		.uleb128 0x2
+ 1056 02d1 77       		.byte	0x77
+ 1057 02d2 00       		.sleb128 0
+ 1058 02d3 13       		.uleb128 0x13
+ 1059 02d4 01       		.uleb128 0x1
+ 1060 02d5 52       		.byte	0x52
+ 1061 02d6 02       		.uleb128 0x2
+ 1062 02d7 75       		.byte	0x75
+ 1063 02d8 00       		.sleb128 0
+ 1064 02d9 13       		.uleb128 0x13
+ 1065 02da 01       		.uleb128 0x1
+ 1066 02db 53       		.byte	0x53
+ 1067 02dc 01       		.uleb128 0x1
+ 1068 02dd 30       		.byte	0x30
+ 1069 02de 00       		.byte	0
+ 1070 02df 11       		.uleb128 0x11
+ 1071 02e0 38000000 		.4byte	.LVL11
+ 1072 02e4 E7070000 		.4byte	0x7e7
+ 1073 02e8 11       		.uleb128 0x11
+ 1074 02e9 62000000 		.4byte	.LVL15
+ 1075 02ed E7070000 		.4byte	0x7e7
+ 1076 02f1 11       		.uleb128 0x11
+ 1077 02f2 6A000000 		.4byte	.LVL16
+ 1078 02f6 F2070000 		.4byte	0x7f2
+ 1079 02fa 11       		.uleb128 0x11
+ 1080 02fb 70000000 		.4byte	.LVL17
+ 1081 02ff BB070000 		.4byte	0x7bb
+ARM GAS  C:\Users\dhous\AppData\Local\Temp\ccKTMeyp.s 			page 26
+
+
+ 1082 0303 14       		.uleb128 0x14
+ 1083 0304 76000000 		.4byte	.LVL18
+ 1084 0308 E0010000 		.4byte	0x1e0
+ 1085 030c 13       		.uleb128 0x13
+ 1086 030d 01       		.uleb128 0x1
+ 1087 030e 50       		.byte	0x50
+ 1088 030f 02       		.uleb128 0x2
+ 1089 0310 74       		.byte	0x74
+ 1090 0311 00       		.sleb128 0
+ 1091 0312 00       		.byte	0
+ 1092 0313 00       		.byte	0
+ 1093 0314 0D       		.uleb128 0xd
+ 1094 0315 04       		.byte	0x4
+ 1095 0316 97000000 		.4byte	0x97
+ 1096 031a 0B       		.uleb128 0xb
+ 1097 031b CC040000 		.4byte	.LASF48
+ 1098 031f 01       		.byte	0x1
+ 1099 0320 80       		.byte	0x80
+ 1100 0321 00000000 		.4byte	.LFB67
+ 1101 0325 BC000000 		.4byte	.LFE67-.LFB67
+ 1102 0329 01       		.uleb128 0x1
+ 1103 032a 9C       		.byte	0x9c
+ 1104 032b 9D040000 		.4byte	0x49d
+ 1105 032f 10       		.uleb128 0x10
+ 1106 0330 75010000 		.4byte	.LASF42
+ 1107 0334 01       		.byte	0x1
+ 1108 0335 80       		.byte	0x80
+ 1109 0336 97000000 		.4byte	0x97
+ 1110 033a E0000000 		.4byte	.LLST7
+ 1111 033e 10       		.uleb128 0x10
+ 1112 033f 57030000 		.4byte	.LASF49
+ 1113 0343 01       		.byte	0x1
+ 1114 0344 80       		.byte	0x80
+ 1115 0345 14030000 		.4byte	0x314
+ 1116 0349 01010000 		.4byte	.LLST8
+ 1117 034d 10       		.uleb128 0x10
+ 1118 034e 8A030000 		.4byte	.LASF50
+ 1119 0352 01       		.byte	0x1
+ 1120 0353 80       		.byte	0x80
+ 1121 0354 97000000 		.4byte	0x97
+ 1122 0358 2D010000 		.4byte	.LLST9
+ 1123 035c 10       		.uleb128 0x10
+ 1124 035d 30020000 		.4byte	.LASF51
+ 1125 0361 01       		.byte	0x1
+ 1126 0362 80       		.byte	0x80
+ 1127 0363 14030000 		.4byte	0x314
+ 1128 0367 4E010000 		.4byte	.LLST10
+ 1129 036b 10       		.uleb128 0x10
+ 1130 036c 91020000 		.4byte	.LASF52
+ 1131 0370 01       		.byte	0x1
+ 1132 0371 80       		.byte	0x80
+ 1133 0372 97000000 		.4byte	0x97
+ 1134 0376 7A010000 		.4byte	.LLST11
+ 1135 037a 10       		.uleb128 0x10
+ 1136 037b FA020000 		.4byte	.LASF40
+ 1137 037f 01       		.byte	0x1
+ 1138 0380 80       		.byte	0x80
+ARM GAS  C:\Users\dhous\AppData\Local\Temp\ccKTMeyp.s 			page 27
+
+
+ 1139 0381 DA010000 		.4byte	0x1da
+ 1140 0385 9A010000 		.4byte	.LLST12
+ 1141 0389 10       		.uleb128 0x10
+ 1142 038a 13040000 		.4byte	.LASF53
+ 1143 038e 01       		.byte	0x1
+ 1144 038f 80       		.byte	0x80
+ 1145 0390 97000000 		.4byte	0x97
+ 1146 0394 BA010000 		.4byte	.LLST13
+ 1147 0398 10       		.uleb128 0x10
+ 1148 0399 06000000 		.4byte	.LASF54
+ 1149 039d 01       		.byte	0x1
+ 1150 039e 80       		.byte	0x80
+ 1151 039f 97000000 		.4byte	0x97
+ 1152 03a3 DA010000 		.4byte	.LLST14
+ 1153 03a7 0F       		.uleb128 0xf
+ 1154 03a8 93030000 		.4byte	.LASF47
+ 1155 03ac 01       		.byte	0x1
+ 1156 03ad 82       		.byte	0x82
+ 1157 03ae 97000000 		.4byte	0x97
+ 1158 03b2 FA010000 		.4byte	.LLST15
+ 1159 03b6 0F       		.uleb128 0xf
+ 1160 03b7 E4000000 		.4byte	.LASF46
+ 1161 03bb 01       		.byte	0x1
+ 1162 03bc 83       		.byte	0x83
+ 1163 03bd B8000000 		.4byte	0xb8
+ 1164 03c1 19020000 		.4byte	.LLST16
+ 1165 03c5 11       		.uleb128 0x11
+ 1166 03c6 16000000 		.4byte	.LVL22
+ 1167 03ca BB070000 		.4byte	0x7bb
+ 1168 03ce 11       		.uleb128 0x11
+ 1169 03cf 1A000000 		.4byte	.LVL23
+ 1170 03d3 C6070000 		.4byte	0x7c6
+ 1171 03d7 11       		.uleb128 0x11
+ 1172 03d8 1E000000 		.4byte	.LVL24
+ 1173 03dc D1070000 		.4byte	0x7d1
+ 1174 03e0 12       		.uleb128 0x12
+ 1175 03e1 24000000 		.4byte	.LVL25
+ 1176 03e5 B7010000 		.4byte	0x1b7
+ 1177 03e9 F4030000 		.4byte	0x3f4
+ 1178 03ed 13       		.uleb128 0x13
+ 1179 03ee 01       		.uleb128 0x1
+ 1180 03ef 50       		.byte	0x50
+ 1181 03f0 02       		.uleb128 0x2
+ 1182 03f1 74       		.byte	0x74
+ 1183 03f2 00       		.sleb128 0
+ 1184 03f3 00       		.byte	0
+ 1185 03f4 12       		.uleb128 0x12
+ 1186 03f5 40000000 		.4byte	.LVL26
+ 1187 03f9 DC070000 		.4byte	0x7dc
+ 1188 03fd 1C040000 		.4byte	0x41c
+ 1189 0401 13       		.uleb128 0x13
+ 1190 0402 01       		.uleb128 0x1
+ 1191 0403 50       		.byte	0x50
+ 1192 0404 02       		.uleb128 0x2
+ 1193 0405 75       		.byte	0x75
+ 1194 0406 00       		.sleb128 0
+ 1195 0407 13       		.uleb128 0x13
+ARM GAS  C:\Users\dhous\AppData\Local\Temp\ccKTMeyp.s 			page 28
+
+
+ 1196 0408 01       		.uleb128 0x1
+ 1197 0409 51       		.byte	0x51
+ 1198 040a 02       		.uleb128 0x2
+ 1199 040b 79       		.byte	0x79
+ 1200 040c 00       		.sleb128 0
+ 1201 040d 13       		.uleb128 0x13
+ 1202 040e 01       		.uleb128 0x1
+ 1203 040f 52       		.byte	0x52
+ 1204 0410 02       		.uleb128 0x2
+ 1205 0411 77       		.byte	0x77
+ 1206 0412 00       		.sleb128 0
+ 1207 0413 13       		.uleb128 0x13
+ 1208 0414 01       		.uleb128 0x1
+ 1209 0415 53       		.byte	0x53
+ 1210 0416 04       		.uleb128 0x4
+ 1211 0417 91       		.byte	0x91
+ 1212 0418 08       		.sleb128 8
+ 1213 0419 94       		.byte	0x94
+ 1214 041a 01       		.byte	0x1
+ 1215 041b 00       		.byte	0
+ 1216 041c 11       		.uleb128 0x11
+ 1217 041d 46000000 		.4byte	.LVL27
+ 1218 0421 E7070000 		.4byte	0x7e7
+ 1219 0425 11       		.uleb128 0x11
+ 1220 0426 5A000000 		.4byte	.LVL28
+ 1221 042a F2070000 		.4byte	0x7f2
+ 1222 042e 11       		.uleb128 0x11
+ 1223 042f 60000000 		.4byte	.LVL29
+ 1224 0433 E7070000 		.4byte	0x7e7
+ 1225 0437 11       		.uleb128 0x11
+ 1226 0438 66000000 		.4byte	.LVL30
+ 1227 043c BB070000 		.4byte	0x7bb
+ 1228 0440 12       		.uleb128 0x12
+ 1229 0441 74000000 		.4byte	.LVL31
+ 1230 0445 FD070000 		.4byte	0x7fd
+ 1231 0449 68040000 		.4byte	0x468
+ 1232 044d 13       		.uleb128 0x13
+ 1233 044e 01       		.uleb128 0x1
+ 1234 044f 50       		.byte	0x50
+ 1235 0450 02       		.uleb128 0x2
+ 1236 0451 75       		.byte	0x75
+ 1237 0452 00       		.sleb128 0
+ 1238 0453 13       		.uleb128 0x13
+ 1239 0454 01       		.uleb128 0x1
+ 1240 0455 51       		.byte	0x51
+ 1241 0456 02       		.uleb128 0x2
+ 1242 0457 78       		.byte	0x78
+ 1243 0458 00       		.sleb128 0
+ 1244 0459 13       		.uleb128 0x13
+ 1245 045a 01       		.uleb128 0x1
+ 1246 045b 52       		.byte	0x52
+ 1247 045c 02       		.uleb128 0x2
+ 1248 045d 76       		.byte	0x76
+ 1249 045e 00       		.sleb128 0
+ 1250 045f 13       		.uleb128 0x13
+ 1251 0460 01       		.uleb128 0x1
+ 1252 0461 53       		.byte	0x53
+ARM GAS  C:\Users\dhous\AppData\Local\Temp\ccKTMeyp.s 			page 29
+
+
+ 1253 0462 04       		.uleb128 0x4
+ 1254 0463 91       		.byte	0x91
+ 1255 0464 0C       		.sleb128 12
+ 1256 0465 94       		.byte	0x94
+ 1257 0466 01       		.byte	0x1
+ 1258 0467 00       		.byte	0
+ 1259 0468 11       		.uleb128 0x11
+ 1260 0469 7A000000 		.4byte	.LVL32
+ 1261 046d E7070000 		.4byte	0x7e7
+ 1262 0471 11       		.uleb128 0x11
+ 1263 0472 A2000000 		.4byte	.LVL35
+ 1264 0476 08080000 		.4byte	0x808
+ 1265 047a 11       		.uleb128 0x11
+ 1266 047b A8000000 		.4byte	.LVL36
+ 1267 047f E7070000 		.4byte	0x7e7
+ 1268 0483 11       		.uleb128 0x11
+ 1269 0484 AE000000 		.4byte	.LVL37
+ 1270 0488 BB070000 		.4byte	0x7bb
+ 1271 048c 14       		.uleb128 0x14
+ 1272 048d B4000000 		.4byte	.LVL38
+ 1273 0491 E0010000 		.4byte	0x1e0
+ 1274 0495 13       		.uleb128 0x13
+ 1275 0496 01       		.uleb128 0x1
+ 1276 0497 50       		.byte	0x50
+ 1277 0498 02       		.uleb128 0x2
+ 1278 0499 74       		.byte	0x74
+ 1279 049a 00       		.sleb128 0
+ 1280 049b 00       		.byte	0
+ 1281 049c 00       		.byte	0
+ 1282 049d 0B       		.uleb128 0xb
+ 1283 049e 8C010000 		.4byte	.LASF55
+ 1284 04a2 01       		.byte	0x1
+ 1285 04a3 CD       		.byte	0xcd
+ 1286 04a4 00000000 		.4byte	.LFB68
+ 1287 04a8 7C000000 		.4byte	.LFE68-.LFB68
+ 1288 04ac 01       		.uleb128 0x1
+ 1289 04ad 9C       		.byte	0x9c
+ 1290 04ae 95050000 		.4byte	0x595
+ 1291 04b2 10       		.uleb128 0x10
+ 1292 04b3 75010000 		.4byte	.LASF42
+ 1293 04b7 01       		.byte	0x1
+ 1294 04b8 CD       		.byte	0xcd
+ 1295 04b9 97000000 		.4byte	0x97
+ 1296 04bd 2C020000 		.4byte	.LLST17
+ 1297 04c1 10       		.uleb128 0x10
+ 1298 04c2 7D030000 		.4byte	.LASF43
+ 1299 04c6 01       		.byte	0x1
+ 1300 04c7 CD       		.byte	0xcd
+ 1301 04c8 14030000 		.4byte	0x314
+ 1302 04cc 4D020000 		.4byte	.LLST18
+ 1303 04d0 10       		.uleb128 0x10
+ 1304 04d1 60030000 		.4byte	.LASF44
+ 1305 04d5 01       		.byte	0x1
+ 1306 04d6 CD       		.byte	0xcd
+ 1307 04d7 97000000 		.4byte	0x97
+ 1308 04db 79020000 		.4byte	.LLST19
+ 1309 04df 10       		.uleb128 0x10
+ARM GAS  C:\Users\dhous\AppData\Local\Temp\ccKTMeyp.s 			page 30
+
+
+ 1310 04e0 FA020000 		.4byte	.LASF40
+ 1311 04e4 01       		.byte	0x1
+ 1312 04e5 CD       		.byte	0xcd
+ 1313 04e6 DA010000 		.4byte	0x1da
+ 1314 04ea 9A020000 		.4byte	.LLST20
+ 1315 04ee 0F       		.uleb128 0xf
+ 1316 04ef E4000000 		.4byte	.LASF46
+ 1317 04f3 01       		.byte	0x1
+ 1318 04f4 D0       		.byte	0xd0
+ 1319 04f5 B8000000 		.4byte	0xb8
+ 1320 04f9 C6020000 		.4byte	.LLST21
+ 1321 04fd 0F       		.uleb128 0xf
+ 1322 04fe 93030000 		.4byte	.LASF47
+ 1323 0502 01       		.byte	0x1
+ 1324 0503 D1       		.byte	0xd1
+ 1325 0504 97000000 		.4byte	0x97
+ 1326 0508 D9020000 		.4byte	.LLST22
+ 1327 050c 11       		.uleb128 0x11
+ 1328 050d 0E000000 		.4byte	.LVL42
+ 1329 0511 BB070000 		.4byte	0x7bb
+ 1330 0515 11       		.uleb128 0x11
+ 1331 0516 12000000 		.4byte	.LVL43
+ 1332 051a C6070000 		.4byte	0x7c6
+ 1333 051e 11       		.uleb128 0x11
+ 1334 051f 16000000 		.4byte	.LVL44
+ 1335 0523 D1070000 		.4byte	0x7d1
+ 1336 0527 12       		.uleb128 0x12
+ 1337 0528 1C000000 		.4byte	.LVL45
+ 1338 052c B7010000 		.4byte	0x1b7
+ 1339 0530 3B050000 		.4byte	0x53b
+ 1340 0534 13       		.uleb128 0x13
+ 1341 0535 01       		.uleb128 0x1
+ 1342 0536 50       		.byte	0x50
+ 1343 0537 02       		.uleb128 0x2
+ 1344 0538 74       		.byte	0x74
+ 1345 0539 00       		.sleb128 0
+ 1346 053a 00       		.byte	0
+ 1347 053b 12       		.uleb128 0x12
+ 1348 053c 32000000 		.4byte	.LVL46
+ 1349 0540 FD070000 		.4byte	0x7fd
+ 1350 0544 60050000 		.4byte	0x560
+ 1351 0548 13       		.uleb128 0x13
+ 1352 0549 01       		.uleb128 0x1
+ 1353 054a 50       		.byte	0x50
+ 1354 054b 02       		.uleb128 0x2
+ 1355 054c 76       		.byte	0x76
+ 1356 054d 00       		.sleb128 0
+ 1357 054e 13       		.uleb128 0x13
+ 1358 054f 01       		.uleb128 0x1
+ 1359 0550 51       		.byte	0x51
+ 1360 0551 02       		.uleb128 0x2
+ 1361 0552 77       		.byte	0x77
+ 1362 0553 00       		.sleb128 0
+ 1363 0554 13       		.uleb128 0x13
+ 1364 0555 01       		.uleb128 0x1
+ 1365 0556 52       		.byte	0x52
+ 1366 0557 02       		.uleb128 0x2
+ARM GAS  C:\Users\dhous\AppData\Local\Temp\ccKTMeyp.s 			page 31
+
+
+ 1367 0558 75       		.byte	0x75
+ 1368 0559 00       		.sleb128 0
+ 1369 055a 13       		.uleb128 0x13
+ 1370 055b 01       		.uleb128 0x1
+ 1371 055c 53       		.byte	0x53
+ 1372 055d 01       		.uleb128 0x1
+ 1373 055e 30       		.byte	0x30
+ 1374 055f 00       		.byte	0
+ 1375 0560 11       		.uleb128 0x11
+ 1376 0561 38000000 		.4byte	.LVL47
+ 1377 0565 E7070000 		.4byte	0x7e7
+ 1378 0569 11       		.uleb128 0x11
+ 1379 056a 62000000 		.4byte	.LVL51
+ 1380 056e E7070000 		.4byte	0x7e7
+ 1381 0572 11       		.uleb128 0x11
+ 1382 0573 6A000000 		.4byte	.LVL52
+ 1383 0577 08080000 		.4byte	0x808
+ 1384 057b 11       		.uleb128 0x11
+ 1385 057c 70000000 		.4byte	.LVL53
+ 1386 0580 BB070000 		.4byte	0x7bb
+ 1387 0584 14       		.uleb128 0x14
+ 1388 0585 76000000 		.4byte	.LVL54
+ 1389 0589 E0010000 		.4byte	0x1e0
+ 1390 058d 13       		.uleb128 0x13
+ 1391 058e 01       		.uleb128 0x1
+ 1392 058f 50       		.byte	0x50
+ 1393 0590 02       		.uleb128 0x2
+ 1394 0591 74       		.byte	0x74
+ 1395 0592 00       		.sleb128 0
+ 1396 0593 00       		.byte	0
+ 1397 0594 00       		.byte	0
+ 1398 0595 15       		.uleb128 0x15
+ 1399 0596 C2000000 		.4byte	.LASF56
+ 1400 059a 01       		.byte	0x1
+ 1401 059b 0701     		.2byte	0x107
+ 1402 059d 00000000 		.4byte	.LFB69
+ 1403 05a1 C8000000 		.4byte	.LFE69-.LFB69
+ 1404 05a5 01       		.uleb128 0x1
+ 1405 05a6 9C       		.byte	0x9c
+ 1406 05a7 7E070000 		.4byte	0x77e
+ 1407 05ab 16       		.uleb128 0x16
+ 1408 05ac FA020000 		.4byte	.LASF40
+ 1409 05b0 01       		.byte	0x1
+ 1410 05b1 0701     		.2byte	0x107
+ 1411 05b3 DA010000 		.4byte	0x1da
+ 1412 05b7 F8020000 		.4byte	.LLST23
+ 1413 05bb 17       		.uleb128 0x17
+ 1414 05bc F9000000 		.4byte	.LASF57
+ 1415 05c0 01       		.byte	0x1
+ 1416 05c1 0901     		.2byte	0x109
+ 1417 05c3 7E070000 		.4byte	0x77e
+ 1418 05c7 03       		.uleb128 0x3
+ 1419 05c8 91       		.byte	0x91
+ 1420 05c9 B87F     		.sleb128 -72
+ 1421 05cb 12       		.uleb128 0x12
+ 1422 05cc 10000000 		.4byte	.LVL58
+ 1423 05d0 13080000 		.4byte	0x813
+ARM GAS  C:\Users\dhous\AppData\Local\Temp\ccKTMeyp.s 			page 32
+
+
+ 1424 05d4 E2050000 		.4byte	0x5e2
+ 1425 05d8 13       		.uleb128 0x13
+ 1426 05d9 01       		.uleb128 0x1
+ 1427 05da 50       		.byte	0x50
+ 1428 05db 05       		.uleb128 0x5
+ 1429 05dc 03       		.byte	0x3
+ 1430 05dd 00000000 		.4byte	.LC0
+ 1431 05e1 00       		.byte	0
+ 1432 05e2 12       		.uleb128 0x12
+ 1433 05e3 18000000 		.4byte	.LVL61
+ 1434 05e7 13080000 		.4byte	0x813
+ 1435 05eb F9050000 		.4byte	0x5f9
+ 1436 05ef 13       		.uleb128 0x13
+ 1437 05f0 01       		.uleb128 0x1
+ 1438 05f1 50       		.byte	0x50
+ 1439 05f2 05       		.uleb128 0x5
+ 1440 05f3 03       		.byte	0x3
+ 1441 05f4 20000000 		.4byte	.LC1
+ 1442 05f8 00       		.byte	0
+ 1443 05f9 12       		.uleb128 0x12
+ 1444 05fa 22000000 		.4byte	.LVL62
+ 1445 05fe 1E080000 		.4byte	0x81e
+ 1446 0602 16060000 		.4byte	0x616
+ 1447 0606 13       		.uleb128 0x13
+ 1448 0607 01       		.uleb128 0x1
+ 1449 0608 50       		.byte	0x50
+ 1450 0609 02       		.uleb128 0x2
+ 1451 060a 7D       		.byte	0x7d
+ 1452 060b 00       		.sleb128 0
+ 1453 060c 13       		.uleb128 0x13
+ 1454 060d 01       		.uleb128 0x1
+ 1455 060e 51       		.byte	0x51
+ 1456 060f 05       		.uleb128 0x5
+ 1457 0610 03       		.byte	0x3
+ 1458 0611 48000000 		.4byte	.LC2
+ 1459 0615 00       		.byte	0
+ 1460 0616 12       		.uleb128 0x12
+ 1461 0617 28000000 		.4byte	.LVL63
+ 1462 061b 13080000 		.4byte	0x813
+ 1463 061f 2A060000 		.4byte	0x62a
+ 1464 0623 13       		.uleb128 0x13
+ 1465 0624 01       		.uleb128 0x1
+ 1466 0625 50       		.byte	0x50
+ 1467 0626 02       		.uleb128 0x2
+ 1468 0627 7D       		.byte	0x7d
+ 1469 0628 00       		.sleb128 0
+ 1470 0629 00       		.byte	0
+ 1471 062a 12       		.uleb128 0x12
+ 1472 062b 32000000 		.4byte	.LVL64
+ 1473 062f 1E080000 		.4byte	0x81e
+ 1474 0633 47060000 		.4byte	0x647
+ 1475 0637 13       		.uleb128 0x13
+ 1476 0638 01       		.uleb128 0x1
+ 1477 0639 50       		.byte	0x50
+ 1478 063a 02       		.uleb128 0x2
+ 1479 063b 7D       		.byte	0x7d
+ 1480 063c 00       		.sleb128 0
+ARM GAS  C:\Users\dhous\AppData\Local\Temp\ccKTMeyp.s 			page 33
+
+
+ 1481 063d 13       		.uleb128 0x13
+ 1482 063e 01       		.uleb128 0x1
+ 1483 063f 51       		.byte	0x51
+ 1484 0640 05       		.uleb128 0x5
+ 1485 0641 03       		.byte	0x3
+ 1486 0642 64000000 		.4byte	.LC3
+ 1487 0646 00       		.byte	0
+ 1488 0647 12       		.uleb128 0x12
+ 1489 0648 38000000 		.4byte	.LVL65
+ 1490 064c 13080000 		.4byte	0x813
+ 1491 0650 5B060000 		.4byte	0x65b
+ 1492 0654 13       		.uleb128 0x13
+ 1493 0655 01       		.uleb128 0x1
+ 1494 0656 50       		.byte	0x50
+ 1495 0657 02       		.uleb128 0x2
+ 1496 0658 7D       		.byte	0x7d
+ 1497 0659 00       		.sleb128 0
+ 1498 065a 00       		.byte	0
+ 1499 065b 12       		.uleb128 0x12
+ 1500 065c 42000000 		.4byte	.LVL66
+ 1501 0660 1E080000 		.4byte	0x81e
+ 1502 0664 78060000 		.4byte	0x678
+ 1503 0668 13       		.uleb128 0x13
+ 1504 0669 01       		.uleb128 0x1
+ 1505 066a 50       		.byte	0x50
+ 1506 066b 02       		.uleb128 0x2
+ 1507 066c 7D       		.byte	0x7d
+ 1508 066d 00       		.sleb128 0
+ 1509 066e 13       		.uleb128 0x13
+ 1510 066f 01       		.uleb128 0x1
+ 1511 0670 51       		.byte	0x51
+ 1512 0671 05       		.uleb128 0x5
+ 1513 0672 03       		.byte	0x3
+ 1514 0673 84000000 		.4byte	.LC4
+ 1515 0677 00       		.byte	0
+ 1516 0678 12       		.uleb128 0x12
+ 1517 0679 48000000 		.4byte	.LVL67
+ 1518 067d 13080000 		.4byte	0x813
+ 1519 0681 8C060000 		.4byte	0x68c
+ 1520 0685 13       		.uleb128 0x13
+ 1521 0686 01       		.uleb128 0x1
+ 1522 0687 50       		.byte	0x50
+ 1523 0688 02       		.uleb128 0x2
+ 1524 0689 7D       		.byte	0x7d
+ 1525 068a 00       		.sleb128 0
+ 1526 068b 00       		.byte	0
+ 1527 068c 12       		.uleb128 0x12
+ 1528 068d 54000000 		.4byte	.LVL68
+ 1529 0691 1E080000 		.4byte	0x81e
+ 1530 0695 A9060000 		.4byte	0x6a9
+ 1531 0699 13       		.uleb128 0x13
+ 1532 069a 01       		.uleb128 0x1
+ 1533 069b 50       		.byte	0x50
+ 1534 069c 02       		.uleb128 0x2
+ 1535 069d 7D       		.byte	0x7d
+ 1536 069e 00       		.sleb128 0
+ 1537 069f 13       		.uleb128 0x13
+ARM GAS  C:\Users\dhous\AppData\Local\Temp\ccKTMeyp.s 			page 34
+
+
+ 1538 06a0 01       		.uleb128 0x1
+ 1539 06a1 51       		.byte	0x51
+ 1540 06a2 05       		.uleb128 0x5
+ 1541 06a3 03       		.byte	0x3
+ 1542 06a4 A4000000 		.4byte	.LC5
+ 1543 06a8 00       		.byte	0
+ 1544 06a9 12       		.uleb128 0x12
+ 1545 06aa 5A000000 		.4byte	.LVL69
+ 1546 06ae 13080000 		.4byte	0x813
+ 1547 06b2 BD060000 		.4byte	0x6bd
+ 1548 06b6 13       		.uleb128 0x13
+ 1549 06b7 01       		.uleb128 0x1
+ 1550 06b8 50       		.byte	0x50
+ 1551 06b9 02       		.uleb128 0x2
+ 1552 06ba 7D       		.byte	0x7d
+ 1553 06bb 00       		.sleb128 0
+ 1554 06bc 00       		.byte	0
+ 1555 06bd 12       		.uleb128 0x12
+ 1556 06be 64000000 		.4byte	.LVL70
+ 1557 06c2 1E080000 		.4byte	0x81e
+ 1558 06c6 DA060000 		.4byte	0x6da
+ 1559 06ca 13       		.uleb128 0x13
+ 1560 06cb 01       		.uleb128 0x1
+ 1561 06cc 50       		.byte	0x50
+ 1562 06cd 02       		.uleb128 0x2
+ 1563 06ce 7D       		.byte	0x7d
+ 1564 06cf 00       		.sleb128 0
+ 1565 06d0 13       		.uleb128 0x13
+ 1566 06d1 01       		.uleb128 0x1
+ 1567 06d2 51       		.byte	0x51
+ 1568 06d3 05       		.uleb128 0x5
+ 1569 06d4 03       		.byte	0x3
+ 1570 06d5 D4000000 		.4byte	.LC6
+ 1571 06d9 00       		.byte	0
+ 1572 06da 12       		.uleb128 0x12
+ 1573 06db 6A000000 		.4byte	.LVL71
+ 1574 06df 13080000 		.4byte	0x813
+ 1575 06e3 EE060000 		.4byte	0x6ee
+ 1576 06e7 13       		.uleb128 0x13
+ 1577 06e8 01       		.uleb128 0x1
+ 1578 06e9 50       		.byte	0x50
+ 1579 06ea 02       		.uleb128 0x2
+ 1580 06eb 7D       		.byte	0x7d
+ 1581 06ec 00       		.sleb128 0
+ 1582 06ed 00       		.byte	0
+ 1583 06ee 12       		.uleb128 0x12
+ 1584 06ef 74000000 		.4byte	.LVL72
+ 1585 06f3 1E080000 		.4byte	0x81e
+ 1586 06f7 0B070000 		.4byte	0x70b
+ 1587 06fb 13       		.uleb128 0x13
+ 1588 06fc 01       		.uleb128 0x1
+ 1589 06fd 50       		.byte	0x50
+ 1590 06fe 02       		.uleb128 0x2
+ 1591 06ff 7D       		.byte	0x7d
+ 1592 0700 00       		.sleb128 0
+ 1593 0701 13       		.uleb128 0x13
+ 1594 0702 01       		.uleb128 0x1
+ARM GAS  C:\Users\dhous\AppData\Local\Temp\ccKTMeyp.s 			page 35
+
+
+ 1595 0703 51       		.byte	0x51
+ 1596 0704 05       		.uleb128 0x5
+ 1597 0705 03       		.byte	0x3
+ 1598 0706 F4000000 		.4byte	.LC7
+ 1599 070a 00       		.byte	0
+ 1600 070b 12       		.uleb128 0x12
+ 1601 070c 7A000000 		.4byte	.LVL73
+ 1602 0710 13080000 		.4byte	0x813
+ 1603 0714 1F070000 		.4byte	0x71f
+ 1604 0718 13       		.uleb128 0x13
+ 1605 0719 01       		.uleb128 0x1
+ 1606 071a 50       		.byte	0x50
+ 1607 071b 02       		.uleb128 0x2
+ 1608 071c 7D       		.byte	0x7d
+ 1609 071d 00       		.sleb128 0
+ 1610 071e 00       		.byte	0
+ 1611 071f 12       		.uleb128 0x12
+ 1612 0720 86000000 		.4byte	.LVL74
+ 1613 0724 1E080000 		.4byte	0x81e
+ 1614 0728 3C070000 		.4byte	0x73c
+ 1615 072c 13       		.uleb128 0x13
+ 1616 072d 01       		.uleb128 0x1
+ 1617 072e 50       		.byte	0x50
+ 1618 072f 02       		.uleb128 0x2
+ 1619 0730 7D       		.byte	0x7d
+ 1620 0731 00       		.sleb128 0
+ 1621 0732 13       		.uleb128 0x13
+ 1622 0733 01       		.uleb128 0x1
+ 1623 0734 51       		.byte	0x51
+ 1624 0735 05       		.uleb128 0x5
+ 1625 0736 03       		.byte	0x3
+ 1626 0737 14010000 		.4byte	.LC8
+ 1627 073b 00       		.byte	0
+ 1628 073c 12       		.uleb128 0x12
+ 1629 073d 8C000000 		.4byte	.LVL75
+ 1630 0741 13080000 		.4byte	0x813
+ 1631 0745 50070000 		.4byte	0x750
+ 1632 0749 13       		.uleb128 0x13
+ 1633 074a 01       		.uleb128 0x1
+ 1634 074b 50       		.byte	0x50
+ 1635 074c 02       		.uleb128 0x2
+ 1636 074d 7D       		.byte	0x7d
+ 1637 074e 00       		.sleb128 0
+ 1638 074f 00       		.byte	0
+ 1639 0750 12       		.uleb128 0x12
+ 1640 0751 96000000 		.4byte	.LVL76
+ 1641 0755 1E080000 		.4byte	0x81e
+ 1642 0759 6D070000 		.4byte	0x76d
+ 1643 075d 13       		.uleb128 0x13
+ 1644 075e 01       		.uleb128 0x1
+ 1645 075f 50       		.byte	0x50
+ 1646 0760 02       		.uleb128 0x2
+ 1647 0761 7D       		.byte	0x7d
+ 1648 0762 00       		.sleb128 0
+ 1649 0763 13       		.uleb128 0x13
+ 1650 0764 01       		.uleb128 0x1
+ 1651 0765 51       		.byte	0x51
+ARM GAS  C:\Users\dhous\AppData\Local\Temp\ccKTMeyp.s 			page 36
+
+
+ 1652 0766 05       		.uleb128 0x5
+ 1653 0767 03       		.byte	0x3
+ 1654 0768 40010000 		.4byte	.LC9
+ 1655 076c 00       		.byte	0
+ 1656 076d 14       		.uleb128 0x14
+ 1657 076e 9C000000 		.4byte	.LVL77
+ 1658 0772 13080000 		.4byte	0x813
+ 1659 0776 13       		.uleb128 0x13
+ 1660 0777 01       		.uleb128 0x1
+ 1661 0778 50       		.byte	0x50
+ 1662 0779 02       		.uleb128 0x2
+ 1663 077a 7D       		.byte	0x7d
+ 1664 077b 00       		.sleb128 0
+ 1665 077c 00       		.byte	0
+ 1666 077d 00       		.byte	0
+ 1667 077e 18       		.uleb128 0x18
+ 1668 077f D1000000 		.4byte	0xd1
+ 1669 0783 8E070000 		.4byte	0x78e
+ 1670 0787 19       		.uleb128 0x19
+ 1671 0788 DF000000 		.4byte	0xdf
+ 1672 078c 3F       		.byte	0x3f
+ 1673 078d 00       		.byte	0
+ 1674 078e 1A       		.uleb128 0x1a
+ 1675 078f 31040000 		.4byte	.LASF58
+ 1676 0793 05       		.byte	0x5
+ 1677 0794 1207     		.2byte	0x712
+ 1678 0796 9A070000 		.4byte	0x79a
+ 1679 079a 05       		.uleb128 0x5
+ 1680 079b AD000000 		.4byte	0xad
+ 1681 079f 1B       		.uleb128 0x1b
+ 1682 07a0 22040000 		.4byte	.LASF59
+ 1683 07a4 04       		.byte	0x4
+ 1684 07a5 24       		.byte	0x24
+ 1685 07a6 E6000000 		.4byte	0xe6
+ 1686 07aa 1C       		.uleb128 0x1c
+ 1687 07ab B7000000 		.4byte	.LASF60
+ 1688 07af 04       		.byte	0x4
+ 1689 07b0 26       		.byte	0x26
+ 1690 07b1 AC010000 		.4byte	0x1ac
+ 1691 07b5 05       		.uleb128 0x5
+ 1692 07b6 03       		.byte	0x3
+ 1693 07b7 00000000 		.4byte	I2C_status
+ 1694 07bb 1D       		.uleb128 0x1d
+ 1695 07bc 55020000 		.4byte	.LASF61
+ 1696 07c0 55020000 		.4byte	.LASF61
+ 1697 07c4 06       		.byte	0x6
+ 1698 07c5 A4       		.byte	0xa4
+ 1699 07c6 1D       		.uleb128 0x1d
+ 1700 07c7 BE020000 		.4byte	.LASF62
+ 1701 07cb BE020000 		.4byte	.LASF62
+ 1702 07cf 06       		.byte	0x6
+ 1703 07d0 AD       		.byte	0xad
+ 1704 07d1 1D       		.uleb128 0x1d
+ 1705 07d2 FB030000 		.4byte	.LASF63
+ 1706 07d6 FB030000 		.4byte	.LASF63
+ 1707 07da 06       		.byte	0x6
+ 1708 07db AE       		.byte	0xae
+ARM GAS  C:\Users\dhous\AppData\Local\Temp\ccKTMeyp.s 			page 37
+
+
+ 1709 07dc 1D       		.uleb128 0x1d
+ 1710 07dd 39020000 		.4byte	.LASF64
+ 1711 07e1 39020000 		.4byte	.LASF64
+ 1712 07e5 06       		.byte	0x6
+ 1713 07e6 A7       		.byte	0xa7
+ 1714 07e7 1D       		.uleb128 0x1d
+ 1715 07e8 2C030000 		.4byte	.LASF65
+ 1716 07ec 2C030000 		.4byte	.LASF65
+ 1717 07f0 06       		.byte	0x6
+ 1718 07f1 A3       		.byte	0xa3
+ 1719 07f2 1D       		.uleb128 0x1d
+ 1720 07f3 3D030000 		.4byte	.LASF66
+ 1721 07f7 3D030000 		.4byte	.LASF66
+ 1722 07fb 06       		.byte	0x6
+ 1723 07fc AC       		.byte	0xac
+ 1724 07fd 1D       		.uleb128 0x1d
+ 1725 07fe E3010000 		.4byte	.LASF67
+ 1726 0802 E3010000 		.4byte	.LASF67
+ 1727 0806 06       		.byte	0x6
+ 1728 0807 A9       		.byte	0xa9
+ 1729 0808 1D       		.uleb128 0x1d
+ 1730 0809 03020000 		.4byte	.LASF68
+ 1731 080d 03020000 		.4byte	.LASF68
+ 1732 0811 06       		.byte	0x6
+ 1733 0812 AB       		.byte	0xab
+ 1734 0813 1D       		.uleb128 0x1d
+ 1735 0814 A8000000 		.4byte	.LASF69
+ 1736 0818 A8000000 		.4byte	.LASF69
+ 1737 081c 07       		.byte	0x7
+ 1738 081d 26       		.byte	0x26
+ 1739 081e 1D       		.uleb128 0x1d
+ 1740 081f 1C020000 		.4byte	.LASF70
+ 1741 0823 1C020000 		.4byte	.LASF70
+ 1742 0827 08       		.byte	0x8
+ 1743 0828 E7       		.byte	0xe7
+ 1744 0829 00       		.byte	0
+ 1745              		.section	.debug_abbrev,"",%progbits
+ 1746              	.Ldebug_abbrev0:
+ 1747 0000 01       		.uleb128 0x1
+ 1748 0001 11       		.uleb128 0x11
+ 1749 0002 01       		.byte	0x1
+ 1750 0003 25       		.uleb128 0x25
+ 1751 0004 0E       		.uleb128 0xe
+ 1752 0005 13       		.uleb128 0x13
+ 1753 0006 0B       		.uleb128 0xb
+ 1754 0007 03       		.uleb128 0x3
+ 1755 0008 0E       		.uleb128 0xe
+ 1756 0009 1B       		.uleb128 0x1b
+ 1757 000a 0E       		.uleb128 0xe
+ 1758 000b 55       		.uleb128 0x55
+ 1759 000c 17       		.uleb128 0x17
+ 1760 000d 11       		.uleb128 0x11
+ 1761 000e 01       		.uleb128 0x1
+ 1762 000f 10       		.uleb128 0x10
+ 1763 0010 17       		.uleb128 0x17
+ 1764 0011 00       		.byte	0
+ 1765 0012 00       		.byte	0
+ARM GAS  C:\Users\dhous\AppData\Local\Temp\ccKTMeyp.s 			page 38
+
+
+ 1766 0013 02       		.uleb128 0x2
+ 1767 0014 24       		.uleb128 0x24
+ 1768 0015 00       		.byte	0
+ 1769 0016 0B       		.uleb128 0xb
+ 1770 0017 0B       		.uleb128 0xb
+ 1771 0018 3E       		.uleb128 0x3e
+ 1772 0019 0B       		.uleb128 0xb
+ 1773 001a 03       		.uleb128 0x3
+ 1774 001b 0E       		.uleb128 0xe
+ 1775 001c 00       		.byte	0
+ 1776 001d 00       		.byte	0
+ 1777 001e 03       		.uleb128 0x3
+ 1778 001f 16       		.uleb128 0x16
+ 1779 0020 00       		.byte	0
+ 1780 0021 03       		.uleb128 0x3
+ 1781 0022 0E       		.uleb128 0xe
+ 1782 0023 3A       		.uleb128 0x3a
+ 1783 0024 0B       		.uleb128 0xb
+ 1784 0025 3B       		.uleb128 0x3b
+ 1785 0026 0B       		.uleb128 0xb
+ 1786 0027 49       		.uleb128 0x49
+ 1787 0028 13       		.uleb128 0x13
+ 1788 0029 00       		.byte	0
+ 1789 002a 00       		.byte	0
+ 1790 002b 04       		.uleb128 0x4
+ 1791 002c 24       		.uleb128 0x24
+ 1792 002d 00       		.byte	0
+ 1793 002e 0B       		.uleb128 0xb
+ 1794 002f 0B       		.uleb128 0xb
+ 1795 0030 3E       		.uleb128 0x3e
+ 1796 0031 0B       		.uleb128 0xb
+ 1797 0032 03       		.uleb128 0x3
+ 1798 0033 08       		.uleb128 0x8
+ 1799 0034 00       		.byte	0
+ 1800 0035 00       		.byte	0
+ 1801 0036 05       		.uleb128 0x5
+ 1802 0037 35       		.uleb128 0x35
+ 1803 0038 00       		.byte	0
+ 1804 0039 49       		.uleb128 0x49
+ 1805 003a 13       		.uleb128 0x13
+ 1806 003b 00       		.byte	0
+ 1807 003c 00       		.byte	0
+ 1808 003d 06       		.uleb128 0x6
+ 1809 003e 04       		.uleb128 0x4
+ 1810 003f 01       		.byte	0x1
+ 1811 0040 03       		.uleb128 0x3
+ 1812 0041 0E       		.uleb128 0xe
+ 1813 0042 0B       		.uleb128 0xb
+ 1814 0043 0B       		.uleb128 0xb
+ 1815 0044 49       		.uleb128 0x49
+ 1816 0045 13       		.uleb128 0x13
+ 1817 0046 3A       		.uleb128 0x3a
+ 1818 0047 0B       		.uleb128 0xb
+ 1819 0048 3B       		.uleb128 0x3b
+ 1820 0049 0B       		.uleb128 0xb
+ 1821 004a 01       		.uleb128 0x1
+ 1822 004b 13       		.uleb128 0x13
+ARM GAS  C:\Users\dhous\AppData\Local\Temp\ccKTMeyp.s 			page 39
+
+
+ 1823 004c 00       		.byte	0
+ 1824 004d 00       		.byte	0
+ 1825 004e 07       		.uleb128 0x7
+ 1826 004f 28       		.uleb128 0x28
+ 1827 0050 00       		.byte	0
+ 1828 0051 03       		.uleb128 0x3
+ 1829 0052 0E       		.uleb128 0xe
+ 1830 0053 1C       		.uleb128 0x1c
+ 1831 0054 0B       		.uleb128 0xb
+ 1832 0055 00       		.byte	0
+ 1833 0056 00       		.byte	0
+ 1834 0057 08       		.uleb128 0x8
+ 1835 0058 13       		.uleb128 0x13
+ 1836 0059 01       		.byte	0x1
+ 1837 005a 0B       		.uleb128 0xb
+ 1838 005b 0B       		.uleb128 0xb
+ 1839 005c 3A       		.uleb128 0x3a
+ 1840 005d 0B       		.uleb128 0xb
+ 1841 005e 3B       		.uleb128 0x3b
+ 1842 005f 0B       		.uleb128 0xb
+ 1843 0060 01       		.uleb128 0x1
+ 1844 0061 13       		.uleb128 0x13
+ 1845 0062 00       		.byte	0
+ 1846 0063 00       		.byte	0
+ 1847 0064 09       		.uleb128 0x9
+ 1848 0065 0D       		.uleb128 0xd
+ 1849 0066 00       		.byte	0
+ 1850 0067 03       		.uleb128 0x3
+ 1851 0068 0E       		.uleb128 0xe
+ 1852 0069 3A       		.uleb128 0x3a
+ 1853 006a 0B       		.uleb128 0xb
+ 1854 006b 3B       		.uleb128 0x3b
+ 1855 006c 0B       		.uleb128 0xb
+ 1856 006d 49       		.uleb128 0x49
+ 1857 006e 13       		.uleb128 0x13
+ 1858 006f 38       		.uleb128 0x38
+ 1859 0070 0B       		.uleb128 0xb
+ 1860 0071 00       		.byte	0
+ 1861 0072 00       		.byte	0
+ 1862 0073 0A       		.uleb128 0xa
+ 1863 0074 0D       		.uleb128 0xd
+ 1864 0075 00       		.byte	0
+ 1865 0076 03       		.uleb128 0x3
+ 1866 0077 08       		.uleb128 0x8
+ 1867 0078 3A       		.uleb128 0x3a
+ 1868 0079 0B       		.uleb128 0xb
+ 1869 007a 3B       		.uleb128 0x3b
+ 1870 007b 0B       		.uleb128 0xb
+ 1871 007c 49       		.uleb128 0x49
+ 1872 007d 13       		.uleb128 0x13
+ 1873 007e 38       		.uleb128 0x38
+ 1874 007f 0B       		.uleb128 0xb
+ 1875 0080 00       		.byte	0
+ 1876 0081 00       		.byte	0
+ 1877 0082 0B       		.uleb128 0xb
+ 1878 0083 2E       		.uleb128 0x2e
+ 1879 0084 01       		.byte	0x1
+ARM GAS  C:\Users\dhous\AppData\Local\Temp\ccKTMeyp.s 			page 40
+
+
+ 1880 0085 3F       		.uleb128 0x3f
+ 1881 0086 19       		.uleb128 0x19
+ 1882 0087 03       		.uleb128 0x3
+ 1883 0088 0E       		.uleb128 0xe
+ 1884 0089 3A       		.uleb128 0x3a
+ 1885 008a 0B       		.uleb128 0xb
+ 1886 008b 3B       		.uleb128 0x3b
+ 1887 008c 0B       		.uleb128 0xb
+ 1888 008d 27       		.uleb128 0x27
+ 1889 008e 19       		.uleb128 0x19
+ 1890 008f 11       		.uleb128 0x11
+ 1891 0090 01       		.uleb128 0x1
+ 1892 0091 12       		.uleb128 0x12
+ 1893 0092 06       		.uleb128 0x6
+ 1894 0093 40       		.uleb128 0x40
+ 1895 0094 18       		.uleb128 0x18
+ 1896 0095 9742     		.uleb128 0x2117
+ 1897 0097 19       		.uleb128 0x19
+ 1898 0098 01       		.uleb128 0x1
+ 1899 0099 13       		.uleb128 0x13
+ 1900 009a 00       		.byte	0
+ 1901 009b 00       		.byte	0
+ 1902 009c 0C       		.uleb128 0xc
+ 1903 009d 05       		.uleb128 0x5
+ 1904 009e 00       		.byte	0
+ 1905 009f 03       		.uleb128 0x3
+ 1906 00a0 0E       		.uleb128 0xe
+ 1907 00a1 3A       		.uleb128 0x3a
+ 1908 00a2 0B       		.uleb128 0xb
+ 1909 00a3 3B       		.uleb128 0x3b
+ 1910 00a4 0B       		.uleb128 0xb
+ 1911 00a5 49       		.uleb128 0x49
+ 1912 00a6 13       		.uleb128 0x13
+ 1913 00a7 02       		.uleb128 0x2
+ 1914 00a8 18       		.uleb128 0x18
+ 1915 00a9 00       		.byte	0
+ 1916 00aa 00       		.byte	0
+ 1917 00ab 0D       		.uleb128 0xd
+ 1918 00ac 0F       		.uleb128 0xf
+ 1919 00ad 00       		.byte	0
+ 1920 00ae 0B       		.uleb128 0xb
+ 1921 00af 0B       		.uleb128 0xb
+ 1922 00b0 49       		.uleb128 0x49
+ 1923 00b1 13       		.uleb128 0x13
+ 1924 00b2 00       		.byte	0
+ 1925 00b3 00       		.byte	0
+ 1926 00b4 0E       		.uleb128 0xe
+ 1927 00b5 0B       		.uleb128 0xb
+ 1928 00b6 01       		.byte	0x1
+ 1929 00b7 11       		.uleb128 0x11
+ 1930 00b8 01       		.uleb128 0x1
+ 1931 00b9 12       		.uleb128 0x12
+ 1932 00ba 06       		.uleb128 0x6
+ 1933 00bb 00       		.byte	0
+ 1934 00bc 00       		.byte	0
+ 1935 00bd 0F       		.uleb128 0xf
+ 1936 00be 34       		.uleb128 0x34
+ARM GAS  C:\Users\dhous\AppData\Local\Temp\ccKTMeyp.s 			page 41
+
+
+ 1937 00bf 00       		.byte	0
+ 1938 00c0 03       		.uleb128 0x3
+ 1939 00c1 0E       		.uleb128 0xe
+ 1940 00c2 3A       		.uleb128 0x3a
+ 1941 00c3 0B       		.uleb128 0xb
+ 1942 00c4 3B       		.uleb128 0x3b
+ 1943 00c5 0B       		.uleb128 0xb
+ 1944 00c6 49       		.uleb128 0x49
+ 1945 00c7 13       		.uleb128 0x13
+ 1946 00c8 02       		.uleb128 0x2
+ 1947 00c9 17       		.uleb128 0x17
+ 1948 00ca 00       		.byte	0
+ 1949 00cb 00       		.byte	0
+ 1950 00cc 10       		.uleb128 0x10
+ 1951 00cd 05       		.uleb128 0x5
+ 1952 00ce 00       		.byte	0
+ 1953 00cf 03       		.uleb128 0x3
+ 1954 00d0 0E       		.uleb128 0xe
+ 1955 00d1 3A       		.uleb128 0x3a
+ 1956 00d2 0B       		.uleb128 0xb
+ 1957 00d3 3B       		.uleb128 0x3b
+ 1958 00d4 0B       		.uleb128 0xb
+ 1959 00d5 49       		.uleb128 0x49
+ 1960 00d6 13       		.uleb128 0x13
+ 1961 00d7 02       		.uleb128 0x2
+ 1962 00d8 17       		.uleb128 0x17
+ 1963 00d9 00       		.byte	0
+ 1964 00da 00       		.byte	0
+ 1965 00db 11       		.uleb128 0x11
+ 1966 00dc 898201   		.uleb128 0x4109
+ 1967 00df 00       		.byte	0
+ 1968 00e0 11       		.uleb128 0x11
+ 1969 00e1 01       		.uleb128 0x1
+ 1970 00e2 31       		.uleb128 0x31
+ 1971 00e3 13       		.uleb128 0x13
+ 1972 00e4 00       		.byte	0
+ 1973 00e5 00       		.byte	0
+ 1974 00e6 12       		.uleb128 0x12
+ 1975 00e7 898201   		.uleb128 0x4109
+ 1976 00ea 01       		.byte	0x1
+ 1977 00eb 11       		.uleb128 0x11
+ 1978 00ec 01       		.uleb128 0x1
+ 1979 00ed 31       		.uleb128 0x31
+ 1980 00ee 13       		.uleb128 0x13
+ 1981 00ef 01       		.uleb128 0x1
+ 1982 00f0 13       		.uleb128 0x13
+ 1983 00f1 00       		.byte	0
+ 1984 00f2 00       		.byte	0
+ 1985 00f3 13       		.uleb128 0x13
+ 1986 00f4 8A8201   		.uleb128 0x410a
+ 1987 00f7 00       		.byte	0
+ 1988 00f8 02       		.uleb128 0x2
+ 1989 00f9 18       		.uleb128 0x18
+ 1990 00fa 9142     		.uleb128 0x2111
+ 1991 00fc 18       		.uleb128 0x18
+ 1992 00fd 00       		.byte	0
+ 1993 00fe 00       		.byte	0
+ARM GAS  C:\Users\dhous\AppData\Local\Temp\ccKTMeyp.s 			page 42
+
+
+ 1994 00ff 14       		.uleb128 0x14
+ 1995 0100 898201   		.uleb128 0x4109
+ 1996 0103 01       		.byte	0x1
+ 1997 0104 11       		.uleb128 0x11
+ 1998 0105 01       		.uleb128 0x1
+ 1999 0106 31       		.uleb128 0x31
+ 2000 0107 13       		.uleb128 0x13
+ 2001 0108 00       		.byte	0
+ 2002 0109 00       		.byte	0
+ 2003 010a 15       		.uleb128 0x15
+ 2004 010b 2E       		.uleb128 0x2e
+ 2005 010c 01       		.byte	0x1
+ 2006 010d 3F       		.uleb128 0x3f
+ 2007 010e 19       		.uleb128 0x19
+ 2008 010f 03       		.uleb128 0x3
+ 2009 0110 0E       		.uleb128 0xe
+ 2010 0111 3A       		.uleb128 0x3a
+ 2011 0112 0B       		.uleb128 0xb
+ 2012 0113 3B       		.uleb128 0x3b
+ 2013 0114 05       		.uleb128 0x5
+ 2014 0115 27       		.uleb128 0x27
+ 2015 0116 19       		.uleb128 0x19
+ 2016 0117 11       		.uleb128 0x11
+ 2017 0118 01       		.uleb128 0x1
+ 2018 0119 12       		.uleb128 0x12
+ 2019 011a 06       		.uleb128 0x6
+ 2020 011b 40       		.uleb128 0x40
+ 2021 011c 18       		.uleb128 0x18
+ 2022 011d 9742     		.uleb128 0x2117
+ 2023 011f 19       		.uleb128 0x19
+ 2024 0120 01       		.uleb128 0x1
+ 2025 0121 13       		.uleb128 0x13
+ 2026 0122 00       		.byte	0
+ 2027 0123 00       		.byte	0
+ 2028 0124 16       		.uleb128 0x16
+ 2029 0125 05       		.uleb128 0x5
+ 2030 0126 00       		.byte	0
+ 2031 0127 03       		.uleb128 0x3
+ 2032 0128 0E       		.uleb128 0xe
+ 2033 0129 3A       		.uleb128 0x3a
+ 2034 012a 0B       		.uleb128 0xb
+ 2035 012b 3B       		.uleb128 0x3b
+ 2036 012c 05       		.uleb128 0x5
+ 2037 012d 49       		.uleb128 0x49
+ 2038 012e 13       		.uleb128 0x13
+ 2039 012f 02       		.uleb128 0x2
+ 2040 0130 17       		.uleb128 0x17
+ 2041 0131 00       		.byte	0
+ 2042 0132 00       		.byte	0
+ 2043 0133 17       		.uleb128 0x17
+ 2044 0134 34       		.uleb128 0x34
+ 2045 0135 00       		.byte	0
+ 2046 0136 03       		.uleb128 0x3
+ 2047 0137 0E       		.uleb128 0xe
+ 2048 0138 3A       		.uleb128 0x3a
+ 2049 0139 0B       		.uleb128 0xb
+ 2050 013a 3B       		.uleb128 0x3b
+ARM GAS  C:\Users\dhous\AppData\Local\Temp\ccKTMeyp.s 			page 43
+
+
+ 2051 013b 05       		.uleb128 0x5
+ 2052 013c 49       		.uleb128 0x49
+ 2053 013d 13       		.uleb128 0x13
+ 2054 013e 02       		.uleb128 0x2
+ 2055 013f 18       		.uleb128 0x18
+ 2056 0140 00       		.byte	0
+ 2057 0141 00       		.byte	0
+ 2058 0142 18       		.uleb128 0x18
+ 2059 0143 01       		.uleb128 0x1
+ 2060 0144 01       		.byte	0x1
+ 2061 0145 49       		.uleb128 0x49
+ 2062 0146 13       		.uleb128 0x13
+ 2063 0147 01       		.uleb128 0x1
+ 2064 0148 13       		.uleb128 0x13
+ 2065 0149 00       		.byte	0
+ 2066 014a 00       		.byte	0
+ 2067 014b 19       		.uleb128 0x19
+ 2068 014c 21       		.uleb128 0x21
+ 2069 014d 00       		.byte	0
+ 2070 014e 49       		.uleb128 0x49
+ 2071 014f 13       		.uleb128 0x13
+ 2072 0150 2F       		.uleb128 0x2f
+ 2073 0151 0B       		.uleb128 0xb
+ 2074 0152 00       		.byte	0
+ 2075 0153 00       		.byte	0
+ 2076 0154 1A       		.uleb128 0x1a
+ 2077 0155 34       		.uleb128 0x34
+ 2078 0156 00       		.byte	0
+ 2079 0157 03       		.uleb128 0x3
+ 2080 0158 0E       		.uleb128 0xe
+ 2081 0159 3A       		.uleb128 0x3a
+ 2082 015a 0B       		.uleb128 0xb
+ 2083 015b 3B       		.uleb128 0x3b
+ 2084 015c 05       		.uleb128 0x5
+ 2085 015d 49       		.uleb128 0x49
+ 2086 015e 13       		.uleb128 0x13
+ 2087 015f 3F       		.uleb128 0x3f
+ 2088 0160 19       		.uleb128 0x19
+ 2089 0161 3C       		.uleb128 0x3c
+ 2090 0162 19       		.uleb128 0x19
+ 2091 0163 00       		.byte	0
+ 2092 0164 00       		.byte	0
+ 2093 0165 1B       		.uleb128 0x1b
+ 2094 0166 34       		.uleb128 0x34
+ 2095 0167 00       		.byte	0
+ 2096 0168 03       		.uleb128 0x3
+ 2097 0169 0E       		.uleb128 0xe
+ 2098 016a 3A       		.uleb128 0x3a
+ 2099 016b 0B       		.uleb128 0xb
+ 2100 016c 3B       		.uleb128 0x3b
+ 2101 016d 0B       		.uleb128 0xb
+ 2102 016e 49       		.uleb128 0x49
+ 2103 016f 13       		.uleb128 0x13
+ 2104 0170 3F       		.uleb128 0x3f
+ 2105 0171 19       		.uleb128 0x19
+ 2106 0172 3C       		.uleb128 0x3c
+ 2107 0173 19       		.uleb128 0x19
+ARM GAS  C:\Users\dhous\AppData\Local\Temp\ccKTMeyp.s 			page 44
+
+
+ 2108 0174 00       		.byte	0
+ 2109 0175 00       		.byte	0
+ 2110 0176 1C       		.uleb128 0x1c
+ 2111 0177 34       		.uleb128 0x34
+ 2112 0178 00       		.byte	0
+ 2113 0179 03       		.uleb128 0x3
+ 2114 017a 0E       		.uleb128 0xe
+ 2115 017b 3A       		.uleb128 0x3a
+ 2116 017c 0B       		.uleb128 0xb
+ 2117 017d 3B       		.uleb128 0x3b
+ 2118 017e 0B       		.uleb128 0xb
+ 2119 017f 49       		.uleb128 0x49
+ 2120 0180 13       		.uleb128 0x13
+ 2121 0181 3F       		.uleb128 0x3f
+ 2122 0182 19       		.uleb128 0x19
+ 2123 0183 02       		.uleb128 0x2
+ 2124 0184 18       		.uleb128 0x18
+ 2125 0185 00       		.byte	0
+ 2126 0186 00       		.byte	0
+ 2127 0187 1D       		.uleb128 0x1d
+ 2128 0188 2E       		.uleb128 0x2e
+ 2129 0189 00       		.byte	0
+ 2130 018a 3F       		.uleb128 0x3f
+ 2131 018b 19       		.uleb128 0x19
+ 2132 018c 3C       		.uleb128 0x3c
+ 2133 018d 19       		.uleb128 0x19
+ 2134 018e 6E       		.uleb128 0x6e
+ 2135 018f 0E       		.uleb128 0xe
+ 2136 0190 03       		.uleb128 0x3
+ 2137 0191 0E       		.uleb128 0xe
+ 2138 0192 3A       		.uleb128 0x3a
+ 2139 0193 0B       		.uleb128 0xb
+ 2140 0194 3B       		.uleb128 0x3b
+ 2141 0195 0B       		.uleb128 0xb
+ 2142 0196 00       		.byte	0
+ 2143 0197 00       		.byte	0
+ 2144 0198 00       		.byte	0
+ 2145              		.section	.debug_loc,"",%progbits
+ 2146              	.Ldebug_loc0:
+ 2147              	.LLST0:
+ 2148 0000 4C000000 		.4byte	.LVL2
+ 2149 0004 60000000 		.4byte	.LVL3
+ 2150 0008 0200     		.2byte	0x2
+ 2151 000a 3E       		.byte	0x3e
+ 2152 000b 9F       		.byte	0x9f
+ 2153 000c 00000000 		.4byte	0
+ 2154 0010 00000000 		.4byte	0
+ 2155              	.LLST1:
+ 2156 0014 00000000 		.4byte	.LVL4
+ 2157 0018 0D000000 		.4byte	.LVL6-1
+ 2158 001c 0100     		.2byte	0x1
+ 2159 001e 50       		.byte	0x50
+ 2160 001f 0D000000 		.4byte	.LVL6-1
+ 2161 0023 7C000000 		.4byte	.LFE66
+ 2162 0027 0400     		.2byte	0x4
+ 2163 0029 F3       		.byte	0xf3
+ 2164 002a 01       		.uleb128 0x1
+ARM GAS  C:\Users\dhous\AppData\Local\Temp\ccKTMeyp.s 			page 45
+
+
+ 2165 002b 50       		.byte	0x50
+ 2166 002c 9F       		.byte	0x9f
+ 2167 002d 00000000 		.4byte	0
+ 2168 0031 00000000 		.4byte	0
+ 2169              	.LLST2:
+ 2170 0035 00000000 		.4byte	.LVL4
+ 2171 0039 0D000000 		.4byte	.LVL6-1
+ 2172 003d 0100     		.2byte	0x1
+ 2173 003f 51       		.byte	0x51
+ 2174 0040 0D000000 		.4byte	.LVL6-1
+ 2175 0044 78000000 		.4byte	.LVL19
+ 2176 0048 0100     		.2byte	0x1
+ 2177 004a 57       		.byte	0x57
+ 2178 004b 78000000 		.4byte	.LVL19
+ 2179 004f 7C000000 		.4byte	.LFE66
+ 2180 0053 0400     		.2byte	0x4
+ 2181 0055 F3       		.byte	0xf3
+ 2182 0056 01       		.uleb128 0x1
+ 2183 0057 51       		.byte	0x51
+ 2184 0058 9F       		.byte	0x9f
+ 2185 0059 00000000 		.4byte	0
+ 2186 005d 00000000 		.4byte	0
+ 2187              	.LLST3:
+ 2188 0061 00000000 		.4byte	.LVL4
+ 2189 0065 0D000000 		.4byte	.LVL6-1
+ 2190 0069 0100     		.2byte	0x1
+ 2191 006b 52       		.byte	0x52
+ 2192 006c 0D000000 		.4byte	.LVL6-1
+ 2193 0070 7C000000 		.4byte	.LFE66
+ 2194 0074 0400     		.2byte	0x4
+ 2195 0076 F3       		.byte	0xf3
+ 2196 0077 01       		.uleb128 0x1
+ 2197 0078 52       		.byte	0x52
+ 2198 0079 9F       		.byte	0x9f
+ 2199 007a 00000000 		.4byte	0
+ 2200 007e 00000000 		.4byte	0
+ 2201              	.LLST4:
+ 2202 0082 00000000 		.4byte	.LVL4
+ 2203 0086 0D000000 		.4byte	.LVL6-1
+ 2204 008a 0100     		.2byte	0x1
+ 2205 008c 53       		.byte	0x53
+ 2206 008d 0D000000 		.4byte	.LVL6-1
+ 2207 0091 78000000 		.4byte	.LVL19
+ 2208 0095 0100     		.2byte	0x1
+ 2209 0097 54       		.byte	0x54
+ 2210 0098 78000000 		.4byte	.LVL19
+ 2211 009c 7C000000 		.4byte	.LFE66
+ 2212 00a0 0400     		.2byte	0x4
+ 2213 00a2 F3       		.byte	0xf3
+ 2214 00a3 01       		.uleb128 0x1
+ 2215 00a4 53       		.byte	0x53
+ 2216 00a5 9F       		.byte	0x9f
+ 2217 00a6 00000000 		.4byte	0
+ 2218 00aa 00000000 		.4byte	0
+ 2219              	.LLST5:
+ 2220 00ae 4C000000 		.4byte	.LVL12
+ 2221 00b2 5A000000 		.4byte	.LVL14
+ARM GAS  C:\Users\dhous\AppData\Local\Temp\ccKTMeyp.s 			page 46
+
+
+ 2222 00b6 0100     		.2byte	0x1
+ 2223 00b8 53       		.byte	0x53
+ 2224 00b9 00000000 		.4byte	0
+ 2225 00bd 00000000 		.4byte	0
+ 2226              	.LLST6:
+ 2227 00c1 0A000000 		.4byte	.LVL5
+ 2228 00c5 58000000 		.4byte	.LVL13
+ 2229 00c9 0200     		.2byte	0x2
+ 2230 00cb 30       		.byte	0x30
+ 2231 00cc 9F       		.byte	0x9f
+ 2232 00cd 58000000 		.4byte	.LVL13
+ 2233 00d1 78000000 		.4byte	.LVL19
+ 2234 00d5 0100     		.2byte	0x1
+ 2235 00d7 55       		.byte	0x55
+ 2236 00d8 00000000 		.4byte	0
+ 2237 00dc 00000000 		.4byte	0
+ 2238              	.LLST7:
+ 2239 00e0 00000000 		.4byte	.LVL20
+ 2240 00e4 15000000 		.4byte	.LVL22-1
+ 2241 00e8 0100     		.2byte	0x1
+ 2242 00ea 50       		.byte	0x50
+ 2243 00eb 15000000 		.4byte	.LVL22-1
+ 2244 00ef BC000000 		.4byte	.LFE67
+ 2245 00f3 0400     		.2byte	0x4
+ 2246 00f5 F3       		.byte	0xf3
+ 2247 00f6 01       		.uleb128 0x1
+ 2248 00f7 50       		.byte	0x50
+ 2249 00f8 9F       		.byte	0x9f
+ 2250 00f9 00000000 		.4byte	0
+ 2251 00fd 00000000 		.4byte	0
+ 2252              	.LLST8:
+ 2253 0101 00000000 		.4byte	.LVL20
+ 2254 0105 15000000 		.4byte	.LVL22-1
+ 2255 0109 0100     		.2byte	0x1
+ 2256 010b 51       		.byte	0x51
+ 2257 010c 15000000 		.4byte	.LVL22-1
+ 2258 0110 B8000000 		.4byte	.LVL39
+ 2259 0114 0100     		.2byte	0x1
+ 2260 0116 59       		.byte	0x59
+ 2261 0117 B8000000 		.4byte	.LVL39
+ 2262 011b BC000000 		.4byte	.LFE67
+ 2263 011f 0400     		.2byte	0x4
+ 2264 0121 F3       		.byte	0xf3
+ 2265 0122 01       		.uleb128 0x1
+ 2266 0123 51       		.byte	0x51
+ 2267 0124 9F       		.byte	0x9f
+ 2268 0125 00000000 		.4byte	0
+ 2269 0129 00000000 		.4byte	0
+ 2270              	.LLST9:
+ 2271 012d 00000000 		.4byte	.LVL20
+ 2272 0131 15000000 		.4byte	.LVL22-1
+ 2273 0135 0100     		.2byte	0x1
+ 2274 0137 52       		.byte	0x52
+ 2275 0138 15000000 		.4byte	.LVL22-1
+ 2276 013c BC000000 		.4byte	.LFE67
+ 2277 0140 0400     		.2byte	0x4
+ 2278 0142 F3       		.byte	0xf3
+ARM GAS  C:\Users\dhous\AppData\Local\Temp\ccKTMeyp.s 			page 47
+
+
+ 2279 0143 01       		.uleb128 0x1
+ 2280 0144 52       		.byte	0x52
+ 2281 0145 9F       		.byte	0x9f
+ 2282 0146 00000000 		.4byte	0
+ 2283 014a 00000000 		.4byte	0
+ 2284              	.LLST10:
+ 2285 014e 00000000 		.4byte	.LVL20
+ 2286 0152 15000000 		.4byte	.LVL22-1
+ 2287 0156 0100     		.2byte	0x1
+ 2288 0158 53       		.byte	0x53
+ 2289 0159 15000000 		.4byte	.LVL22-1
+ 2290 015d B8000000 		.4byte	.LVL39
+ 2291 0161 0100     		.2byte	0x1
+ 2292 0163 58       		.byte	0x58
+ 2293 0164 B8000000 		.4byte	.LVL39
+ 2294 0168 BC000000 		.4byte	.LFE67
+ 2295 016c 0400     		.2byte	0x4
+ 2296 016e F3       		.byte	0xf3
+ 2297 016f 01       		.uleb128 0x1
+ 2298 0170 53       		.byte	0x53
+ 2299 0171 9F       		.byte	0x9f
+ 2300 0172 00000000 		.4byte	0
+ 2301 0176 00000000 		.4byte	0
+ 2302              	.LLST11:
+ 2303 017a 00000000 		.4byte	.LVL20
+ 2304 017e B8000000 		.4byte	.LVL39
+ 2305 0182 0200     		.2byte	0x2
+ 2306 0184 91       		.byte	0x91
+ 2307 0185 00       		.sleb128 0
+ 2308 0186 B8000000 		.4byte	.LVL39
+ 2309 018a BC000000 		.4byte	.LFE67
+ 2310 018e 0200     		.2byte	0x2
+ 2311 0190 7D       		.byte	0x7d
+ 2312 0191 00       		.sleb128 0
+ 2313 0192 00000000 		.4byte	0
+ 2314 0196 00000000 		.4byte	0
+ 2315              	.LLST12:
+ 2316 019a 00000000 		.4byte	.LVL20
+ 2317 019e B8000000 		.4byte	.LVL39
+ 2318 01a2 0200     		.2byte	0x2
+ 2319 01a4 91       		.byte	0x91
+ 2320 01a5 04       		.sleb128 4
+ 2321 01a6 B8000000 		.4byte	.LVL39
+ 2322 01aa BC000000 		.4byte	.LFE67
+ 2323 01ae 0200     		.2byte	0x2
+ 2324 01b0 7D       		.byte	0x7d
+ 2325 01b1 04       		.sleb128 4
+ 2326 01b2 00000000 		.4byte	0
+ 2327 01b6 00000000 		.4byte	0
+ 2328              	.LLST13:
+ 2329 01ba 00000000 		.4byte	.LVL20
+ 2330 01be B8000000 		.4byte	.LVL39
+ 2331 01c2 0200     		.2byte	0x2
+ 2332 01c4 91       		.byte	0x91
+ 2333 01c5 08       		.sleb128 8
+ 2334 01c6 B8000000 		.4byte	.LVL39
+ 2335 01ca BC000000 		.4byte	.LFE67
+ARM GAS  C:\Users\dhous\AppData\Local\Temp\ccKTMeyp.s 			page 48
+
+
+ 2336 01ce 0200     		.2byte	0x2
+ 2337 01d0 7D       		.byte	0x7d
+ 2338 01d1 08       		.sleb128 8
+ 2339 01d2 00000000 		.4byte	0
+ 2340 01d6 00000000 		.4byte	0
+ 2341              	.LLST14:
+ 2342 01da 00000000 		.4byte	.LVL20
+ 2343 01de B8000000 		.4byte	.LVL39
+ 2344 01e2 0200     		.2byte	0x2
+ 2345 01e4 91       		.byte	0x91
+ 2346 01e5 0C       		.sleb128 12
+ 2347 01e6 B8000000 		.4byte	.LVL39
+ 2348 01ea BC000000 		.4byte	.LFE67
+ 2349 01ee 0200     		.2byte	0x2
+ 2350 01f0 7D       		.byte	0x7d
+ 2351 01f1 0C       		.sleb128 12
+ 2352 01f2 00000000 		.4byte	0
+ 2353 01f6 00000000 		.4byte	0
+ 2354              	.LLST15:
+ 2355 01fa 12000000 		.4byte	.LVL21
+ 2356 01fe 9A000000 		.4byte	.LVL34
+ 2357 0202 0200     		.2byte	0x2
+ 2358 0204 30       		.byte	0x30
+ 2359 0205 9F       		.byte	0x9f
+ 2360 0206 9A000000 		.4byte	.LVL34
+ 2361 020a A1000000 		.4byte	.LVL35-1
+ 2362 020e 0100     		.2byte	0x1
+ 2363 0210 52       		.byte	0x52
+ 2364 0211 00000000 		.4byte	0
+ 2365 0215 00000000 		.4byte	0
+ 2366              	.LLST16:
+ 2367 0219 8E000000 		.4byte	.LVL33
+ 2368 021d A1000000 		.4byte	.LVL35-1
+ 2369 0221 0100     		.2byte	0x1
+ 2370 0223 53       		.byte	0x53
+ 2371 0224 00000000 		.4byte	0
+ 2372 0228 00000000 		.4byte	0
+ 2373              	.LLST17:
+ 2374 022c 00000000 		.4byte	.LVL40
+ 2375 0230 0D000000 		.4byte	.LVL42-1
+ 2376 0234 0100     		.2byte	0x1
+ 2377 0236 50       		.byte	0x50
+ 2378 0237 0D000000 		.4byte	.LVL42-1
+ 2379 023b 7C000000 		.4byte	.LFE68
+ 2380 023f 0400     		.2byte	0x4
+ 2381 0241 F3       		.byte	0xf3
+ 2382 0242 01       		.uleb128 0x1
+ 2383 0243 50       		.byte	0x50
+ 2384 0244 9F       		.byte	0x9f
+ 2385 0245 00000000 		.4byte	0
+ 2386 0249 00000000 		.4byte	0
+ 2387              	.LLST18:
+ 2388 024d 00000000 		.4byte	.LVL40
+ 2389 0251 0D000000 		.4byte	.LVL42-1
+ 2390 0255 0100     		.2byte	0x1
+ 2391 0257 51       		.byte	0x51
+ 2392 0258 0D000000 		.4byte	.LVL42-1
+ARM GAS  C:\Users\dhous\AppData\Local\Temp\ccKTMeyp.s 			page 49
+
+
+ 2393 025c 78000000 		.4byte	.LVL55
+ 2394 0260 0100     		.2byte	0x1
+ 2395 0262 57       		.byte	0x57
+ 2396 0263 78000000 		.4byte	.LVL55
+ 2397 0267 7C000000 		.4byte	.LFE68
+ 2398 026b 0400     		.2byte	0x4
+ 2399 026d F3       		.byte	0xf3
+ 2400 026e 01       		.uleb128 0x1
+ 2401 026f 51       		.byte	0x51
+ 2402 0270 9F       		.byte	0x9f
+ 2403 0271 00000000 		.4byte	0
+ 2404 0275 00000000 		.4byte	0
+ 2405              	.LLST19:
+ 2406 0279 00000000 		.4byte	.LVL40
+ 2407 027d 0D000000 		.4byte	.LVL42-1
+ 2408 0281 0100     		.2byte	0x1
+ 2409 0283 52       		.byte	0x52
+ 2410 0284 0D000000 		.4byte	.LVL42-1
+ 2411 0288 7C000000 		.4byte	.LFE68
+ 2412 028c 0400     		.2byte	0x4
+ 2413 028e F3       		.byte	0xf3
+ 2414 028f 01       		.uleb128 0x1
+ 2415 0290 52       		.byte	0x52
+ 2416 0291 9F       		.byte	0x9f
+ 2417 0292 00000000 		.4byte	0
+ 2418 0296 00000000 		.4byte	0
+ 2419              	.LLST20:
+ 2420 029a 00000000 		.4byte	.LVL40
+ 2421 029e 0D000000 		.4byte	.LVL42-1
+ 2422 02a2 0100     		.2byte	0x1
+ 2423 02a4 53       		.byte	0x53
+ 2424 02a5 0D000000 		.4byte	.LVL42-1
+ 2425 02a9 78000000 		.4byte	.LVL55
+ 2426 02ad 0100     		.2byte	0x1
+ 2427 02af 54       		.byte	0x54
+ 2428 02b0 78000000 		.4byte	.LVL55
+ 2429 02b4 7C000000 		.4byte	.LFE68
+ 2430 02b8 0400     		.2byte	0x4
+ 2431 02ba F3       		.byte	0xf3
+ 2432 02bb 01       		.uleb128 0x1
+ 2433 02bc 53       		.byte	0x53
+ 2434 02bd 9F       		.byte	0x9f
+ 2435 02be 00000000 		.4byte	0
+ 2436 02c2 00000000 		.4byte	0
+ 2437              	.LLST21:
+ 2438 02c6 4C000000 		.4byte	.LVL48
+ 2439 02ca 5A000000 		.4byte	.LVL50
+ 2440 02ce 0100     		.2byte	0x1
+ 2441 02d0 53       		.byte	0x53
+ 2442 02d1 00000000 		.4byte	0
+ 2443 02d5 00000000 		.4byte	0
+ 2444              	.LLST22:
+ 2445 02d9 0A000000 		.4byte	.LVL41
+ 2446 02dd 58000000 		.4byte	.LVL49
+ 2447 02e1 0200     		.2byte	0x2
+ 2448 02e3 30       		.byte	0x30
+ 2449 02e4 9F       		.byte	0x9f
+ARM GAS  C:\Users\dhous\AppData\Local\Temp\ccKTMeyp.s 			page 50
+
+
+ 2450 02e5 58000000 		.4byte	.LVL49
+ 2451 02e9 78000000 		.4byte	.LVL55
+ 2452 02ed 0100     		.2byte	0x1
+ 2453 02ef 55       		.byte	0x55
+ 2454 02f0 00000000 		.4byte	0
+ 2455 02f4 00000000 		.4byte	0
+ 2456              	.LLST23:
+ 2457 02f8 00000000 		.4byte	.LVL56
+ 2458 02fc 0C000000 		.4byte	.LVL57
+ 2459 0300 0100     		.2byte	0x1
+ 2460 0302 50       		.byte	0x50
+ 2461 0303 0C000000 		.4byte	.LVL57
+ 2462 0307 12000000 		.4byte	.LVL59
+ 2463 030b 0100     		.2byte	0x1
+ 2464 030d 54       		.byte	0x54
+ 2465 030e 12000000 		.4byte	.LVL59
+ 2466 0312 14000000 		.4byte	.LVL60
+ 2467 0316 0100     		.2byte	0x1
+ 2468 0318 50       		.byte	0x50
+ 2469 0319 14000000 		.4byte	.LVL60
+ 2470 031d A0000000 		.4byte	.LVL78
+ 2471 0321 0100     		.2byte	0x1
+ 2472 0323 54       		.byte	0x54
+ 2473 0324 A0000000 		.4byte	.LVL78
+ 2474 0328 C8000000 		.4byte	.LFE69
+ 2475 032c 0400     		.2byte	0x4
+ 2476 032e F3       		.byte	0xf3
+ 2477 032f 01       		.uleb128 0x1
+ 2478 0330 50       		.byte	0x50
+ 2479 0331 9F       		.byte	0x9f
+ 2480 0332 00000000 		.4byte	0
+ 2481 0336 00000000 		.4byte	0
+ 2482              		.section	.debug_aranges,"",%progbits
+ 2483 0000 44000000 		.4byte	0x44
+ 2484 0004 0200     		.2byte	0x2
+ 2485 0006 00000000 		.4byte	.Ldebug_info0
+ 2486 000a 04       		.byte	0x4
+ 2487 000b 00       		.byte	0
+ 2488 000c 0000     		.2byte	0
+ 2489 000e 0000     		.2byte	0
+ 2490 0010 00000000 		.4byte	.LFB64
+ 2491 0014 1C000000 		.4byte	.LFE64-.LFB64
+ 2492 0018 00000000 		.4byte	.LFB65
+ 2493 001c 62000000 		.4byte	.LFE65-.LFB65
+ 2494 0020 00000000 		.4byte	.LFB66
+ 2495 0024 7C000000 		.4byte	.LFE66-.LFB66
+ 2496 0028 00000000 		.4byte	.LFB67
+ 2497 002c BC000000 		.4byte	.LFE67-.LFB67
+ 2498 0030 00000000 		.4byte	.LFB68
+ 2499 0034 7C000000 		.4byte	.LFE68-.LFB68
+ 2500 0038 00000000 		.4byte	.LFB69
+ 2501 003c C8000000 		.4byte	.LFE69-.LFB69
+ 2502 0040 00000000 		.4byte	0
+ 2503 0044 00000000 		.4byte	0
+ 2504              		.section	.debug_ranges,"",%progbits
+ 2505              	.Ldebug_ranges0:
+ 2506 0000 00000000 		.4byte	.LFB64
+ARM GAS  C:\Users\dhous\AppData\Local\Temp\ccKTMeyp.s 			page 51
+
+
+ 2507 0004 1C000000 		.4byte	.LFE64
+ 2508 0008 00000000 		.4byte	.LFB65
+ 2509 000c 62000000 		.4byte	.LFE65
+ 2510 0010 00000000 		.4byte	.LFB66
+ 2511 0014 7C000000 		.4byte	.LFE66
+ 2512 0018 00000000 		.4byte	.LFB67
+ 2513 001c BC000000 		.4byte	.LFE67
+ 2514 0020 00000000 		.4byte	.LFB68
+ 2515 0024 7C000000 		.4byte	.LFE68
+ 2516 0028 00000000 		.4byte	.LFB69
+ 2517 002c C8000000 		.4byte	.LFE69
+ 2518 0030 00000000 		.4byte	0
+ 2519 0034 00000000 		.4byte	0
+ 2520              		.section	.debug_line,"",%progbits
+ 2521              	.Ldebug_line0:
+ 2522 0000 D4020000 		.section	.debug_str,"MS",%progbits,1
+ 2522      0200C901 
+ 2522      00000201 
+ 2522      FB0E0D00 
+ 2522      01010101 
+ 2523              	.LASF17:
+ 2524 0000 666C6F61 		.ascii	"float\000"
+ 2524      7400
+ 2525              	.LASF54:
+ 2526 0006 6932635F 		.ascii	"i2c_read_mode\000"
+ 2526      72656164 
+ 2526      5F6D6F64 
+ 2526      6500
+ 2527              	.LASF35:
+ 2528 0014 74696D65 		.ascii	"timeout_error\000"
+ 2528      6F75745F 
+ 2528      6572726F 
+ 2528      7200
+ 2529              	.LASF37:
+ 2530 0022 4932435F 		.ascii	"I2C_Transfer_Status\000"
+ 2530      5472616E 
+ 2530      73666572 
+ 2530      5F537461 
+ 2530      74757300 
+ 2531              	.LASF27:
+ 2532 0036 6932635F 		.ascii	"i2c_write_xfer_result\000"
+ 2532      77726974 
+ 2532      655F7866 
+ 2532      65725F72 
+ 2532      6573756C 
+ 2533              	.LASF2:
+ 2534 004c 73686F72 		.ascii	"short int\000"
+ 2534      7420696E 
+ 2534      7400
+ 2535              	.LASF21:
+ 2536 0056 73697A65 		.ascii	"sizetype\000"
+ 2536      74797065 
+ 2536      00
+ 2537              	.LASF41:
+ 2538 005f 4932435F 		.ascii	"I2C_write\000"
+ 2538      77726974 
+ 2538      6500
+ARM GAS  C:\Users\dhous\AppData\Local\Temp\ccKTMeyp.s 			page 52
+
+
+ 2539              	.LASF8:
+ 2540 0069 5F5F7569 		.ascii	"__uint32_t\000"
+ 2540      6E743332 
+ 2540      5F7400
+ 2541              	.LASF4:
+ 2542 0074 5F5F7569 		.ascii	"__uint16_t\000"
+ 2542      6E743136 
+ 2542      5F7400
+ 2543              	.LASF45:
+ 2544 007f 65787065 		.ascii	"expected_flags\000"
+ 2544      63746564 
+ 2544      5F666C61 
+ 2544      677300
+ 2545              	.LASF39:
+ 2546 008e 4932435F 		.ascii	"I2C_check_transfer_status\000"
+ 2546      63686563 
+ 2546      6B5F7472 
+ 2546      616E7366 
+ 2546      65725F73 
+ 2547              	.LASF69:
+ 2548 00a8 55415254 		.ascii	"UART_PutString\000"
+ 2548      5F507574 
+ 2548      53747269 
+ 2548      6E6700
+ 2549              	.LASF60:
+ 2550 00b7 4932435F 		.ascii	"I2C_status\000"
+ 2550      73746174 
+ 2550      757300
+ 2551              	.LASF56:
+ 2552 00c2 4932435F 		.ascii	"I2C_print_transfer_status\000"
+ 2552      7072696E 
+ 2552      745F7472 
+ 2552      616E7366 
+ 2552      65725F73 
+ 2553              	.LASF13:
+ 2554 00dc 75696E74 		.ascii	"uint8_t\000"
+ 2554      385F7400 
+ 2555              	.LASF46:
+ 2556 00e4 66696E61 		.ascii	"final_i2c_ms_counter\000"
+ 2556      6C5F6932 
+ 2556      635F6D73 
+ 2556      5F636F75 
+ 2556      6E746572 
+ 2557              	.LASF57:
+ 2558 00f9 6F757473 		.ascii	"outstr\000"
+ 2558      747200
+ 2559              	.LASF34:
+ 2560 0100 62797465 		.ascii	"bytes_read\000"
+ 2560      735F7265 
+ 2560      616400
+ 2561              	.LASF73:
+ 2562 010b 433A5C55 		.ascii	"C:\\Users\\dhous\\Documents\\Workspace09\\USBMIDI a"
+ 2562      73657273 
+ 2562      5C64686F 
+ 2562      75735C44 
+ 2562      6F63756D 
+ 2563 0139 6E642057 		.ascii	"nd WiiChuck.cydsn\000"
+ARM GAS  C:\Users\dhous\AppData\Local\Temp\ccKTMeyp.s 			page 53
+
+
+ 2563      69694368 
+ 2563      75636B2E 
+ 2563      63796473 
+ 2563      6E00
+ 2564              	.LASF10:
+ 2565 014b 6C6F6E67 		.ascii	"long long int\000"
+ 2565      206C6F6E 
+ 2565      6720696E 
+ 2565      7400
+ 2566              	.LASF11:
+ 2567 0159 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 2567      206C6F6E 
+ 2567      6720756E 
+ 2567      7369676E 
+ 2567      65642069 
+ 2568              	.LASF19:
+ 2569 0170 63686172 		.ascii	"char\000"
+ 2569      00
+ 2570              	.LASF42:
+ 2571 0175 736C6176 		.ascii	"slave_address\000"
+ 2571      655F6164 
+ 2571      64726573 
+ 2571      7300
+ 2572              	.LASF7:
+ 2573 0183 6C6F6E67 		.ascii	"long int\000"
+ 2573      20696E74 
+ 2573      00
+ 2574              	.LASF55:
+ 2575 018c 4932435F 		.ascii	"I2C_read\000"
+ 2575      72656164 
+ 2575      00
+ 2576              	.LASF28:
+ 2577 0195 6932635F 		.ascii	"i2c_read_xfer_result\000"
+ 2577      72656164 
+ 2577      5F786665 
+ 2577      725F7265 
+ 2577      73756C74 
+ 2578              	.LASF3:
+ 2579 01aa 5F5F7569 		.ascii	"__uint8_t\000"
+ 2579      6E74385F 
+ 2579      7400
+ 2580              	.LASF72:
+ 2581 01b4 6932635F 		.ascii	"i2c_helper.c\000"
+ 2581      68656C70 
+ 2581      65722E63 
+ 2581      00
+ 2582              	.LASF38:
+ 2583 01c1 4932435F 		.ascii	"I2C_clear_xfer_status\000"
+ 2583      636C6561 
+ 2583      725F7866 
+ 2583      65725F73 
+ 2583      74617475 
+ 2584              	.LASF20:
+ 2585 01d7 6C6F6E67 		.ascii	"long double\000"
+ 2585      20646F75 
+ 2585      626C6500 
+ 2586              	.LASF67:
+ARM GAS  C:\Users\dhous\AppData\Local\Temp\ccKTMeyp.s 			page 54
+
+
+ 2587 01e3 4932435F 		.ascii	"I2C_MasterReadBuf\000"
+ 2587      4D617374 
+ 2587      65725265 
+ 2587      61644275 
+ 2587      6600
+ 2588              	.LASF1:
+ 2589 01f5 756E7369 		.ascii	"unsigned char\000"
+ 2589      676E6564 
+ 2589      20636861 
+ 2589      7200
+ 2590              	.LASF68:
+ 2591 0203 4932435F 		.ascii	"I2C_MasterGetReadBufSize\000"
+ 2591      4D617374 
+ 2591      65724765 
+ 2591      74526561 
+ 2591      64427566 
+ 2592              	.LASF70:
+ 2593 021c 73707269 		.ascii	"sprintf\000"
+ 2593      6E746600 
+ 2594              	.LASF0:
+ 2595 0224 7369676E 		.ascii	"signed char\000"
+ 2595      65642063 
+ 2595      68617200 
+ 2596              	.LASF51:
+ 2597 0230 72785F62 		.ascii	"rx_bytes\000"
+ 2597      79746573 
+ 2597      00
+ 2598              	.LASF64:
+ 2599 0239 4932435F 		.ascii	"I2C_MasterWriteBuf\000"
+ 2599      4D617374 
+ 2599      65725772 
+ 2599      69746542 
+ 2599      756600
+ 2600              	.LASF16:
+ 2601 024c 75696E74 		.ascii	"uint32_t\000"
+ 2601      33325F74 
+ 2601      00
+ 2602              	.LASF61:
+ 2603 0255 4932435F 		.ascii	"I2C_MasterClearStatus\000"
+ 2603      4D617374 
+ 2603      6572436C 
+ 2603      65617253 
+ 2603      74617475 
+ 2604              	.LASF12:
+ 2605 026b 756E7369 		.ascii	"unsigned int\000"
+ 2605      676E6564 
+ 2605      20696E74 
+ 2605      00
+ 2606              	.LASF30:
+ 2607 0278 72656164 		.ascii	"read_cmd_result\000"
+ 2607      5F636D64 
+ 2607      5F726573 
+ 2607      756C7400 
+ 2608              	.LASF14:
+ 2609 0288 75696E74 		.ascii	"uint16_t\000"
+ 2609      31365F74 
+ 2609      00
+ARM GAS  C:\Users\dhous\AppData\Local\Temp\ccKTMeyp.s 			page 55
+
+
+ 2610              	.LASF52:
+ 2611 0291 72785F63 		.ascii	"rx_count\000"
+ 2611      6F756E74 
+ 2611      00
+ 2612              	.LASF29:
+ 2613 029a 77726974 		.ascii	"write_cmd_result\000"
+ 2613      655F636D 
+ 2613      645F7265 
+ 2613      73756C74 
+ 2613      00
+ 2614              	.LASF5:
+ 2615 02ab 73686F72 		.ascii	"short unsigned int\000"
+ 2615      7420756E 
+ 2615      7369676E 
+ 2615      65642069 
+ 2615      6E7400
+ 2616              	.LASF62:
+ 2617 02be 4932435F 		.ascii	"I2C_MasterClearReadBuf\000"
+ 2617      4D617374 
+ 2617      6572436C 
+ 2617      65617252 
+ 2617      65616442 
+ 2618              	.LASF15:
+ 2619 02d5 696E7433 		.ascii	"int32_t\000"
+ 2619      325F7400 
+ 2620              	.LASF24:
+ 2621 02dd 4932435F 		.ascii	"I2C_TRANSFER_TYPE_WRITE_READ\000"
+ 2621      5452414E 
+ 2621      53464552 
+ 2621      5F545950 
+ 2621      455F5752 
+ 2622              	.LASF40:
+ 2623 02fa 78666572 		.ascii	"xfer_status\000"
+ 2623      5F737461 
+ 2623      74757300 
+ 2624              	.LASF36:
+ 2625 0306 78666572 		.ascii	"xfer_type\000"
+ 2625      5F747970 
+ 2625      6500
+ 2626              	.LASF33:
+ 2627 0310 62797465 		.ascii	"bytes_to_read\000"
+ 2627      735F746F 
+ 2627      5F726561 
+ 2627      6400
+ 2628              	.LASF32:
+ 2629 031e 62797465 		.ascii	"bytes_written\000"
+ 2629      735F7772 
+ 2629      69747465 
+ 2629      6E00
+ 2630              	.LASF65:
+ 2631 032c 4932435F 		.ascii	"I2C_MasterStatus\000"
+ 2631      4D617374 
+ 2631      65725374 
+ 2631      61747573 
+ 2631      00
+ 2632              	.LASF66:
+ 2633 033d 4932435F 		.ascii	"I2C_MasterGetWriteBufSize\000"
+ARM GAS  C:\Users\dhous\AppData\Local\Temp\ccKTMeyp.s 			page 56
+
+
+ 2633      4D617374 
+ 2633      65724765 
+ 2633      74577269 
+ 2633      74654275 
+ 2634              	.LASF49:
+ 2635 0357 74785F62 		.ascii	"tx_bytes\000"
+ 2635      79746573 
+ 2635      00
+ 2636              	.LASF44:
+ 2637 0360 62797465 		.ascii	"byte_count\000"
+ 2637      5F636F75 
+ 2637      6E7400
+ 2638              	.LASF9:
+ 2639 036b 6C6F6E67 		.ascii	"long unsigned int\000"
+ 2639      20756E73 
+ 2639      69676E65 
+ 2639      6420696E 
+ 2639      7400
+ 2640              	.LASF43:
+ 2641 037d 62797465 		.ascii	"bytes\000"
+ 2641      7300
+ 2642              	.LASF18:
+ 2643 0383 646F7562 		.ascii	"double\000"
+ 2643      6C6500
+ 2644              	.LASF50:
+ 2645 038a 74785F63 		.ascii	"tx_count\000"
+ 2645      6F756E74 
+ 2645      00
+ 2646              	.LASF47:
+ 2647 0393 6932635F 		.ascii	"i2c_timeout\000"
+ 2647      74696D65 
+ 2647      6F757400 
+ 2648              	.LASF22:
+ 2649 039f 4932435F 		.ascii	"I2C_TRANSFER_TYPE_UNKNOWN\000"
+ 2649      5452414E 
+ 2649      53464552 
+ 2649      5F545950 
+ 2649      455F554E 
+ 2650              	.LASF74:
+ 2651 03b9 4932435F 		.ascii	"I2C_Transfer_Type\000"
+ 2651      5472616E 
+ 2651      73666572 
+ 2651      5F547970 
+ 2651      6500
+ 2652              	.LASF6:
+ 2653 03cb 5F5F696E 		.ascii	"__int32_t\000"
+ 2653      7433325F 
+ 2653      7400
+ 2654              	.LASF25:
+ 2655 03d5 4932435F 		.ascii	"I2C_TRANSFER_TYPE_READ\000"
+ 2655      5452414E 
+ 2655      53464552 
+ 2655      5F545950 
+ 2655      455F5245 
+ 2656              	.LASF31:
+ 2657 03ec 62797465 		.ascii	"bytes_to_write\000"
+ 2657      735F746F 
+ARM GAS  C:\Users\dhous\AppData\Local\Temp\ccKTMeyp.s 			page 57
+
+
+ 2657      5F777269 
+ 2657      746500
+ 2658              	.LASF63:
+ 2659 03fb 4932435F 		.ascii	"I2C_MasterClearWriteBuf\000"
+ 2659      4D617374 
+ 2659      6572436C 
+ 2659      65617257 
+ 2659      72697465 
+ 2660              	.LASF53:
+ 2661 0413 6932635F 		.ascii	"i2c_write_mode\000"
+ 2661      77726974 
+ 2661      655F6D6F 
+ 2661      646500
+ 2662              	.LASF59:
+ 2663 0422 6932635F 		.ascii	"i2c_ms_counter\000"
+ 2663      6D735F63 
+ 2663      6F756E74 
+ 2663      657200
+ 2664              	.LASF58:
+ 2665 0431 49544D5F 		.ascii	"ITM_RxBuffer\000"
+ 2665      52784275 
+ 2665      66666572 
+ 2665      00
+ 2666              	.LASF71:
+ 2667 043e 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 2667      43313120 
+ 2667      352E342E 
+ 2667      31203230 
+ 2667      31363036 
+ 2668 0471 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m3 -mthumb -g -O"
+ 2668      20726576 
+ 2668      6973696F 
+ 2668      6E203233 
+ 2668      37373135 
+ 2669 04a4 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
+ 2669      66756E63 
+ 2669      74696F6E 
+ 2669      2D736563 
+ 2669      74696F6E 
+ 2670              	.LASF48:
+ 2671 04cc 4932435F 		.ascii	"I2C_xfer\000"
+ 2671      78666572 
+ 2671      00
+ 2672              	.LASF26:
+ 2673 04d5 636F756E 		.ascii	"counter_value\000"
+ 2673      7465725F 
+ 2673      76616C75 
+ 2673      6500
+ 2674              	.LASF23:
+ 2675 04e3 4932435F 		.ascii	"I2C_TRANSFER_TYPE_WRITE\000"
+ 2675      5452414E 
+ 2675      53464552 
+ 2675      5F545950 
+ 2675      455F5752 
+ 2676              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran

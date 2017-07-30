@@ -1,0 +1,92 @@
+C:/Users/dhous/Documents/Workspace09/USBMIDI\ and\ WiiChuck.cydsn/CortexM3/ARM_GCC_541/Debug/main.o : C:/Users/dhous/Documents/Workspace09/USBMIDI\ and\ WiiChuck.cydsn/Generated_Source/PSoC5/CyDmac.h C:/Users/dhous/Documents/Workspace09/USBMIDI\ and\ WiiChuck.cydsn/Generated_Source/PSoC5/CyFlash.h C:/Users/dhous/Documents/Workspace09/USBMIDI\ and\ WiiChuck.cydsn/Generated_Source/PSoC5/CyLib.h C:/Users/dhous/Documents/Workspace09/USBMIDI\ and\ WiiChuck.cydsn/Generated_Source/PSoC5/CySpc.h C:/Users/dhous/Documents/Workspace09/USBMIDI\ and\ WiiChuck.cydsn/Generated_Source/PSoC5/I2C.h C:/Users/dhous/Documents/Workspace09/USBMIDI\ and\ WiiChuck.cydsn/Generated_Source/PSoC5/I2C_PVT.h C:/Users/dhous/Documents/Workspace09/USBMIDI\ and\ WiiChuck.cydsn/Generated_Source/PSoC5/MIDI1_UART.h C:/Users/dhous/Documents/Workspace09/USBMIDI\ and\ WiiChuck.cydsn/Generated_Source/PSoC5/MIDI_UART.h C:/Users/dhous/Documents/Workspace09/USBMIDI\ and\ WiiChuck.cydsn/Generated_Source/PSoC5/MIDI_UART_IntClock.h C:/Users/dhous/Documents/Workspace09/USBMIDI\ and\ WiiChuck.cydsn/Generated_Source/PSoC5/SCL.h C:/Users/dhous/Documents/Workspace09/USBMIDI\ and\ WiiChuck.cydsn/Generated_Source/PSoC5/SCL_aliases.h C:/Users/dhous/Documents/Workspace09/USBMIDI\ and\ WiiChuck.cydsn/Generated_Source/PSoC5/SDA.h C:/Users/dhous/Documents/Workspace09/USBMIDI\ and\ WiiChuck.cydsn/Generated_Source/PSoC5/SDA_aliases.h C:/Users/dhous/Documents/Workspace09/USBMIDI\ and\ WiiChuck.cydsn/Generated_Source/PSoC5/UART.h C:/Users/dhous/Documents/Workspace09/USBMIDI\ and\ WiiChuck.cydsn/Generated_Source/PSoC5/UART_PVT.h C:/Users/dhous/Documents/Workspace09/USBMIDI\ and\ WiiChuck.cydsn/Generated_Source/PSoC5/USBMIDI.h C:/Users/dhous/Documents/Workspace09/USBMIDI\ and\ WiiChuck.cydsn/Generated_Source/PSoC5/USBMIDI_Dm.h C:/Users/dhous/Documents/Workspace09/USBMIDI\ and\ WiiChuck.cydsn/Generated_Source/PSoC5/USBMIDI_Dm_aliases.h C:/Users/dhous/Documents/Workspace09/USBMIDI\ and\ WiiChuck.cydsn/Generated_Source/PSoC5/USBMIDI_Dp.h C:/Users/dhous/Documents/Workspace09/USBMIDI\ and\ WiiChuck.cydsn/Generated_Source/PSoC5/USBMIDI_Dp_aliases.h C:/Users/dhous/Documents/Workspace09/USBMIDI\ and\ WiiChuck.cydsn/Generated_Source/PSoC5/USBMIDI_audio.h C:/Users/dhous/Documents/Workspace09/USBMIDI\ and\ WiiChuck.cydsn/Generated_Source/PSoC5/USBMIDI_cdc.h C:/Users/dhous/Documents/Workspace09/USBMIDI\ and\ WiiChuck.cydsn/Generated_Source/PSoC5/USBMIDI_cydmac.h C:/Users/dhous/Documents/Workspace09/USBMIDI\ and\ WiiChuck.cydsn/Generated_Source/PSoC5/USBMIDI_hid.h C:/Users/dhous/Documents/Workspace09/USBMIDI\ and\ WiiChuck.cydsn/Generated_Source/PSoC5/USBMIDI_midi.h C:/Users/dhous/Documents/Workspace09/USBMIDI\ and\ WiiChuck.cydsn/Generated_Source/PSoC5/USBMIDI_msc.h C:/Users/dhous/Documents/Workspace09/USBMIDI\ and\ WiiChuck.cydsn/Generated_Source/PSoC5/USBMIDI_pvt.h C:/Users/dhous/Documents/Workspace09/USBMIDI\ and\ WiiChuck.cydsn/Generated_Source/PSoC5/cmsis_armcc.h C:/Users/dhous/Documents/Workspace09/USBMIDI\ and\ WiiChuck.cydsn/Generated_Source/PSoC5/cmsis_compiler.h C:/Users/dhous/Documents/Workspace09/USBMIDI\ and\ WiiChuck.cydsn/Generated_Source/PSoC5/cmsis_gcc.h C:/Users/dhous/Documents/Workspace09/USBMIDI\ and\ WiiChuck.cydsn/Generated_Source/PSoC5/core_cm3.h C:/Users/dhous/Documents/Workspace09/USBMIDI\ and\ WiiChuck.cydsn/Generated_Source/PSoC5/core_cm3_psoc5.h C:/Users/dhous/Documents/Workspace09/USBMIDI\ and\ WiiChuck.cydsn/Generated_Source/PSoC5/cyPm.h C:/Users/dhous/Documents/Workspace09/USBMIDI\ and\ WiiChuck.cydsn/Generated_Source/PSoC5/cydevice.h C:/Users/dhous/Documents/Workspace09/USBMIDI\ and\ WiiChuck.cydsn/Generated_Source/PSoC5/cydevice_trm.h C:/Users/dhous/Documents/Workspace09/USBMIDI\ and\ WiiChuck.cydsn/Generated_Source/PSoC5/cydisabledsheets.h C:/Users/dhous/Documents/Workspace09/USBMIDI\ and\ WiiChuck.cydsn/Generated_Source/PSoC5/cyfitter.h C:/Users/dhous/Documents/Workspace09/USBMIDI\ and\ WiiChuck.cydsn/Generated_Source/PSoC5/cyfitter_cfg.h C:/Users/dhous/Documents/Workspace09/USBMIDI\ and\ WiiChuck.cydsn/Generated_Source/PSoC5/cypins.h C:/Users/dhous/Documents/Workspace09/USBMIDI\ and\ WiiChuck.cydsn/Generated_Source/PSoC5/cytypes.h C:/Users/dhous/Documents/Workspace09/USBMIDI\ and\ WiiChuck.cydsn/Generated_Source/PSoC5/project.h C:/Users/dhous/Documents/Workspace09/USBMIDI\ and\ WiiChuck.cydsn/cyapicallbacks.h C:/Users/dhous/Documents/Workspace09/USBMIDI\ and\ WiiChuck.cydsn/i2c_helper.h C:/Users/dhous/Documents/Workspace09/USBMIDI\ and\ WiiChuck.cydsn/main.c C:/Users/dhous/Documents/Workspace09/USBMIDI\ and\ WiiChuck.cydsn/wiichuck.h 
+
+C:/Users/dhous/Documents/Workspace09/USBMIDI\ and\ WiiChuck.cydsn/Generated_Source/PSoC5/CyDmac.h : 
+
+C:/Users/dhous/Documents/Workspace09/USBMIDI\ and\ WiiChuck.cydsn/Generated_Source/PSoC5/CyFlash.h : 
+
+C:/Users/dhous/Documents/Workspace09/USBMIDI\ and\ WiiChuck.cydsn/Generated_Source/PSoC5/CyLib.h : 
+
+C:/Users/dhous/Documents/Workspace09/USBMIDI\ and\ WiiChuck.cydsn/Generated_Source/PSoC5/CySpc.h : 
+
+C:/Users/dhous/Documents/Workspace09/USBMIDI\ and\ WiiChuck.cydsn/Generated_Source/PSoC5/I2C.h : 
+
+C:/Users/dhous/Documents/Workspace09/USBMIDI\ and\ WiiChuck.cydsn/Generated_Source/PSoC5/I2C_PVT.h : 
+
+C:/Users/dhous/Documents/Workspace09/USBMIDI\ and\ WiiChuck.cydsn/Generated_Source/PSoC5/MIDI1_UART.h : 
+
+C:/Users/dhous/Documents/Workspace09/USBMIDI\ and\ WiiChuck.cydsn/Generated_Source/PSoC5/MIDI_UART.h : 
+
+C:/Users/dhous/Documents/Workspace09/USBMIDI\ and\ WiiChuck.cydsn/Generated_Source/PSoC5/MIDI_UART_IntClock.h : 
+
+C:/Users/dhous/Documents/Workspace09/USBMIDI\ and\ WiiChuck.cydsn/Generated_Source/PSoC5/SCL.h : 
+
+C:/Users/dhous/Documents/Workspace09/USBMIDI\ and\ WiiChuck.cydsn/Generated_Source/PSoC5/SCL_aliases.h : 
+
+C:/Users/dhous/Documents/Workspace09/USBMIDI\ and\ WiiChuck.cydsn/Generated_Source/PSoC5/SDA.h : 
+
+C:/Users/dhous/Documents/Workspace09/USBMIDI\ and\ WiiChuck.cydsn/Generated_Source/PSoC5/SDA_aliases.h : 
+
+C:/Users/dhous/Documents/Workspace09/USBMIDI\ and\ WiiChuck.cydsn/Generated_Source/PSoC5/UART.h : 
+
+C:/Users/dhous/Documents/Workspace09/USBMIDI\ and\ WiiChuck.cydsn/Generated_Source/PSoC5/UART_PVT.h : 
+
+C:/Users/dhous/Documents/Workspace09/USBMIDI\ and\ WiiChuck.cydsn/Generated_Source/PSoC5/USBMIDI.h : 
+
+C:/Users/dhous/Documents/Workspace09/USBMIDI\ and\ WiiChuck.cydsn/Generated_Source/PSoC5/USBMIDI_Dm.h : 
+
+C:/Users/dhous/Documents/Workspace09/USBMIDI\ and\ WiiChuck.cydsn/Generated_Source/PSoC5/USBMIDI_Dm_aliases.h : 
+
+C:/Users/dhous/Documents/Workspace09/USBMIDI\ and\ WiiChuck.cydsn/Generated_Source/PSoC5/USBMIDI_Dp.h : 
+
+C:/Users/dhous/Documents/Workspace09/USBMIDI\ and\ WiiChuck.cydsn/Generated_Source/PSoC5/USBMIDI_Dp_aliases.h : 
+
+C:/Users/dhous/Documents/Workspace09/USBMIDI\ and\ WiiChuck.cydsn/Generated_Source/PSoC5/USBMIDI_audio.h : 
+
+C:/Users/dhous/Documents/Workspace09/USBMIDI\ and\ WiiChuck.cydsn/Generated_Source/PSoC5/USBMIDI_cdc.h : 
+
+C:/Users/dhous/Documents/Workspace09/USBMIDI\ and\ WiiChuck.cydsn/Generated_Source/PSoC5/USBMIDI_cydmac.h : 
+
+C:/Users/dhous/Documents/Workspace09/USBMIDI\ and\ WiiChuck.cydsn/Generated_Source/PSoC5/USBMIDI_hid.h : 
+
+C:/Users/dhous/Documents/Workspace09/USBMIDI\ and\ WiiChuck.cydsn/Generated_Source/PSoC5/USBMIDI_midi.h : 
+
+C:/Users/dhous/Documents/Workspace09/USBMIDI\ and\ WiiChuck.cydsn/Generated_Source/PSoC5/USBMIDI_msc.h : 
+
+C:/Users/dhous/Documents/Workspace09/USBMIDI\ and\ WiiChuck.cydsn/Generated_Source/PSoC5/USBMIDI_pvt.h : 
+
+C:/Users/dhous/Documents/Workspace09/USBMIDI\ and\ WiiChuck.cydsn/Generated_Source/PSoC5/cmsis_armcc.h : 
+
+C:/Users/dhous/Documents/Workspace09/USBMIDI\ and\ WiiChuck.cydsn/Generated_Source/PSoC5/cmsis_compiler.h : 
+
+C:/Users/dhous/Documents/Workspace09/USBMIDI\ and\ WiiChuck.cydsn/Generated_Source/PSoC5/cmsis_gcc.h : 
+
+C:/Users/dhous/Documents/Workspace09/USBMIDI\ and\ WiiChuck.cydsn/Generated_Source/PSoC5/core_cm3.h : 
+
+C:/Users/dhous/Documents/Workspace09/USBMIDI\ and\ WiiChuck.cydsn/Generated_Source/PSoC5/core_cm3_psoc5.h : 
+
+C:/Users/dhous/Documents/Workspace09/USBMIDI\ and\ WiiChuck.cydsn/Generated_Source/PSoC5/cyPm.h : 
+
+C:/Users/dhous/Documents/Workspace09/USBMIDI\ and\ WiiChuck.cydsn/Generated_Source/PSoC5/cydevice.h : 
+
+C:/Users/dhous/Documents/Workspace09/USBMIDI\ and\ WiiChuck.cydsn/Generated_Source/PSoC5/cydevice_trm.h : 
+
+C:/Users/dhous/Documents/Workspace09/USBMIDI\ and\ WiiChuck.cydsn/Generated_Source/PSoC5/cydisabledsheets.h : 
+
+C:/Users/dhous/Documents/Workspace09/USBMIDI\ and\ WiiChuck.cydsn/Generated_Source/PSoC5/cyfitter.h : 
+
+C:/Users/dhous/Documents/Workspace09/USBMIDI\ and\ WiiChuck.cydsn/Generated_Source/PSoC5/cyfitter_cfg.h : 
+
+C:/Users/dhous/Documents/Workspace09/USBMIDI\ and\ WiiChuck.cydsn/Generated_Source/PSoC5/cypins.h : 
+
+C:/Users/dhous/Documents/Workspace09/USBMIDI\ and\ WiiChuck.cydsn/Generated_Source/PSoC5/cytypes.h : 
+
+C:/Users/dhous/Documents/Workspace09/USBMIDI\ and\ WiiChuck.cydsn/Generated_Source/PSoC5/project.h : 
+
+C:/Users/dhous/Documents/Workspace09/USBMIDI\ and\ WiiChuck.cydsn/cyapicallbacks.h : 
+
+C:/Users/dhous/Documents/Workspace09/USBMIDI\ and\ WiiChuck.cydsn/i2c_helper.h : 
+
+C:/Users/dhous/Documents/Workspace09/USBMIDI\ and\ WiiChuck.cydsn/main.c : 
+
+C:/Users/dhous/Documents/Workspace09/USBMIDI\ and\ WiiChuck.cydsn/wiichuck.h : 
+

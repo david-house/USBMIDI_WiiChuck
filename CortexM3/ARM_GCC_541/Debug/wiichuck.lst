@@ -1,0 +1,2022 @@
+ARM GAS  C:\Users\dhous\AppData\Local\Temp\ccoPXq2x.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.syntax unified
+  15              		.file	"wiichuck.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.section	.text.wiichuck_get_motion_status,"ax",%progbits
+  20              		.align	2
+  21              		.global	wiichuck_get_motion_status
+  22              		.thumb
+  23              		.thumb_func
+  24              		.type	wiichuck_get_motion_status, %function
+  25              	wiichuck_get_motion_status:
+  26              	.LFB65:
+  27              		.file 1 "wiichuck.c"
+   1:wiichuck.c    **** #include "project.h"
+   2:wiichuck.c    **** #include "i2c_helper.h"
+   3:wiichuck.c    **** #include "wiichuck.h"
+   4:wiichuck.c    **** 
+   5:wiichuck.c    **** 
+   6:wiichuck.c    **** void wiichuck_begin()
+   7:wiichuck.c    **** {
+   8:wiichuck.c    ****     // instead of the common 0x40 -> 0x00 initialization, we
+   9:wiichuck.c    ****     // use 0xF0 -> 0x55 followed by 0xFB -> 0x00.
+  10:wiichuck.c    ****     // this lets us use 3rd party nunchucks (like cheap $4 ebay ones)
+  11:wiichuck.c    ****     // while still letting us use official oness.
+  12:wiichuck.c    ****     // only side effect is that we no longer need to decode bytes in _nunchuk_decode_byte
+  13:wiichuck.c    ****     // see http://forum.arduino.cc/index.php?topic=45924#msg333160
+  14:wiichuck.c    ****     
+  15:wiichuck.c    ****     uint8_t return_status = 0;
+  16:wiichuck.c    ****     wiichuck_status_request_array[0] = 0x00;
+  17:wiichuck.c    ****     
+  18:wiichuck.c    ****     initialization_buffer[0][0] = 0xF0; //0x40
+  19:wiichuck.c    ****     initialization_buffer[0][1] = 0x55; //0x00
+  20:wiichuck.c    ****     initialization_buffer[1][0] = 0xFB;
+  21:wiichuck.c    ****     initialization_buffer[1][1] = 0x00;
+  22:wiichuck.c    ****     
+  23:wiichuck.c    ****     // following the Arduino example these are written as distinct transactions
+  24:wiichuck.c    ****     uint8_t j = 0;
+  25:wiichuck.c    ****     
+  26:wiichuck.c    ****     for (j = 0; j < 1; j++)
+  27:wiichuck.c    ****     {
+  28:wiichuck.c    ****         I2C_write(WIICHUCK_I2C_ADDRESS, initialization_buffer[j], sizeof(initialization_buffer[j]),
+  29:wiichuck.c    ****         CyDelay(1); // this is copied from the Arduino site
+  30:wiichuck.c    ****     }
+ARM GAS  C:\Users\dhous\AppData\Local\Temp\ccoPXq2x.s 			page 2
+
+
+  31:wiichuck.c    ****     
+  32:wiichuck.c    ****     wiichuck_get_motion_status();
+  33:wiichuck.c    **** 
+  34:wiichuck.c    ****     //update();            
+  35:wiichuck.c    ****     for (i = 0; i<3;i++) {
+  36:wiichuck.c    ****         angles[i] = 0;
+  37:wiichuck.c    ****     }
+  38:wiichuck.c    ****     zeroJoyX = DEFAULT_ZERO_JOY_X;
+  39:wiichuck.c    ****     zeroJoyY = DEFAULT_ZERO_JOY_Y;
+  40:wiichuck.c    **** }
+  41:wiichuck.c    **** 
+  42:wiichuck.c    **** void wiichuck_get_motion_status()
+  43:wiichuck.c    **** {
+  28              		.loc 1 43 0
+  29              		.cfi_startproc
+  30              		@ args = 0, pretend = 0, frame = 0
+  31              		@ frame_needed = 0, uses_anonymous_args = 0
+  32 0000 10B5     		push	{r4, lr}
+  33              		.cfi_def_cfa_offset 8
+  34              		.cfi_offset 4, -8
+  35              		.cfi_offset 14, -4
+  44:wiichuck.c    ****             
+  45:wiichuck.c    ****     I2C_read(WIICHUCK_I2C_ADDRESS, wiichuck_status_result_array,
+  36              		.loc 1 45 0
+  37 0002 074C     		ldr	r4, .L3
+  38 0004 2346     		mov	r3, r4
+  39 0006 0622     		movs	r2, #6
+  40 0008 0649     		ldr	r1, .L3+4
+  41 000a 5220     		movs	r0, #82
+  42 000c FFF7FEFF 		bl	I2C_read
+  43              	.LVL0:
+  46:wiichuck.c    ****         sizeof(wiichuck_status_result_array),
+  47:wiichuck.c    ****         &I2C_status);
+  48:wiichuck.c    ****     
+  49:wiichuck.c    ****     I2C_write(WIICHUCK_I2C_ADDRESS, wiichuck_status_request_array,
+  44              		.loc 1 49 0
+  45 0010 2346     		mov	r3, r4
+  46 0012 0122     		movs	r2, #1
+  47 0014 0449     		ldr	r1, .L3+8
+  48 0016 5220     		movs	r0, #82
+  49 0018 FFF7FEFF 		bl	I2C_write
+  50              	.LVL1:
+  51 001c 10BD     		pop	{r4, pc}
+  52              	.L4:
+  53 001e 00BF     		.align	2
+  54              	.L3:
+  55 0020 00000000 		.word	I2C_status
+  56 0024 00000000 		.word	wiichuck_status_result_array
+  57 0028 00000000 		.word	wiichuck_status_request_array
+  58              		.cfi_endproc
+  59              	.LFE65:
+  60              		.size	wiichuck_get_motion_status, .-wiichuck_get_motion_status
+  61              		.section	.text.wiichuck_begin,"ax",%progbits
+  62              		.align	2
+  63              		.global	wiichuck_begin
+  64              		.thumb
+  65              		.thumb_func
+ARM GAS  C:\Users\dhous\AppData\Local\Temp\ccoPXq2x.s 			page 3
+
+
+  66              		.type	wiichuck_begin, %function
+  67              	wiichuck_begin:
+  68              	.LFB64:
+   7:wiichuck.c    ****     // instead of the common 0x40 -> 0x00 initialization, we
+  69              		.loc 1 7 0
+  70              		.cfi_startproc
+  71              		@ args = 0, pretend = 0, frame = 0
+  72              		@ frame_needed = 0, uses_anonymous_args = 0
+  73 0000 10B5     		push	{r4, lr}
+  74              		.cfi_def_cfa_offset 8
+  75              		.cfi_offset 4, -8
+  76              		.cfi_offset 14, -4
+  77              	.LVL2:
+  16:wiichuck.c    ****     
+  78              		.loc 1 16 0
+  79 0002 0024     		movs	r4, #0
+  80 0004 184B     		ldr	r3, .L11
+  81 0006 1C70     		strb	r4, [r3]
+  18:wiichuck.c    ****     initialization_buffer[0][1] = 0x55; //0x00
+  82              		.loc 1 18 0
+  83 0008 184B     		ldr	r3, .L11+4
+  84 000a F022     		movs	r2, #240
+  85 000c 1A70     		strb	r2, [r3]
+  19:wiichuck.c    ****     initialization_buffer[1][0] = 0xFB;
+  86              		.loc 1 19 0
+  87 000e 5522     		movs	r2, #85
+  88 0010 5A70     		strb	r2, [r3, #1]
+  20:wiichuck.c    ****     initialization_buffer[1][1] = 0x00;
+  89              		.loc 1 20 0
+  90 0012 FB22     		movs	r2, #251
+  91 0014 9A70     		strb	r2, [r3, #2]
+  21:wiichuck.c    ****     
+  92              		.loc 1 21 0
+  93 0016 DC70     		strb	r4, [r3, #3]
+  94              	.LVL3:
+  26:wiichuck.c    ****     {
+  95              		.loc 1 26 0
+  96 0018 0CE0     		b	.L6
+  97              	.LVL4:
+  98              	.L7:
+  28:wiichuck.c    ****         CyDelay(1); // this is copied from the Arduino site
+  99              		.loc 1 28 0 discriminator 3
+ 100 001a 154B     		ldr	r3, .L11+8
+ 101 001c 0222     		movs	r2, #2
+ 102 001e 1349     		ldr	r1, .L11+4
+ 103 0020 01EB4401 		add	r1, r1, r4, lsl #1
+ 104 0024 5220     		movs	r0, #82
+ 105 0026 FFF7FEFF 		bl	I2C_write
+ 106              	.LVL5:
+  29:wiichuck.c    ****     }
+ 107              		.loc 1 29 0 discriminator 3
+ 108 002a 0120     		movs	r0, #1
+ 109 002c FFF7FEFF 		bl	CyDelay
+ 110              	.LVL6:
+  26:wiichuck.c    ****     {
+ 111              		.loc 1 26 0 discriminator 3
+ 112 0030 0134     		adds	r4, r4, #1
+ARM GAS  C:\Users\dhous\AppData\Local\Temp\ccoPXq2x.s 			page 4
+
+
+ 113              	.LVL7:
+ 114 0032 E4B2     		uxtb	r4, r4
+ 115              	.LVL8:
+ 116              	.L6:
+  26:wiichuck.c    ****     {
+ 117              		.loc 1 26 0 is_stmt 0 discriminator 1
+ 118 0034 002C     		cmp	r4, #0
+ 119 0036 F0D0     		beq	.L7
+  32:wiichuck.c    **** 
+ 120              		.loc 1 32 0 is_stmt 1
+ 121 0038 FFF7FEFF 		bl	wiichuck_get_motion_status
+ 122              	.LVL9:
+  35:wiichuck.c    ****         angles[i] = 0;
+ 123              		.loc 1 35 0
+ 124 003c 0022     		movs	r2, #0
+ 125 003e 0D4B     		ldr	r3, .L11+12
+ 126 0040 1A60     		str	r2, [r3]
+ 127 0042 06E0     		b	.L8
+ 128              	.L9:
+  36:wiichuck.c    ****     }
+ 129              		.loc 1 36 0 discriminator 3
+ 130 0044 0021     		movs	r1, #0
+ 131 0046 0C4A     		ldr	r2, .L11+16
+ 132 0048 42F82310 		str	r1, [r2, r3, lsl #2]
+  35:wiichuck.c    ****         angles[i] = 0;
+ 133              		.loc 1 35 0 discriminator 3
+ 134 004c 0133     		adds	r3, r3, #1
+ 135 004e 094A     		ldr	r2, .L11+12
+ 136 0050 1360     		str	r3, [r2]
+ 137              	.L8:
+  35:wiichuck.c    ****         angles[i] = 0;
+ 138              		.loc 1 35 0 is_stmt 0 discriminator 1
+ 139 0052 084B     		ldr	r3, .L11+12
+ 140 0054 1B68     		ldr	r3, [r3]
+ 141 0056 022B     		cmp	r3, #2
+ 142 0058 F4DD     		ble	.L9
+  38:wiichuck.c    ****     zeroJoyY = DEFAULT_ZERO_JOY_Y;
+ 143              		.loc 1 38 0 is_stmt 1
+ 144 005a 7C22     		movs	r2, #124
+ 145 005c 074B     		ldr	r3, .L11+20
+ 146 005e 1A70     		strb	r2, [r3]
+  39:wiichuck.c    **** }
+ 147              		.loc 1 39 0
+ 148 0060 8422     		movs	r2, #132
+ 149 0062 074B     		ldr	r3, .L11+24
+ 150 0064 1A70     		strb	r2, [r3]
+ 151 0066 10BD     		pop	{r4, pc}
+ 152              	.LVL10:
+ 153              	.L12:
+ 154              		.align	2
+ 155              	.L11:
+ 156 0068 00000000 		.word	wiichuck_status_request_array
+ 157 006c 00000000 		.word	initialization_buffer
+ 158 0070 00000000 		.word	I2C_status
+ 159 0074 00000000 		.word	i
+ 160 0078 00000000 		.word	angles
+ 161 007c 00000000 		.word	zeroJoyX
+ARM GAS  C:\Users\dhous\AppData\Local\Temp\ccoPXq2x.s 			page 5
+
+
+ 162 0080 00000000 		.word	zeroJoyY
+ 163              		.cfi_endproc
+ 164              	.LFE64:
+ 165              		.size	wiichuck_begin, .-wiichuck_begin
+ 166              		.section	.text.wiichuck_print_i2c_status,"ax",%progbits
+ 167              		.align	2
+ 168              		.global	wiichuck_print_i2c_status
+ 169              		.thumb
+ 170              		.thumb_func
+ 171              		.type	wiichuck_print_i2c_status, %function
+ 172              	wiichuck_print_i2c_status:
+ 173              	.LFB66:
+  50:wiichuck.c    ****         sizeof(wiichuck_status_request_array),
+  51:wiichuck.c    ****         &I2C_status);
+  52:wiichuck.c    ****     
+  53:wiichuck.c    **** }
+  54:wiichuck.c    **** 
+  55:wiichuck.c    **** void wiichuck_print_i2c_status()
+  56:wiichuck.c    **** {
+ 174              		.loc 1 56 0
+ 175              		.cfi_startproc
+ 176              		@ args = 0, pretend = 0, frame = 0
+ 177              		@ frame_needed = 0, uses_anonymous_args = 0
+ 178 0000 08B5     		push	{r3, lr}
+ 179              		.cfi_def_cfa_offset 8
+ 180              		.cfi_offset 3, -8
+ 181              		.cfi_offset 14, -4
+  57:wiichuck.c    ****     I2C_print_transfer_status(&I2C_status);
+ 182              		.loc 1 57 0
+ 183 0002 0248     		ldr	r0, .L15
+ 184 0004 FFF7FEFF 		bl	I2C_print_transfer_status
+ 185              	.LVL11:
+ 186 0008 08BD     		pop	{r3, pc}
+ 187              	.L16:
+ 188 000a 00BF     		.align	2
+ 189              	.L15:
+ 190 000c 00000000 		.word	I2C_status
+ 191              		.cfi_endproc
+ 192              	.LFE66:
+ 193              		.size	wiichuck_print_i2c_status, .-wiichuck_print_i2c_status
+ 194              		.section	.text.wiichuck_get_raw_motion_status,"ax",%progbits
+ 195              		.align	2
+ 196              		.global	wiichuck_get_raw_motion_status
+ 197              		.thumb
+ 198              		.thumb_func
+ 199              		.type	wiichuck_get_raw_motion_status, %function
+ 200              	wiichuck_get_raw_motion_status:
+ 201              	.LFB67:
+  58:wiichuck.c    **** }
+  59:wiichuck.c    **** 
+  60:wiichuck.c    **** void wiichuck_get_raw_motion_status()
+  61:wiichuck.c    **** {
+ 202              		.loc 1 61 0
+ 203              		.cfi_startproc
+ 204              		@ args = 0, pretend = 0, frame = 0
+ 205              		@ frame_needed = 0, uses_anonymous_args = 0
+ 206 0000 38B5     		push	{r3, r4, r5, lr}
+ARM GAS  C:\Users\dhous\AppData\Local\Temp\ccoPXq2x.s 			page 6
+
+
+ 207              		.cfi_def_cfa_offset 16
+ 208              		.cfi_offset 3, -16
+ 209              		.cfi_offset 4, -12
+ 210              		.cfi_offset 5, -8
+ 211              		.cfi_offset 14, -4
+  62:wiichuck.c    ****     wiichuck_get_motion_status();
+ 212              		.loc 1 62 0
+ 213 0002 FFF7FEFF 		bl	wiichuck_get_motion_status
+ 214              	.LVL12:
+  63:wiichuck.c    ****     
+  64:wiichuck.c    ****     wiichuck_state.JX = wiichuck_status_result_array[0];
+ 215              		.loc 1 64 0
+ 216 0006 0F49     		ldr	r1, .L19
+ 217 0008 0A78     		ldrb	r2, [r1]	@ zero_extendqisi2
+ 218 000a 0F4B     		ldr	r3, .L19+4
+ 219 000c 1A70     		strb	r2, [r3]
+  65:wiichuck.c    ****     wiichuck_state.JY = wiichuck_status_result_array[1];
+ 220              		.loc 1 65 0
+ 221 000e 4A78     		ldrb	r2, [r1, #1]	@ zero_extendqisi2
+ 222 0010 5A70     		strb	r2, [r3, #1]
+  66:wiichuck.c    **** 
+  67:wiichuck.c    ****     
+  68:wiichuck.c    ****     wiichuck_state.AX = ((uint16_t)(0b00001100 & wiichuck_status_result_array[5])) >> 2;
+ 223              		.loc 1 68 0
+ 224 0012 4A79     		ldrb	r2, [r1, #5]	@ zero_extendqisi2
+ 225 0014 C2F38104 		ubfx	r4, r2, #2, #2
+  69:wiichuck.c    ****     wiichuck_state.AY = ((uint16_t)(0b00110000 & wiichuck_status_result_array[5])) >> 4;
+ 226              		.loc 1 69 0
+ 227 0018 C2F30110 		ubfx	r0, r2, #4, #2
+  70:wiichuck.c    ****     wiichuck_state.AZ = ((uint16_t)(0b11000000 & wiichuck_status_result_array[5])) >> 6;
+  71:wiichuck.c    ****     
+  72:wiichuck.c    ****     wiichuck_state.AX |= (((uint16_t)wiichuck_status_result_array[2]) << 2);
+ 228              		.loc 1 72 0
+ 229 001c 8D78     		ldrb	r5, [r1, #2]	@ zero_extendqisi2
+ 230 001e 44EA8504 		orr	r4, r4, r5, lsl #2
+ 231 0022 5C80     		strh	r4, [r3, #2]	@ movhi
+  73:wiichuck.c    ****     wiichuck_state.AY |= (((uint16_t)wiichuck_status_result_array[3]) << 2);
+ 232              		.loc 1 73 0
+ 233 0024 CC78     		ldrb	r4, [r1, #3]	@ zero_extendqisi2
+ 234 0026 40EA8400 		orr	r0, r0, r4, lsl #2
+ 235 002a 9880     		strh	r0, [r3, #4]	@ movhi
+  74:wiichuck.c    ****     wiichuck_state.AZ |= (((uint16_t)wiichuck_status_result_array[4]) << 2);
+ 236              		.loc 1 74 0
+ 237 002c 0979     		ldrb	r1, [r1, #4]	@ zero_extendqisi2
+ 238 002e 8900     		lsls	r1, r1, #2
+ 239 0030 41EA9211 		orr	r1, r1, r2, lsr #6
+ 240 0034 D980     		strh	r1, [r3, #6]	@ movhi
+  75:wiichuck.c    ****     
+  76:wiichuck.c    ****     wiichuck_state.C = (0b00000010 & wiichuck_status_result_array[5]) >> 1;
+ 241              		.loc 1 76 0
+ 242 0036 C2F34001 		ubfx	r1, r2, #1, #1
+ 243 003a 1972     		strb	r1, [r3, #8]
+  77:wiichuck.c    ****     wiichuck_state.Z = (0b00000001 & wiichuck_status_result_array[5]);
+ 244              		.loc 1 77 0
+ 245 003c 02F00102 		and	r2, r2, #1
+ 246 0040 5A72     		strb	r2, [r3, #9]
+ 247 0042 38BD     		pop	{r3, r4, r5, pc}
+ARM GAS  C:\Users\dhous\AppData\Local\Temp\ccoPXq2x.s 			page 7
+
+
+ 248              	.L20:
+ 249              		.align	2
+ 250              	.L19:
+ 251 0044 00000000 		.word	wiichuck_status_result_array
+ 252 0048 00000000 		.word	wiichuck_state
+ 253              		.cfi_endproc
+ 254              	.LFE67:
+ 255              		.size	wiichuck_get_raw_motion_status, .-wiichuck_get_raw_motion_status
+ 256              		.section	.text.wiichuck_print_raw_motion_status,"ax",%progbits
+ 257              		.align	2
+ 258              		.global	wiichuck_print_raw_motion_status
+ 259              		.thumb
+ 260              		.thumb_func
+ 261              		.type	wiichuck_print_raw_motion_status, %function
+ 262              	wiichuck_print_raw_motion_status:
+ 263              	.LFB68:
+  78:wiichuck.c    **** }
+  79:wiichuck.c    **** 
+  80:wiichuck.c    **** void wiichuck_print_raw_motion_status()
+  81:wiichuck.c    **** {
+ 264              		.loc 1 81 0
+ 265              		.cfi_startproc
+ 266              		@ args = 0, pretend = 0, frame = 80
+ 267              		@ frame_needed = 0, uses_anonymous_args = 0
+ 268 0000 70B5     		push	{r4, r5, r6, lr}
+ 269              		.cfi_def_cfa_offset 16
+ 270              		.cfi_offset 4, -16
+ 271              		.cfi_offset 5, -12
+ 272              		.cfi_offset 6, -8
+ 273              		.cfi_offset 14, -4
+ 274 0002 9AB0     		sub	sp, sp, #104
+ 275              		.cfi_def_cfa_offset 120
+  82:wiichuck.c    ****     char pbuf[80];
+  83:wiichuck.c    ****     
+  84:wiichuck.c    ****     sprintf(pbuf, "Wiichuck (jx, jy, ax, ay, az, c, z): %d %d %d %d %d %d %d\r\n", wiichuck_state.J
+ 276              		.loc 1 84 0
+ 277 0004 0A49     		ldr	r1, .L23
+ 278 0006 0A78     		ldrb	r2, [r1]	@ zero_extendqisi2
+ 279 0008 4B78     		ldrb	r3, [r1, #1]	@ zero_extendqisi2
+ 280 000a 4888     		ldrh	r0, [r1, #2]
+ 281 000c 8C88     		ldrh	r4, [r1, #4]
+ 282 000e CD88     		ldrh	r5, [r1, #6]
+ 283 0010 0E7A     		ldrb	r6, [r1, #8]	@ zero_extendqisi2
+ 284 0012 497A     		ldrb	r1, [r1, #9]	@ zero_extendqisi2
+ 285 0014 0491     		str	r1, [sp, #16]
+ 286 0016 0396     		str	r6, [sp, #12]
+ 287 0018 0295     		str	r5, [sp, #8]
+ 288 001a 0194     		str	r4, [sp, #4]
+ 289 001c 0090     		str	r0, [sp]
+ 290 001e 0549     		ldr	r1, .L23+4
+ 291 0020 06A8     		add	r0, sp, #24
+ 292 0022 FFF7FEFF 		bl	sprintf
+ 293              	.LVL13:
+  85:wiichuck.c    ****     UART_PutString(pbuf);
+ 294              		.loc 1 85 0
+ 295 0026 06A8     		add	r0, sp, #24
+ 296 0028 FFF7FEFF 		bl	UART_PutString
+ARM GAS  C:\Users\dhous\AppData\Local\Temp\ccoPXq2x.s 			page 8
+
+
+ 297              	.LVL14:
+  86:wiichuck.c    **** 
+  87:wiichuck.c    **** }
+ 298              		.loc 1 87 0
+ 299 002c 1AB0     		add	sp, sp, #104
+ 300              		.cfi_def_cfa_offset 16
+ 301              		@ sp needed
+ 302 002e 70BD     		pop	{r4, r5, r6, pc}
+ 303              	.L24:
+ 304              		.align	2
+ 305              	.L23:
+ 306 0030 00000000 		.word	wiichuck_state
+ 307 0034 00000000 		.word	.LC0
+ 308              		.cfi_endproc
+ 309              	.LFE68:
+ 310              		.size	wiichuck_print_raw_motion_status, .-wiichuck_print_raw_motion_status
+ 311              		.comm	initialization_buffer,4,4
+ 312              		.comm	buttonC,1,1
+ 313              		.comm	buttonZ,1,1
+ 314              		.comm	joyY,1,1
+ 315              		.comm	joyX,1,1
+ 316              		.comm	lastC,1,1
+ 317              		.comm	lastZ,1,1
+ 318              		.comm	wiichuck_state,10,4
+ 319              		.comm	angles,12,4
+ 320              		.comm	lastJoyY,4,4
+ 321              		.comm	lastJoyX,4,4
+ 322              		.comm	zeroJoyY,1,1
+ 323              		.comm	zeroJoyX,1,1
+ 324              		.comm	total,4,4
+ 325              		.comm	i,4,4
+ 326              		.comm	averageCounter,1,1
+ 327              		.comm	wiichuck_status_result_array,6,4
+ 328              		.comm	wiichuck_status_request_array,1,4
+ 329              		.comm	cnt,1,1
+ 330              		.comm	I2C_status,18,4
+ 331              		.section	.rodata.str1.4,"aMS",%progbits,1
+ 332              		.align	2
+ 333              	.LC0:
+ 334 0000 57696963 		.ascii	"Wiichuck (jx, jy, ax, ay, az, c, z): %d %d %d %d %d"
+ 334      6875636B 
+ 334      20286A78 
+ 334      2C206A79 
+ 334      2C206178 
+ 335 0033 20256420 		.ascii	" %d %d\015\012\000"
+ 335      25640D0A 
+ 335      00
+ 336              		.text
+ 337              	.Letext0:
+ 338              		.file 2 "c:\\program files\\cypress\\psoc creator\\4.1\\psoc creator\\import\\gnu\\arm\\5.4.1\\arm
+ 339              		.file 3 "c:\\program files\\cypress\\psoc creator\\4.1\\psoc creator\\import\\gnu\\arm\\5.4.1\\arm
+ 340              		.file 4 "i2c_helper.h"
+ 341              		.file 5 "wiichuck.h"
+ 342              		.file 6 "Generated_Source\\PSoC5/core_cm3.h"
+ 343              		.file 7 "Generated_Source\\PSoC5/CyLib.h"
+ 344              		.file 8 "c:\\program files\\cypress\\psoc creator\\4.1\\psoc creator\\import\\gnu\\arm\\5.4.1\\arm
+ 345              		.file 9 "Generated_Source\\PSoC5/UART.h"
+ARM GAS  C:\Users\dhous\AppData\Local\Temp\ccoPXq2x.s 			page 9
+
+
+ 346              		.section	.debug_info,"",%progbits
+ 347              	.Ldebug_info0:
+ 348 0000 81050000 		.4byte	0x581
+ 349 0004 0400     		.2byte	0x4
+ 350 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 351 000a 04       		.byte	0x4
+ 352 000b 01       		.uleb128 0x1
+ 353 000c DB030000 		.4byte	.LASF69
+ 354 0010 0C       		.byte	0xc
+ 355 0011 98030000 		.4byte	.LASF70
+ 356 0015 32010000 		.4byte	.LASF71
+ 357 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 358 001d 00000000 		.4byte	0
+ 359 0021 00000000 		.4byte	.Ldebug_line0
+ 360 0025 02       		.uleb128 0x2
+ 361 0026 01       		.byte	0x1
+ 362 0027 06       		.byte	0x6
+ 363 0028 0D020000 		.4byte	.LASF0
+ 364 002c 03       		.uleb128 0x3
+ 365 002d D1010000 		.4byte	.LASF3
+ 366 0031 02       		.byte	0x2
+ 367 0032 1D       		.byte	0x1d
+ 368 0033 37000000 		.4byte	0x37
+ 369 0037 02       		.uleb128 0x2
+ 370 0038 01       		.byte	0x1
+ 371 0039 08       		.byte	0x8
+ 372 003a F7010000 		.4byte	.LASF1
+ 373 003e 02       		.uleb128 0x2
+ 374 003f 02       		.byte	0x2
+ 375 0040 05       		.byte	0x5
+ 376 0041 7D000000 		.4byte	.LASF2
+ 377 0045 03       		.uleb128 0x3
+ 378 0046 A3000000 		.4byte	.LASF4
+ 379 004a 02       		.byte	0x2
+ 380 004b 2B       		.byte	0x2b
+ 381 004c 50000000 		.4byte	0x50
+ 382 0050 02       		.uleb128 0x2
+ 383 0051 02       		.byte	0x2
+ 384 0052 07       		.byte	0x7
+ 385 0053 79020000 		.4byte	.LASF5
+ 386 0057 03       		.uleb128 0x3
+ 387 0058 68030000 		.4byte	.LASF6
+ 388 005c 02       		.byte	0x2
+ 389 005d 3F       		.byte	0x3f
+ 390 005e 62000000 		.4byte	0x62
+ 391 0062 02       		.uleb128 0x2
+ 392 0063 04       		.byte	0x4
+ 393 0064 05       		.byte	0x5
+ 394 0065 9B010000 		.4byte	.LASF7
+ 395 0069 02       		.uleb128 0x2
+ 396 006a 04       		.byte	0x4
+ 397 006b 07       		.byte	0x7
+ 398 006c 23030000 		.4byte	.LASF8
+ 399 0070 02       		.uleb128 0x2
+ 400 0071 08       		.byte	0x8
+ 401 0072 05       		.byte	0x5
+ 402 0073 72010000 		.4byte	.LASF9
+ARM GAS  C:\Users\dhous\AppData\Local\Temp\ccoPXq2x.s 			page 10
+
+
+ 403 0077 02       		.uleb128 0x2
+ 404 0078 08       		.byte	0x8
+ 405 0079 07       		.byte	0x7
+ 406 007a 19020000 		.4byte	.LASF10
+ 407 007e 04       		.uleb128 0x4
+ 408 007f 04       		.byte	0x4
+ 409 0080 05       		.byte	0x5
+ 410 0081 696E7400 		.ascii	"int\000"
+ 411 0085 02       		.uleb128 0x2
+ 412 0086 04       		.byte	0x4
+ 413 0087 07       		.byte	0x7
+ 414 0088 42020000 		.4byte	.LASF11
+ 415 008c 03       		.uleb128 0x3
+ 416 008d EF000000 		.4byte	.LASF12
+ 417 0091 03       		.byte	0x3
+ 418 0092 18       		.byte	0x18
+ 419 0093 2C000000 		.4byte	0x2c
+ 420 0097 03       		.uleb128 0x3
+ 421 0098 5F020000 		.4byte	.LASF13
+ 422 009c 03       		.byte	0x3
+ 423 009d 24       		.byte	0x24
+ 424 009e 45000000 		.4byte	0x45
+ 425 00a2 03       		.uleb128 0x3
+ 426 00a3 AB020000 		.4byte	.LASF14
+ 427 00a7 03       		.byte	0x3
+ 428 00a8 2C       		.byte	0x2c
+ 429 00a9 57000000 		.4byte	0x57
+ 430 00ad 02       		.uleb128 0x2
+ 431 00ae 04       		.byte	0x4
+ 432 00af 04       		.byte	0x4
+ 433 00b0 22000000 		.4byte	.LASF15
+ 434 00b4 02       		.uleb128 0x2
+ 435 00b5 08       		.byte	0x8
+ 436 00b6 04       		.byte	0x4
+ 437 00b7 35030000 		.4byte	.LASF16
+ 438 00bb 02       		.uleb128 0x2
+ 439 00bc 01       		.byte	0x1
+ 440 00bd 08       		.byte	0x8
+ 441 00be 96010000 		.4byte	.LASF17
+ 442 00c2 02       		.uleb128 0x2
+ 443 00c3 08       		.byte	0x8
+ 444 00c4 04       		.byte	0x4
+ 445 00c5 EB010000 		.4byte	.LASF18
+ 446 00c9 02       		.uleb128 0x2
+ 447 00ca 04       		.byte	0x4
+ 448 00cb 07       		.byte	0x7
+ 449 00cc 87000000 		.4byte	.LASF19
+ 450 00d0 05       		.uleb128 0x5
+ 451 00d1 56030000 		.4byte	.LASF72
+ 452 00d5 01       		.byte	0x1
+ 453 00d6 37000000 		.4byte	0x37
+ 454 00da 04       		.byte	0x4
+ 455 00db 0B       		.byte	0xb
+ 456 00dc F9000000 		.4byte	0xf9
+ 457 00e0 06       		.uleb128 0x6
+ 458 00e1 3C030000 		.4byte	.LASF20
+ 459 00e5 00       		.byte	0
+ARM GAS  C:\Users\dhous\AppData\Local\Temp\ccoPXq2x.s 			page 11
+
+
+ 460 00e6 06       		.uleb128 0x6
+ 461 00e7 A4040000 		.4byte	.LASF21
+ 462 00eb 01       		.byte	0x1
+ 463 00ec 06       		.uleb128 0x6
+ 464 00ed B3020000 		.4byte	.LASF22
+ 465 00f1 02       		.byte	0x2
+ 466 00f2 06       		.uleb128 0x6
+ 467 00f3 72030000 		.4byte	.LASF23
+ 468 00f7 03       		.byte	0x3
+ 469 00f8 00       		.byte	0
+ 470 00f9 07       		.uleb128 0x7
+ 471 00fa 12       		.byte	0x12
+ 472 00fb 04       		.byte	0x4
+ 473 00fc 14       		.byte	0x14
+ 474 00fd 91010000 		.4byte	0x191
+ 475 0101 08       		.uleb128 0x8
+ 476 0102 7B040000 		.4byte	.LASF24
+ 477 0106 04       		.byte	0x4
+ 478 0107 15       		.byte	0x15
+ 479 0108 97000000 		.4byte	0x97
+ 480 010c 00       		.byte	0
+ 481 010d 08       		.uleb128 0x8
+ 482 010e 67000000 		.4byte	.LASF25
+ 483 0112 04       		.byte	0x4
+ 484 0113 16       		.byte	0x16
+ 485 0114 97000000 		.4byte	0x97
+ 486 0118 02       		.byte	0x2
+ 487 0119 08       		.uleb128 0x8
+ 488 011a BC010000 		.4byte	.LASF26
+ 489 011e 04       		.byte	0x4
+ 490 011f 17       		.byte	0x17
+ 491 0120 97000000 		.4byte	0x97
+ 492 0124 04       		.byte	0x4
+ 493 0125 08       		.uleb128 0x8
+ 494 0126 68020000 		.4byte	.LASF27
+ 495 012a 04       		.byte	0x4
+ 496 012b 18       		.byte	0x18
+ 497 012c 97000000 		.4byte	0x97
+ 498 0130 06       		.byte	0x6
+ 499 0131 08       		.uleb128 0x8
+ 500 0132 4F020000 		.4byte	.LASF28
+ 501 0136 04       		.byte	0x4
+ 502 0137 19       		.byte	0x19
+ 503 0138 97000000 		.4byte	0x97
+ 504 013c 08       		.byte	0x8
+ 505 013d 08       		.uleb128 0x8
+ 506 013e 89030000 		.4byte	.LASF29
+ 507 0142 04       		.byte	0x4
+ 508 0143 1A       		.byte	0x1a
+ 509 0144 8C000000 		.4byte	0x8c
+ 510 0148 0A       		.byte	0xa
+ 511 0149 08       		.uleb128 0x8
+ 512 014a E8020000 		.4byte	.LASF30
+ 513 014e 04       		.byte	0x4
+ 514 014f 1B       		.byte	0x1b
+ 515 0150 8C000000 		.4byte	0x8c
+ 516 0154 0B       		.byte	0xb
+ARM GAS  C:\Users\dhous\AppData\Local\Temp\ccoPXq2x.s 			page 12
+
+
+ 517 0155 08       		.uleb128 0x8
+ 518 0156 DA020000 		.4byte	.LASF31
+ 519 015a 04       		.byte	0x4
+ 520 015b 1C       		.byte	0x1c
+ 521 015c 8C000000 		.4byte	0x8c
+ 522 0160 0C       		.byte	0xc
+ 523 0161 08       		.uleb128 0x8
+ 524 0162 F7000000 		.4byte	.LASF32
+ 525 0166 04       		.byte	0x4
+ 526 0167 1D       		.byte	0x1d
+ 527 0168 8C000000 		.4byte	0x8c
+ 528 016c 0D       		.byte	0xd
+ 529 016d 08       		.uleb128 0x8
+ 530 016e 36000000 		.4byte	.LASF33
+ 531 0172 04       		.byte	0x4
+ 532 0173 1E       		.byte	0x1e
+ 533 0174 8C000000 		.4byte	0x8c
+ 534 0178 0E       		.byte	0xe
+ 535 0179 09       		.uleb128 0x9
+ 536 017a 6F6B00   		.ascii	"ok\000"
+ 537 017d 04       		.byte	0x4
+ 538 017e 1F       		.byte	0x1f
+ 539 017f 8C000000 		.4byte	0x8c
+ 540 0183 0F       		.byte	0xf
+ 541 0184 08       		.uleb128 0x8
+ 542 0185 D0020000 		.4byte	.LASF34
+ 543 0189 04       		.byte	0x4
+ 544 018a 20       		.byte	0x20
+ 545 018b D0000000 		.4byte	0xd0
+ 546 018f 10       		.byte	0x10
+ 547 0190 00       		.byte	0
+ 548 0191 03       		.uleb128 0x3
+ 549 0192 53000000 		.4byte	.LASF35
+ 550 0196 04       		.byte	0x4
+ 551 0197 21       		.byte	0x21
+ 552 0198 F9000000 		.4byte	0xf9
+ 553 019c 07       		.uleb128 0x7
+ 554 019d 0A       		.byte	0xa
+ 555 019e 05       		.byte	0x5
+ 556 019f 25       		.byte	0x25
+ 557 01a0 F0010000 		.4byte	0x1f0
+ 558 01a4 09       		.uleb128 0x9
+ 559 01a5 4A5800   		.ascii	"JX\000"
+ 560 01a8 05       		.byte	0x5
+ 561 01a9 26       		.byte	0x26
+ 562 01aa 8C000000 		.4byte	0x8c
+ 563 01ae 00       		.byte	0
+ 564 01af 09       		.uleb128 0x9
+ 565 01b0 4A5900   		.ascii	"JY\000"
+ 566 01b3 05       		.byte	0x5
+ 567 01b4 26       		.byte	0x26
+ 568 01b5 8C000000 		.4byte	0x8c
+ 569 01b9 01       		.byte	0x1
+ 570 01ba 09       		.uleb128 0x9
+ 571 01bb 415800   		.ascii	"AX\000"
+ 572 01be 05       		.byte	0x5
+ 573 01bf 27       		.byte	0x27
+ARM GAS  C:\Users\dhous\AppData\Local\Temp\ccoPXq2x.s 			page 13
+
+
+ 574 01c0 97000000 		.4byte	0x97
+ 575 01c4 02       		.byte	0x2
+ 576 01c5 09       		.uleb128 0x9
+ 577 01c6 415900   		.ascii	"AY\000"
+ 578 01c9 05       		.byte	0x5
+ 579 01ca 27       		.byte	0x27
+ 580 01cb 97000000 		.4byte	0x97
+ 581 01cf 04       		.byte	0x4
+ 582 01d0 09       		.uleb128 0x9
+ 583 01d1 415A00   		.ascii	"AZ\000"
+ 584 01d4 05       		.byte	0x5
+ 585 01d5 27       		.byte	0x27
+ 586 01d6 97000000 		.4byte	0x97
+ 587 01da 06       		.byte	0x6
+ 588 01db 09       		.uleb128 0x9
+ 589 01dc 4300     		.ascii	"C\000"
+ 590 01de 05       		.byte	0x5
+ 591 01df 28       		.byte	0x28
+ 592 01e0 8C000000 		.4byte	0x8c
+ 593 01e4 08       		.byte	0x8
+ 594 01e5 09       		.uleb128 0x9
+ 595 01e6 5A00     		.ascii	"Z\000"
+ 596 01e8 05       		.byte	0x5
+ 597 01e9 28       		.byte	0x28
+ 598 01ea 8C000000 		.4byte	0x8c
+ 599 01ee 09       		.byte	0x9
+ 600 01ef 00       		.byte	0
+ 601 01f0 03       		.uleb128 0x3
+ 602 01f1 DB010000 		.4byte	.LASF36
+ 603 01f5 05       		.byte	0x5
+ 604 01f6 29       		.byte	0x29
+ 605 01f7 9C010000 		.4byte	0x19c
+ 606 01fb 0A       		.uleb128 0xa
+ 607 01fc 89040000 		.4byte	.LASF37
+ 608 0200 01       		.byte	0x1
+ 609 0201 2A       		.byte	0x2a
+ 610 0202 00000000 		.4byte	.LFB65
+ 611 0206 2C000000 		.4byte	.LFE65-.LFB65
+ 612 020a 01       		.uleb128 0x1
+ 613 020b 9C       		.byte	0x9c
+ 614 020c 5D020000 		.4byte	0x25d
+ 615 0210 0B       		.uleb128 0xb
+ 616 0211 10000000 		.4byte	.LVL0
+ 617 0215 42050000 		.4byte	0x542
+ 618 0219 38020000 		.4byte	0x238
+ 619 021d 0C       		.uleb128 0xc
+ 620 021e 01       		.uleb128 0x1
+ 621 021f 50       		.byte	0x50
+ 622 0220 02       		.uleb128 0x2
+ 623 0221 08       		.byte	0x8
+ 624 0222 52       		.byte	0x52
+ 625 0223 0C       		.uleb128 0xc
+ 626 0224 01       		.uleb128 0x1
+ 627 0225 51       		.byte	0x51
+ 628 0226 05       		.uleb128 0x5
+ 629 0227 03       		.byte	0x3
+ 630 0228 00000000 		.4byte	wiichuck_status_result_array
+ARM GAS  C:\Users\dhous\AppData\Local\Temp\ccoPXq2x.s 			page 14
+
+
+ 631 022c 0C       		.uleb128 0xc
+ 632 022d 01       		.uleb128 0x1
+ 633 022e 52       		.byte	0x52
+ 634 022f 01       		.uleb128 0x1
+ 635 0230 36       		.byte	0x36
+ 636 0231 0C       		.uleb128 0xc
+ 637 0232 01       		.uleb128 0x1
+ 638 0233 53       		.byte	0x53
+ 639 0234 02       		.uleb128 0x2
+ 640 0235 74       		.byte	0x74
+ 641 0236 00       		.sleb128 0
+ 642 0237 00       		.byte	0
+ 643 0238 0D       		.uleb128 0xd
+ 644 0239 1C000000 		.4byte	.LVL1
+ 645 023d 4D050000 		.4byte	0x54d
+ 646 0241 0C       		.uleb128 0xc
+ 647 0242 01       		.uleb128 0x1
+ 648 0243 50       		.byte	0x50
+ 649 0244 02       		.uleb128 0x2
+ 650 0245 08       		.byte	0x8
+ 651 0246 52       		.byte	0x52
+ 652 0247 0C       		.uleb128 0xc
+ 653 0248 01       		.uleb128 0x1
+ 654 0249 51       		.byte	0x51
+ 655 024a 05       		.uleb128 0x5
+ 656 024b 03       		.byte	0x3
+ 657 024c 00000000 		.4byte	wiichuck_status_request_array
+ 658 0250 0C       		.uleb128 0xc
+ 659 0251 01       		.uleb128 0x1
+ 660 0252 52       		.byte	0x52
+ 661 0253 01       		.uleb128 0x1
+ 662 0254 31       		.byte	0x31
+ 663 0255 0C       		.uleb128 0xc
+ 664 0256 01       		.uleb128 0x1
+ 665 0257 53       		.byte	0x53
+ 666 0258 02       		.uleb128 0x2
+ 667 0259 74       		.byte	0x74
+ 668 025a 00       		.sleb128 0
+ 669 025b 00       		.byte	0
+ 670 025c 00       		.byte	0
+ 671 025d 0A       		.uleb128 0xa
+ 672 025e 23010000 		.4byte	.LASF38
+ 673 0262 01       		.byte	0x1
+ 674 0263 06       		.byte	0x6
+ 675 0264 00000000 		.4byte	.LFB64
+ 676 0268 84000000 		.4byte	.LFE64-.LFB64
+ 677 026c 01       		.uleb128 0x1
+ 678 026d 9C       		.byte	0x9c
+ 679 026e D8020000 		.4byte	0x2d8
+ 680 0272 0E       		.uleb128 0xe
+ 681 0273 28000000 		.4byte	.LASF39
+ 682 0277 01       		.byte	0x1
+ 683 0278 0F       		.byte	0xf
+ 684 0279 8C000000 		.4byte	0x8c
+ 685 027d 00       		.byte	0
+ 686 027e 0F       		.uleb128 0xf
+ 687 027f 6A00     		.ascii	"j\000"
+ARM GAS  C:\Users\dhous\AppData\Local\Temp\ccoPXq2x.s 			page 15
+
+
+ 688 0281 01       		.byte	0x1
+ 689 0282 18       		.byte	0x18
+ 690 0283 8C000000 		.4byte	0x8c
+ 691 0287 00000000 		.4byte	.LLST0
+ 692 028b 0B       		.uleb128 0xb
+ 693 028c 2A000000 		.4byte	.LVL5
+ 694 0290 4D050000 		.4byte	0x54d
+ 695 0294 BB020000 		.4byte	0x2bb
+ 696 0298 0C       		.uleb128 0xc
+ 697 0299 01       		.uleb128 0x1
+ 698 029a 50       		.byte	0x50
+ 699 029b 02       		.uleb128 0x2
+ 700 029c 08       		.byte	0x8
+ 701 029d 52       		.byte	0x52
+ 702 029e 0C       		.uleb128 0xc
+ 703 029f 01       		.uleb128 0x1
+ 704 02a0 51       		.byte	0x51
+ 705 02a1 0A       		.uleb128 0xa
+ 706 02a2 74       		.byte	0x74
+ 707 02a3 00       		.sleb128 0
+ 708 02a4 31       		.byte	0x31
+ 709 02a5 24       		.byte	0x24
+ 710 02a6 03       		.byte	0x3
+ 711 02a7 00000000 		.4byte	initialization_buffer
+ 712 02ab 22       		.byte	0x22
+ 713 02ac 0C       		.uleb128 0xc
+ 714 02ad 01       		.uleb128 0x1
+ 715 02ae 52       		.byte	0x52
+ 716 02af 01       		.uleb128 0x1
+ 717 02b0 32       		.byte	0x32
+ 718 02b1 0C       		.uleb128 0xc
+ 719 02b2 01       		.uleb128 0x1
+ 720 02b3 53       		.byte	0x53
+ 721 02b4 05       		.uleb128 0x5
+ 722 02b5 03       		.byte	0x3
+ 723 02b6 00000000 		.4byte	I2C_status
+ 724 02ba 00       		.byte	0
+ 725 02bb 0B       		.uleb128 0xb
+ 726 02bc 30000000 		.4byte	.LVL6
+ 727 02c0 58050000 		.4byte	0x558
+ 728 02c4 CE020000 		.4byte	0x2ce
+ 729 02c8 0C       		.uleb128 0xc
+ 730 02c9 01       		.uleb128 0x1
+ 731 02ca 50       		.byte	0x50
+ 732 02cb 01       		.uleb128 0x1
+ 733 02cc 31       		.byte	0x31
+ 734 02cd 00       		.byte	0
+ 735 02ce 10       		.uleb128 0x10
+ 736 02cf 3C000000 		.4byte	.LVL9
+ 737 02d3 FB010000 		.4byte	0x1fb
+ 738 02d7 00       		.byte	0
+ 739 02d8 0A       		.uleb128 0xa
+ 740 02d9 08000000 		.4byte	.LASF40
+ 741 02dd 01       		.byte	0x1
+ 742 02de 37       		.byte	0x37
+ 743 02df 00000000 		.4byte	.LFB66
+ 744 02e3 10000000 		.4byte	.LFE66-.LFB66
+ARM GAS  C:\Users\dhous\AppData\Local\Temp\ccoPXq2x.s 			page 16
+
+
+ 745 02e7 01       		.uleb128 0x1
+ 746 02e8 9C       		.byte	0x9c
+ 747 02e9 01030000 		.4byte	0x301
+ 748 02ed 0D       		.uleb128 0xd
+ 749 02ee 08000000 		.4byte	.LVL11
+ 750 02f2 63050000 		.4byte	0x563
+ 751 02f6 0C       		.uleb128 0xc
+ 752 02f7 01       		.uleb128 0x1
+ 753 02f8 50       		.byte	0x50
+ 754 02f9 05       		.uleb128 0x5
+ 755 02fa 03       		.byte	0x3
+ 756 02fb 00000000 		.4byte	I2C_status
+ 757 02ff 00       		.byte	0
+ 758 0300 00       		.byte	0
+ 759 0301 0A       		.uleb128 0xa
+ 760 0302 8C020000 		.4byte	.LASF41
+ 761 0306 01       		.byte	0x1
+ 762 0307 3C       		.byte	0x3c
+ 763 0308 00000000 		.4byte	.LFB67
+ 764 030c 4C000000 		.4byte	.LFE67-.LFB67
+ 765 0310 01       		.uleb128 0x1
+ 766 0311 9C       		.byte	0x9c
+ 767 0312 20030000 		.4byte	0x320
+ 768 0316 10       		.uleb128 0x10
+ 769 0317 06000000 		.4byte	.LVL12
+ 770 031b FB010000 		.4byte	0x1fb
+ 771 031f 00       		.byte	0
+ 772 0320 0A       		.uleb128 0xa
+ 773 0321 02010000 		.4byte	.LASF42
+ 774 0325 01       		.byte	0x1
+ 775 0326 50       		.byte	0x50
+ 776 0327 00000000 		.4byte	.LFB68
+ 777 032b 38000000 		.4byte	.LFE68-.LFB68
+ 778 032f 01       		.uleb128 0x1
+ 779 0330 9C       		.byte	0x9c
+ 780 0331 89030000 		.4byte	0x389
+ 781 0335 11       		.uleb128 0x11
+ 782 0336 BC040000 		.4byte	.LASF43
+ 783 033a 01       		.byte	0x1
+ 784 033b 52       		.byte	0x52
+ 785 033c 89030000 		.4byte	0x389
+ 786 0340 03       		.uleb128 0x3
+ 787 0341 91       		.byte	0x91
+ 788 0342 A07F     		.sleb128 -96
+ 789 0344 0B       		.uleb128 0xb
+ 790 0345 26000000 		.4byte	.LVL13
+ 791 0349 6E050000 		.4byte	0x56e
+ 792 034d 77030000 		.4byte	0x377
+ 793 0351 0C       		.uleb128 0xc
+ 794 0352 01       		.uleb128 0x1
+ 795 0353 50       		.byte	0x50
+ 796 0354 03       		.uleb128 0x3
+ 797 0355 91       		.byte	0x91
+ 798 0356 A07F     		.sleb128 -96
+ 799 0358 0C       		.uleb128 0xc
+ 800 0359 01       		.uleb128 0x1
+ 801 035a 51       		.byte	0x51
+ARM GAS  C:\Users\dhous\AppData\Local\Temp\ccoPXq2x.s 			page 17
+
+
+ 802 035b 05       		.uleb128 0x5
+ 803 035c 03       		.byte	0x3
+ 804 035d 00000000 		.4byte	.LC0
+ 805 0361 0C       		.uleb128 0xc
+ 806 0362 02       		.uleb128 0x2
+ 807 0363 7D       		.byte	0x7d
+ 808 0364 04       		.sleb128 4
+ 809 0365 02       		.uleb128 0x2
+ 810 0366 74       		.byte	0x74
+ 811 0367 00       		.sleb128 0
+ 812 0368 0C       		.uleb128 0xc
+ 813 0369 02       		.uleb128 0x2
+ 814 036a 7D       		.byte	0x7d
+ 815 036b 08       		.sleb128 8
+ 816 036c 02       		.uleb128 0x2
+ 817 036d 75       		.byte	0x75
+ 818 036e 00       		.sleb128 0
+ 819 036f 0C       		.uleb128 0xc
+ 820 0370 02       		.uleb128 0x2
+ 821 0371 7D       		.byte	0x7d
+ 822 0372 0C       		.sleb128 12
+ 823 0373 02       		.uleb128 0x2
+ 824 0374 76       		.byte	0x76
+ 825 0375 00       		.sleb128 0
+ 826 0376 00       		.byte	0
+ 827 0377 0D       		.uleb128 0xd
+ 828 0378 2C000000 		.4byte	.LVL14
+ 829 037c 79050000 		.4byte	0x579
+ 830 0380 0C       		.uleb128 0xc
+ 831 0381 01       		.uleb128 0x1
+ 832 0382 50       		.byte	0x50
+ 833 0383 03       		.uleb128 0x3
+ 834 0384 91       		.byte	0x91
+ 835 0385 A07F     		.sleb128 -96
+ 836 0387 00       		.byte	0
+ 837 0388 00       		.byte	0
+ 838 0389 12       		.uleb128 0x12
+ 839 038a BB000000 		.4byte	0xbb
+ 840 038e 99030000 		.4byte	0x399
+ 841 0392 13       		.uleb128 0x13
+ 842 0393 C9000000 		.4byte	0xc9
+ 843 0397 4F       		.byte	0x4f
+ 844 0398 00       		.byte	0
+ 845 0399 14       		.uleb128 0x14
+ 846 039a CE030000 		.4byte	.LASF44
+ 847 039e 06       		.byte	0x6
+ 848 039f 1207     		.2byte	0x712
+ 849 03a1 A5030000 		.4byte	0x3a5
+ 850 03a5 15       		.uleb128 0x15
+ 851 03a6 A2000000 		.4byte	0xa2
+ 852 03aa 16       		.uleb128 0x16
+ 853 03ab CA000000 		.4byte	.LASF45
+ 854 03af 04       		.byte	0x4
+ 855 03b0 26       		.byte	0x26
+ 856 03b1 91010000 		.4byte	0x191
+ 857 03b5 05       		.uleb128 0x5
+ 858 03b6 03       		.byte	0x3
+ARM GAS  C:\Users\dhous\AppData\Local\Temp\ccoPXq2x.s 			page 18
+
+
+ 859 03b7 00000000 		.4byte	I2C_status
+ 860 03bb 17       		.uleb128 0x17
+ 861 03bc 636E7400 		.ascii	"cnt\000"
+ 862 03c0 05       		.byte	0x5
+ 863 03c1 19       		.byte	0x19
+ 864 03c2 8C000000 		.4byte	0x8c
+ 865 03c6 05       		.uleb128 0x5
+ 866 03c7 03       		.byte	0x3
+ 867 03c8 00000000 		.4byte	cnt
+ 868 03cc 12       		.uleb128 0x12
+ 869 03cd 8C000000 		.4byte	0x8c
+ 870 03d1 DC030000 		.4byte	0x3dc
+ 871 03d5 13       		.uleb128 0x13
+ 872 03d6 C9000000 		.4byte	0xc9
+ 873 03da 00       		.byte	0
+ 874 03db 00       		.byte	0
+ 875 03dc 16       		.uleb128 0x16
+ 876 03dd F6020000 		.4byte	.LASF46
+ 877 03e1 05       		.byte	0x5
+ 878 03e2 1A       		.byte	0x1a
+ 879 03e3 CC030000 		.4byte	0x3cc
+ 880 03e7 05       		.uleb128 0x5
+ 881 03e8 03       		.byte	0x3
+ 882 03e9 00000000 		.4byte	wiichuck_status_request_array
+ 883 03ed 12       		.uleb128 0x12
+ 884 03ee 8C000000 		.4byte	0x8c
+ 885 03f2 FD030000 		.4byte	0x3fd
+ 886 03f6 13       		.uleb128 0x13
+ 887 03f7 C9000000 		.4byte	0xc9
+ 888 03fb 05       		.byte	0x5
+ 889 03fc 00       		.byte	0
+ 890 03fd 16       		.uleb128 0x16
+ 891 03fe B1030000 		.4byte	.LASF47
+ 892 0402 05       		.byte	0x5
+ 893 0403 1B       		.byte	0x1b
+ 894 0404 ED030000 		.4byte	0x3ed
+ 895 0408 05       		.uleb128 0x5
+ 896 0409 03       		.byte	0x3
+ 897 040a 00000000 		.4byte	wiichuck_status_result_array
+ 898 040e 16       		.uleb128 0x16
+ 899 040f A4010000 		.4byte	.LASF48
+ 900 0413 05       		.byte	0x5
+ 901 0414 1C       		.byte	0x1c
+ 902 0415 8C000000 		.4byte	0x8c
+ 903 0419 05       		.uleb128 0x5
+ 904 041a 03       		.byte	0x3
+ 905 041b 00000000 		.4byte	averageCounter
+ 906 041f 17       		.uleb128 0x17
+ 907 0420 6900     		.ascii	"i\000"
+ 908 0422 05       		.byte	0x5
+ 909 0423 1D       		.byte	0x1d
+ 910 0424 7E000000 		.4byte	0x7e
+ 911 0428 05       		.uleb128 0x5
+ 912 0429 03       		.byte	0x3
+ 913 042a 00000000 		.4byte	i
+ 914 042e 16       		.uleb128 0x16
+ 915 042f A3030000 		.4byte	.LASF49
+ARM GAS  C:\Users\dhous\AppData\Local\Temp\ccoPXq2x.s 			page 19
+
+
+ 916 0433 05       		.byte	0x5
+ 917 0434 1E       		.byte	0x1e
+ 918 0435 7E000000 		.4byte	0x7e
+ 919 0439 05       		.uleb128 0x5
+ 920 043a 03       		.byte	0x3
+ 921 043b 00000000 		.4byte	total
+ 922 043f 16       		.uleb128 0x16
+ 923 0440 30020000 		.4byte	.LASF50
+ 924 0444 05       		.byte	0x5
+ 925 0445 1F       		.byte	0x1f
+ 926 0446 8C000000 		.4byte	0x8c
+ 927 044a 05       		.uleb128 0x5
+ 928 044b 03       		.byte	0x3
+ 929 044c 00000000 		.4byte	zeroJoyX
+ 930 0450 16       		.uleb128 0x16
+ 931 0451 39020000 		.4byte	.LASF51
+ 932 0455 05       		.byte	0x5
+ 933 0456 20       		.byte	0x20
+ 934 0457 8C000000 		.4byte	0x8c
+ 935 045b 05       		.uleb128 0x5
+ 936 045c 03       		.byte	0x3
+ 937 045d 00000000 		.4byte	zeroJoyY
+ 938 0461 16       		.uleb128 0x16
+ 939 0462 9A000000 		.4byte	.LASF52
+ 940 0466 05       		.byte	0x5
+ 941 0467 21       		.byte	0x21
+ 942 0468 7E000000 		.4byte	0x7e
+ 943 046c 05       		.uleb128 0x5
+ 944 046d 03       		.byte	0x3
+ 945 046e 00000000 		.4byte	lastJoyX
+ 946 0472 16       		.uleb128 0x16
+ 947 0473 44000000 		.4byte	.LASF53
+ 948 0477 05       		.byte	0x5
+ 949 0478 22       		.byte	0x22
+ 950 0479 7E000000 		.4byte	0x7e
+ 951 047d 05       		.uleb128 0x5
+ 952 047e 03       		.byte	0x3
+ 953 047f 00000000 		.4byte	lastJoyY
+ 954 0483 12       		.uleb128 0x12
+ 955 0484 7E000000 		.4byte	0x7e
+ 956 0488 93040000 		.4byte	0x493
+ 957 048c 13       		.uleb128 0x13
+ 958 048d C9000000 		.4byte	0xc9
+ 959 0491 02       		.byte	0x2
+ 960 0492 00       		.byte	0
+ 961 0493 16       		.uleb128 0x16
+ 962 0494 B4000000 		.4byte	.LASF54
+ 963 0498 05       		.byte	0x5
+ 964 0499 23       		.byte	0x23
+ 965 049a 83040000 		.4byte	0x483
+ 966 049e 05       		.uleb128 0x5
+ 967 049f 03       		.byte	0x3
+ 968 04a0 00000000 		.4byte	angles
+ 969 04a4 16       		.uleb128 0x16
+ 970 04a5 14030000 		.4byte	.LASF55
+ 971 04a9 05       		.byte	0x5
+ 972 04aa 2B       		.byte	0x2b
+ARM GAS  C:\Users\dhous\AppData\Local\Temp\ccoPXq2x.s 			page 20
+
+
+ 973 04ab F0010000 		.4byte	0x1f0
+ 974 04af 05       		.uleb128 0x5
+ 975 04b0 03       		.byte	0x3
+ 976 04b1 00000000 		.4byte	wiichuck_state
+ 977 04b5 16       		.uleb128 0x16
+ 978 04b6 4D000000 		.4byte	.LASF56
+ 979 04ba 05       		.byte	0x5
+ 980 04bb 2D       		.byte	0x2d
+ 981 04bc 8C000000 		.4byte	0x8c
+ 982 04c0 05       		.uleb128 0x5
+ 983 04c1 03       		.byte	0x3
+ 984 04c2 00000000 		.4byte	lastZ
+ 985 04c6 16       		.uleb128 0x16
+ 986 04c7 AE000000 		.4byte	.LASF57
+ 987 04cb 05       		.byte	0x5
+ 988 04cc 2D       		.byte	0x2d
+ 989 04cd 8C000000 		.4byte	0x8c
+ 990 04d1 05       		.uleb128 0x5
+ 991 04d2 03       		.byte	0x3
+ 992 04d3 00000000 		.4byte	lastC
+ 993 04d7 16       		.uleb128 0x16
+ 994 04d8 71040000 		.4byte	.LASF58
+ 995 04dc 05       		.byte	0x5
+ 996 04dd 30       		.byte	0x30
+ 997 04de 8C000000 		.4byte	0x8c
+ 998 04e2 05       		.uleb128 0x5
+ 999 04e3 03       		.byte	0x3
+ 1000 04e4 00000000 		.4byte	joyX
+ 1001 04e8 16       		.uleb128 0x16
+ 1002 04e9 76040000 		.4byte	.LASF59
+ 1003 04ed 05       		.byte	0x5
+ 1004 04ee 31       		.byte	0x31
+ 1005 04ef 8C000000 		.4byte	0x8c
+ 1006 04f3 05       		.uleb128 0x5
+ 1007 04f4 03       		.byte	0x3
+ 1008 04f5 00000000 		.4byte	joyY
+ 1009 04f9 16       		.uleb128 0x16
+ 1010 04fa 00000000 		.4byte	.LASF60
+ 1011 04fe 05       		.byte	0x5
+ 1012 04ff 32       		.byte	0x32
+ 1013 0500 8C000000 		.4byte	0x8c
+ 1014 0504 05       		.uleb128 0x5
+ 1015 0505 03       		.byte	0x3
+ 1016 0506 00000000 		.4byte	buttonZ
+ 1017 050a 16       		.uleb128 0x16
+ 1018 050b A9030000 		.4byte	.LASF61
+ 1019 050f 05       		.byte	0x5
+ 1020 0510 33       		.byte	0x33
+ 1021 0511 8C000000 		.4byte	0x8c
+ 1022 0515 05       		.uleb128 0x5
+ 1023 0516 03       		.byte	0x3
+ 1024 0517 00000000 		.4byte	buttonC
+ 1025 051b 12       		.uleb128 0x12
+ 1026 051c 8C000000 		.4byte	0x8c
+ 1027 0520 31050000 		.4byte	0x531
+ 1028 0524 13       		.uleb128 0x13
+ 1029 0525 C9000000 		.4byte	0xc9
+ARM GAS  C:\Users\dhous\AppData\Local\Temp\ccoPXq2x.s 			page 21
+
+
+ 1030 0529 01       		.byte	0x1
+ 1031 052a 13       		.uleb128 0x13
+ 1032 052b C9000000 		.4byte	0xc9
+ 1033 052f 01       		.byte	0x1
+ 1034 0530 00       		.byte	0
+ 1035 0531 16       		.uleb128 0x16
+ 1036 0532 80010000 		.4byte	.LASF62
+ 1037 0536 05       		.byte	0x5
+ 1038 0537 35       		.byte	0x35
+ 1039 0538 1B050000 		.4byte	0x51b
+ 1040 053c 05       		.uleb128 0x5
+ 1041 053d 03       		.byte	0x3
+ 1042 053e 00000000 		.4byte	initialization_buffer
+ 1043 0542 18       		.uleb128 0x18
+ 1044 0543 B3010000 		.4byte	.LASF63
+ 1045 0547 B3010000 		.4byte	.LASF63
+ 1046 054b 04       		.byte	0x4
+ 1047 054c 2E       		.byte	0x2e
+ 1048 054d 18       		.uleb128 0x18
+ 1049 054e 90000000 		.4byte	.LASF64
+ 1050 0552 90000000 		.4byte	.LASF64
+ 1051 0556 04       		.byte	0x4
+ 1052 0557 2B       		.byte	0x2b
+ 1053 0558 18       		.uleb128 0x18
+ 1054 0559 69040000 		.4byte	.LASF65
+ 1055 055d 69040000 		.4byte	.LASF65
+ 1056 0561 07       		.byte	0x7
+ 1057 0562 76       		.byte	0x76
+ 1058 0563 18       		.uleb128 0x18
+ 1059 0564 D5000000 		.4byte	.LASF66
+ 1060 0568 D5000000 		.4byte	.LASF66
+ 1061 056c 04       		.byte	0x4
+ 1062 056d 2D       		.byte	0x2d
+ 1063 056e 18       		.uleb128 0x18
+ 1064 056f 05020000 		.4byte	.LASF67
+ 1065 0573 05020000 		.4byte	.LASF67
+ 1066 0577 08       		.byte	0x8
+ 1067 0578 E7       		.byte	0xe7
+ 1068 0579 18       		.uleb128 0x18
+ 1069 057a BB000000 		.4byte	.LASF68
+ 1070 057e BB000000 		.4byte	.LASF68
+ 1071 0582 09       		.byte	0x9
+ 1072 0583 26       		.byte	0x26
+ 1073 0584 00       		.byte	0
+ 1074              		.section	.debug_abbrev,"",%progbits
+ 1075              	.Ldebug_abbrev0:
+ 1076 0000 01       		.uleb128 0x1
+ 1077 0001 11       		.uleb128 0x11
+ 1078 0002 01       		.byte	0x1
+ 1079 0003 25       		.uleb128 0x25
+ 1080 0004 0E       		.uleb128 0xe
+ 1081 0005 13       		.uleb128 0x13
+ 1082 0006 0B       		.uleb128 0xb
+ 1083 0007 03       		.uleb128 0x3
+ 1084 0008 0E       		.uleb128 0xe
+ 1085 0009 1B       		.uleb128 0x1b
+ 1086 000a 0E       		.uleb128 0xe
+ARM GAS  C:\Users\dhous\AppData\Local\Temp\ccoPXq2x.s 			page 22
+
+
+ 1087 000b 55       		.uleb128 0x55
+ 1088 000c 17       		.uleb128 0x17
+ 1089 000d 11       		.uleb128 0x11
+ 1090 000e 01       		.uleb128 0x1
+ 1091 000f 10       		.uleb128 0x10
+ 1092 0010 17       		.uleb128 0x17
+ 1093 0011 00       		.byte	0
+ 1094 0012 00       		.byte	0
+ 1095 0013 02       		.uleb128 0x2
+ 1096 0014 24       		.uleb128 0x24
+ 1097 0015 00       		.byte	0
+ 1098 0016 0B       		.uleb128 0xb
+ 1099 0017 0B       		.uleb128 0xb
+ 1100 0018 3E       		.uleb128 0x3e
+ 1101 0019 0B       		.uleb128 0xb
+ 1102 001a 03       		.uleb128 0x3
+ 1103 001b 0E       		.uleb128 0xe
+ 1104 001c 00       		.byte	0
+ 1105 001d 00       		.byte	0
+ 1106 001e 03       		.uleb128 0x3
+ 1107 001f 16       		.uleb128 0x16
+ 1108 0020 00       		.byte	0
+ 1109 0021 03       		.uleb128 0x3
+ 1110 0022 0E       		.uleb128 0xe
+ 1111 0023 3A       		.uleb128 0x3a
+ 1112 0024 0B       		.uleb128 0xb
+ 1113 0025 3B       		.uleb128 0x3b
+ 1114 0026 0B       		.uleb128 0xb
+ 1115 0027 49       		.uleb128 0x49
+ 1116 0028 13       		.uleb128 0x13
+ 1117 0029 00       		.byte	0
+ 1118 002a 00       		.byte	0
+ 1119 002b 04       		.uleb128 0x4
+ 1120 002c 24       		.uleb128 0x24
+ 1121 002d 00       		.byte	0
+ 1122 002e 0B       		.uleb128 0xb
+ 1123 002f 0B       		.uleb128 0xb
+ 1124 0030 3E       		.uleb128 0x3e
+ 1125 0031 0B       		.uleb128 0xb
+ 1126 0032 03       		.uleb128 0x3
+ 1127 0033 08       		.uleb128 0x8
+ 1128 0034 00       		.byte	0
+ 1129 0035 00       		.byte	0
+ 1130 0036 05       		.uleb128 0x5
+ 1131 0037 04       		.uleb128 0x4
+ 1132 0038 01       		.byte	0x1
+ 1133 0039 03       		.uleb128 0x3
+ 1134 003a 0E       		.uleb128 0xe
+ 1135 003b 0B       		.uleb128 0xb
+ 1136 003c 0B       		.uleb128 0xb
+ 1137 003d 49       		.uleb128 0x49
+ 1138 003e 13       		.uleb128 0x13
+ 1139 003f 3A       		.uleb128 0x3a
+ 1140 0040 0B       		.uleb128 0xb
+ 1141 0041 3B       		.uleb128 0x3b
+ 1142 0042 0B       		.uleb128 0xb
+ 1143 0043 01       		.uleb128 0x1
+ARM GAS  C:\Users\dhous\AppData\Local\Temp\ccoPXq2x.s 			page 23
+
+
+ 1144 0044 13       		.uleb128 0x13
+ 1145 0045 00       		.byte	0
+ 1146 0046 00       		.byte	0
+ 1147 0047 06       		.uleb128 0x6
+ 1148 0048 28       		.uleb128 0x28
+ 1149 0049 00       		.byte	0
+ 1150 004a 03       		.uleb128 0x3
+ 1151 004b 0E       		.uleb128 0xe
+ 1152 004c 1C       		.uleb128 0x1c
+ 1153 004d 0B       		.uleb128 0xb
+ 1154 004e 00       		.byte	0
+ 1155 004f 00       		.byte	0
+ 1156 0050 07       		.uleb128 0x7
+ 1157 0051 13       		.uleb128 0x13
+ 1158 0052 01       		.byte	0x1
+ 1159 0053 0B       		.uleb128 0xb
+ 1160 0054 0B       		.uleb128 0xb
+ 1161 0055 3A       		.uleb128 0x3a
+ 1162 0056 0B       		.uleb128 0xb
+ 1163 0057 3B       		.uleb128 0x3b
+ 1164 0058 0B       		.uleb128 0xb
+ 1165 0059 01       		.uleb128 0x1
+ 1166 005a 13       		.uleb128 0x13
+ 1167 005b 00       		.byte	0
+ 1168 005c 00       		.byte	0
+ 1169 005d 08       		.uleb128 0x8
+ 1170 005e 0D       		.uleb128 0xd
+ 1171 005f 00       		.byte	0
+ 1172 0060 03       		.uleb128 0x3
+ 1173 0061 0E       		.uleb128 0xe
+ 1174 0062 3A       		.uleb128 0x3a
+ 1175 0063 0B       		.uleb128 0xb
+ 1176 0064 3B       		.uleb128 0x3b
+ 1177 0065 0B       		.uleb128 0xb
+ 1178 0066 49       		.uleb128 0x49
+ 1179 0067 13       		.uleb128 0x13
+ 1180 0068 38       		.uleb128 0x38
+ 1181 0069 0B       		.uleb128 0xb
+ 1182 006a 00       		.byte	0
+ 1183 006b 00       		.byte	0
+ 1184 006c 09       		.uleb128 0x9
+ 1185 006d 0D       		.uleb128 0xd
+ 1186 006e 00       		.byte	0
+ 1187 006f 03       		.uleb128 0x3
+ 1188 0070 08       		.uleb128 0x8
+ 1189 0071 3A       		.uleb128 0x3a
+ 1190 0072 0B       		.uleb128 0xb
+ 1191 0073 3B       		.uleb128 0x3b
+ 1192 0074 0B       		.uleb128 0xb
+ 1193 0075 49       		.uleb128 0x49
+ 1194 0076 13       		.uleb128 0x13
+ 1195 0077 38       		.uleb128 0x38
+ 1196 0078 0B       		.uleb128 0xb
+ 1197 0079 00       		.byte	0
+ 1198 007a 00       		.byte	0
+ 1199 007b 0A       		.uleb128 0xa
+ 1200 007c 2E       		.uleb128 0x2e
+ARM GAS  C:\Users\dhous\AppData\Local\Temp\ccoPXq2x.s 			page 24
+
+
+ 1201 007d 01       		.byte	0x1
+ 1202 007e 3F       		.uleb128 0x3f
+ 1203 007f 19       		.uleb128 0x19
+ 1204 0080 03       		.uleb128 0x3
+ 1205 0081 0E       		.uleb128 0xe
+ 1206 0082 3A       		.uleb128 0x3a
+ 1207 0083 0B       		.uleb128 0xb
+ 1208 0084 3B       		.uleb128 0x3b
+ 1209 0085 0B       		.uleb128 0xb
+ 1210 0086 11       		.uleb128 0x11
+ 1211 0087 01       		.uleb128 0x1
+ 1212 0088 12       		.uleb128 0x12
+ 1213 0089 06       		.uleb128 0x6
+ 1214 008a 40       		.uleb128 0x40
+ 1215 008b 18       		.uleb128 0x18
+ 1216 008c 9742     		.uleb128 0x2117
+ 1217 008e 19       		.uleb128 0x19
+ 1218 008f 01       		.uleb128 0x1
+ 1219 0090 13       		.uleb128 0x13
+ 1220 0091 00       		.byte	0
+ 1221 0092 00       		.byte	0
+ 1222 0093 0B       		.uleb128 0xb
+ 1223 0094 898201   		.uleb128 0x4109
+ 1224 0097 01       		.byte	0x1
+ 1225 0098 11       		.uleb128 0x11
+ 1226 0099 01       		.uleb128 0x1
+ 1227 009a 31       		.uleb128 0x31
+ 1228 009b 13       		.uleb128 0x13
+ 1229 009c 01       		.uleb128 0x1
+ 1230 009d 13       		.uleb128 0x13
+ 1231 009e 00       		.byte	0
+ 1232 009f 00       		.byte	0
+ 1233 00a0 0C       		.uleb128 0xc
+ 1234 00a1 8A8201   		.uleb128 0x410a
+ 1235 00a4 00       		.byte	0
+ 1236 00a5 02       		.uleb128 0x2
+ 1237 00a6 18       		.uleb128 0x18
+ 1238 00a7 9142     		.uleb128 0x2111
+ 1239 00a9 18       		.uleb128 0x18
+ 1240 00aa 00       		.byte	0
+ 1241 00ab 00       		.byte	0
+ 1242 00ac 0D       		.uleb128 0xd
+ 1243 00ad 898201   		.uleb128 0x4109
+ 1244 00b0 01       		.byte	0x1
+ 1245 00b1 11       		.uleb128 0x11
+ 1246 00b2 01       		.uleb128 0x1
+ 1247 00b3 31       		.uleb128 0x31
+ 1248 00b4 13       		.uleb128 0x13
+ 1249 00b5 00       		.byte	0
+ 1250 00b6 00       		.byte	0
+ 1251 00b7 0E       		.uleb128 0xe
+ 1252 00b8 34       		.uleb128 0x34
+ 1253 00b9 00       		.byte	0
+ 1254 00ba 03       		.uleb128 0x3
+ 1255 00bb 0E       		.uleb128 0xe
+ 1256 00bc 3A       		.uleb128 0x3a
+ 1257 00bd 0B       		.uleb128 0xb
+ARM GAS  C:\Users\dhous\AppData\Local\Temp\ccoPXq2x.s 			page 25
+
+
+ 1258 00be 3B       		.uleb128 0x3b
+ 1259 00bf 0B       		.uleb128 0xb
+ 1260 00c0 49       		.uleb128 0x49
+ 1261 00c1 13       		.uleb128 0x13
+ 1262 00c2 1C       		.uleb128 0x1c
+ 1263 00c3 0B       		.uleb128 0xb
+ 1264 00c4 00       		.byte	0
+ 1265 00c5 00       		.byte	0
+ 1266 00c6 0F       		.uleb128 0xf
+ 1267 00c7 34       		.uleb128 0x34
+ 1268 00c8 00       		.byte	0
+ 1269 00c9 03       		.uleb128 0x3
+ 1270 00ca 08       		.uleb128 0x8
+ 1271 00cb 3A       		.uleb128 0x3a
+ 1272 00cc 0B       		.uleb128 0xb
+ 1273 00cd 3B       		.uleb128 0x3b
+ 1274 00ce 0B       		.uleb128 0xb
+ 1275 00cf 49       		.uleb128 0x49
+ 1276 00d0 13       		.uleb128 0x13
+ 1277 00d1 02       		.uleb128 0x2
+ 1278 00d2 17       		.uleb128 0x17
+ 1279 00d3 00       		.byte	0
+ 1280 00d4 00       		.byte	0
+ 1281 00d5 10       		.uleb128 0x10
+ 1282 00d6 898201   		.uleb128 0x4109
+ 1283 00d9 00       		.byte	0
+ 1284 00da 11       		.uleb128 0x11
+ 1285 00db 01       		.uleb128 0x1
+ 1286 00dc 31       		.uleb128 0x31
+ 1287 00dd 13       		.uleb128 0x13
+ 1288 00de 00       		.byte	0
+ 1289 00df 00       		.byte	0
+ 1290 00e0 11       		.uleb128 0x11
+ 1291 00e1 34       		.uleb128 0x34
+ 1292 00e2 00       		.byte	0
+ 1293 00e3 03       		.uleb128 0x3
+ 1294 00e4 0E       		.uleb128 0xe
+ 1295 00e5 3A       		.uleb128 0x3a
+ 1296 00e6 0B       		.uleb128 0xb
+ 1297 00e7 3B       		.uleb128 0x3b
+ 1298 00e8 0B       		.uleb128 0xb
+ 1299 00e9 49       		.uleb128 0x49
+ 1300 00ea 13       		.uleb128 0x13
+ 1301 00eb 02       		.uleb128 0x2
+ 1302 00ec 18       		.uleb128 0x18
+ 1303 00ed 00       		.byte	0
+ 1304 00ee 00       		.byte	0
+ 1305 00ef 12       		.uleb128 0x12
+ 1306 00f0 01       		.uleb128 0x1
+ 1307 00f1 01       		.byte	0x1
+ 1308 00f2 49       		.uleb128 0x49
+ 1309 00f3 13       		.uleb128 0x13
+ 1310 00f4 01       		.uleb128 0x1
+ 1311 00f5 13       		.uleb128 0x13
+ 1312 00f6 00       		.byte	0
+ 1313 00f7 00       		.byte	0
+ 1314 00f8 13       		.uleb128 0x13
+ARM GAS  C:\Users\dhous\AppData\Local\Temp\ccoPXq2x.s 			page 26
+
+
+ 1315 00f9 21       		.uleb128 0x21
+ 1316 00fa 00       		.byte	0
+ 1317 00fb 49       		.uleb128 0x49
+ 1318 00fc 13       		.uleb128 0x13
+ 1319 00fd 2F       		.uleb128 0x2f
+ 1320 00fe 0B       		.uleb128 0xb
+ 1321 00ff 00       		.byte	0
+ 1322 0100 00       		.byte	0
+ 1323 0101 14       		.uleb128 0x14
+ 1324 0102 34       		.uleb128 0x34
+ 1325 0103 00       		.byte	0
+ 1326 0104 03       		.uleb128 0x3
+ 1327 0105 0E       		.uleb128 0xe
+ 1328 0106 3A       		.uleb128 0x3a
+ 1329 0107 0B       		.uleb128 0xb
+ 1330 0108 3B       		.uleb128 0x3b
+ 1331 0109 05       		.uleb128 0x5
+ 1332 010a 49       		.uleb128 0x49
+ 1333 010b 13       		.uleb128 0x13
+ 1334 010c 3F       		.uleb128 0x3f
+ 1335 010d 19       		.uleb128 0x19
+ 1336 010e 3C       		.uleb128 0x3c
+ 1337 010f 19       		.uleb128 0x19
+ 1338 0110 00       		.byte	0
+ 1339 0111 00       		.byte	0
+ 1340 0112 15       		.uleb128 0x15
+ 1341 0113 35       		.uleb128 0x35
+ 1342 0114 00       		.byte	0
+ 1343 0115 49       		.uleb128 0x49
+ 1344 0116 13       		.uleb128 0x13
+ 1345 0117 00       		.byte	0
+ 1346 0118 00       		.byte	0
+ 1347 0119 16       		.uleb128 0x16
+ 1348 011a 34       		.uleb128 0x34
+ 1349 011b 00       		.byte	0
+ 1350 011c 03       		.uleb128 0x3
+ 1351 011d 0E       		.uleb128 0xe
+ 1352 011e 3A       		.uleb128 0x3a
+ 1353 011f 0B       		.uleb128 0xb
+ 1354 0120 3B       		.uleb128 0x3b
+ 1355 0121 0B       		.uleb128 0xb
+ 1356 0122 49       		.uleb128 0x49
+ 1357 0123 13       		.uleb128 0x13
+ 1358 0124 3F       		.uleb128 0x3f
+ 1359 0125 19       		.uleb128 0x19
+ 1360 0126 02       		.uleb128 0x2
+ 1361 0127 18       		.uleb128 0x18
+ 1362 0128 00       		.byte	0
+ 1363 0129 00       		.byte	0
+ 1364 012a 17       		.uleb128 0x17
+ 1365 012b 34       		.uleb128 0x34
+ 1366 012c 00       		.byte	0
+ 1367 012d 03       		.uleb128 0x3
+ 1368 012e 08       		.uleb128 0x8
+ 1369 012f 3A       		.uleb128 0x3a
+ 1370 0130 0B       		.uleb128 0xb
+ 1371 0131 3B       		.uleb128 0x3b
+ARM GAS  C:\Users\dhous\AppData\Local\Temp\ccoPXq2x.s 			page 27
+
+
+ 1372 0132 0B       		.uleb128 0xb
+ 1373 0133 49       		.uleb128 0x49
+ 1374 0134 13       		.uleb128 0x13
+ 1375 0135 3F       		.uleb128 0x3f
+ 1376 0136 19       		.uleb128 0x19
+ 1377 0137 02       		.uleb128 0x2
+ 1378 0138 18       		.uleb128 0x18
+ 1379 0139 00       		.byte	0
+ 1380 013a 00       		.byte	0
+ 1381 013b 18       		.uleb128 0x18
+ 1382 013c 2E       		.uleb128 0x2e
+ 1383 013d 00       		.byte	0
+ 1384 013e 3F       		.uleb128 0x3f
+ 1385 013f 19       		.uleb128 0x19
+ 1386 0140 3C       		.uleb128 0x3c
+ 1387 0141 19       		.uleb128 0x19
+ 1388 0142 6E       		.uleb128 0x6e
+ 1389 0143 0E       		.uleb128 0xe
+ 1390 0144 03       		.uleb128 0x3
+ 1391 0145 0E       		.uleb128 0xe
+ 1392 0146 3A       		.uleb128 0x3a
+ 1393 0147 0B       		.uleb128 0xb
+ 1394 0148 3B       		.uleb128 0x3b
+ 1395 0149 0B       		.uleb128 0xb
+ 1396 014a 00       		.byte	0
+ 1397 014b 00       		.byte	0
+ 1398 014c 00       		.byte	0
+ 1399              		.section	.debug_loc,"",%progbits
+ 1400              	.Ldebug_loc0:
+ 1401              	.LLST0:
+ 1402 0000 18000000 		.4byte	.LVL3
+ 1403 0004 1A000000 		.4byte	.LVL4
+ 1404 0008 0200     		.2byte	0x2
+ 1405 000a 30       		.byte	0x30
+ 1406 000b 9F       		.byte	0x9f
+ 1407 000c 1A000000 		.4byte	.LVL4
+ 1408 0010 32000000 		.4byte	.LVL7
+ 1409 0014 0100     		.2byte	0x1
+ 1410 0016 54       		.byte	0x54
+ 1411 0017 34000000 		.4byte	.LVL8
+ 1412 001b 68000000 		.4byte	.LVL10
+ 1413 001f 0100     		.2byte	0x1
+ 1414 0021 54       		.byte	0x54
+ 1415 0022 00000000 		.4byte	0
+ 1416 0026 00000000 		.4byte	0
+ 1417              		.section	.debug_aranges,"",%progbits
+ 1418 0000 3C000000 		.4byte	0x3c
+ 1419 0004 0200     		.2byte	0x2
+ 1420 0006 00000000 		.4byte	.Ldebug_info0
+ 1421 000a 04       		.byte	0x4
+ 1422 000b 00       		.byte	0
+ 1423 000c 0000     		.2byte	0
+ 1424 000e 0000     		.2byte	0
+ 1425 0010 00000000 		.4byte	.LFB65
+ 1426 0014 2C000000 		.4byte	.LFE65-.LFB65
+ 1427 0018 00000000 		.4byte	.LFB64
+ 1428 001c 84000000 		.4byte	.LFE64-.LFB64
+ARM GAS  C:\Users\dhous\AppData\Local\Temp\ccoPXq2x.s 			page 28
+
+
+ 1429 0020 00000000 		.4byte	.LFB66
+ 1430 0024 10000000 		.4byte	.LFE66-.LFB66
+ 1431 0028 00000000 		.4byte	.LFB67
+ 1432 002c 4C000000 		.4byte	.LFE67-.LFB67
+ 1433 0030 00000000 		.4byte	.LFB68
+ 1434 0034 38000000 		.4byte	.LFE68-.LFB68
+ 1435 0038 00000000 		.4byte	0
+ 1436 003c 00000000 		.4byte	0
+ 1437              		.section	.debug_ranges,"",%progbits
+ 1438              	.Ldebug_ranges0:
+ 1439 0000 00000000 		.4byte	.LFB65
+ 1440 0004 2C000000 		.4byte	.LFE65
+ 1441 0008 00000000 		.4byte	.LFB64
+ 1442 000c 84000000 		.4byte	.LFE64
+ 1443 0010 00000000 		.4byte	.LFB66
+ 1444 0014 10000000 		.4byte	.LFE66
+ 1445 0018 00000000 		.4byte	.LFB67
+ 1446 001c 4C000000 		.4byte	.LFE67
+ 1447 0020 00000000 		.4byte	.LFB68
+ 1448 0024 38000000 		.4byte	.LFE68
+ 1449 0028 00000000 		.4byte	0
+ 1450 002c 00000000 		.4byte	0
+ 1451              		.section	.debug_line,"",%progbits
+ 1452              	.Ldebug_line0:
+ 1453 0000 6B020000 		.section	.debug_str,"MS",%progbits,1
+ 1453      0200D701 
+ 1453      00000201 
+ 1453      FB0E0D00 
+ 1453      01010101 
+ 1454              	.LASF60:
+ 1455 0000 62757474 		.ascii	"buttonZ\000"
+ 1455      6F6E5A00 
+ 1456              	.LASF40:
+ 1457 0008 77696963 		.ascii	"wiichuck_print_i2c_status\000"
+ 1457      6875636B 
+ 1457      5F707269 
+ 1457      6E745F69 
+ 1457      32635F73 
+ 1458              	.LASF15:
+ 1459 0022 666C6F61 		.ascii	"float\000"
+ 1459      7400
+ 1460              	.LASF39:
+ 1461 0028 72657475 		.ascii	"return_status\000"
+ 1461      726E5F73 
+ 1461      74617475 
+ 1461      7300
+ 1462              	.LASF33:
+ 1463 0036 74696D65 		.ascii	"timeout_error\000"
+ 1463      6F75745F 
+ 1463      6572726F 
+ 1463      7200
+ 1464              	.LASF53:
+ 1465 0044 6C617374 		.ascii	"lastJoyY\000"
+ 1465      4A6F7959 
+ 1465      00
+ 1466              	.LASF56:
+ 1467 004d 6C617374 		.ascii	"lastZ\000"
+ARM GAS  C:\Users\dhous\AppData\Local\Temp\ccoPXq2x.s 			page 29
+
+
+ 1467      5A00
+ 1468              	.LASF35:
+ 1469 0053 4932435F 		.ascii	"I2C_Transfer_Status\000"
+ 1469      5472616E 
+ 1469      73666572 
+ 1469      5F537461 
+ 1469      74757300 
+ 1470              	.LASF25:
+ 1471 0067 6932635F 		.ascii	"i2c_write_xfer_result\000"
+ 1471      77726974 
+ 1471      655F7866 
+ 1471      65725F72 
+ 1471      6573756C 
+ 1472              	.LASF2:
+ 1473 007d 73686F72 		.ascii	"short int\000"
+ 1473      7420696E 
+ 1473      7400
+ 1474              	.LASF19:
+ 1475 0087 73697A65 		.ascii	"sizetype\000"
+ 1475      74797065 
+ 1475      00
+ 1476              	.LASF64:
+ 1477 0090 4932435F 		.ascii	"I2C_write\000"
+ 1477      77726974 
+ 1477      6500
+ 1478              	.LASF52:
+ 1479 009a 6C617374 		.ascii	"lastJoyX\000"
+ 1479      4A6F7958 
+ 1479      00
+ 1480              	.LASF4:
+ 1481 00a3 5F5F7569 		.ascii	"__uint16_t\000"
+ 1481      6E743136 
+ 1481      5F7400
+ 1482              	.LASF57:
+ 1483 00ae 6C617374 		.ascii	"lastC\000"
+ 1483      4300
+ 1484              	.LASF54:
+ 1485 00b4 616E676C 		.ascii	"angles\000"
+ 1485      657300
+ 1486              	.LASF68:
+ 1487 00bb 55415254 		.ascii	"UART_PutString\000"
+ 1487      5F507574 
+ 1487      53747269 
+ 1487      6E6700
+ 1488              	.LASF45:
+ 1489 00ca 4932435F 		.ascii	"I2C_status\000"
+ 1489      73746174 
+ 1489      757300
+ 1490              	.LASF66:
+ 1491 00d5 4932435F 		.ascii	"I2C_print_transfer_status\000"
+ 1491      7072696E 
+ 1491      745F7472 
+ 1491      616E7366 
+ 1491      65725F73 
+ 1492              	.LASF12:
+ 1493 00ef 75696E74 		.ascii	"uint8_t\000"
+ 1493      385F7400 
+ARM GAS  C:\Users\dhous\AppData\Local\Temp\ccoPXq2x.s 			page 30
+
+
+ 1494              	.LASF32:
+ 1495 00f7 62797465 		.ascii	"bytes_read\000"
+ 1495      735F7265 
+ 1495      616400
+ 1496              	.LASF42:
+ 1497 0102 77696963 		.ascii	"wiichuck_print_raw_motion_status\000"
+ 1497      6875636B 
+ 1497      5F707269 
+ 1497      6E745F72 
+ 1497      61775F6D 
+ 1498              	.LASF38:
+ 1499 0123 77696963 		.ascii	"wiichuck_begin\000"
+ 1499      6875636B 
+ 1499      5F626567 
+ 1499      696E00
+ 1500              	.LASF71:
+ 1501 0132 433A5C55 		.ascii	"C:\\Users\\dhous\\Documents\\Workspace09\\USBMIDI a"
+ 1501      73657273 
+ 1501      5C64686F 
+ 1501      75735C44 
+ 1501      6F63756D 
+ 1502 0160 6E642057 		.ascii	"nd WiiChuck.cydsn\000"
+ 1502      69694368 
+ 1502      75636B2E 
+ 1502      63796473 
+ 1502      6E00
+ 1503              	.LASF9:
+ 1504 0172 6C6F6E67 		.ascii	"long long int\000"
+ 1504      206C6F6E 
+ 1504      6720696E 
+ 1504      7400
+ 1505              	.LASF62:
+ 1506 0180 696E6974 		.ascii	"initialization_buffer\000"
+ 1506      69616C69 
+ 1506      7A617469 
+ 1506      6F6E5F62 
+ 1506      75666665 
+ 1507              	.LASF17:
+ 1508 0196 63686172 		.ascii	"char\000"
+ 1508      00
+ 1509              	.LASF7:
+ 1510 019b 6C6F6E67 		.ascii	"long int\000"
+ 1510      20696E74 
+ 1510      00
+ 1511              	.LASF48:
+ 1512 01a4 61766572 		.ascii	"averageCounter\000"
+ 1512      61676543 
+ 1512      6F756E74 
+ 1512      657200
+ 1513              	.LASF63:
+ 1514 01b3 4932435F 		.ascii	"I2C_read\000"
+ 1514      72656164 
+ 1514      00
+ 1515              	.LASF26:
+ 1516 01bc 6932635F 		.ascii	"i2c_read_xfer_result\000"
+ 1516      72656164 
+ 1516      5F786665 
+ARM GAS  C:\Users\dhous\AppData\Local\Temp\ccoPXq2x.s 			page 31
+
+
+ 1516      725F7265 
+ 1516      73756C74 
+ 1517              	.LASF3:
+ 1518 01d1 5F5F7569 		.ascii	"__uint8_t\000"
+ 1518      6E74385F 
+ 1518      7400
+ 1519              	.LASF36:
+ 1520 01db 57696943 		.ascii	"WiiChuck_Status\000"
+ 1520      6875636B 
+ 1520      5F537461 
+ 1520      74757300 
+ 1521              	.LASF18:
+ 1522 01eb 6C6F6E67 		.ascii	"long double\000"
+ 1522      20646F75 
+ 1522      626C6500 
+ 1523              	.LASF1:
+ 1524 01f7 756E7369 		.ascii	"unsigned char\000"
+ 1524      676E6564 
+ 1524      20636861 
+ 1524      7200
+ 1525              	.LASF67:
+ 1526 0205 73707269 		.ascii	"sprintf\000"
+ 1526      6E746600 
+ 1527              	.LASF0:
+ 1528 020d 7369676E 		.ascii	"signed char\000"
+ 1528      65642063 
+ 1528      68617200 
+ 1529              	.LASF10:
+ 1530 0219 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 1530      206C6F6E 
+ 1530      6720756E 
+ 1530      7369676E 
+ 1530      65642069 
+ 1531              	.LASF50:
+ 1532 0230 7A65726F 		.ascii	"zeroJoyX\000"
+ 1532      4A6F7958 
+ 1532      00
+ 1533              	.LASF51:
+ 1534 0239 7A65726F 		.ascii	"zeroJoyY\000"
+ 1534      4A6F7959 
+ 1534      00
+ 1535              	.LASF11:
+ 1536 0242 756E7369 		.ascii	"unsigned int\000"
+ 1536      676E6564 
+ 1536      20696E74 
+ 1536      00
+ 1537              	.LASF28:
+ 1538 024f 72656164 		.ascii	"read_cmd_result\000"
+ 1538      5F636D64 
+ 1538      5F726573 
+ 1538      756C7400 
+ 1539              	.LASF13:
+ 1540 025f 75696E74 		.ascii	"uint16_t\000"
+ 1540      31365F74 
+ 1540      00
+ 1541              	.LASF27:
+ 1542 0268 77726974 		.ascii	"write_cmd_result\000"
+ARM GAS  C:\Users\dhous\AppData\Local\Temp\ccoPXq2x.s 			page 32
+
+
+ 1542      655F636D 
+ 1542      645F7265 
+ 1542      73756C74 
+ 1542      00
+ 1543              	.LASF5:
+ 1544 0279 73686F72 		.ascii	"short unsigned int\000"
+ 1544      7420756E 
+ 1544      7369676E 
+ 1544      65642069 
+ 1544      6E7400
+ 1545              	.LASF41:
+ 1546 028c 77696963 		.ascii	"wiichuck_get_raw_motion_status\000"
+ 1546      6875636B 
+ 1546      5F676574 
+ 1546      5F726177 
+ 1546      5F6D6F74 
+ 1547              	.LASF14:
+ 1548 02ab 696E7433 		.ascii	"int32_t\000"
+ 1548      325F7400 
+ 1549              	.LASF22:
+ 1550 02b3 4932435F 		.ascii	"I2C_TRANSFER_TYPE_WRITE_READ\000"
+ 1550      5452414E 
+ 1550      53464552 
+ 1550      5F545950 
+ 1550      455F5752 
+ 1551              	.LASF34:
+ 1552 02d0 78666572 		.ascii	"xfer_type\000"
+ 1552      5F747970 
+ 1552      6500
+ 1553              	.LASF31:
+ 1554 02da 62797465 		.ascii	"bytes_to_read\000"
+ 1554      735F746F 
+ 1554      5F726561 
+ 1554      6400
+ 1555              	.LASF30:
+ 1556 02e8 62797465 		.ascii	"bytes_written\000"
+ 1556      735F7772 
+ 1556      69747465 
+ 1556      6E00
+ 1557              	.LASF46:
+ 1558 02f6 77696963 		.ascii	"wiichuck_status_request_array\000"
+ 1558      6875636B 
+ 1558      5F737461 
+ 1558      7475735F 
+ 1558      72657175 
+ 1559              	.LASF55:
+ 1560 0314 77696963 		.ascii	"wiichuck_state\000"
+ 1560      6875636B 
+ 1560      5F737461 
+ 1560      746500
+ 1561              	.LASF8:
+ 1562 0323 6C6F6E67 		.ascii	"long unsigned int\000"
+ 1562      20756E73 
+ 1562      69676E65 
+ 1562      6420696E 
+ 1562      7400
+ 1563              	.LASF16:
+ARM GAS  C:\Users\dhous\AppData\Local\Temp\ccoPXq2x.s 			page 33
+
+
+ 1564 0335 646F7562 		.ascii	"double\000"
+ 1564      6C6500
+ 1565              	.LASF20:
+ 1566 033c 4932435F 		.ascii	"I2C_TRANSFER_TYPE_UNKNOWN\000"
+ 1566      5452414E 
+ 1566      53464552 
+ 1566      5F545950 
+ 1566      455F554E 
+ 1567              	.LASF72:
+ 1568 0356 4932435F 		.ascii	"I2C_Transfer_Type\000"
+ 1568      5472616E 
+ 1568      73666572 
+ 1568      5F547970 
+ 1568      6500
+ 1569              	.LASF6:
+ 1570 0368 5F5F696E 		.ascii	"__int32_t\000"
+ 1570      7433325F 
+ 1570      7400
+ 1571              	.LASF23:
+ 1572 0372 4932435F 		.ascii	"I2C_TRANSFER_TYPE_READ\000"
+ 1572      5452414E 
+ 1572      53464552 
+ 1572      5F545950 
+ 1572      455F5245 
+ 1573              	.LASF29:
+ 1574 0389 62797465 		.ascii	"bytes_to_write\000"
+ 1574      735F746F 
+ 1574      5F777269 
+ 1574      746500
+ 1575              	.LASF70:
+ 1576 0398 77696963 		.ascii	"wiichuck.c\000"
+ 1576      6875636B 
+ 1576      2E6300
+ 1577              	.LASF49:
+ 1578 03a3 746F7461 		.ascii	"total\000"
+ 1578      6C00
+ 1579              	.LASF61:
+ 1580 03a9 62757474 		.ascii	"buttonC\000"
+ 1580      6F6E4300 
+ 1581              	.LASF47:
+ 1582 03b1 77696963 		.ascii	"wiichuck_status_result_array\000"
+ 1582      6875636B 
+ 1582      5F737461 
+ 1582      7475735F 
+ 1582      72657375 
+ 1583              	.LASF44:
+ 1584 03ce 49544D5F 		.ascii	"ITM_RxBuffer\000"
+ 1584      52784275 
+ 1584      66666572 
+ 1584      00
+ 1585              	.LASF69:
+ 1586 03db 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 1586      43313120 
+ 1586      352E342E 
+ 1586      31203230 
+ 1586      31363036 
+ 1587 040e 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m3 -mthumb -g -O"
+ARM GAS  C:\Users\dhous\AppData\Local\Temp\ccoPXq2x.s 			page 34
+
+
+ 1587      20726576 
+ 1587      6973696F 
+ 1587      6E203233 
+ 1587      37373135 
+ 1588 0441 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
+ 1588      66756E63 
+ 1588      74696F6E 
+ 1588      2D736563 
+ 1588      74696F6E 
+ 1589              	.LASF65:
+ 1590 0469 43794465 		.ascii	"CyDelay\000"
+ 1590      6C617900 
+ 1591              	.LASF58:
+ 1592 0471 6A6F7958 		.ascii	"joyX\000"
+ 1592      00
+ 1593              	.LASF59:
+ 1594 0476 6A6F7959 		.ascii	"joyY\000"
+ 1594      00
+ 1595              	.LASF24:
+ 1596 047b 636F756E 		.ascii	"counter_value\000"
+ 1596      7465725F 
+ 1596      76616C75 
+ 1596      6500
+ 1597              	.LASF37:
+ 1598 0489 77696963 		.ascii	"wiichuck_get_motion_status\000"
+ 1598      6875636B 
+ 1598      5F676574 
+ 1598      5F6D6F74 
+ 1598      696F6E5F 
+ 1599              	.LASF21:
+ 1600 04a4 4932435F 		.ascii	"I2C_TRANSFER_TYPE_WRITE\000"
+ 1600      5452414E 
+ 1600      53464552 
+ 1600      5F545950 
+ 1600      455F5752 
+ 1601              	.LASF43:
+ 1602 04bc 70627566 		.ascii	"pbuf\000"
+ 1602      00
+ 1603              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran
